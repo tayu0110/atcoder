@@ -1,0 +1,322 @@
+{
+	// Place your snippets for cpp here. Each snippet is defined under a snippet name and has a prefix, body and 
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+	// same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+	"bitsearch":{
+		"prefix": "bitserach",
+		"body": ["for(ll bit = 0; bit < (1<<${1:max}); bit++){",
+			"\tfor(int digits=0;digits<${2:digit_size};digits++){",
+			"\t\tif(bit & (1<<${3:digits})){",
+			"\t\t\t/*digitsが1だと真*/",
+			"\t\t}",
+			"\t}",
+			"}"
+		],
+		"description": "bitserach"
+	},
+	"UnionFind":{
+		"prefix": "UnionFind",
+		"body": ["struct UnionFind{",
+			"\tvector<int> par;",
+			"",
+			"\tUnionFind(int n){",
+			"\t\tpar = vector<int>(n, -1);",
+    		"\t}",
+    		"\tint root(int x){",
+			"\t\tif(par[x] < 0) return x;",
+			"\t\treturn par[x] = root(par[x]);",
+    		"\t}",
+    		"\tbool merge(int x, int y){",
+			"\t\tint rx = root(x);",
+			"\t\tint ry = root(y);",
+			"\t\tif(rx == ry) return false;",
+			"\t\tif(par[rx] > par[ry]) swap(x, y);",
+			"\t\tpar[rx] += par[ry];",
+			"\t\tpar[ry] = rx;",
+			"\t\treturn true;",
+    		"\t}",
+    		"\tbool isSame(int x, int y){",
+			"\t\tint rx = root(x);",
+			"\t\tint ry = root(y);",
+			"\t\treturn rx == ry;",
+			"\t}",
+			"\tint size(int x){",
+        	"\t\treturn -par[root(x)];",
+    		"\t}",
+			"};"
+		]
+	},
+	"chmax":{
+		"prefix": "chmax",
+		"body": "template<class T, class U> void chmax(T &a, U b){if(a < b) a = b;}"
+	},
+	"chmin":{
+		"prefix": "chmin",
+		"body": "template<class T ,class U> void chmin(T &a, U b){if(b < a) a = b;}"
+	},
+	"GCD":{
+		"prefix": "GCD",
+		"body": "template<class T>T GCD(T a, T b){if(a<b){T temp=a;a=b;b=temp;}T res=a%b;while(res!=0){a=b;b=res;res=a%b;}return b;}"
+	},
+	"LCM":{
+		"prefix": "LCM",
+		"body": [
+			"template<class T>T GCD(T a, T b){if(a<b){T temp=a;a=b;b=temp;}T res=a%b;while(res!=0){a=b;b=res;res=a%b;}return b;}",
+			"template<class T>T LCM(T a, T b){T res=GCD(a,b);return max(a,b)/res*min(a,b);}"
+		]
+	},
+	"modPow":{
+		"prefix": "modPow",
+		"body": [
+			"int modPow(long long a, long long n, long long p) {",
+				"\tif (n == 0) return 1;",
+				"\tif (n == 1) return a % p;",
+				"\tif (n % 2 == 1) return (a * modPow(a, n - 1, p)) % p;",
+				"\tlong long t = modPow(a, n / 2, p);",
+				"\treturn (t * t) % p;",
+			"}"
+		]	
+	},
+	"digits":{
+		"prefix": "digits",
+		"body": [
+			"ll digits(ll n){",
+			"\tint exp=0;",
+			"\twhile(n>0){",
+			"\t\tn/=10;",
+			"\t\texp++;",
+			"\t}",
+			"\treturn exp;",
+			"}"
+		]
+	},
+	"combination": {
+		"prefix": "combination",
+		"body": [
+			"mint comb(mint &n, mint &k, vector<mint> &v) {",
+			"\tif(n.val < k.val) return 0;",
+			"\tv.assign(n.val+1, 0);",
+			"\tvector<mint> d(n.val+1);",
+			"\td[0] = 1;",
+			"\td[1] = 1;",
+			"\tfor(ll i=2;i<n.val+1;i++) d[i] = d[i-1] * i;",
+			"\tfor(ll i=0;i<n.val+1;i++) {",
+			"\t\tif(i-k.val < 0) v[i] = 0;",
+			"\t\telse v[i] = d[i] / (d[k.val] * d[i-k.val]);",
+			"\t}",
+			"\treturn v[n.val];",
+			"}"
+		]
+	},
+	"extGcd": {
+		"prefix": "extGcd",
+		"body": "ll extGCD(ll a, ll b, ll &p, ll &q) {if(b == 0) {p = 1;q = 0;return a;}ll d = extGCD(b, a%b, q, p);q -= a/b * p;return d;}"
+	},
+	"ChineseRemainerTheorem": {
+		"prefix": "crt",
+		"body": [
+			"inline ll mod(ll a, ll m) {return (a%m + m) % m;}",
+			"ll extGCD(ll a, ll b, ll &p, ll &q) {if(b == 0) {p = 1;q = 0;return a;}ll d = extGCD(b, a%b, q, p);q -= a/b * p;return d;}",
+			"pll crt(ll b1, ll m1, ll b2, ll m2) {ll p, q;ll d = extGCD(m1, m2, p, q);if((b2 - b1) % d != 0) return make_pair(0, -1);ll m = m1 * (m2/d);ll tmp = (b2 - b1) / d * p % (m2/d);ll r = mod(b1 + m1 * tmp, m);return make_pair(r, m);}"
+		]
+	},
+	"BinaryIndexedTree": {
+		"prefix": "BIT",
+		"body": [
+			"struct BIT {",
+			"\tll n;",
+			"\tvector<ll> a;",
+			"\tBIT(ll n) : n(n), a(n+1,0) {}",
+			"\tvoid add(ll i, ll x) {",
+			"\t\ti++;",
+			"\t\tif(i == 0) return;",
+			"\t\tfor(ll k = i; k <= n; k += (k & -k)) a[k] += x;",
+			"\t\treturn;",
+			"\t}",
+			"\tll sum(ll i, ll j) {",
+			"\t\treturn sum_sub(j) - sum_sub(i-1);",
+			"\t}",
+			"\tll sum_sub(ll i) {",
+			"\t\ti++;",
+			"\t\tll s = 0;",
+			"\t\tif(i == 0) return s;",
+			"\t\tfor(ll k = i; k > 0; k -= (k & -k)) s += a[k];",
+			"\t\treturn s;",
+			"\t}",
+			"\tll lower_bound(ll x) {",
+			"\t\tif(x <= 0) return 0;",
+			"\t\tll i = 0, r = 1;",
+			"\t\twhile(r < n) r = r << 1;",
+			"\t\tfor(int len = r; len >= 0; len = len >> 1) {",
+			"\t\t\tif(i+len < n && a[i+len] < x) {",
+			"\t\t\t\tx -= a[i+len];",
+			"\t\t\t\ti += len;",
+			"\t\t\t}",
+			"\t\t}",
+			"\t\treturn i;",
+			"\t}",
+			"};"
+		]
+	},
+	"modint": {
+		"prefix": "mint",
+		"body": [
+			"struct mint {",
+			"\tll val;",
+			"\tconstexpr mint(ll val=0) : val((val%MOD + MOD) % MOD) {}",
+			"\tconstexpr mint(const mint &m) : val(m.val) {}",
+			"\tconstexpr mint operator-() const {return mint(-val);}",
+			"\tconstexpr mint operator+(const mint &m) const noexcept {return mint(*this) += m;}",
+			"\tconstexpr mint operator-(const mint &m) const noexcept {return mint(*this) -= m;}",
+			"\tconstexpr mint operator*(const mint &m) const noexcept {return mint(*this) *= m;}",
+			"\tconstexpr mint operator/(const mint &m) const noexcept {return mint(*this) /= m;}",
+			"\tconstexpr mint &operator+=(const mint &a) noexcept {if((val += a.val) >= MOD) val -= MOD; return *this;}",
+			"\tconstexpr mint &operator-=(const mint &a) noexcept {if((val -= a.val) < 0) val += MOD; return *this;}",
+			"\tconstexpr mint &operator*=(const mint &a) noexcept {val = val * a.val % MOD; return *this;}",
+			"\tconstexpr mint &operator/=(mint m) noexcept {",
+			"\t\tll exp = MOD - 2;",
+			"\t\twhile(exp) {",
+			"\t\t\tif(exp % 2 != 0) *this *= m;",
+			"\t\t\tm *= m;",
+			"\t\t\texp /= 2;",
+			"\t\t}",
+			"\t\treturn *this;",
+			"\t}",
+			"\tmint pow(ll t) const {",
+			"\t\tif(!t) return 1;",
+			"\t\tmint a = pow(t >> 1);",
+			"\t\ta *= a;",
+			"\t\tif(t & 1) a *= (*this);",
+			"\t\treturn a;",
+			"\t}",
+			"\tbool operator==(const mint &m) {return val == m.val;}",
+			"\tbool operator<(const mint &m) {return val < m.val;}",
+			"\tbool operator>(const mint &m) {return val > m.val;}",
+			"\tbool operator<=(const mint &m) {return val <= m.val;}",
+			"\tbool operator>=(const mint &m) {return val >= m.val;}",
+			"\tbool operator!=(const mint &m) {return val != m.val;}",
+			"\tfriend ostream &operator<<(ostream &os, const mint &m) {os << m.val; return os;}",
+			"\tfriend istream &operator>>(istream & is, mint &m) {is >> m.val; return is;}",
+			"\tmint comb(mint &n, mint &k, vector<mint> &v) {",
+			"\t\tif(n.val < k.val) return 0;",
+			"\t\tv.assign(n.val+1, 0);",
+			"\t\tvector<mint> d(n.val+1);",
+			"\t\td[0] = 1;",
+			"\t\td[1] = 1;",
+			"\t\tfor(ll i=2;i<n.val+1;i++) d[i] = d[i-1] * i;",
+			"\t\tfor(ll i=0;i<n.val+1;i++) {",
+			"\t\t\tif(i-k.val < 0) v[i] = 0;",
+			"\t\t\telse v[i] = d[i] / (d[k.val] * d[i-k.val]);",
+			"\t\t}",
+			"\t\treturn v[n.val];",
+			"\t}",
+			"};"
+		]
+	},
+	"Date":{
+		"prefix": "Date",
+		"body": [
+			"class Date {",
+			"\tint year, month, day;",
+			"\tvoid subMonth(int m) {",
+			"\t\tmonth -= m;",
+			"\t\twhile(month < 0) {",
+			"\t\t\tyear--;",
+			"\t\t\tmonth += 12;",
+			"\t\t}",
+			"\t}",
+			"\tint endOfManth(int m=-1) {",
+			"\t\tif(m < 1) m = month+1;",
+			"\t\tint mx;",
+			"\t\tif(m == 2) {",
+			"\t\t\tif(isLeap()) mx = 29;",
+			"\t\t\telse mx = 28;",
+			"\t\t} else if(m == 4 || m == 6 || m == 9 || m == 11) mx = 30;",
+			"\t\telse mx = 31;",
+			"\t\treturn mx;",
+			"\t}",
+			"public:",
+			"\tDate(int year, int month, int day)",
+			"\t\t: year(year-1), month(month-1), day(day-1) {}",
+			"\tDate(string year, string month, string day)",
+			"\t\t: year(stoi(year)), month(stoi(year)), day(stoi(day)) {}",
+			"\tDate(const Date &date)",
+			"\t\t: year(date.year), month(date.month), day(date.day) {}",
+			"\tint yearVal() {return year+1;}",
+			"\tint monthVal() {return month+1;}",
+			"\tint dayVal() {return day+1;}",
+			"\tstring yearStr() {return to_string(year+1);}",
+			"\tstring monthStr() {return to_string(month+1);}",
+			"\tstring dayStr() {return to_string(day+1);}",
+			"\tbool isLeap(int y=-1) {",
+			"\t\tif(y == -1) y = year+1;",
+			"\t\tif(y % 4 != 0) return false;",
+			"\t\tif(y % 100 != 0) return true;",
+			"\t\tif(y % 400 != 0) return false;",
+			"\t\treturn true;",
+			"\t}",
+			"\tvoid addYear(int y) {year += y;}",
+			"\tvoid addMonth(int m) {",
+			"\t\tmonth += m;",
+			"\t\tif(month > 11) {",
+			"\t\t\taddYear(1);",
+			"\t\t\tmonth -= 12;",
+			"\t\t}",
+			"\t}",
+			"\tvoid addDay(int d) {",
+			"\t\tday += d;",
+			"\t\tint mx = endOfManth(month+1);",
+			"\t\twhile(day+1 > mx) {",
+			"\t\t\tday -= mx;",
+			"\t\t\taddMonth(1);",
+			"\t\t\tmx = endOfManth(month+1);",
+			"\t\t}",
+			"\t}",
+			"\tvoid subDay(int d) {",
+			"\t\tday -= d;",
+			"\t\twhile(day < 0) {",
+			"\t\t\tsubMonth(1);",
+			"\t\t\tday += endOfManth(month+1);",
+			"\t\t}",
+			"\t}",
+			"\tDate &operator++() {",
+			"\t\taddDay(1);",
+			"\t\treturn *this;",
+			"\t}",
+			"\tDate &operator--() {",
+			"\t\tsubDay(1);",
+			"\t\treturn *this;",
+			"\t}",
+			"};"
+		]
+	},
+	"TwoDimensionalCumulativeSum": {
+		"prefix": "TwoDimCumulativeSum",
+		"body": [
+			"class TwoDimCumulativeSum {",
+			"\tint h, w;",
+			"\tvector<vector<int>> sum;",
+			"public:",
+			"\tTwoDimCumulativeSum(vector<vector<int>> a) {",
+			"\t\th = a.size();",
+			"\t\tw = a[0].size();",
+			"\t\tsum.assign(h+1, vector<int>(w+1));",
+			"\t\tfor(int i = 1; i < h+1; i++) for(int j = 1; j < w+1; j++) sum[i][j] = a[i-1][j-1] + sum[i-1][j] + sum[i][j-1] - sum[i-1][j-1];",
+			"\t}",
+			"\tint rangeSum(int top, int btm, int lft, int rht) {",
+			"\t\treturn sum[btm][rht] - sum[top][rht] - sum[btm][lft] + sum[top][lft];",
+			"\t}",
+			"};"
+		]
+	}
+}
