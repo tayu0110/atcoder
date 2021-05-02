@@ -114,6 +114,17 @@ ll maxval(ll a, ll b, ll c) {
 ll minval(ll a, ll b, ll c, ll d, ll e) {
   return min(a, min(b, min(c, min(d, e))));
 }
+struct mem {
+  ll a, b, c, d, e;
+  ll mn;
+  mem(ll a, ll b, ll c, ll d, ll e, ll mn) : a(a), b(b), c(c), d(d), e(e), mn(mn) {}
+  mem(const mem &m) : a(m.a), b(m.b), c(m.c), d(m.d), e(m.e), mn(m.mn) {}
+  bool operator<(const mem &m) { return mn < m.mn; }
+  bool operator>(const mem &m) { return mn > m.mn; }
+  bool operator==(const mem &m) { return mn == m.mn; }
+  bool operator<=(const mem &m) { return mn <= m.mn; }
+  bool operator>=(const mem &m) { return mn >= m.mn; }
+};
 int main(int argc,char* argv[]){
   cin.tie(0);
   ios::sync_with_stdio(0);
@@ -121,42 +132,27 @@ int main(int argc,char* argv[]){
   int n;
   cin >> n;
   vector<ll> a(n), b(n), c(n), d(n), e(n);
+  vector<pair<mem, int>> an, bn, cn, dn, en;
   for(int i=0;i<n;i++) {
     cin >> a[i] >> b[i] >> c[i] >> d[i] >> e[i];
-  }
-  ll res = 0;
-  int x = 0, y = 0;
-  for(int i=0;i<n;i++) {
-    for(int j=i+1;j<n;j++) {
-      ll an = max(a[i], a[j]);
-      ll bn = max(b[i], b[j]);
-      ll cn = max(c[i], c[j]);
-      ll dn = max(d[i], d[j]);
-      ll en = max(e[i], e[j]);
-      ll t = minval(an, bn, cn, dn, en);
-      if(res < t) {
-        res = t;
-        x = i;
-        y = j;
-      }
+    ll mn = minval(a[i], b[i], c[i], d[i], e[i]);
+    if(mn == a[i]) {
+      an.push_back({mem(a[i], b[i], c[i], d[i], e[i], mn), i});
+    } else if(mn == b[i]) {
+      bn.push_back({mem(a[i], b[i], c[i], d[i], e[i], mn), i});
+    } else if(mn == c[i]) {
+      cn.push_back({mem(a[i], b[i], c[i], d[i], e[i], mn), i});      
+    } else if(mn == d[i]) {
+      dn.push_back({mem(a[i], b[i], c[i], d[i], e[i], mn), i});
+    } else {
+      en.push_back({mem(a[i], b[i], c[i], d[i], e[i], mn), i});
     }
   }
-  ll am = max(a[x], a[y]);
-  ll bm = max(b[x], b[y]);
-  ll cm = max(c[x], c[y]);
-  ll dm = max(d[x], d[y]);
-  ll em = max(e[x], e[y]);
-  ll ans = 0;
-  for(int i=0;i<n;i++) {
-    if(i == x || i == y) continue;
-    ll an = max(a[i], am);
-    ll bn = max(b[i], bm);
-    ll cn = max(c[i], cm);
-    ll dn = max(d[i], dm);
-    ll en = max(e[i], em);
-    ll t = minval(an, bn, cn, dn, en);
-    ans = max(ans, t);
-  }
-  cout << ans << endl;
+  sort(an.begin(), an.end());
+  sort(bn.begin(), bn.end());
+  sort(cn.begin(), cn.end());
+  sort(dn.begin(), dn.end());
+  sort(en.begin(), en.end());
+
   return 0;
 }
