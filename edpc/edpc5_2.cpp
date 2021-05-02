@@ -1,0 +1,58 @@
+#include<iostream>
+#include<iomanip>
+#include<string>
+#include<vector>
+#include<algorithm>
+#include<utility>
+#include<tuple>
+#include<map>
+#include<queue>
+#include<set>
+#include<stack>
+#include<numeric>
+#include<cstdio>
+#include<cstdlib>
+#include<cstring>
+#include<cmath>
+
+using namespace std;
+
+using ll = long long;
+using ld = long double;
+using pii = pair<int, int>;
+using pll = pair<ll, ll>;
+
+#define BIL ((ll)1e9)
+#define MOD ((ll)1e9+7)
+#define INF (1LL<<60)           //1LL<<63でオーバーフロー
+#define inf (1<<29)             //1<<29でオーバーフロー
+
+int main(int argc,char* argv[]){
+    cin.tie(0);
+    ios::sync_with_stdio(0);
+    cout << fixed << setprecision(20);
+
+    int n;
+    ll w;
+    cin >> n >> w;
+
+    vector<pll> wv(n);
+    for(auto &x:wv){
+        cin >> x.first >> x.second;
+    }
+
+    vector<vector<ll>> dp(n+1, vector<ll>(100010,INF));
+    dp[0][0]=0;
+    for(int i=1;i<n+1;i++){
+        for(int j=0;j<100010;j++){
+            if(j-wv[i].second>=0)dp[i][j] = min(dp[i-1][j-wv[i].second]+wv[i].first, dp[i-1][j]);
+            else dp[i][j]=dp[i-1][j];
+        }
+    }
+    ll ans=100000;
+    while(dp[n-1][ans]>w)ans--;
+
+    cout << ans << endl;
+
+    return 0;
+}

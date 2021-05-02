@@ -1,0 +1,11 @@
+Build Win32 Project
+    -> g++ {filename}.cpp -o {filename}.exe -mwindows
+
+Build Win32 Resourse file
+    -> windres {filename}.rc -o {filename}.o -c 65001
+        //If you don't specify the -c 65001 option, the characters on the resource tool will be garbled.
+        //You can use the -c 65001 option to specify the character set as UTF-8 to prevent characters from being garbled.
+
+Buikd Win32 Project (Including Resourse Files)
+    -> g++ {filename}.cpp {filename}.o -o {filename}.exe -mwindows
+        //.o file is the file which is compiled .rc file.

@@ -1,0 +1,57 @@
+#include<iostream>
+#include<iomanip>
+#include<string>
+#include<vector>
+#include<algorithm>
+#include<utility>
+#include<tuple>
+#include<map>
+#include<queue>
+#include<set>
+#include<stack>
+#include<numeric>
+#include<cstdio>
+#include<cstdlib>
+#include<cstring>
+#include<cmath>
+
+using namespace std;
+
+using ll = long long;
+using pii = pair<int, int>;
+using pll = pair<ll, ll>;
+
+#define BIL ((ll)1e9)
+#define MOD ((ll)1e9+7)
+#define INF (1LL<<60)           //1LL<<63でオーバーフロー
+#define inf (1<<29)             //1<<29でオーバーフロー
+
+int main(int argc,char* argv[]){
+    cin.tie(0);
+    ios::sync_with_stdio(0);
+    cout << fixed << setprecision(20);
+
+    int t;
+    cin >> t;
+    for(int i=0;i<t;i++){
+        ll n;
+        cin >> n;
+        ll k=1;
+        while(k<=n){
+            if(k*k==n){
+                cout << 2*(k-1) << endl;
+                break;
+            }else if(k*k>n){
+                cout << 2*(k-1) << endl;
+                break;
+            }
+            if(k*(k+1)>=n){
+                cout << 2*k-1 << endl;
+                break;
+            }
+            k++;
+        }
+    }
+
+    return 0;
+}

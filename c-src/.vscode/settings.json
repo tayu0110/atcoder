@@ -1,0 +1,9 @@
+{
+    "files.encoding": "shiftjis",
+    "files.associations": {
+        "ostream": "cpp",
+        "queue": "cpp",
+        "set": "cpp",
+        "iostream": "cpp"
+    }
+}
