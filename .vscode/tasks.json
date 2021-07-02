@@ -5,14 +5,13 @@
             // Run the tasks on the PS or Cmd
             "type": "shell",
             "label": "C++ Basic Build",
-            "command": "C:/Program Files/mingw-w64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/bin/g++.exe",
-            // "command": "C:/MinGW/bin/g++.exe",
+            "command": "g++",
             "args": [
-                "-std=gnu++17",
+                "-std=c++17",
                 "-g",
                 "${relativeFile}",
                 "-o",
-                "${fileBasenameNoExtension}.exe"
+                "${fileBasenameNoExtension}"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
@@ -30,7 +29,7 @@
             "type": "shell",
             "label": "Windows Desktop App Build",
             // "command": "C:/MinGW/bin/g++.exe",
-            "command": "C:/Program Files/mingw-w64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/bin/g++.exe",
+            "command": "g++",
             "args": [
                 "${fileBasenameNoExtension}.cpp",
                 "-o",
@@ -76,7 +75,7 @@
             "type": "shell",
             "label": "Windows Desktop App Add Resourse Build",
             // "command": "C:/MinGW/bin/g++.exe",
-            "command": "C:/Program Files/mingw-w64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/bin/g++.exe",
+            "command": "g++",
             "args": [
                 "${fileDirname}/${fileBasenameNoExtension}.cpp",
                 "${fileDirname}/${fileBasenameNoExtension}.o",

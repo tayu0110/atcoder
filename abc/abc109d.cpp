@@ -18,73 +18,141 @@
 
 using namespace std;
 
+struct Edge {
+  int to;
+  long long weight;
+  Edge() : to(0), weight(0) {}
+  Edge(int to, long long weight) : to(to), weight(weight) {}
+  Edge(const Edge& e) {
+    to = e.to;
+    weight = e.weight;
+  }
+  bool operator>(const Edge &e) const { return weight > e.weight; }
+  bool operator<(const Edge &e) const { return weight < e.weight; }
+  bool operator==(const Edge &e) const { return weight == e.weight; }
+  bool operator<=(const Edge &e) const { return weight <= e.weight; }
+  bool operator>=(const Edge &e) const { return weight >= e.weight; }
+};
+
 using ll = long long;
 using ld = long double;
 using pii = pair<int, int>;
 using pll = pair<ll, ll>;
+using Graph = vector<vector<int>>;
+using weightedGraph = vector<vector<Edge>>;
+using heap = priority_queue<int, vector<int>, greater<int>>;
 
-#define BIL ((ll)1e9)
-#define MOD ((ll)1e9+7)
-#define INF (1LL<<60)           //1LL<<63でオーバーフロー
-#define inf (1<<29)             //1<<29でオーバーフロー
+const ll BIL = 1e9;
+const ll MOD = 1e9 + 7;
+const ll INF = 1LL << 60;
+const int inf = 1 << 29;
+const ld PI = 3.141592653589793238462643383;
+
+struct SegmentTree {
+  int sz;
+  vector<int> t;
+  SegmentTree(int n) {
+    sz = 1;
+    while(sz < n) sz *= 2;
+    t.assign(2 * sz - 1, 0);
+  }
+  void init(int idx, ll val) {
+    idx += sz-1;
+    t[idx] = val;
+    return;
+  }
+  // update the maximum value of the interval
+  void update(int idx, int val) {
+    idx += sz - 1;
+    t[idx] = val;
+    while(idx > 0) {
+      idx = (idx - 1) / 2;
+      if(t[idx] > val) break;
+      t[idx] = val;
+    }
+    return;
+  }
+  // update the sum of the interval
+  void update(int l, int r, ll val, int now=0, int a=0, int b=-1) {
+    if(now >= t.size()) return;
+    if(b < 0) b = sz;
+    if(l < 0) l = 0;
+    if(r > sz) r = sz;
+    if(r < a || l > b) return;
+    if(a <= l && r <= b) {
+      t[now] += val;
+      update(l, r, val, now*2+1, a, (a+b)/2);
+      update(l, r, val, now*2+2, (a+b)/2, b);
+    }
+    return;
+  }
+  // get the sum of interval
+  int getSum(int l, int r, int now=0, int a=0, int b=-1) {
+    if(now >= t.size()) return 0;
+    if(b < 0) b = sz;
+    if(l < 0) l = 0;
+    if(r > sz) r = sz;
+    if(l > b || r < a) return 0;
+    if(l <= a && r >= b) return t[now];
+    int res = 0;
+    res += getSum(l, r, 2*now+1, a, (a+b)/2);
+    res += getSum(l, r, 2*now+2, (a+b)/2, b);
+    return res;
+  }
+  // get the maximum value of the interval
+  int getMax(int l, int r, int now=0, int a=0, int b=-1) {
+    if(now >= t.size()) return 0;
+    if(b < 0) b = sz;
+    if(l < 0) l = 0;
+    if(r > sz) r = sz;
+    if(l > b || r < a) return 0;
+    if(l <= a && r >= b) return t[now];
+    int res = 0;
+    res = max(res, getMax(l, r, 2*now+1, a, (a+b)/2));
+    res = max(res, getMax(l, r, 2*now+2, (a+b)/2, b));
+    return res;
+  }
+  ll getElement(int idx) {
+    if(idx == 0) return t[0];
+    ll res = t[idx];
+    return res += getElement((idx-1)/2);
+  }
+  ll operator[](int idx) {
+    idx += sz-1;
+    return getElement(idx);
+  }
+};
 
 int main(int argc,char* argv[]){
-    cin.tie(0);
-    ios::sync_with_stdio(0);
-    cout << fixed << setprecision(20);
-    int h,w;
-    cin >> h >> w;
-    vector<vector<int>> a(h,vector<int>(w));
-    for(int i=0;i<h;i++){
-        for(int j=0;j<w;j++){
-            cin >> a[i][j];
+  cin.tie(0);
+  ios::sync_with_stdio(0);
+  cout << fixed << setprecision(20);
+  int h, w;
+  cin >> h >> w;
+  vector<vector<int>> a(h, vector<int>(w));
+  for(int i=0;i<h;i++) {
+    for(int j=0;j<w;j++) {
+      cin >> a[i][j];
+    }
+  }
+  vector<pair<pii, pii>> ans;
+  for(int i=0;i<h;i++) {
+    for(int j=0;j<w;j++) {
+      if(i == h-1 && j == w-1) break;
+      if(a[i][j] % 2 == 1) {
+        if(j+1 < w) {
+          a[i][j+1]++;a[i][j]--;
+          ans.push_back({{i+1, j+1}, {i+1, j+2}});
+        } else {
+          a[i+1][j]++;a[i][j]--;
+          ans.push_back({{i+1, j+1}, {i+2, j+1}});
         }
+      }
     }
-    int n=0;
-    vector<pair<pii,pii>> ans(0);
-    for(int i=0;i<h;i++){
-        if(i%2==0){
-            for(int j=0;j<w;j++){
-                if(a[i][j]%2==0)continue;
-                if(j+1<w){
-                    a[i][j+1]++;
-                    a[i][j]--;
-                    n++;
-                    ans.push_back(make_pair(make_pair(i+1,j+1),make_pair(i+1,j+2)));
-                }else if(i+1<h){
-                    a[i+1][j]++;
-                    a[i][j]--;
-                    n++;
-                    ans.push_back(make_pair(make_pair(i+1,j+1),make_pair(i+2,j+1)));
-                }
-            }
-        }else{
-            for(int j=w-1;j>=0;j--){
-                if(a[i][j]%2==0)continue;
-                if(j-1>=0){
-                    a[i][j-1]++;
-                    a[i][j]--;
-                    n++;
-                    ans.push_back(make_pair(make_pair(i+1,j+1),make_pair(i+1,j)));
-                }else if(i+1<h){
-                    a[i+1][j]++;
-                    a[i][j]--;
-                    n++;
-                    ans.push_back(make_pair(make_pair(i+1,j+1), make_pair(i+2,j+1)));
-                }
-            }
-        }
-    }
-    cout << n << endl;
-    for(int i=0;i<ans.size();i++){
-        cout << ans[i].first.first << " " << ans[i].first.second << " " << ans[i].second.first << " " << ans[i].second.second << endl;
-    }
-    // cout << endl;
-    // for(int i=0;i<h;i++){
-    //     for(int j=0;j<w;j++){
-    //         cout << a[i][j] << " ";
-    //     }
-    //     cout << endl;
-    // }
-    return 0;
+  }
+  cout << ans.size() << endl;
+  for(auto e : ans) {
+    cout << e.first.first << " " << e.first.second << " " << e.second.first << " " << e.second.second << endl;
+  }
+  return 0;
 }

@@ -7,7 +7,6 @@
 #include<tuple>
 #include<map>
 #include<queue>
-#include<deque>
 #include<set>
 #include<stack>
 #include<numeric>
@@ -18,23 +17,9 @@
 
 using namespace std;
 
-struct Edge {
-  int to;
-  long long weight;
-  Edge() : to(0), weight(0) {}
-  Edge(int to, long long weight) : to(to), weight(weight) {}
-  Edge(const Edge& e) {
-    to = e.to;
-    weight = e.weight;
-  }
-};
-
 using ll = long long;
-using ld = long double;
 using pii = pair<int, int>;
 using pll = pair<ll, ll>;
-using Graph = vector<vector<int>>;
-using weightedGraph = vector<vector<Edge>>;
 
 #define BIL ((ll)1e9)
 #define MOD ((ll)1e9+7)
@@ -42,30 +27,41 @@ using weightedGraph = vector<vector<Edge>>;
 #define inf (1<<29)             //1<<29でオーバーフロー
 
 int main(int argc,char* argv[]){
-  cin.tie(0);
-  ios::sync_with_stdio(0);
-  cout << fixed << setprecision(20);
-  ll n, k;
-  cin >> n >> k;
-  vector<pll> lr(k);
-  for(int i=0;i<k;i++) {
-    cin >> lr[i].first >> lr[i].second;
-    lr[i].second++;
-  }
-  vector<ll> dp(2*n+1, 0);
-  dp[1] = 1;
-  dp[2] = -1;
-  for(int i=1;i<n+1;i++) {
-    dp[i] += dp[i-1];
-    dp[i] %= 998244353;
-    for(int j=0;j<k;j++) {
-      ll l = lr[j].first;
-      ll r = lr[j].second;
-      dp[i+l] += dp[i];
-      dp[i+r] -= dp[i];
+    cin.tie(0);
+    ios::sync_with_stdio(0);
+    cout << fixed << setprecision(20);
+
+    const ll mod=998244353;
+
+    int n,k;
+    cin >> n >> k;
+    set<pii> check;
+    for(int i=0;i<k;i++){
+        int l,r;
+        cin >> l >> r;
+        check.insert(make_pair(l,r));
     }
-  }
-  if(dp[n] < 0) dp[n] += 998244353;
-  cout << dp[n] << endl;
-  return 0;
+
+    vector<ll> point(n,0);
+    point[0]=1;
+    for(int i=1;i<n;i++){
+        for(int j=0;j<i;j++){
+            if(point[j]==0){
+                continue;
+            }
+            int diff=i-j;
+            for(auto it=check.begin();it!=check.end();it++){
+                if(diff>=it->first && diff<=it->second){
+                    point[i]+=point[j];
+                    break;
+                }else if(diff<it->first){
+                    break;
+                }
+            }
+        }
+    }
+
+    cout << point[n-1]%mod << endl;
+
+    return 0;
 }

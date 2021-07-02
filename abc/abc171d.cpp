@@ -1,5 +1,4 @@
 #include<iostream>
-#include<iomanip>
 #include<string>
 #include<vector>
 #include<algorithm>
@@ -7,10 +6,8 @@
 #include<tuple>
 #include<map>
 #include<queue>
-#include<deque>
 #include<set>
 #include<stack>
-#include<numeric>
 #include<cstdio>
 #include<cstdlib>
 #include<cstring>
@@ -18,52 +15,29 @@
 
 using namespace std;
 
-struct Edge {
-    int to;
-    long long weight;
-    Edge(int to, long long weight) : to(to), weight(weight) {}
-};
-
 using ll = long long;
-using ld = long double;
 using pii = pair<int, int>;
 using pll = pair<ll, ll>;
-using Graph = vector<vector<int>>;
-using weightedGraph = vector<vector<Edge>>;
 
-#define BIL ((ll)1e9)
-#define MOD ((ll)1e9+7)
-#define INF (1LL<<60)           //1LL<<63でオーバーフロー
-#define inf (1<<29)             //1<<29でオーバーフロー
+#define bil ((ll)1e9)
+#define mod ((ll)1e9+7)
 
 int main(int argc,char* argv[]){
-    cin.tie(0);
-    ios::sync_with_stdio(0);
-    cout << fixed << setprecision(20);
-    int n;
+    ll n;
     cin >> n;
-    map<ll, ll> mp;
-    ll sum = 0;
-    for(int i = 0; i < n; i++) {
-        int a;
-        cin >> a;
-        mp[a]++;
-        sum += a;
-    }
-    int q;
+    
+    vector<ll> a(n);
+    for(auto &x:a)
+        cin >> x;
+    
+    ll q;
     cin >> q;
-    for(int i = 0; i < q; i++) {
-        ll b, c;
-        cin >> b >> c;
-        if(mp.find(b) == mp.end()) {
-            cout << sum << endl;
-            continue;
-        }
-        sum -= b * mp[b];
-        sum += c * mp[b];
-        mp[c] += mp[b];
-        mp.erase(b);
-        cout << sum << endl;
-    }
+    
+    vector<pll> bc(q);
+    for(auto &x:bc)
+        cin >> x.first >> x.second;
+    
+    
+
     return 0;
 }

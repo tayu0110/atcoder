@@ -15,8 +15,12 @@
 #include<cstdlib>
 #include<cstring>
 #include<cmath>
+#include<cassert>
 
 using namespace std;
+
+#define DEBUG(var) cout << #var << ": " << var << " ";
+#define DEBUG_EN(var) cout << #var << ": " << var << endl;
 
 struct Edge {
   int to;
@@ -27,6 +31,11 @@ struct Edge {
     to = e.to;
     weight = e.weight;
   }
+  bool operator>(const Edge &e) const { return weight > e.weight; }
+  bool operator<(const Edge &e) const { return weight < e.weight; }
+  bool operator==(const Edge &e) const { return weight == e.weight; }
+  bool operator<=(const Edge &e) const { return weight <= e.weight; }
+  bool operator>=(const Edge &e) const { return weight >= e.weight; }
 };
 
 using ll = long long;
@@ -42,93 +51,78 @@ const ll MOD = 998244353;
 const ll INF = 1LL << 60;
 const int inf = 1 << 29;
 const ld PI = 3.141592653589793238462643383;
-
-struct SegmentTree {
-  int sz;
-  vector<int> t;
-  SegmentTree(int n) {
-    sz = 1;
-    while(sz < n) sz *= 2;
-    t.assign(2 * sz - 1, 0);
+struct mint {
+  ll val;
+  constexpr mint(ll val=0) : val((val%MOD + MOD) % MOD) {}
+  constexpr mint(const mint &m) : val(m.val) {}
+  constexpr mint operator-() const {return mint(-val);}
+  constexpr mint operator+(const mint &m) const noexcept {return mint(*this) += m;}
+  constexpr mint operator-(const mint &m) const noexcept {return mint(*this) -= m;}
+  constexpr mint operator*(const mint &m) const noexcept {return mint(*this) *= m;}
+  constexpr mint operator/(const mint &m) const noexcept {return mint(*this) /= m;}
+  constexpr mint &operator+=(const mint &a) noexcept {if((val += a.val) >= MOD) val -= MOD; return *this;}
+  constexpr mint &operator-=(const mint &a) noexcept {if((val -= a.val) < 0) val += MOD; return *this;}
+  constexpr mint &operator*=(const mint &a) noexcept {val = val * a.val % MOD; return *this;}
+  constexpr mint &operator/=(const mint m) noexcept {return *this *= m.inv();}
+  constexpr mint pow(ll t) const {
+    if(!t) return 1;
+    mint a = pow(t >> 1);
+    a *= a;
+    if(t & 1) a *= (*this);
+    return a;
   }
-  void update(int idx, int val) {
-    idx += sz - 1;
-    t[idx] = val;
-    while(idx > 0) {
-      idx = (idx - 1) / 2;
-      if(t[idx] > val) break;
-      t[idx] = val;
-    }
-    return;
+  constexpr mint inv() const {return pow(MOD-2);}
+  bool operator==(const mint &m) {return val == m.val;}
+  bool operator<(const mint &m) {return val < m.val;}
+  bool operator>(const mint &m) {return val > m.val;}
+  bool operator<=(const mint &m) {return val <= m.val;}
+  bool operator>=(const mint &m) {return val >= m.val;}
+  bool operator!=(const mint &m) {return val != m.val;}
+  friend ostream &operator<<(ostream &os, const mint &m) {os << m.val; return os;}
+  friend istream &operator>>(istream & is, mint &m) {is >> m.val; return is;}
+};
+struct combination {
+  vector<mint> fact, ifact;
+  combination(int n) : fact(n+1), ifact(n+1) {
+    assert(n < MOD);
+    fact[0] = 1;
+    for(int i = 1; i <= n; i++) fact[i] = fact[i-1] * i;
+    ifact[n] = fact[n].inv();
+    for(int i = n; i >= 1; i--) ifact[i-1] = ifact[i] * i;
   }
-  int getMax(int l, int r, int now=0, int a=0, int b=-1) {
-    if(now >= t.size()) return 0;
-    if(b < 0) b = sz;
-    if(l < 0) l = 0;
-    if(r > sz) r = sz;
-    if(l > b || r < a) return 0;
-    if(l <= a && r >= b) return t[now];
-    int res = 0;
-    res = max(res, getMax(l, r, 2*now+1, a, (a+b)/2));
-    res = max(res, getMax(l, r, 2*now+2, (a+b)/2, b));
-    return res;
+  // {combination c(n); mint ans = c(n, k);} => (ans == nCk)
+  mint operator()(int n, int k) {
+    if(k < 0 || k > n) return 0;
+    return fact[n] * ifact[k] * ifact[n-k];
   }
 };
-
-// ll comb(ll n, ll k) {
-//   ll t = k;
-//   ll res = 1;
-//   vector<ll> s;
-//   set<ll> ck;
-//   for(int i=1;i<=k;i++) ck.insert(i);
-//   while(t--) {
-//     ll l = n;
-//     vector<ll> p;
-//     for(auto e : ck) {
-//       if(l % e == 0) {
-//         l /= e;
-//         p.push_back(e);
-//       }
-//     }
-//     for(auto e : p) ck.erase(e);
-//     s.push_back(l);
-//     n--;
-//   }
-//   for(auto e : s) {
-//     res *= e;
-//     res %= MOD;
-//   }
-//   return res;
-// }
-
 int main(int argc,char* argv[]){
   cin.tie(0);
   ios::sync_with_stdio(0);
   cout << fixed << setprecision(20);
   int n, m;
   cin >> n >> m;
-  // ll ans = 0;
-  // vector<ll> memo(m+1, -1);
-  // for(int i=1;i<=m;i++) {
-  //   ll d = 0;
-  //   for(int j=1;j*j<=i;j++) {
-  //     if(i % j != 0) continue;
-  //     if(i / j == j) d++;
-  //     else d += 2;
-  //   }
-  //   ll k = n-1;
-  //   ll l = d + k - 1;
-  //   if(k > l - k) k = l - k;
-  //   ll c;
-  //   if(memo[d] != -1) c = memo[d];
-  //   else {
-  //     c = comb(l, k);
-  //     c %= MOD;
-  //     memo[d] = c;
-  //   }
-  //   ans += c;
-  //   ans %= MOD;
-  // }
-  // cout << ans << endl;
+  int t = 1;
+  int cnt = 0;
+  while(t < m) t *= 2, cnt++;
+  combination c(n+cnt);
+  vector<int> p(m+1, -1);
+  for(int i=2;i<m+1;i++) {
+    if(p[i] > 0) continue;
+    for(int j=1;i*j<m+1;j++) p[i*j] = i;
+  }
+  mint ans = 0;
+  for(int i=1;i<m+1;i++) {
+    map<int, ll> mp;
+    mint k = 1;
+    int j = i;
+    while(p[j] > 0) mp[p[j]] += 1, j /= p[j];
+    for(auto e : mp) {
+      mint l = c(n+e.second-1, n-1);
+      k *= l;
+    }
+    ans += k;
+  }
+  cout << ans << endl;
   return 0;
 }

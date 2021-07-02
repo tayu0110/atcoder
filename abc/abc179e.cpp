@@ -21,7 +21,17 @@ using namespace std;
 struct Edge {
   int to;
   long long weight;
+  Edge() : to(0), weight(0) {}
   Edge(int to, long long weight) : to(to), weight(weight) {}
+  Edge(const Edge& e) {
+    to = e.to;
+    weight = e.weight;
+  }
+  bool operator>(const Edge &e) const { return weight > e.weight; }
+  bool operator<(const Edge &e) const { return weight < e.weight; }
+  bool operator==(const Edge &e) const { return weight == e.weight; }
+  bool operator<=(const Edge &e) const { return weight <= e.weight; }
+  bool operator>=(const Edge &e) const { return weight >= e.weight; }
 };
 
 using ll = long long;
@@ -30,11 +40,88 @@ using pii = pair<int, int>;
 using pll = pair<ll, ll>;
 using Graph = vector<vector<int>>;
 using weightedGraph = vector<vector<Edge>>;
+using heap = priority_queue<int, vector<int>, greater<int>>;
 
-#define BIL ((ll)1e9)
-#define MOD ((ll)1e9+7)
-#define INF (1LL<<60)           //1LL<<63でオーバーフロー
-#define inf (1<<29)             //1<<29でオーバーフロー
+const ll BIL = 1e9;
+const ll MOD = 1e9 + 7;
+const ll INF = 1LL << 60;
+const int inf = 1 << 29;
+const ld PI = 3.141592653589793238462643383;
+
+struct SegmentTree {
+  int sz;
+  vector<int> t;
+  SegmentTree(int n) {
+    sz = 1;
+    while(sz < n) sz *= 2;
+    t.assign(2 * sz - 1, 0);
+  }
+  void init(int idx, ll val) {
+    idx += sz-1;
+    t[idx] = val;
+    return;
+  }
+  // update the maximum value of the interval
+  void update(int idx, int val) {
+    idx += sz - 1;
+    t[idx] = val;
+    while(idx > 0) {
+      idx = (idx - 1) / 2;
+      if(t[idx] > val) break;
+      t[idx] = val;
+    }
+    return;
+  }
+  // update the sum of the interval
+  void update(int l, int r, ll val, int now=0, int a=0, int b=-1) {
+    if(now >= t.size()) return;
+    if(b < 0) b = sz;
+    if(l < 0) l = 0;
+    if(r > sz) r = sz;
+    if(r < a || l > b) return;
+    if(a <= l && r <= b) {
+      t[now] += val;
+      update(l, r, val, now*2+1, a, (a+b)/2);
+      update(l, r, val, now*2+2, (a+b)/2, b);
+    }
+    return;
+  }
+  // get the sum of interval
+  int getSum(int l, int r, int now=0, int a=0, int b=-1) {
+    if(now >= t.size()) return 0;
+    if(b < 0) b = sz;
+    if(l < 0) l = 0;
+    if(r > sz) r = sz;
+    if(l > b || r < a) return 0;
+    if(l <= a && r >= b) return t[now];
+    int res = 0;
+    res += getSum(l, r, 2*now+1, a, (a+b)/2);
+    res += getSum(l, r, 2*now+2, (a+b)/2, b);
+    return res;
+  }
+  // get the maximum value of the interval
+  int getMax(int l, int r, int now=0, int a=0, int b=-1) {
+    if(now >= t.size()) return 0;
+    if(b < 0) b = sz;
+    if(l < 0) l = 0;
+    if(r > sz) r = sz;
+    if(l > b || r < a) return 0;
+    if(l <= a && r >= b) return t[now];
+    int res = 0;
+    res = max(res, getMax(l, r, 2*now+1, a, (a+b)/2));
+    res = max(res, getMax(l, r, 2*now+2, (a+b)/2, b));
+    return res;
+  }
+  ll getElement(int idx) {
+    if(idx == 0) return t[0];
+    ll res = t[idx];
+    return res += getElement((idx-1)/2);
+  }
+  ll operator[](int idx) {
+    idx += sz-1;
+    return getElement(idx);
+  }
+};
 
 int main(int argc,char* argv[]){
   cin.tie(0);
@@ -42,42 +129,29 @@ int main(int argc,char* argv[]){
   cout << fixed << setprecision(20);
   ll n, x, m;
   cin >> n >> x >> m;
+  vector<ll> p;
   set<ll> ck;
-  ll cnt = 0;
-  vector<ll> lt(0);
-  ll sum = 0;
-  while(ck.find(x) == ck.end()) {
+  ll tot = 0;
+  while(ck.find(x) == ck.end() && p.size() < n) {
+    tot += x;
+    p.push_back(x);
     ck.insert(x);
-    lt.push_back(x);
-    sum += x;
-    x = (x*x) % m;
-    cnt++;
+    x = x*x % m;
   }
-  ll syclesum = 0;
-  ll sycle = 0;
-  vector<ll> sc(0);
-  for(int i = cnt-1; i >= 0; i--) {
-    sycle++;
-    syclesum += lt[i];
-    sum -= lt[i];
-    cnt--;
-    sc.push_back(lt[i]);
-    if(lt[i] == x) break;
+  int pos = 0;
+  ll sum = 0;
+  for(int i=p.size()-1;i>=0;i--) {
+    sum += p[i];
+    if(p[i] == x) {
+      pos = i;
+      break;
+    }
   }
-  ll ans = 0;
-  if(n >= cnt) {
-    ans += sum;
-    n -= cnt;
-    ans += syclesum * (n/sycle);
-    if(n%sycle != 0) {
-      for(int i = 1; i <= n%sycle; i++) {
-        ans += sc[sycle-i];
-      }
-    }
-  } else {
-    for(int i = 0; i < n; i++) {
-      ans += lt[i];
-    }
+  ll ans = tot - sum;
+  n -= pos;
+  ans += sum * (n / (p.size()-pos));
+  for(int i=0;i<n%(p.size()-pos);i++) {
+    ans += p[pos+i];
   }
   cout << ans << endl;
   return 0;

@@ -7,7 +7,6 @@
 #include<tuple>
 #include<map>
 #include<queue>
-#include<deque>
 #include<set>
 #include<stack>
 #include<numeric>
@@ -19,7 +18,6 @@
 using namespace std;
 
 using ll = long long;
-using ld = long double;
 using pii = pair<int, int>;
 using pll = pair<ll, ll>;
 
@@ -32,20 +30,27 @@ int main(int argc,char* argv[]){
     cin.tie(0);
     ios::sync_with_stdio(0);
     cout << fixed << setprecision(20);
+
     int s;
     cin >> s;
-    ll a[s+1];
-    memset(a,0,sizeof(a));
-    a[s]=1;
-    for(ll i=s;i>=0;i--){
-        for(ll j=3;j<=s;j++){
-            if(i-j>=0){
-                a[i-j]+=a[i];
-                a[i-j]%=MOD;
-            }
-        }
-        a[i]%=MOD;
+
+    if(s<3){
+        cout << 0 << endl;
+        return 0;
     }
-    cout << a[0] << endl;
+
+    int n=s/3,exp=0;
+    ll ans=0;
+    for(int i=0;i<n;i++){
+        int N=n-i;
+        exp=s-3*N;
+        ll prog=0;
+        
+        ans+=prog;
+        ans%=MOD;
+    }
+
+    cout << ans << endl;
+
     return 0;
 }

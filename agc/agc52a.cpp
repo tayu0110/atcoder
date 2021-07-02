@@ -56,6 +56,12 @@ struct SegmentTree {
     while(sz < n) sz *= 2;
     t.assign(2 * sz - 1, 0);
   }
+  void init(int idx, ll val) {
+    idx += sz-1;
+    t[idx] = val;
+    return;
+  }
+  // update the maximum value of the interval
   void update(int idx, int val) {
     idx += sz - 1;
     t[idx] = val;
@@ -66,6 +72,34 @@ struct SegmentTree {
     }
     return;
   }
+  // update the sum of the interval
+  void update(int l, int r, ll val, int now=0, int a=0, int b=-1) {
+    if(now >= t.size()) return;
+    if(b < 0) b = sz;
+    if(l < 0) l = 0;
+    if(r > sz) r = sz;
+    if(r < a || l > b) return;
+    if(a <= l && r <= b) {
+      t[now] += val;
+      update(l, r, val, now*2+1, a, (a+b)/2);
+      update(l, r, val, now*2+2, (a+b)/2, b);
+    }
+    return;
+  }
+  // get the sum of interval
+  int getSum(int l, int r, int now=0, int a=0, int b=-1) {
+    if(now >= t.size()) return 0;
+    if(b < 0) b = sz;
+    if(l < 0) l = 0;
+    if(r > sz) r = sz;
+    if(l > b || r < a) return 0;
+    if(l <= a && r >= b) return t[now];
+    int res = 0;
+    res += getSum(l, r, 2*now+1, a, (a+b)/2);
+    res += getSum(l, r, 2*now+2, (a+b)/2, b);
+    return res;
+  }
+  // get the maximum value of the interval
   int getMax(int l, int r, int now=0, int a=0, int b=-1) {
     if(now >= t.size()) return 0;
     if(b < 0) b = sz;
@@ -78,26 +112,29 @@ struct SegmentTree {
     res = max(res, getMax(l, r, 2*now+2, (a+b)/2, b));
     return res;
   }
+  ll getElement(int idx) {
+    if(idx == 0) return t[0];
+    ll res = t[idx];
+    return res += getElement((idx-1)/2);
+  }
+  ll operator[](int idx) {
+    idx += sz-1;
+    return getElement(idx);
+  }
 };
 
 int main(int argc,char* argv[]){
   cin.tie(0);
   ios::sync_with_stdio(0);
   cout << fixed << setprecision(20);
-  int T;
-  cin >> T;
-  while(T--) {
+  int t;
+  cin >> t;
+  while(t--) {
     int n;
-    cin >> n;
-    string s, t, u;
-    cin >> s >> t >> u;
-    string ans;
-    for(int i=0;i<2*n;i++) {
-      if(i < n) ans += "0";
-      else ans += "1";
-    }
-    ans += "0";
-    cout << ans << endl;
+    string p, q, r;
+    cin >> n >> p >> q >> r;
+    string res = string(n, '0') + string(n, '1') + "0";
+    cout << res << endl;
   }
   return 0;
 }

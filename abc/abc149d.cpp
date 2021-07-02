@@ -32,41 +32,73 @@ int main(int argc,char* argv[]){
     cin.tie(0);
     ios::sync_with_stdio(0);
     cout << fixed << setprecision(20);
+
     int n,k,r,s,p;
     string t;
     cin >> n >> k >> r >> s >> p >> t;
-    int ans=0;
-    string prev="";
+    queue<int> rf,sf,pf;
+    bool rflag=false,sflag=false,pflag=false;
+    ll ans=0;
     for(int i=0;i<n;i++){
-        if(i-k<0){
-            if(t[i]=='r'){
-                ans+=p;
-                prev+='p';
-            }else if(t[i]=='s'){
-                ans+=r;
-                prev+='r';
-            }else{
-                ans+=s;
-                prev+='s';
+        if(t[i]=='r'){
+            int rp=-inf;
+            while(!rf.empty()){
+                if(rf.front()>=i-k){
+                    rp=rf.front();
+                    // cout << "rp: " << rp << endl;
+                    rf.pop();
+                    break;
+                }
+                rf.pop();
             }
+            if(rp!=i-k)ans+=p;
+            else{
+                if(rflag){
+                   ans+=p;
+                   rflag=false; 
+                }else rflag=true;
+            }
+            rf.push(i);
+        }else if(t[i]=='s'){
+            int sp=-inf;
+            while(!sf.empty()){
+                if(sf.front()>=i-k){
+                    sp=sf.front();
+                    // cout << "sp: " << sp << endl;
+                    sf.pop();
+                    break;
+                }
+                sf.pop();
+            }
+            if(sp!=i-k)ans+=r;
+            else{
+                if(sflag){
+                    ans+=r;
+                    sflag=false;
+                }else sflag=true;
+            }
+            sf.push(i);
         }else{
-            if(t[i]=='r' && prev[i-k]!='p'){
-                ans+=p;
-                prev+='p';
-            }else if(t[i]=='r' && prev[i-k]=='p'){
-                prev+='n';
-            }else if(t[i]=='s' && prev[i-k]!='r'){
-                ans+=r;
-                prev+='r';
-            }else if(t[i]=='s' && prev[i-k]=='r'){
-                prev+='n';
-            }else if(t[i]=='p' && prev[i-k]!='s'){
-                ans+=s;
-                prev+='s';
-            }else if(t[i]=='p' && prev[i-k]=='s'){
-                prev+='n';
+            int pp=-inf;
+            while(!pf.empty()){
+                if(pf.front()>=i-k){
+                    pp=pf.front();
+                    // cout << "pp: " << pp << endl;
+                    pf.pop();
+                    break;
+                }
+                pf.pop();
             }
+            if(pp!=i-k)ans+=s;
+            else{
+                if(pflag){
+                    ans+=s;
+                    pflag=false;
+                }else pflag=true;
+            }
+            pf.push(i);
         }
+        cout << "i: " << i << " " << ans << endl;
     }
     cout << ans << endl;
     return 0;
