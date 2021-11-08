@@ -1,4 +1,5 @@
 #include<iostream>
+#include<iomanip>
 #include<string>
 #include<vector>
 #include<algorithm>
@@ -6,102 +7,84 @@
 #include<tuple>
 #include<map>
 #include<queue>
+#include<deque>
 #include<set>
 #include<stack>
+#include<numeric>
 #include<cstdio>
 #include<cstdlib>
 #include<cstring>
 #include<cmath>
+#include<cassert>
 
 using namespace std;
 
+#define DEBUG(var) cout << #var << ": " << var << " ";
+#define DEBUG_EN(var) cout << #var << ": " << var << endl;
+
+struct Edge {
+  int to;
+  long long weight;
+  Edge() : to(0), weight(0) {}
+  Edge(int to, long long weight) : to(to), weight(weight) {}
+  Edge(const Edge& e) {
+    to = e.to;
+    weight = e.weight;
+  }
+  bool operator>(const Edge &e) const { return weight > e.weight; }
+  bool operator<(const Edge &e) const { return weight < e.weight; }
+  bool operator==(const Edge &e) const { return weight == e.weight; }
+  bool operator<=(const Edge &e) const { return weight <= e.weight; }
+  bool operator>=(const Edge &e) const { return weight >= e.weight; }
+};
+
 using ll = long long;
+using ld = long double;
 using pii = pair<int, int>;
 using pll = pair<ll, ll>;
+using Graph = vector<vector<int>>;
+using weightedGraph = vector<vector<Edge>>;
+using heap = priority_queue<int, vector<int>, greater<int>>;
 
-#define BIL ((ll)1e9)
-#define MOD ((ll)1e9+7)
-#define INF (1LL<<60)           //1LL<<63でオーバーフロー
+const ll BIL = 1e9;
+const ll MOD = 1e9 + 7;
+const ll INF = 1LL << 60;
+const int inf = 1 << 29;
+const ld PI = 3.141592653589793238462643383;
 
 int main(int argc,char* argv[]){
-    // ll n, k;
-    // cin >> n >> k;
-
-    // vector<int> p(n);
-    // for(auto &x:p)
-    //     cin >> x;
-    // vector<ll> c(n);
-    // for(auto &x:c)
-    //     cin >> x;
-    
-    // if(n>=k){
-    //     ll maxval=-INF;
-    //     for(int i=0;i<n;i++){
-    //         ll nowval=0;
-    //         int nowpt=i;
-    //         for(int j=0;j<k;j++){
-    //             nowval+=c.at(p.at(nowpt)-1);
-    //             nowpt=p.at(nowpt)-1;
-    //             maxval=max(maxval, nowval);
-    //         }
-    //     }
-    //     cout << maxval << endl;
-    //     return 0;
-    // }else{
-    //     ll maxval=-INF;
-    //     vector<vector<ll>> dp(n, vector<ll>(k+1, 0));
-    //     vector<bool> check(n,false);
-    //     for(int i=0;i<n;i++){
-    //         int nowpt=i;
-    //         if(check.at(nowpt)==true)
-    //             continue;
-    //         else
-    //             check.at(nowpt)=true;
-    //         for(int j=1;j<=k;j++){
-    //             dp.at(i).at(j)=dp.at(i).at(j-1)+c.at(p.at(nowpt)-1);
-    //             nowpt=p.at(nowpt)-1;
-    //             maxval=max(maxval, dp.at(i).at(j));
-    //         }
-    //     }
-    //     cout << maxval << endl;
-    //     return 0;
-    // }
-
-    // sunuke's answer
-    int n, k;
-    cin >> n >> k;
-    vector<int> p(n), c(n);
-    for(auto &x:p){
-        cin >> x;
-        x--;
+  cin.tie(0);
+  ios::sync_with_stdio(0);
+  cout << fixed << setprecision(20);
+  int n;
+  ll k;
+  cin >> n >> k;
+  vector<int> p(n);
+  vector<ll> c(n);
+  for(int i=0;i<n;i++) cin >> p[i], p[i]--;
+  for(int i=0;i<n;i++) cin >> c[i];
+  ll ans = -INF;
+  for(int i=0;i<n;i++) {
+    ll sum = 0;
+    ll cnt = 0;
+    int now = i;
+    do {
+      now = p[now];
+      sum += c[now];
+      ans = max(ans, sum);
+      cnt++;
+      if(cnt == k) break;
+    } while(now != i);
+    if(sum < 0) continue;
+    if(cnt == k) continue;
+    sum *= k / cnt - 1;
+    ans = max(ans, sum);
+    for(int j=0;j<k%cnt+cnt;j++) {
+      now = p[now];
+      sum += c[now];
+      ans = max(ans, sum);
     }
-    for(auto &x:c)cin >> x;
-
-    ll ans=-1e18;
-    for(int si=0;si<n;si++){
-        int x=si;
-        vector<int> s;
-        ll tot=0;
-        while(1){
-            x=p[x];
-            s.push_back(c[x]);
-            tot+=c[x];
-            if(x==si)break;
-        }
-        int l=s.size();
-        ll t=0;
-        for(int i=0;i<l;i++){
-            t+=s[i];
-            if(i+1>k)break;
-            ll now=t;
-            if(tot>0){
-                ll e=(k-(i+1))/l;
-                now+=tot*e;
-            }
-            ans=max(ans, now);
-        }
-    }
-    cout << ans << endl;
-
-    return 0;
+  }
+  cout << ans << endl;
+  return 0;
 }

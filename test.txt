@@ -1,1 +1,0 @@
-test,Ethernet1/3,33.0C,Tokyo,2021年 6月 28日 月曜日 21:08:03 JST

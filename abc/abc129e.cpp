@@ -15,8 +15,12 @@
 #include<cstdlib>
 #include<cstring>
 #include<cmath>
+#include<cassert>
 
 using namespace std;
+
+#define DEBUG(var) cout << #var << ": " << var << " ";
+#define DEBUG_EN(var) cout << #var << ": " << var << endl;
 
 struct Edge {
   int to;
@@ -47,81 +51,6 @@ const ll MOD = 1e9 + 7;
 const ll INF = 1LL << 60;
 const int inf = 1 << 29;
 const ld PI = 3.141592653589793238462643383;
-
-struct SegmentTree {
-  int sz;
-  vector<int> t;
-  SegmentTree(int n) {
-    sz = 1;
-    while(sz < n) sz *= 2;
-    t.assign(2 * sz - 1, 0);
-  }
-  void init(int idx, ll val) {
-    idx += sz-1;
-    t[idx] = val;
-    return;
-  }
-  // update the maximum value of the interval
-  void update(int idx, int val) {
-    idx += sz - 1;
-    t[idx] = val;
-    while(idx > 0) {
-      idx = (idx - 1) / 2;
-      if(t[idx] > val) break;
-      t[idx] = val;
-    }
-    return;
-  }
-  // update the sum of the interval
-  void update(int l, int r, ll val, int now=0, int a=0, int b=-1) {
-    if(now >= t.size()) return;
-    if(b < 0) b = sz;
-    if(l < 0) l = 0;
-    if(r > sz) r = sz;
-    if(r < a || l > b) return;
-    if(a <= l && r <= b) {
-      t[now] += val;
-      update(l, r, val, now*2+1, a, (a+b)/2);
-      update(l, r, val, now*2+2, (a+b)/2, b);
-    }
-    return;
-  }
-  // get the sum of interval
-  int getSum(int l, int r, int now=0, int a=0, int b=-1) {
-    if(now >= t.size()) return 0;
-    if(b < 0) b = sz;
-    if(l < 0) l = 0;
-    if(r > sz) r = sz;
-    if(l > b || r < a) return 0;
-    if(l <= a && r >= b) return t[now];
-    int res = 0;
-    res += getSum(l, r, 2*now+1, a, (a+b)/2);
-    res += getSum(l, r, 2*now+2, (a+b)/2, b);
-    return res;
-  }
-  // get the maximum value of the interval
-  int getMax(int l, int r, int now=0, int a=0, int b=-1) {
-    if(now >= t.size()) return 0;
-    if(b < 0) b = sz;
-    if(l < 0) l = 0;
-    if(r > sz) r = sz;
-    if(l > b || r < a) return 0;
-    if(l <= a && r >= b) return t[now];
-    int res = 0;
-    res = max(res, getMax(l, r, 2*now+1, a, (a+b)/2));
-    res = max(res, getMax(l, r, 2*now+2, (a+b)/2, b));
-    return res;
-  }
-  ll getElement(int idx) {
-    if(idx == 0) return t[0];
-    ll res = t[idx];
-    return res += getElement((idx-1)/2);
-  }
-  ll operator[](int idx) {
-    idx += sz-1;
-    return getElement(idx);
-  }
-};
 struct mint {
   ll val;
   constexpr mint(ll val=0) : val((val%MOD + MOD) % MOD) {}
@@ -134,22 +63,15 @@ struct mint {
   constexpr mint &operator+=(const mint &a) noexcept {if((val += a.val) >= MOD) val -= MOD; return *this;}
   constexpr mint &operator-=(const mint &a) noexcept {if((val -= a.val) < 0) val += MOD; return *this;}
   constexpr mint &operator*=(const mint &a) noexcept {val = val * a.val % MOD; return *this;}
-  constexpr mint &operator/=(mint m) noexcept {
-    ll exp = MOD - 2;
-    while(exp) {
-      if(exp % 2 != 0) *this *= m;
-      m *= m;
-      exp /= 2;
-    }
-    return *this;
-  }
-  mint pow(ll t) const {
+  constexpr mint &operator/=(const mint m) noexcept {return *this *= m.inv();}
+  constexpr mint pow(ll t) const {
     if(!t) return 1;
     mint a = pow(t >> 1);
     a *= a;
     if(t & 1) a *= (*this);
     return a;
   }
+  constexpr mint inv() const {return pow(MOD-2);}
   bool operator==(const mint &m) {return val == m.val;}
   bool operator<(const mint &m) {return val < m.val;}
   bool operator>(const mint &m) {return val > m.val;}
@@ -158,18 +80,20 @@ struct mint {
   bool operator!=(const mint &m) {return val != m.val;}
   friend ostream &operator<<(ostream &os, const mint &m) {os << m.val; return os;}
   friend istream &operator>>(istream & is, mint &m) {is >> m.val; return is;}
-  mint comb(mint &n, mint &k, vector<mint> &v) {
-    if(n.val < k.val) return 0;
-    v.assign(n.val+1, 0);
-    vector<mint> d(n.val+1);
-    d[0] = 1;
-    d[1] = 1;
-    for(ll i=2;i<n.val+1;i++) d[i] = d[i-1] * i;
-    for(ll i=0;i<n.val+1;i++) {
-      if(i-k.val < 0) v[i] = 0;
-      else v[i] = d[i] / (d[k.val] * d[i-k.val]);
-    }
-    return v[n.val];
+};
+struct combination {
+  vector<mint> fact, ifact;
+  combination(int n) : fact(n+1), ifact(n+1) {
+    assert(n < MOD);
+    fact[0] = 1;
+    for(int i = 1; i <= n; i++) fact[i] = fact[i-1] * i;
+    ifact[n] = fact[n].inv();
+    for(int i = n; i >= 1; i--) ifact[i-1] = ifact[i] * i;
+  }
+  // {combination c(n); mint ans = c(n, k);} => (ans == nCk)
+  mint operator()(int n, int k) {
+    if(k < 0 || k > n) return 0;
+    return fact[n] * ifact[k] * ifact[n-k];
   }
 };
 int main(int argc,char* argv[]){
@@ -178,21 +102,18 @@ int main(int argc,char* argv[]){
   cout << fixed << setprecision(20);
   string l;
   cin >> l;
-  int len = l.length();
-  vector<ll> p(len);
-  for(int i=len-1;i>=0;i--) {
-    if(l[i] == '1') p[i]++;
-    if(i-1 >= 0) p[i-1] += p[i];
+  int n = l.length();
+  vector<vector<mint>> dp(n+1, vector<mint>(2));
+  dp[0][0] = 1;
+  for(int i=0;i<n;i++) for(int j=0;j<2;j++) {
+    if(l[i] == '0') {
+      dp[i+1][j] += dp[i][j];
+      if(j) dp[i+1][j] += dp[i][j] * 2;
+    } else {
+      dp[i+1][1] += dp[i][j];
+      dp[i+1][j] += dp[i][j] * 2;
+    }
   }
-  mint ans = 0;
-  for(int i=0;i<len;i++) {
-    mint t = 0;
-    if(l[i] == '1') t = mint(2LL).pow(p[i]-1) * 2;
-    else t = mint(2LL).pow(p[i]) * 2;
-    ans += t;
-  }
-  cout << mint(2LL).pow(len)+1 << endl;
-  ans += 1;
-  cout << ans << endl;
+  cout << dp[n][0] + dp[n][1] << endl;
   return 0;
 }

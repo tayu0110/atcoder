@@ -15,8 +15,12 @@
 #include<cstdlib>
 #include<cstring>
 #include<cmath>
+#include<cassert>
 
 using namespace std;
+
+#define DEBUG(var) cout << #var << ": " << var << " ";
+#define DEBUG_EN(var) cout << #var << ": " << var << endl;
 
 struct Edge {
   int to;
@@ -27,6 +31,23 @@ struct Edge {
     to = e.to;
     weight = e.weight;
   }
+  bool operator>(const Edge &e) const { return weight > e.weight; }
+  bool operator<(const Edge &e) const { return weight < e.weight; }
+  bool operator==(const Edge &e) const { return weight == e.weight; }
+  bool operator<=(const Edge &e) const { return weight <= e.weight; }
+  bool operator>=(const Edge &e) const { return weight >= e.weight; }
+};
+
+template<class T>
+struct heap {
+  priority_queue<T, vector<T>, greater<T>> pq;
+  heap() : pq() {}
+  heap(priority_queue<T, vector<T>, greater<T>> pq) : pq(pq) {}
+  void push(T c) { pq.push(c); }
+  T top() { return pq.top(); }
+  void pop() { pq.pop(); }
+  bool empty() { return pq.empty(); }
+  int size() { return pq.size(); }
 };
 
 using ll = long long;
@@ -35,12 +56,13 @@ using pii = pair<int, int>;
 using pll = pair<ll, ll>;
 using Graph = vector<vector<int>>;
 using weightedGraph = vector<vector<Edge>>;
-using heap = priority_queue<int, vector<int>, greater<int>>;
+template<class T> void print_with_space(T p) { for(auto e : p) cout << e << " "; cout << endl; }
 
-#define BIL ((ll)1e9)
-#define MOD ((ll)1e9+7)
-#define INF (1LL<<60)
-#define inf (1<<29)
+const ll BIL = 1e9;
+const ll MOD = 1e9 + 7;
+const ll INF = 1LL << 60;
+const int inf = 1 << 29;
+const ld PI = 3.141592653589793238462643383;
 
 int main(int argc,char* argv[]){
   cin.tie(0);
@@ -48,53 +70,28 @@ int main(int argc,char* argv[]){
   cout << fixed << setprecision(20);
   int n;
   cin >> n;
-  vector<ll> a(n), t(n);
-  vector<pll> f(n);
+  ll mn = -INF, mx = INF, g = 0;
   for(int i=0;i<n;i++) {
-    cin >> a[i] >> t[i];
-  }
-  ll x = -INF, y = INF, z = 0;
-  for(int i=0;i<n;i++) {
-    if(i==0) {
-      if(t[i] == 1) {
-        x = a[i];
-        y = -INF;
-        z = INF;
-      } else if(t[i] == 2) {
-        x = 0;
-        y = a[i];
-        z = INF;
-      } else {
-        x = 0;
-        y = -INF;
-        z = a[i];
-      }
+    ll a, t;
+    cin >> a >> t;
+    if(t == 1) {
+      mn += a;
+      mx += a;
+      g += a;
+    } else if(t == 2) {
+      mn = max(mn, a);
+      mx = max(mx, a);
     } else {
-      ll j, k, l;
-      if(t[i] == 1) {
-        j = a[i];
-        k = -INF;
-        l = INF;
-      } else if(t[i] == 2) {
-        j = 0;
-        k = a[i];
-        l = INF;
-      } else {
-        j = 0;
-        k = -INF;
-        l = a[i];
-      }
-      x += j;
-      y = max(k, y+j);
-      z = min(l, z+j);
+      mn = min(mn, a);
+      mx = min(mx, a);
     }
   }
   int q;
   cin >> q;
-  vector<ll> p(q);
-  for(int i=0;i<q;i++) {
-    cin >> p[i];
-    cout << min(z, max(y, p[i] + x)) << endl;
+  while(q--) {
+    ll x;
+    cin >> x;
+    cout << min(mx, max(mn, x+g)) << endl;
   }
   return 0;
 }

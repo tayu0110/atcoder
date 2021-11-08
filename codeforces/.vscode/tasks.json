@@ -1,0 +1,98 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            // Run the tasks on the PS or Cmd
+            "type": "shell",
+            "label": "C++ Basic Build",
+            "command": "g++",
+            "args": [
+                "-std=c++17",
+                "-g",
+                "${relativeFile}",
+                "-o",
+                "a"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            // Run the tasks on the PS or Cmd
+            "type": "shell",
+            "label": "Windows Desktop App Build",
+            // "command": "C:/MinGW/bin/g++.exe",
+            "command": "g++",
+            "args": [
+                "${fileBasenameNoExtension}.cpp",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}.exe",
+                "-mwindows"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            // Run the tasks on the PS or Cmd
+            "type": "shell",
+            "label": "Win App Resourse Build",
+            "command": "windres",
+            "args": [
+                "${file}",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}.o",
+                "-c",
+                "65001"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            // Run the tasks on the PS or Cmd
+            "type": "shell",
+            "label": "Windows Desktop App Add Resourse Build",
+            // "command": "C:/MinGW/bin/g++.exe",
+            "command": "g++",
+            "args": [
+                "${fileDirname}/${fileBasenameNoExtension}.cpp",
+                "${fileDirname}/${fileBasenameNoExtension}.o",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}.exe",
+                "-mwindows"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}

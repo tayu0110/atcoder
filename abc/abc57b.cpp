@@ -7,6 +7,7 @@
 #include<tuple>
 #include<map>
 #include<queue>
+#include<deque>
 #include<set>
 #include<stack>
 #include<numeric>
@@ -14,46 +15,61 @@
 #include<cstdlib>
 #include<cstring>
 #include<cmath>
+#include<cassert>
 
 using namespace std;
 
+#define DEBUG(var) cout << #var << ": " << var << " ";
+#define DEBUG_EN(var) cout << #var << ": " << var << endl;
+
+struct Edge {
+  int to;
+  long long weight;
+  Edge() : to(0), weight(0) {}
+  Edge(int to, long long weight) : to(to), weight(weight) {}
+  Edge(const Edge& e) {
+    to = e.to;
+    weight = e.weight;
+  }
+  bool operator>(const Edge &e) const { return weight > e.weight; }
+  bool operator<(const Edge &e) const { return weight < e.weight; }
+  bool operator==(const Edge &e) const { return weight == e.weight; }
+  bool operator<=(const Edge &e) const { return weight <= e.weight; }
+  bool operator>=(const Edge &e) const { return weight >= e.weight; }
+};
+
 using ll = long long;
+using ld = long double;
 using pii = pair<int, int>;
 using pll = pair<ll, ll>;
+using Graph = vector<vector<int>>;
+using weightedGraph = vector<vector<Edge>>;
+using heap = priority_queue<int, vector<int>, greater<int>>;
 
-#define BIL ((ll)1e9)
-#define MOD ((ll)1e9+7)
-#define INF (1LL<<60)           //1LL<<63でオーバーフロー
-#define inf (1<<29)             //1<<29でオーバーフロー
+const ll BIL = 1e9;
+const ll MOD = 1e9 + 7;
+const ll INF = 1LL << 60;
+const int inf = 1 << 29;
+const ld PI = 3.141592653589793238462643383;
 
 int main(int argc,char* argv[]){
-    cin.tie(0);
-    ios::sync_with_stdio(0);
-    cout << fixed << setprecision(20);
-
-    int n,m;
-    cin >> n >> m;
-
-    vector<pii> students(n);
-    for(auto &x:students)cin >> x.first >> x.second;
-    vector<pll> plane(m);
-    for(auto &x:plane)cin >> x.first >> x.second;
-
-    vector<ll> ans(n,0);
-    for(int i=0;i<n;i++){
-        ll maxval=INF;
-        int anspt;
-        int x=students[i].first,y=students[i].second;
-        for(int j=0;j<m;j++){
-            if(maxval>abs(plane[j].first-x)+abs(plane[j].second-y)){
-                maxval=abs(plane[j].first-x)+abs(plane[j].second-y);
-                anspt=j+1;
-            }
-        }
-        ans[i]=anspt;
+  cin.tie(0);
+  ios::sync_with_stdio(0);
+  cout << fixed << setprecision(20);
+  int n, m;
+  cin >> n >> m;
+  vector<pll> p(n), q(m);
+  for(int i=0;i<n;i++) cin >> p[i].first >> p[i].second;
+  for(int i=0;i<m;i++) cin >> q[i].first >> q[i].second;
+  for(int i=0;i<n;i++) {
+    ll mn = INF;
+    ll x = p[i].first, y = p[i].second;
+    int ans = 0;
+    for(int j=0;j<m;j++) {
+      ll dx = q[j].first, dy = q[j].second;
+      if(abs(dx-x) + abs(dy-y) < mn) ans = j, mn = abs(dx-x)+abs(dy-y);
     }
-
-    for(auto x:ans)cout << x << endl;
-
-    return 0;
+    cout << ans+1 << endl;
+  }
+  return 0;
 }

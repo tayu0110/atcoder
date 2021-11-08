@@ -15,8 +15,12 @@
 #include<cstdlib>
 #include<cstring>
 #include<cmath>
+#include<cassert>
 
 using namespace std;
+
+#define DEBUG(var) cout << #var << ": " << var << " ";
+#define DEBUG_EN(var) cout << #var << ": " << var << endl;
 
 struct Edge {
   int to;
@@ -27,6 +31,11 @@ struct Edge {
     to = e.to;
     weight = e.weight;
   }
+  bool operator>(const Edge &e) const { return weight > e.weight; }
+  bool operator<(const Edge &e) const { return weight < e.weight; }
+  bool operator==(const Edge &e) const { return weight == e.weight; }
+  bool operator<=(const Edge &e) const { return weight <= e.weight; }
+  bool operator>=(const Edge &e) const { return weight >= e.weight; }
 };
 
 using ll = long long;
@@ -35,42 +44,40 @@ using pii = pair<int, int>;
 using pll = pair<ll, ll>;
 using Graph = vector<vector<int>>;
 using weightedGraph = vector<vector<Edge>>;
+using heap = priority_queue<int, vector<int>, greater<int>>;
 
-#define BIL ((ll)1e9)
-#define MOD ((ll)1e9+7)
-#define INF (1LL<<60)           //1LL<<63でオーバーフロー
-#define inf (1<<29)             //1<<29でオーバーフロー
-
+const ll BIL = 1e9;
+const ll MOD = 1e9 + 7;
+const ll INF = 1LL << 60;
+const int inf = 1 << 29;
+const ld PI = 3.141592653589793238462643383;
+vector<vector<int>> memo;
+string s, x;
+int n;
+bool rec(int now, int rem) {
+  if(now == n) {
+    if(!rem) return true;
+    else return false;
+  }
+  if(memo[now][rem] >= 0) return memo[now][rem] == 1;
+  bool f = rec(now+1, 10*rem % 7);
+  bool g = rec(now+1, (10*rem + (s[now]-'0')) % 7);
+  if(x[now] == 'A') {
+    if(!f || !g) return memo[now][rem] = 0;
+    else return memo[now][rem] = 1;
+  } else {
+    if(f || g) return memo[now][rem] = 1;
+    else return memo[now][rem] = 0;
+  }
+}
 int main(int argc,char* argv[]){
   cin.tie(0);
   ios::sync_with_stdio(0);
   cout << fixed << setprecision(20);
-  int n;
-  cin >> n;
-  string s, x;
-  cin >> s >> x;
-  vector<vector<int>> dp(7, vector<int>(n+1, 0));
-  dp[0][0] = 1;
-  for(int i=0;i<n;i++) {
-    for(int j=0;j<7;j++) {
-      if(!dp[j][i]) continue;
-      int k = j*10 + (s[i] - '0');
-      dp[k%7][i+1]++;
-      int l = j*10;
-      dp[l%7][i+1]++;
-    }
-  }
-  cout << dp[0][n] << endl;
-  if(dp[0][n] == 0) {
-    cout << "Aoki" << endl;
-    return 0;
-  }
-  if(x[n-1] == 'T') {
-    cout << "Takahashi" << endl;
-    return 0;
-  } else {
-    cout << "Aoki" << endl;
-    return 0;
-  }
+  cin >> n >> s >> x;
+  memo.assign(n+1, vector<int>(10, -1));
+  bool f = rec(0, 0);
+  if(f) cout << "Takahashi" << endl;
+  else cout << "Aoki" << endl;
   return 0;
 }

@@ -10,8 +10,11 @@
                 "-std=c++17",
                 "-g",
                 "${relativeFile}",
+                "-I",
+                ".",
                 "-o",
-                "${fileBasenameNoExtension}"
+                "a"
+                // "${fileBasenameNoExtension}"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"

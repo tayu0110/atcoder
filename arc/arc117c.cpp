@@ -1,119 +1,87 @@
-#include<iostream>
-#include<iomanip>
-#include<string>
-#include<vector>
-#include<algorithm>
-#include<utility>
-#include<tuple>
-#include<map>
-#include<queue>
-#include<deque>
-#include<set>
-#include<stack>
-#include<numeric>
-#include<cstdio>
-#include<cstdlib>
-#include<cstring>
-#include<cmath>
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <utility>
+#include <tuple>
+#include <map>
+#include <queue>
+#include <deque>
+#include <set>
+#include <stack>
+#include <numeric>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <cmath>
+#include <cassert>
+
+#include <atcoder/all>
 
 using namespace std;
+using namespace atcoder;
 
-struct Edge {
-  int to;
-  long long weight;
-  Edge() : to(0), weight(0) {}
-  Edge(int to, long long weight) : to(to), weight(weight) {}
-  Edge(const Edge& e) {
-    to = e.to;
-    weight = e.weight;
-  }
-  bool operator>(const Edge &e) const { return weight > e.weight; }
-  bool operator<(const Edge &e) const { return weight < e.weight; }
-  bool operator==(const Edge &e) const { return weight == e.weight; }
-  bool operator<=(const Edge &e) const { return weight <= e.weight; }
-  bool operator>=(const Edge &e) const { return weight >= e.weight; }
-};
+#define DEBUG(var) cerr << #var << ": " << var << " "
+#define DEBUG_EN(var) cerr << #var << ": " << var << endl
 
 using ll = long long;
 using ld = long double;
 using pii = pair<int, int>;
 using pll = pair<ll, ll>;
 using Graph = vector<vector<int>>;
-using weightedGraph = vector<vector<Edge>>;
-using heap = priority_queue<int, vector<int>, greater<int>>;
+template<class T> void print_with_space(T p) { for(auto e : p) cerr << e << " "; cerr << endl; }
 
-const ll BIL = 1e9;
-const ll MOD = 1e9 + 7;
+const ll MOD = 3;
 const ll INF = 1LL << 60;
 const int inf = 1 << 29;
 const ld PI = 3.141592653589793238462643383;
 
-struct SegmentTree {
-  int sz;
-  vector<int> t;
-  SegmentTree(int n) {
-    sz = 1;
-    while(sz < n) sz *= 2;
-    t.assign(2 * sz - 1, 0);
-  }
-  void update(int idx, int val) {
-    idx += sz - 1;
-    t[idx] = val;
-    while(idx > 0) {
-      idx = (idx - 1) / 2;
-      if(t[idx] > val) break;
-      t[idx] = val;
-    }
-    return;
-  }
-  int getMax(int l, int r, int now=0, int a=0, int b=-1) {
-    if(now >= t.size()) return 0;
-    if(b < 0) b = sz;
-    if(l < 0) l = 0;
-    if(r > sz) r = sz;
-    if(l > b || r < a) return 0;
-    if(l <= a && r >= b) return t[now];
-    int res = 0;
-    res = max(res, getMax(l, r, 2*now+1, a, (a+b)/2));
-    res = max(res, getMax(l, r, 2*now+2, (a+b)/2, b));
-    return res;
-  }
-};
-
-int main(int argc,char* argv[]){
+int main(int argc, char* argv[]){
   cin.tie(0);
   ios::sync_with_stdio(0);
   cout << fixed << setprecision(20);
   int n;
   cin >> n;
-  string c;
-  cin >> c;
+  string s;
+  cin >> s;
+  map<char, ll> mp;
+  mp['B'] = 0;
+  mp['W'] = 1;
+  mp['R'] = 2;
+  vector<int> f(n), g(n);
+  g[0] = 1;
+  for(int i=1;i<n;i++) {
+    f[i] = f[i-1];
+    g[i] = g[i-1];
+    int tmp = i;
+    while(tmp % 3 == 0) {
+      f[i]++;
+      tmp /= 3;
+    }
+    g[i] = g[i] * tmp % 3;
+  }
   int ans = 0;
-  vector<int> t;
-  map<char, int> mp;
-  mp['B'] = 0b01;
-  mp['W'] = 0b10;
-  mp['R'] = 0b11;
-  if(n & 1) {
-    for(int i=0;i<n-1;i++) {
-      if(c[i] == c[i+1]) t.push_back(mp[c[i]]);
-      else t.push_back(mp[c[i]] ^ mp[c[i+1]]);
-    }
-    for(int i=0;i<t.size();i++) {
-      ans ^= t[i];
-    }  
-  } else {
-    for(int i=0;i<n;i+=2) {
-      if(c[i] == c[i+1]) t.push_back(mp[c[i]]);
-      else t.push_back(mp[c[i]] ^ mp[c[i+1]]);
-    }
-    for(int i=0;i<t.size();i++) {
-      ans ^= t[i];
+  for(int i=0;i<n;i++) {
+    int now = mp[s[i]];
+    if(f[n-1] - f[i] - f[n-1-i] == 0) {
+      int s = g[n-1];
+      int t = g[i] * g[n-1-i];
+      int d;
+      if(s == 1) {
+        if(t == 1 || t == 4) d = 1;
+        else if(t == 2) d = 2;
+      } else {
+        if(t == 1 || t == 4) d = 2;
+        else if(t == 2) d = 1;
+      }
+      ans += d * now;
     }
   }
-  if(ans == 0b01) cout << "B" << endl;
-  else if(ans == 0b10) cout << "W" << endl;
-  else if(ans == 0b11) cout << "R" << endl;
-  else cout << "WA" << endl;
+  if(n % 2 == 0) ans = (-ans % 3 + 12) % 3;
+  else ans %= 3;
+  if(ans == 0) cout << "B" << endl;
+  else if(ans == 1) cout << "W" << endl;
+  else cout << "R" << endl;
   return 0;
 }

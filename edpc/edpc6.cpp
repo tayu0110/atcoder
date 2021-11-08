@@ -7,6 +7,7 @@
 #include<tuple>
 #include<map>
 #include<queue>
+#include<deque>
 #include<set>
 #include<stack>
 #include<numeric>
@@ -14,60 +15,71 @@
 #include<cstdlib>
 #include<cstring>
 #include<cmath>
+#include<cassert>
 
 using namespace std;
+
+#define DEBUG(var) cout << #var << ": " << var << " ";
+#define DEBUG_EN(var) cout << #var << ": " << var << endl;
+
+struct Edge {
+  int to;
+  long long weight;
+  Edge() : to(0), weight(0) {}
+  Edge(int to, long long weight) : to(to), weight(weight) {}
+  Edge(const Edge& e) {
+    to = e.to;
+    weight = e.weight;
+  }
+  bool operator>(const Edge &e) const { return weight > e.weight; }
+  bool operator<(const Edge &e) const { return weight < e.weight; }
+  bool operator==(const Edge &e) const { return weight == e.weight; }
+  bool operator<=(const Edge &e) const { return weight <= e.weight; }
+  bool operator>=(const Edge &e) const { return weight >= e.weight; }
+};
 
 using ll = long long;
 using ld = long double;
 using pii = pair<int, int>;
 using pll = pair<ll, ll>;
+using Graph = vector<vector<int>>;
+using weightedGraph = vector<vector<Edge>>;
+using heap = priority_queue<int, vector<int>, greater<int>>;
 
-#define BIL ((ll)1e9)
-#define MOD ((ll)1e9+7)
-#define INF (1LL<<60)           //1LL<<63でオーバーフロー
-#define inf (1<<29)             //1<<29でオーバーフロー
-
-int dp[3010][3010];
+const ll BIL = 1e9;
+const ll MOD = 1e9 + 7;
+const ll INF = 1LL << 60;
+const int inf = 1 << 29;
+const ld PI = 3.141592653589793238462643383;
 
 int main(int argc,char* argv[]){
-    cin.tie(0);
-    ios::sync_with_stdio(0);
-    cout << fixed << setprecision(20);
-
-    string s,t;
-    cin >> s >> t;
-    int slen = s.size();
-    int tlen = t.size();
-
-    for(int i=1;i<slen+1;i++){
-        for(int j=1;j<tlen+1;j++){
-            if(s[i-1] == t[j-1]) dp[i][j] = dp[i-1][j-1]+1;
-            else dp[i][j] = max(dp[i-1][j], dp[i][j-1]);
-        }
+  cin.tie(0);
+  ios::sync_with_stdio(0);
+  cout << fixed << setprecision(20);
+  string s, t;
+  cin >> s >> t;
+  int n = s.length(), m = t.length();
+  vector<vector<int>> dp(n+1, vector<int>(m+1));
+  for(int i=1;i<n+1;i++) for(int j=1;j<m+1;j++) {
+    if(s[i-1] == t[j-1]) dp[i][j] = dp[i-1][j-1] + 1;
+    else dp[i][j] = max(dp[i-1][j], dp[i][j-1]);
+  }
+  string res = "";
+  int i = n, j = m;
+  while(i > 0 || j > 0) {
+    if(i > 0 && dp[i][j] == dp[i-1][j]) {
+      i--;
+      continue;
     }
-
-    int len = dp[slen][tlen];
-    int i = slen;
-    int j = tlen;
-    char ans[3010];
-
-    while(len > 0) {
-        if(s[i-1] == t[j-1]){
-            ans[len] = s[i-1];
-            i--;
-            j--;
-            len--;
-        }else if(dp[i][j] == dp[i-1][j]){
-            i--;
-        }else{
-            j--;
-        }
+    if(j > 0 && dp[i][j] == dp[i][j-1]) {
+      j--;
+      continue;
     }
-
-    for(int i=1;i<dp[slen][tlen]+1;i++){
-        cout << ans[i];
+    if(i > 0 && j > 0) {
+      res = s[i-1] + res;
+      i--;j--;
     }
-    cout << endl;
-
-    return 0;
+  }
+  cout << res << endl;
+  return 0;
 }
