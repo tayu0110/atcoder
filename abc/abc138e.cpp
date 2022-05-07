@@ -1,105 +1,68 @@
-#include<iostream>
-#include<iomanip>
-#include<string>
-#include<vector>
-#include<algorithm>
-#include<utility>
-#include<tuple>
-#include<map>
-#include<queue>
-#include<deque>
-#include<set>
-#include<stack>
-#include<numeric>
-#include<cstdio>
-#include<cstdlib>
-#include<cstring>
-#include<cmath>
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <utility>
+#include <tuple>
+#include <map>
+#include <queue>
+#include <deque>
+#include <set>
+#include <stack>
+#include <numeric>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <cmath>
+#include <cassert>
 
 using namespace std;
 
-struct Edge {
-  int to;
-  long long weight;
-  Edge() : to(0), weight(0) {}
-  Edge(int to, long long weight) : to(to), weight(weight) {}
-  Edge(const Edge& e) {
-    to = e.to;
-    weight = e.weight;
-  }
-};
+#define DEBUG(var) cerr << #var << ": " << (var) << " "
+#define DEBUG_EN(var) cerr << #var << ": " << (var) << endl
 
 using ll = long long;
 using ld = long double;
 using pii = pair<int, int>;
 using pll = pair<ll, ll>;
 using Graph = vector<vector<int>>;
-using weightedGraph = vector<vector<Edge>>;
-using heap = priority_queue<int, vector<int>, greater<int>>;
+template<class T> void print_with_space(T p) { for(auto e : p) cerr << e << " "; cerr << endl; }
 
-#define BIL ((ll)1e9)
-#define MOD ((ll)1e9+7)
-#define INF (1LL<<60)           //1LL<<63でオーバーフロー
-#define inf (1<<29)             //1<<29でオーバーフロー
+const ll MOD = 1e9 + 7;
+const ll INF = 1LL << 60;
+const int inf = 1 << 29;
+const ld PI = acos(-1);
 
-int main(int argc,char* argv[]){
-  cin.tie(0);
-  ios::sync_with_stdio(0);
+int main(int argc, char* argv[]){
   cout << fixed << setprecision(20);
   string s, t;
   cin >> s >> t;
+  int n = s.length();
+  int m = t.length();
   vector<vector<int>> c(26);
-  for(int i=0;i<s.size();i++) {
-    c[s[i]-'a'].push_back(i);
+  for(int i=0;i<n;i++) {
+    int k = s[i] - 'a';
+    c[k].push_back(i+1);
   }
-  vector<ll> k(t.size());
-  ll g = 0;
-  for(int i=0;i<t.size();i++) {
-    int d = t[i]-'a';
-    if(c[d].empty()) {
+  ll ans = 0;
+  for(int i=0;i<m;i++) {
+    int k = t[i] - 'a';
+    if(!c[k].size()) {
       cout << -1 << endl;
       return 0;
     }
-    if(i==0) {
-      k[i] = c[d][0];
+    int idx = ans % n;
+    auto it = upper_bound(c[k].begin(), c[k].end(), ans%n);
+    if(it == c[k].end()) {
+      it = c[k].begin();
+      ans = (ans / n + 1) * n;
+      ans += *it;
     } else {
-      auto it = upper_bound(c[d].begin(), c[d].end(), k[i-1]);
-      if(it == c[d].end()) {
-        g += s.size();
-        k[i] = c[d][0];
-      } else {
-        k[i] = *it;
-      }
+      ans += *it - idx;
     }
+    // DEBUG_EN(ans);
   }
-  cout << g + k[t.size()-1] + 1 << endl;
-  // vector<vector<int>> c(26);
-  // for(int i=0;i<s.size();i++) {
-  //   int j = s[i]-'a';
-  //   c[j].push_back(i);
-  // }
-  // int prev = -1;
-  // ll ans = 0;
-  // for(int i=0;i<t.size();i++) {
-  //   int j = t[i]-'a';
-  //   if(c[j].empty()) {
-  //     cout << -1 << endl;
-  //     return 0;
-  //   }
-  //   if(prev == -1) {
-  //     ans += c[j][0];
-  //     prev = c[j][0];
-  //   } else {
-  //     auto it = upper_bound(c[j].begin(), c[j].end(), prev);
-  //     if(it == c[j].end()) {
-  //       ans += (s.size() - prev) + c[j][0];
-  //       prev = c[j][0];
-  //     } else {
-  //       ans += *it - prev;
-  //       prev = *it;
-  //     }
-  //   }
-  // }
-  // cout << ans + 1 << endl;
+  cout << ans << endl;
   return 0;
 }

@@ -222,22 +222,23 @@ struct Solver {
   }
   void send() {
     vector<Worker> res = assign();
-    cout << res.size();
-    if(res.size()) {
-      for(auto w : res) cout << " " << w.id+1 << " " << w.task_id+1;
-      cout << endl;
-    } else cout << endl;
+    printf("%d", (int)res.size());
+    for(auto w : res) printf(" %d %d", w.id+1, w.task_id+1);
+    printf("\n");
+    fflush(stdout);
   }
   int receive() {
-    int res;
-    cin >> res;
-    for(int i=0;i<res;i++) {
+    int rec;
+    scanf("%d", &rec);
+    DEBUG_EN(rec);
+    for(int i=0;i<rec;i++) {
       int f;
-      cin >> f;
+      scanf("%d", &f);
       f--;
+      DEBUG(i);DEBUG(f);DEBUG_EN("reached");
       workers.resolve(f);
     }
-    return res;
+    return rec;
   }
   int solve() {
     now_time++;
@@ -247,7 +248,7 @@ struct Solver {
 };
 
 int main(int argc, char *argv[]) {
-  cin >> n >> m >> k >> r;
+  scanf("%d %d %d %d", &n, &m, &k, &r);
   Solver solver;
   solver.init();
   while(solver.solve() >= 0);

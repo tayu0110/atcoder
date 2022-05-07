@@ -1,62 +1,59 @@
-#include<iostream>
-#include<string>
-#include<vector>
-#include<algorithm>
-#include<utility>
-#include<tuple>
-#include<map>
-#include<queue>
-#include<set>
-#include<stack>
-#include<cstdio>
-#include<cstdlib>
-#include<cstring>
-#include<cmath>
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <utility>
+#include <tuple>
+#include <map>
+#include <queue>
+#include <deque>
+#include <set>
+#include <stack>
+#include <numeric>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <cmath>
+#include <cassert>
+
+#include <atcoder/all>
 
 using namespace std;
+using namespace atcoder;
+
+#define DEBUG(var) cerr << #var << ": " << var << " "
+#define DEBUG_EN(var) cerr << #var << ": " << var << endl
 
 using ll = long long;
+using ld = long double;
 using pii = pair<int, int>;
 using pll = pair<ll, ll>;
+using Graph = vector<vector<int>>;
+template<class T> void print_with_space(T p) { for(auto e : p) cerr << e << " "; cerr << endl; }
 
-#define BIL ((ll)1e9)
-#define MOD ((ll)1e9+7)
-#define INF (1LL<<60)           //1LL<<63でオーバーフロー
-#define inf (1<<29)             //1<<29でオーバーフロー
+const ll MOD = 1e9 + 7;
+const ll INF = 1LL << 60;
+const int inf = 1 << 29;
+const ld PI = 3.141592653589793238462643383;
 
-int main(int argc,char* argv[]){
-    int n,m;
-    cin >> n;
-    vector<string> s(n);
-    for(auto &x:s)cin >> x;
-    cin >> m;
-    vector<string> t(m);
-    for(auto &x:t)cin >> x;
-
-    map<string, int> list;
-    for(int i=0;i<n;i++){
-        if(list.count(s[i])){
-            list.at(s[i])++;
-        }else{
-            list.insert(make_pair(s[i],1));
-        }
-    }
-
-    for(int i=0;i<m;i++){
-        if(list.count(t[i])){
-            list.at(t[i])--;
-        }else{
-            list.insert(make_pair(t[i],-1));
-        }
-    }
-
-    int maxval=-inf;
-    for(auto it=list.begin();it!=list.end();it++){
-        maxval=max(maxval,it->second);
-    }
-
-    if(maxval<0)cout << 0 << endl;
-    else cout << maxval << endl;
-
-    return 0;
+int main(int argc, char* argv[]){
+  cin.tie(0);
+  ios::sync_with_stdio(0);
+  cout << fixed << setprecision(20);
+  int n;
+  cin >> n;
+  vector<string> s(n);
+  for(int i=0;i<n;i++) cin >> s[i];
+  int m;
+  cin >> m;
+  vector<string> t(m);
+  for(int i=0;i<m;i++) cin >> t[i];
+  map<string, int> mp;
+  for(int i=0;i<n;i++) mp[s[i]]++;
+  for(int i=0;i<m;i++) mp[t[i]]--;
+  int ans = 0;
+  for(auto [f, s] : mp) ans = max(ans, s);
+  cout << ans << endl;
+  return 0;
 }

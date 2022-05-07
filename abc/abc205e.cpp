@@ -1,52 +1,36 @@
-#include<iostream>
-#include<iomanip>
-#include<string>
-#include<vector>
-#include<algorithm>
-#include<utility>
-#include<tuple>
-#include<map>
-#include<queue>
-#include<deque>
-#include<set>
-#include<stack>
-#include<numeric>
-#include<cstdio>
-#include<cstdlib>
-#include<cstring>
-#include<cmath>
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <utility>
+#include <tuple>
+#include <map>
+#include <queue>
+#include <deque>
+#include <set>
+#include <stack>
+#include <numeric>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <cmath>
+#include <cassert>
 
 using namespace std;
 
-struct Edge {
-  int to;
-  long long weight;
-  Edge() : to(0), weight(0) {}
-  Edge(int to, long long weight) : to(to), weight(weight) {}
-  Edge(const Edge& e) {
-    to = e.to;
-    weight = e.weight;
-  }
-  bool operator>(const Edge &e) const { return weight > e.weight; }
-  bool operator<(const Edge &e) const { return weight < e.weight; }
-  bool operator==(const Edge &e) const { return weight == e.weight; }
-  bool operator<=(const Edge &e) const { return weight <= e.weight; }
-  bool operator>=(const Edge &e) const { return weight >= e.weight; }
-};
+#define DEBUG(var) cerr << #var << ": " << (var) << " "
+#define DEBUG_EN(var) cerr << #var << ": " << (var) << endl
 
 using ll = long long;
 using ld = long double;
 using pii = pair<int, int>;
 using pll = pair<ll, ll>;
-using Graph = vector<vector<int>>;
-using weightedGraph = vector<vector<Edge>>;
-using heap = priority_queue<int, vector<int>, greater<int>>;
+template<class T> void print_with_space(T p) { for(auto e : p) cerr << e << " "; cerr << endl; }
 
-const ll BIL = 1e9;
 const ll MOD = 1e9 + 7;
 const ll INF = 1LL << 60;
 const int inf = 1 << 29;
-const ld PI = 3.141592653589793238462643383;
 struct mint {
   ll val;
   constexpr mint(ll val=0) : val((val%MOD + MOD) % MOD) {}
@@ -59,22 +43,9 @@ struct mint {
   constexpr mint &operator+=(const mint &a) noexcept {if((val += a.val) >= MOD) val -= MOD; return *this;}
   constexpr mint &operator-=(const mint &a) noexcept {if((val -= a.val) < 0) val += MOD; return *this;}
   constexpr mint &operator*=(const mint &a) noexcept {val = val * a.val % MOD; return *this;}
-  constexpr mint &operator/=(mint m) noexcept {
-    ll exp = MOD - 2;
-    while(exp) {
-      if(exp % 2 != 0) *this *= m;
-      m *= m;
-      exp /= 2;
-    }
-    return *this;
-  }
-  mint pow(ll t) const {
-    if(!t) return 1;
-    mint a = pow(t >> 1);
-    a *= a;
-    if(t & 1) a *= (*this);
-    return a;
-  }
+  constexpr mint &operator/=(const mint m) noexcept {return *this *= m.inv();}
+  constexpr mint pow(ll t) const {if(!t) return 1; mint a = pow(t >> 1); return (t & 1) ? a * a * (*this) : a * a;}
+  constexpr mint inv() const {return pow(MOD-2);}
   bool operator==(const mint &m) {return val == m.val;}
   bool operator<(const mint &m) {return val < m.val;}
   bool operator>(const mint &m) {return val > m.val;}
@@ -83,25 +54,26 @@ struct mint {
   bool operator!=(const mint &m) {return val != m.val;}
   friend ostream &operator<<(ostream &os, const mint &m) {os << m.val; return os;}
   friend istream &operator>>(istream & is, mint &m) {is >> m.val; return is;}
-  mint comb(mint &n, mint &k, vector<mint> &v) {
-    if(n.val < k.val) return 0;
-    v.assign(n.val+1, 0);
-    vector<mint> d(n.val+1);
-    d[0] = 1;
-    d[1] = 1;
-    for(ll i=2;i<n.val+1;i++) d[i] = d[i-1] * i;
-    for(ll i=0;i<n.val+1;i++) {
-      if(i-k.val < 0) v[i] = 0;
-      else v[i] = d[i] / (d[k.val] * d[i-k.val]);
-    }
-    return v[n.val];
-  }
 };
-int main(int argc,char* argv[]){
-  cin.tie(0);
-  ios::sync_with_stdio(0);
+struct combination {
+  vector<mint> fact, ifact;
+  combination(int n) : fact(n+1), ifact(n+1) {
+    assert(n < MOD);
+    fact[0] = 1LL; for(ll i = 1; i <= n; i++) fact[i] = fact[i-1] * i;
+    ifact[n] = fact[n].inv(); for(ll i = n; i >= 1; i--) ifact[i-1] = ifact[i] * i;
+  }
+  // {combination c(n); mint ans = c(n, k);} => (ans == nCk)
+  mint operator()(int n, int k) { return (k < 0 || k > n) ? 0 : fact[n] * ifact[k] * ifact[n-k]; }
+};
+int main(int argc, char* argv[]){
   cout << fixed << setprecision(20);
-  ll n, m, k;
+  int n, m, k;
   cin >> n >> m >> k;
+  if(n > m+k) {
+    cout << 0 << endl;
+    return 0;
+  }
+  combination c(n+m+1);
+  cout << c(n+m, n) - c(n+m, m+k+1) << endl;
   return 0;
 }

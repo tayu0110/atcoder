@@ -1,124 +1,114 @@
-#include<iostream>
-#include<iomanip>
-#include<string>
-#include<vector>
-#include<algorithm>
-#include<utility>
-#include<tuple>
-#include<map>
-#include<queue>
-#include<deque>
-#include<set>
-#include<stack>
-#include<numeric>
-#include<cstdio>
-#include<cstdlib>
-#include<cstring>
-#include<cmath>
-#include<cassert>
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <utility>
+#include <tuple>
+#include <map>
+#include <queue>
+#include <deque>
+#include <set>
+#include <stack>
+#include <numeric>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <cmath>
+#include <cassert>
 
 using namespace std;
 
-#define DEBUG(var) cout << #var << ": " << var << " ";
-#define DEBUG_EN(var) cout << #var << ": " << var << endl;
-
-struct Edge {
-  int to;
-  long long weight;
-  Edge() : to(0), weight(0) {}
-  Edge(int to, long long weight) : to(to), weight(weight) {}
-  Edge(const Edge& e) {
-    to = e.to;
-    weight = e.weight;
-  }
-  bool operator>(const Edge &e) const { return weight > e.weight; }
-  bool operator<(const Edge &e) const { return weight < e.weight; }
-  bool operator==(const Edge &e) const { return weight == e.weight; }
-  bool operator<=(const Edge &e) const { return weight <= e.weight; }
-  bool operator>=(const Edge &e) const { return weight >= e.weight; }
-};
+#define DEBUG(var) cerr << #var << ": " << (var) << " "
+#define DEBUG_EN(var) cerr << #var << ": " << (var) << endl
 
 using ll = long long;
 using ld = long double;
 using pii = pair<int, int>;
 using pll = pair<ll, ll>;
 using Graph = vector<vector<int>>;
-using weightedGraph = vector<vector<Edge>>;
-using heap = priority_queue<int, vector<int>, greater<int>>;
+template<class T> void print_with_space(T p) { for(auto e : p) cerr << e << " "; cerr << endl; }
 
-const ll BIL = 1e9;
 const ll MOD = 1e9 + 7;
 const ll INF = 1LL << 60;
 const int inf = 1 << 29;
-const ld PI = 3.141592653589793238462643383;
-struct SegmentTree {
-  int sz;
-  vector<int> t;
-  SegmentTree(int n) {
-    sz = 1;
-    while(sz < n) sz *= 2;
-    t.assign(2 * sz - 1, inf);
+const ld PI = acos(-1);
+struct LazySegmentTree {
+ private:
+  int n;
+  vector<pll> node, lazy;
+ public:
+  void init(int sz) {
+    n = 1;
+    while(n < sz) n *= 2;
+    node.assign(2*n-1, {inf, -1}); lazy.assign(2*n-1, {inf, -1});
   }
-  // update the maximum value of the interval
-  void update(int idx, int val) {
-    idx += sz - 1;
-    t[idx] = val;
-    while(idx > 0) {
-      idx = (idx - 1) / 2;
-      if(t[idx] < val) break;
-      t[idx] = val;
+  LazySegmentTree(int sz) {
+   init(sz);
+  }
+  void evalMax(int now, int l, int r) {
+    if(lazy[now].first < inf) {
+      node[now] = min(node[now], lazy[now]);
+      if(r - l > 1) {
+        lazy[2*now+1] = min(lazy[now], lazy[2*now+1]);
+        lazy[2*now+2] = min(lazy[now], lazy[2*now+2]);
+      }
+      lazy[now] = {inf, -1};
     }
-    return;
   }
-  // get the maximum value of the interval
-  int getMin(int l, int r, int now=0, int a=0, int b=-1) {
-    if(now >= t.size()) return inf;
-    if(b < 0) b = sz;
-    if(l < 0) l = 0;
-    if(r > sz) r = sz;
-    if(l > b || r < a) return inf;
-    if(l <= a && r >= b) return t[now];
-    int res = inf;
-    res = min(res, getMin(l, r, 2*now+1, a, (a+b)/2));
-    res = min(res, getMin(l, r, 2*now+2, (a+b)/2, b));
+  void updateMax(int a, int b, pll x, int now=0, int l=0, int r=-1) {
+    if(r < 0) r = n;
+    evalMax(now, l, r);
+    if(b <= l || r <= a) return;
+    if(a <= l && r <= b) {
+      lazy[now] = min(lazy[now], x);
+      evalMax(now, l, r);
+      return;
+    }
+    updateMax(a, b, x, 2*now+1, l, (l+r)/2);
+    updateMax(a, b, x, 2*now+2, (l+r)/2, r);
+    node[now] = min(node[2*now+1], node[2*now+2]);
+  }
+  pll getMax(int a, int b, int now=0, int l=0, int r=-1) {
+    if(r < 0) r = n;
+    if(b <= l || r <= a) return {inf, -1};
+    evalMax(now, l, r);
+    if(a <= l && r <= b) return node[now];
+    pll res = {inf, -1};
+    res = min(res, getMax(a, b, 2*now+1, l, (l+r)/2));
+    res = min(res, getMax(a, b, 2*now+2, (l+r)/2, r));
     return res;
   }
 };
-int main(int argc,char* argv[]){
-  cin.tie(0);
-  ios::sync_with_stdio(0);
+int main(int argc, char* argv[]){
   cout << fixed << setprecision(20);
   int n, m;
   string s;
   cin >> n >> m >> s;
-  vector<int> d(n+1, inf);
-  d[n] = 0;
-  SegmentTree st(n+1);
-  st.update(n, 0);
-  for(int i=n-1;i>=0;i--) {
+  LazySegmentTree st(n+1);
+  st.updateMax(0, 1, {0, 0});
+  for(int i=0;i<n;i++) {
     if(s[i] == '1') continue;
-    int mn = st.getMin(i, i+m+1);
-    if(mn == inf) continue;
-    d[i] = mn + 1;
-    st.update(i, d[i]);
+    auto now = st.getMax(i, i+1);
+    if(now.first == inf) continue;
+    st.updateMax(i, min(i+m+1, n+1), make_pair(now.first+1, i));
   }
-  if(d[0] == inf) {
+  auto now = st.getMax(n, n+1);
+  if(now.first == inf) {
     cout << -1 << endl;
     return 0;
   }
-  int prev = 0;
-  int cnt = d[0]-1;
-  vector<int> ans;
-  for(int i=0;i<n+1;i++) {
-    if(d[i] == cnt) {
-      cnt--;
-      ans.push_back(i-prev);
-      prev = i;
-    }
+  vector<int> res;
+  int nt = n;
+  while(now.second >= 0) {
+    res.push_back(nt - now.second);
+    nt = now.second;
+    if(!now.second) break;
+    now = st.getMax(nt, nt+1);
   }
-  for(int i=0;i<ans.size();i++) {
-    cout << ans[i];
-    if(i != ans.size()-1) cout << " ";
+  reverse(res.begin(), res.end());
+  for(int i=0;i<res.size();i++) {
+    if(i) cout << " "; cout << res[i];
   }
   cout << endl;
   return 0;

@@ -1,52 +1,37 @@
-#include<iostream>
-#include<iomanip>
-#include<string>
-#include<vector>
-#include<algorithm>
-#include<utility>
-#include<tuple>
-#include<map>
-#include<queue>
-#include<deque>
-#include<set>
-#include<stack>
-#include<numeric>
-#include<cstdio>
-#include<cstdlib>
-#include<cstring>
-#include<cmath>
-#include<cassert>
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <utility>
+#include <tuple>
+#include <map>
+#include <queue>
+#include <deque>
+#include <set>
+#include <stack>
+#include <numeric>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <cmath>
+#include <cassert>
+
+#include <atcoder/all>
 
 using namespace std;
+using namespace atcoder;
 
-#define DEBUG(var) cout << #var << ": " << var << " ";
-#define DEBUG_EN(var) cout << #var << ": " << var << endl;
-
-struct Edge {
-  int to;
-  long long weight;
-  Edge() : to(0), weight(0) {}
-  Edge(int to, long long weight) : to(to), weight(weight) {}
-  Edge(const Edge& e) {
-    to = e.to;
-    weight = e.weight;
-  }
-  bool operator>(const Edge &e) const { return weight > e.weight; }
-  bool operator<(const Edge &e) const { return weight < e.weight; }
-  bool operator==(const Edge &e) const { return weight == e.weight; }
-  bool operator<=(const Edge &e) const { return weight <= e.weight; }
-  bool operator>=(const Edge &e) const { return weight >= e.weight; }
-};
+#define DEBUG(var) cerr << #var << ": " << var << " "
+#define DEBUG_EN(var) cerr << #var << ": " << var << endl
 
 using ll = long long;
 using ld = long double;
 using pii = pair<int, int>;
 using pll = pair<ll, ll>;
 using Graph = vector<vector<int>>;
-using weightedGraph = vector<vector<Edge>>;
-using heap = priority_queue<int, vector<int>, greater<int>>;
+template<class T> void print_with_space(T p) { for(auto e : p) cerr << e << " "; cerr << endl; }
 
-const ll BIL = 1e9;
 const ll MOD = 1e9 + 7;
 const ll INF = 1LL << 60;
 const int inf = 1 << 29;
@@ -85,10 +70,10 @@ struct combination {
   vector<mint> fact, ifact;
   combination(int n) : fact(n+1), ifact(n+1) {
     assert(n < MOD);
-    fact[0] = 1;
-    for(int i = 1; i <= n; i++) fact[i] = fact[i-1] * i;
+    fact[0] = 1LL;
+    for(ll i = 1; i <= n; i++) fact[i] = fact[i-1] * i;
     ifact[n] = fact[n].inv();
-    for(int i = n; i >= 1; i--) ifact[i-1] = ifact[i] * i;
+    for(ll i = n; i >= 1; i--) ifact[i-1] = ifact[i] * i;
   }
   // {combination c(n); mint ans = c(n, k);} => (ans == nCk)
   mint operator()(int n, int k) {
@@ -96,40 +81,32 @@ struct combination {
     return fact[n] * ifact[k] * ifact[n-k];
   }
 };
-int bits(int bin, int sz) {
-  int res = 0;
-  for(int i=0;i<sz;i++) {
-    if(bin & 1) res++;
-    bin >>= 1;
-  }
-  return res;
+int r, c, x, y, d, l;
+mint sub(int up, int down, int left, int right, combination &c) {
+  int h = down - up + 1;
+  int w = right - left + 1;
+  if(h < 0 || w < 0) return 0;
+  return c(h*w, d+l);
 }
-int main(int argc,char* argv[]){
+int main(int argc, char* argv[]){
   cin.tie(0);
   ios::sync_with_stdio(0);
   cout << fixed << setprecision(20);
-  ll r, c, x, y, d, l;
   cin >> r >> c >> x >> y >> d >> l;
-  ll t = (x-1)*(x-1)*(y-1)*(y-1);
-  ll k = d+l;
-  vector<ll> up(y), down(y), lhs(x), rhs(x);
-  for(int i=1;i<(1<<(y-1));i++) {
-    int b = bits(i, y-1);
-    DEBUG(i);DEBUG_EN(b);
-    up[b]++, down[b]++;
+  combination comb(x*y);
+  auto f = [&](int up, int down, int left, int right) { return sub(up, down, left, right, comb); };
+  mint s = 0;
+  for(int i=0;i<(1<<4);i++) {
+    int up = 1, down = x, left = 1, right = y;
+    int p = 0;
+    if(i & (1<<0)) up++, p++;
+    if(i & (1<<1)) down--, p++;
+    if(i & (1<<2)) left++, p++;
+    if(i & (1<<3)) right--, p++;
+    if(p % 2) s -= f(up, down, left, right);
+    else s += f(up, down, left, right);
   }
-  for(int i=1;i<(1<<(x-1));i++) {
-    int b = bits(i, x-1);
-    lhs[b]++, rhs[b]++;
-  }
-  combination comb(1000);
-  mint ans = 0;
-  for(int i=1;i<y;i++) for(int j=1;j<y;j++) for(int p=1;p<x;p++) for(int q=1;q<x;q++) {
-    if(i+j+p+q > k) continue;
-    int rem = k - (i+j+p+q);
-    ans += comb((x-2)*(y-2), rem) * (up[i]*down[j]*lhs[p]*rhs[p]);
-  }
-  ans *= (r-x+1) * (c-y+1);
-  cout << ans << endl;
+  s *= comb(d+l, d);
+  cout << s * (r-x+1) * (c-y+1) << endl;
   return 0;
 }

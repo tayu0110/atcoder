@@ -1,5 +1,7 @@
 {
     "files.associations": {
+        "*.html": "html",
+        "*.txt": "plaintext",
         "ostream": "cpp",
         "queue": "cpp",
         "set": "cpp",
@@ -55,6 +57,9 @@
         "sstream": "cpp",
         "stdexcept": "cpp",
         "streambuf": "cpp",
-        "typeinfo": "cpp"
-    }
+        "typeinfo": "cpp",
+        "all": "cpp"
+    },
+    "cmake.configureOnOpen": false,
+    "editor.tabSize": 2
 }

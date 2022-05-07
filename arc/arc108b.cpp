@@ -1,83 +1,64 @@
-#include<iostream>
-#include<iomanip>
-#include<string>
-#include<vector>
-#include<algorithm>
-#include<utility>
-#include<tuple>
-#include<map>
-#include<queue>
-#include<deque>
-#include<set>
-#include<stack>
-#include<numeric>
-#include<cstdio>
-#include<cstdlib>
-#include<cstring>
-#include<cmath>
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <utility>
+#include <tuple>
+#include <map>
+#include <queue>
+#include <deque>
+#include <set>
+#include <stack>
+#include <numeric>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <cmath>
+#include <cassert>
+
+#include <atcoder/all>
 
 using namespace std;
+using namespace atcoder;
+
+#define DEBUG(var) cerr << #var << ": " << var << " "
+#define DEBUG_EN(var) cerr << #var << ": " << var << endl
 
 using ll = long long;
 using ld = long double;
 using pii = pair<int, int>;
 using pll = pair<ll, ll>;
+using Graph = vector<vector<int>>;
+template<class T> void print_with_space(T p) { for(auto e : p) cerr << e << " "; cerr << endl; }
 
-#define BIL ((ll)1e9)
-#define MOD ((ll)1e9+7)
-#define INF (1LL<<60)           //1LL<<63でオーバーフロー
-#define inf (1<<29)             //1<<29でオーバーフロー
+const ll MOD = 1e9 + 7;
+const ll INF = 1LL << 60;
+const int inf = 1 << 29;
+const ld PI = acos(-1);
 
-int main(int argc,char* argv[]){
-    cin.tie(0);
-    ios::sync_with_stdio(0);
-    cout << fixed << setprecision(20);
-    int n;
-    string s;
-    cin >> n >> s;
-    int now=0;
-    while(now<s.size()){
-        stack<string> prev;
-        if(s[now]!='f' && s[now]!='o' && s[now]!='x'){
-            now++;
-            continue;
+int main(int argc, char* argv[]){
+  cin.tie(0);
+  ios::sync_with_stdio(0);
+  cout << fixed << setprecision(20);
+  int n;
+  string s;
+  cin >> n >> s;
+  vector<char> st;
+  for(int i=0;i<n;i++) {
+    if(st.size() < 2) st.push_back(s[i]);
+    else {
+      if(s[i] != 'x') st.push_back(s[i]);
+      else {
+        int sz = st.size();
+        if(st[sz-1] == 'o' && st[sz-2] == 'f') {
+          st.pop_back(); st.pop_back();
         } else {
-            while(now<s.size()){
-                if(s[now]=='f'){
-                    now++;
-                    prev.push("f");
-                }else if(s[now]=='o'){
-                    if(!prev.empty() && prev.top()=="f"){
-                        now++;
-                        prev.push("o");
-                        continue;
-                    }else {
-                        now++;
-                        break;
-                    }
-                }else if(s[now]=='x'){
-                    if(!prev.empty() && prev.top()=="o"){
-                        prev.pop();
-                        if(!prev.empty() && prev.top()=="f"){
-                            now++;
-                            prev.pop();
-                            n-=3;
-                            continue;
-                        }else{
-                            now++;
-                            break;
-                        }
-                    }else {
-                        now++;
-                        break;
-                    }
-                }else {
-                    now++;
-                    break;
-                }
-            }
+          st.push_back(s[i]);
         }
+      }
     }
-    cout << n << endl;
-    return 0;
+  }
+  cout << st.size() << endl;
+  return 0;
 }

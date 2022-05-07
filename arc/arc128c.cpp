@@ -1,23 +1,26 @@
-#include<iostream>
-#include<iomanip>
-#include<string>
-#include<vector>
-#include<algorithm>
-#include<utility>
-#include<tuple>
-#include<map>
-#include<queue>
-#include<deque>
-#include<set>
-#include<stack>
-#include<numeric>
-#include<cstdio>
-#include<cstdlib>
-#include<cstring>
-#include<cmath>
-#include<cassert>
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <utility>
+#include <tuple>
+#include <map>
+#include <queue>
+#include <deque>
+#include <set>
+#include <stack>
+#include <numeric>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <cmath>
+#include <cassert>
+
+#include <atcoder/all>
 
 using namespace std;
+using namespace atcoder;
 
 #define DEBUG(var) cerr << #var << ": " << var << " "
 #define DEBUG_EN(var) cerr << #var << ": " << var << endl
@@ -38,6 +41,32 @@ int main(int argc, char* argv[]){
   cin.tie(0);
   ios::sync_with_stdio(0);
   cout << fixed << setprecision(20);
-
+  int n, m, s;
+  cin >> n >> m >> s;
+  vector<int> a(n);
+  for(int i=0;i<n;i++) cin >> a[i];
+  double ans = 0;
+  int last = n;
+  while(s) {
+    int k = n;
+    ll mxm = 0, mxd = 0;
+    ll sum = 0;
+    for(int i=last-1;i>=0;i--) {
+      sum += a[i];
+      if(mxm * (last-i) < sum * (last-mxd)) {
+        mxm = sum;
+        mxd = i;
+      }
+    }
+    if(s <= m * (last-mxd)) {
+      ans += (double)mxm * s / (last-mxd);
+      s = 0;
+    } else {
+      ans += (double)mxm * m;
+      s -= m * (last-mxd);
+    }
+    last = mxd;
+  }
+  cout << ans << endl;
   return 0;
 }

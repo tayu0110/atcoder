@@ -1,23 +1,26 @@
-#include<iostream>
-#include<iomanip>
-#include<string>
-#include<vector>
-#include<algorithm>
-#include<utility>
-#include<tuple>
-#include<map>
-#include<queue>
-#include<deque>
-#include<set>
-#include<stack>
-#include<numeric>
-#include<cstdio>
-#include<cstdlib>
-#include<cstring>
-#include<cmath>
-#include<cassert>
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <utility>
+#include <tuple>
+#include <map>
+#include <queue>
+#include <deque>
+#include <set>
+#include <stack>
+#include <numeric>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <cmath>
+#include <cassert>
+
+#include <atcoder/all>
 
 using namespace std;
+using namespace atcoder;
 
 #define DEBUG(var) cerr << #var << ": " << var << " "
 #define DEBUG_EN(var) cerr << #var << ": " << var << endl
@@ -38,9 +41,9 @@ int main(int argc, char* argv[]){
   cin.tie(0);
   ios::sync_with_stdio(0);
   cout << fixed << setprecision(20);
-  string s;
-  cin >> s;
-  while(s.length() < 4) s = "0" + s;
-  cout << s << endl;
+  string n;
+  cin >> n;
+  while(n.length() < 4) n = "0" + n;
+  cout << n << endl;
   return 0;
 }

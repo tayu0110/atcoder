@@ -17,13 +17,10 @@
 #include <cmath>
 #include <cassert>
 
-#include <atcoder/all>
-
 using namespace std;
-using namespace atcoder;
 
-#define DEBUG(var) cerr << #var << ": " << var << " "
-#define DEBUG_EN(var) cerr << #var << ": " << var << endl
+#define DEBUG(var) cerr << #var << ": " << (var) << " "
+#define DEBUG_EN(var) cerr << #var << ": " << (var) << endl
 
 using ll = long long;
 using ld = long double;
@@ -35,41 +32,34 @@ template<class T> void print_with_space(T p) { for(auto e : p) cerr << e << " ";
 const ll MOD = 1e9 + 7;
 const ll INF = 1LL << 60;
 const int inf = 1 << 29;
-const ld PI = 3.141592653589793238462643383;
-pii op(pii a, pii b) {
-  return make_pair(min(a.first, a.second + b.first), a.second + b.second);
-}
-pii e() {
-  return make_pair(0, 0);
-}
+const ld PI = acos(-1);
+
 int main(int argc, char* argv[]){
-  cin.tie(0);
-  ios::sync_with_stdio(0);
   cout << fixed << setprecision(20);
   int n, q;
-  cin >> n >> q;
   string s;
-  cin >> s;
-  vector<pii> v(n);
-  for(int i=0;i<n;i++) {
-    if(s[i] == '(') v[i] = {0, 1};
-    else v[i] = {-1, -1};
-  }
-  segtree<pii, op, e> st(v);
-  while(q--) {
-    int t, l, r;
-    cin >> t >> l >> r;
-    l--;
-    if(t == 1) {
-      r--;
-      swap(v[l], v[r]);
-      st.set(l, v[l]);
-      st.set(r, v[r]);
-    } else {
-      auto [mn, sum] = st.prod(l, r);
-      if(mn >= 0 && sum == 0) cout << "Yes" << endl;
-      else cout << "No" << endl;
-    }
-  }
+  cin >> n >> q >> s;
+  // vector<pii> v(n);
+  // RMinRSumQuery st(n);
+  // for(int i=0;i<n;i++) {
+  //   v[i] = s[i] == '(' ? make_pair(0, 1) : make_pair(-1, -1);
+  //   st.update(i, v[i]);
+  // }
+  // while(q--) {
+  //   int t, l, r;
+  //   cin >> t >> l >> r;
+  //   l--; r--;
+  //   if(t == 1) {
+  //     if(v[l] == v[r]) continue;
+  //     swap(v[l], v[r]);
+  //     st.update(l, v[l]);
+  //     st.update(r, v[r]);
+  //     // DEBUG(v[l].first);DEBUG(v[l].second);DEBUG(v[r].first);DEBUG_EN(v[r].second);
+  //   } else {
+  //     // DEBUG(st.get(l, r+1).first);DEBUG_EN(st.get(l, r+1).second);
+  //     if(st.get(l, r+1) == make_pair(0LL, 0LL)) cout << "Yes" << endl;
+  //     else cout << "No" << endl;
+  //   }
+  // }
   return 0;
 }

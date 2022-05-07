@@ -1,61 +1,60 @@
-#include<iostream>
-#include<iomanip>
-#include<string>
-#include<vector>
-#include<algorithm>
-#include<utility>
-#include<tuple>
-#include<map>
-#include<queue>
-#include<deque>
-#include<set>
-#include<stack>
-#include<numeric>
-#include<cstdio>
-#include<cstdlib>
-#include<cstring>
-#include<cmath>
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <utility>
+#include <tuple>
+#include <map>
+#include <queue>
+#include <deque>
+#include <set>
+#include <stack>
+#include <numeric>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <cmath>
+#include <cassert>
+
+#include <atcoder/all>
 
 using namespace std;
+using namespace atcoder;
+
+#define DEBUG(var) cerr << #var << ": " << var << " "
+#define DEBUG_EN(var) cerr << #var << ": " << var << endl
 
 using ll = long long;
 using ld = long double;
 using pii = pair<int, int>;
 using pll = pair<ll, ll>;
+using Graph = vector<vector<int>>;
+template<class T> void print_with_space(T p) { for(auto e : p) cerr << e << " "; cerr << endl; }
 
-#define BIL ((ll)1e9)
-#define MOD ((ll)1e9+7)
-#define INF (1LL<<60)           //1LL<<63でオーバーフロー
-#define inf (1<<29)             //1<<29でオーバーフロー
+const ll MOD = 1e9 + 7;
+const ll INF = 1LL << 60;
+const int inf = 1 << 29;
+const ld PI = acos(-1);
 
-int main(int argc,char* argv[]){
-    cin.tie(0);
-    ios::sync_with_stdio(0);
-    cout << fixed << setprecision(20);
-    int n;
-    cin >> n;
-    ll k;
-    cin >> k;
-    vector<ll> a(n);
-    ll g=INF;
-    for(int i=0;i<n;i++){
-        cin >> a[i];
-        if(i==0)g=a[i];
-        else g=gcd(a[i],g);
+int main(int argc, char* argv[]){
+  cin.tie(0);
+  ios::sync_with_stdio(0);
+  cout << fixed << setprecision(20);
+  ll n, k;
+  cin >> n >> k;
+  vector<ll> a(n);
+  for(int i=0;i<n;i++) cin >> a[i];
+  ll g = a[0];
+  for(int i=0;i<n;i++) g = gcd(g, a[i]);
+  for(int i=0;i<n;i++) {
+    if(k > a[i]) continue;
+    ll d = a[i] - k;
+    if(d % g == 0) {
+      cout << "POSSIBLE" << endl;
+      return 0;
     }
-    sort(a.begin(),a.end());
-    for(int i=0;i<n;i++){
-        if(g!=gcd(g,a[i])){
-            g=gcd(g,a[i]);
-            i=0;
-        }
-    }
-    for(int i=n-1;a[i]>=k;i--){
-        if((a[i]-k)%g==0){
-            cout << "POSSIBLE" << endl;
-            return 0;
-        }
-    }
-    cout << "IMPOSSIBLE" << endl;
-    return 0;
+  }
+  cout << "IMPOSSIBLE" << endl;
+  return 0;
 }

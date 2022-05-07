@@ -1,109 +1,96 @@
-#include<iostream>
-#include<iomanip>
-#include<string>
-#include<vector>
-#include<algorithm>
-#include<utility>
-#include<tuple>
-#include<map>
-#include<queue>
-#include<set>
-#include<stack>
-#include<numeric>
-#include<cstdio>
-#include<cstdlib>
-#include<cstring>
-#include<cmath>
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <utility>
+#include <tuple>
+#include <map>
+#include <queue>
+#include <deque>
+#include <set>
+#include <stack>
+#include <numeric>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <cmath>
+#include <cassert>
 
 using namespace std;
 
+#define DEBUG(var) cerr << #var << ": " << (var) << " "
+#define DEBUG_EN(var) cerr << #var << ": " << (var) << endl
+
 using ll = long long;
+using ld = long double;
 using pii = pair<int, int>;
 using pll = pair<ll, ll>;
+using Graph = vector<vector<int>>;
+template<class T> void print_with_space(T p) { for(auto e : p) cerr << e << " "; cerr << endl; }
 
-#define BIL ((ll)1e9)
-#define MOD ((ll)1e9+7)
-#define INF (1LL<<60)           //1LL<<63でオーバーフロー
-#define inf (1<<29)             //1<<29でオーバーフロー
+const ll MOD = 1e9 + 7;
+const ll INF = 1LL << 60;
+const int inf = 1 << 29;
+const ld PI = acos(-1);
 
-int main(int argc,char* argv[]){
-    cin.tie(0);
-    ios::sync_with_stdio(0);
-    cout << fixed << setprecision(20);
-
-    int n;
-    cin >> n;
-    vector<pii> ab(n);
-    vector<int> onoff(2*n,0);
-    set<int> check;
-    bool ans=true;
-    for(auto &x:ab){
-        cin >> x.first >> x.second;
-        if(x.second!=-1 && x.first!=-1 && x.first>=x.second){
-            ans=false;
-        }
-        if(check.find(x.first-1)!=check.end() || check.find(x.second-1)!=check.end()){
-            ans=false;
-        }
-        if(x.second!=-1 && x.first!=-1 && x.second-x.first>2){
-            ans=false;
-        }
-        if(x.first!=-1){
-            x.first--;
-            onoff[x.first]++;
-            check.insert(x.first);
-        }
-        if(x.second!=-1){
-            x.second--;
-            onoff[x.second]++;
-            check.insert(x.second);
-        }
+int main(int argc, char* argv[]){
+  cout << fixed << setprecision(20);
+  int n;
+  cin >> n;
+  vector<int> v(n*2+1), id(n*2+1);
+  set<int> ck;
+  for(int i=0;i<n;i++) {
+    int a, b;
+    cin >> a >> b;
+    if(a >= 0 && b >= 0) {
+      if(a >= b || ck.find(a) != ck.end() || ck.find(b) != ck.end()) {
+        cout << "No" << endl;
+        return 0;
+      }
+      ck.insert(a);
+      ck.insert(b);
+      v[a] = b;
+      v[b] = a;
+      id[a] = i+1;
+      id[b] = -(i+1);
+    } else if(a >= 0) {
+      if(ck.find(a) != ck.end()) {
+        cout << "No" << endl;
+        return 0;
+      }
+      ck.insert(a);
+      v[a] = inf;
+      id[a] = i+1;
+    } else if(b >= 0) {
+      if(ck.find(b) != ck.end()) {
+        cout << "No" << endl;
+        return 0;
+      }
+      ck.insert(b);
+      v[b] = -inf;
+      id[b] = -(i+1);
     }
-    for(int i=0;i<n;i++){
-        int s=ab[i].first,e=ab[i].second;
-        if(s!=-1 && e!=-1)continue;
-        if(s==-1 && e==-1)continue;
-        if(s==-1){
-            if(e>1 && onoff[e-2]==0){
-                onoff[e-2]++;
-            }else if(e>0 && onoff[e-1]==0){
-                onoff[e-1]++;
-            }else{
-                ans=false;
-                break;
-            }
-        }else if(e==-1){
-            if(s<2*n-2 && onoff[s+2]==0){
-                onoff[s+2]++;
-            }else if(s<2*n-1 && onoff[s+1]==0){
-                onoff[s+1]++;
-            }else{
-                ans=false;
-                break;
-            }
-        }
+  }
+  vector<bool> dp(n*2+1, false);
+  dp[0] = true;
+  for(int i=1;i<n*2+1;i++) {
+    if(!dp[i-1]) continue;
+    for(int len=2;len<=n*2;len+=2) {
+      if(i+len-1 > n*2) break;
+      int r = i+len/2;
+      bool f = true;
+      for(int from=i;from<r;from++) {
+        int to = from+len/2;
+        if(v[from] == -inf || v[to] == inf) { f = false; break; }
+        if(v[from] && v[from] != inf && v[from] != to) { f = false; break; }
+        if(v[to] && v[to] != -inf && v[to] != from) { f = false; break; }
+        if(id[from] && id[to] && id[from] + id[to] != 0) { f = false; break; }
+      }
+      dp[i+len-1] = dp[i+len-1] | f;
     }
-
-    int flag=0,flagpt=0;
-    for(int i=0;i<2*n-1;i++){
-        if(onoff[i]!=-1)continue;
-        else{
-            if(flag==1){
-                if(flagpt-i>2){
-                    ans=false;
-                    break;
-                }else{
-                    flag=0;
-                }
-            }else if(flag==0){
-                flag=1;
-                flagpt=i;
-            }
-        }
-    }
-
-    if(ans)cout << "Yes" << endl;
-    else cout << "No" << endl;
-
-    return 0;
+  }
+  if(dp[n*2]) cout << "Yes" << endl;
+  else cout << "No" << endl;
+  return 0;
 }

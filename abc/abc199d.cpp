@@ -1,99 +1,122 @@
-#include<iostream>
-#include<iomanip>
-#include<string>
-#include<vector>
-#include<algorithm>
-#include<utility>
-#include<tuple>
-#include<map>
-#include<queue>
-#include<deque>
-#include<set>
-#include<stack>
-#include<numeric>
-#include<cstdio>
-#include<cstdlib>
-#include<cstring>
-#include<cmath>
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <utility>
+#include <tuple>
+#include <map>
+#include <queue>
+#include <deque>
+#include <set>
+#include <stack>
+#include <numeric>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <cmath>
+#include <cassert>
+
+#include <atcoder/all>
 
 using namespace std;
+using namespace atcoder;
 
-struct Edge {
-  int to;
-  long long weight;
-  Edge() : to(0), weight(0) {}
-  Edge(int to, long long weight) : to(to), weight(weight) {}
-  Edge(const Edge& e) {
-    to = e.to;
-    weight = e.weight;
-  }
-  bool operator>(const Edge &e) const { return weight > e.weight; }
-  bool operator<(const Edge &e) const { return weight < e.weight; }
-  bool operator==(const Edge &e) const { return weight == e.weight; }
-  bool operator<=(const Edge &e) const { return weight <= e.weight; }
-  bool operator>=(const Edge &e) const { return weight >= e.weight; }
-};
+#define DEBUG(var) cerr << #var << ": " << var << " "
+#define DEBUG_EN(var) cerr << #var << ": " << var << endl
 
 using ll = long long;
 using ld = long double;
 using pii = pair<int, int>;
 using pll = pair<ll, ll>;
 using Graph = vector<vector<int>>;
-using weightedGraph = vector<vector<Edge>>;
-using heap = priority_queue<int, vector<int>, greater<int>>;
+template<class T> void print_with_space(T p) { for(auto e : p) cerr << e << " "; cerr << endl; }
 
-const ll BIL = 1e9;
 const ll MOD = 1e9 + 7;
 const ll INF = 1LL << 60;
 const int inf = 1 << 29;
 const ld PI = 3.141592653589793238462643383;
-
-struct SegmentTree {
-  int sz;
-  vector<int> t;
-  SegmentTree(int n) {
-    sz = 1;
-    while(sz < n) sz *= 2;
-    t.assign(2 * sz - 1, 0);
+struct UnionFind {
+  vector<int> par;
+  UnionFind(int n) : par(vector<int>(n, -1)) {}
+  int root(int x) {
+    if(par[x] < 0) return x;
+    return par[x] = root(par[x]);
   }
-  void update(int idx, int val) {
-    idx += sz - 1;
-    t[idx] = val;
-    while(idx > 0) {
-      idx = (idx - 1) / 2;
-      if(t[idx] > val) break;
-      t[idx] = val;
-    }
-    return;
+  bool merge(int x, int y) {
+    int rx = root(x);
+    int ry = root(y);
+    if(rx == ry) return false;
+    if(par[rx] > par[ry]) swap(rx, ry);
+    par[rx] += par[ry];
+    par[ry] = rx;
+    return true;
   }
-  int getMax(int l, int r, int now=0, int a=0, int b=-1) {
-    if(now >= t.size()) return 0;
-    if(b < 0) b = sz;
-    if(l < 0) l = 0;
-    if(r > sz) r = sz;
-    if(l > b || r < a) return 0;
-    if(l <= a && r >= b) return t[now];
-    int res = 0;
-    res = max(res, getMax(l, r, 2*now+1, a, (a+b)/2));
-    res = max(res, getMax(l, r, 2*now+2, (a+b)/2, b));
-    return res;
+  bool isSame(int x, int y) {
+    int rx = root(x);
+    int ry = root(y);
+    return rx == ry;
+  }
+  int size(int x) {
+    return -par[root(x)];
   }
 };
-
-int main(int argc,char* argv[]){
+vector<bool> reach;
+vector<int> lst;
+void topo(int now, Graph &t) {
+  lst.push_back(now);
+  reach[now] = true;
+  for(auto e : t[now]) {
+    if(reach[e]) continue;
+    topo(e, t);
+  }
+}
+vector<int> color;
+ll dfs(int idx, Graph &t) {
+  if(idx == lst.size()) return 1;
+  int now = lst[idx];
+  set<int> rem = {0, 1, 2};
+  for(auto e : t[now]) {
+    if(color[e] < 0) continue;
+    rem.erase(color[e]);
+  }
+  if(rem.empty()) return 0;
+  ll res = 0;
+  for(auto c : rem) {
+    color[now] = c;
+    res += dfs(idx+1, t);
+  }
+  color[now] = -1;
+  return res;
+}
+int main(int argc, char* argv[]){
   cin.tie(0);
   ios::sync_with_stdio(0);
   cout << fixed << setprecision(20);
   int n, m;
   cin >> n >> m;
-  Graph g(n);
+  Graph t(n);
+  UnionFind uf(n);
   for(int i=0;i<m;i++) {
     int a, b;
     cin >> a >> b;
     a--;b--;
-    g[a].push_back(b);
-    g[b].push_back(a);
+    t[a].push_back(b);
+    t[b].push_back(a);
+    uf.merge(a, b);
   }
-  
+  reach.assign(n, false);
+  ll ans = 1;
+  set<int> ck;
+  for(int i=0;i<n;i++) {
+    int root = uf.root(i);
+    if(ck.find(root) != ck.end()) continue;
+    ck.insert(root);
+    lst.resize(0);
+    topo(root, t);
+    color.assign(n, -1);
+    ans *= dfs(0, t);
+  }
+  cout << ans << endl;
   return 0;
 }

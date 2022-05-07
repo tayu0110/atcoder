@@ -11,7 +11,7 @@
                 "-g",
                 "${relativeFile}",
                 "-I",
-                ".",
+                "./atcoder",
                 "-o",
                 "a"
                 // "${fileBasenameNoExtension}"

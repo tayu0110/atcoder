@@ -1,52 +1,99 @@
-//DFSによる実装の検討→不正解
-//マップによる選択肢の積算→不正解
-#include<iostream>
-#include<string>
-#include<vector>
-#include<algorithm>
-#include<utility>
-#include<tuple>
-#include<map>
-#include<queue>
-#include<set>
-#include<stack>
-#include<cstdio>
-#include<cstdlib>
-#include<cstring>
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <utility>
+#include <tuple>
+#include <map>
+#include <queue>
+#include <deque>
+#include <set>
+#include <stack>
+#include <numeric>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <cmath>
+#include <cassert>
+
+#include <atcoder/all>
+
+using namespace std;
+using namespace atcoder;
+
+#define DEBUG(var) cerr << #var << ": " << var << " "
+#define DEBUG_EN(var) cerr << #var << ": " << var << endl
 
 using ll = long long;
-using namespace std;
+using ld = long double;
+using pii = pair<int, int>;
+using pll = pair<ll, ll>;
+using Graph = vector<vector<int>>;
+template<class T> void print_with_space(T p) { for(auto e : p) cerr << e << " "; cerr << endl; }
 
-#define mod ((ll)1e9+7)
-
-int main(int argc,char* argv[]){
-    ll h,w,a,b;
-    cin >> h >> w >> a >> b;
-
-    vector<vector<bool>> mj(h,vector<bool>(w,true));
-    vector<vector<ll>> mapping(h,vector<ll>(w,0));
-    for(int y=h-a;y<h;y++){
-        for(int x=0;x<b;x++)
-            mj.at(y).at(x)=false;
-    }
-
-    for(int y=0;y<h;y++){
-        for(int x=0;x<w;x++){
-            if(mj.at(y).at(x)==false)
-                continue;
-            if(x==0 && y==0)
-                continue;
-            if(y==0 && x!=0)
-                mapping.at(y).at(x)=1;
-            else if(x==0 && y!=0)
-                mapping.at(y).at(x)=1;
-            else
-                mapping.at(y).at(x)=mapping.at(y-1).at(x)+mapping.at(y).at(x-1);
-        }
-    }
-
-    cout << mapping.at(h-1).at(w-1)%mod << endl;
-
-    return 0;        
+const ll MOD = 1e9 + 7;
+const ll INF = 1LL << 60;
+const int inf = 1 << 29;
+const ld PI = 3.141592653589793238462643383;
+struct mint {
+  ll val;
+  constexpr mint(ll val=0) : val((val%MOD + MOD) % MOD) {}
+  constexpr mint(const mint &m) : val(m.val) {}
+  constexpr mint operator-() const {return mint(-val);}
+  constexpr mint operator+(const mint &m) const noexcept {return mint(*this) += m;}
+  constexpr mint operator-(const mint &m) const noexcept {return mint(*this) -= m;}
+  constexpr mint operator*(const mint &m) const noexcept {return mint(*this) *= m;}
+  constexpr mint operator/(const mint &m) const noexcept {return mint(*this) /= m;}
+  constexpr mint &operator+=(const mint &a) noexcept {if((val += a.val) >= MOD) val -= MOD; return *this;}
+  constexpr mint &operator-=(const mint &a) noexcept {if((val -= a.val) < 0) val += MOD; return *this;}
+  constexpr mint &operator*=(const mint &a) noexcept {val = val * a.val % MOD; return *this;}
+  constexpr mint &operator/=(const mint m) noexcept {return *this *= m.inv();}
+  constexpr mint pow(ll t) const {
+    if(!t) return 1;
+    mint a = pow(t >> 1);
+    a *= a;
+    if(t & 1) a *= (*this);
+    return a;
+  }
+  constexpr mint inv() const {return pow(MOD-2);}
+  bool operator==(const mint &m) {return val == m.val;}
+  bool operator<(const mint &m) {return val < m.val;}
+  bool operator>(const mint &m) {return val > m.val;}
+  bool operator<=(const mint &m) {return val <= m.val;}
+  bool operator>=(const mint &m) {return val >= m.val;}
+  bool operator!=(const mint &m) {return val != m.val;}
+  friend ostream &operator<<(ostream &os, const mint &m) {os << m.val; return os;}
+  friend istream &operator>>(istream & is, mint &m) {is >> m.val; return is;}
+};
+struct combination {
+  vector<mint> fact, ifact;
+  combination(int n) : fact(n+1), ifact(n+1) {
+    assert(n < MOD);
+    fact[0] = 1LL;
+    for(ll i = 1; i <= n; i++) fact[i] = fact[i-1] * i;
+    ifact[n] = fact[n].inv();
+    for(ll i = n; i >= 1; i--) ifact[i-1] = ifact[i] * i;
+  }
+  // {combination c(n); mint ans = c(n, k);} => (ans == nCk)
+  mint operator()(int n, int k) {
+    if(k < 0 || k > n) return 0;
+    return fact[n] * ifact[k] * ifact[n-k];
+  }
+};
+int main(int argc, char* argv[]){
+  cin.tie(0);
+  ios::sync_with_stdio(0);
+  cout << fixed << setprecision(20);
+  int h, w, a, b;
+  cin >> h >> w >> a >> b;
+  combination c(h+w);
+  mint ans = 0;
+  for(int i=b+1;i<=w;i++) {
+    mint s = c(h-a-1 + i-1, i-1);
+    mint t = c(a-1 + w-i, w-i);
+    ans += s * t;
+  }
+  cout << ans << endl;
+  return 0;
 }
-   

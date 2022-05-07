@@ -35,29 +35,17 @@ template<class T> void print_with_space(T p) { for(auto e : p) cerr << e << " ";
 const ll MOD = 1e9 + 7;
 const ll INF = 1LL << 60;
 const int inf = 1 << 29;
-const ld PI = 3.141592653589793238462643383;
-struct Edge {
-  int to;
-  long long weight;
-  Edge() : to(0), weight(0) {}
-  Edge(int to, long long weight) : to(to), weight(weight) {}
-  Edge(const Edge& e) : to(e.to), weight(e.weight) {}
-  bool operator>(const Edge &e) const { return weight > e.weight; }
-  bool operator<(const Edge &e) const { return weight < e.weight; }
-  bool operator==(const Edge &e) const { return weight == e.weight; }
-  bool operator<=(const Edge &e) const { return weight <= e.weight; }
-  bool operator>=(const Edge &e) const { return weight >= e.weight; }
-};
-using weightedGraph = vector<vector<Edge>>;
+const ld PI = acos(-1);
 vector<bool> ck;
-vector<ll> v;
-ll dfs(int now, int par, weightedGraph &t) {
-  ll res = v[now];
+ll solve(int now, vector<ll> &t, vector<vector<int>> &a) {
+  if(ck[now]) return 0;
   ck[now] = true;
-  for(auto [to, w] : t[now]) {
-    if(ck[to]) continue;
-    res += dfs(to, now, t);
+  int n = t.size();
+  ll res = 0;
+  for(auto e : a[now]) {
+    res += solve(e, t, a);
   }
+  res += t[now];
   return res;
 }
 int main(int argc, char* argv[]){
@@ -66,22 +54,20 @@ int main(int argc, char* argv[]){
   cout << fixed << setprecision(20);
   int n;
   cin >> n;
-  weightedGraph t(n);
-  v.assign(n, 0);
-  ck.assign(n, false);
+  vector<ll> t(n);
+  vector<vector<int>> a(n);
   for(int i=0;i<n;i++) {
-    int T;
-    cin >> T;
-    v[i] = T;
+    cin >> t[i];
     int k;
     cin >> k;
     for(int j=0;j<k;j++) {
-      int a;
-      cin >> a;
-      a--;
-      t[i].push_back(Edge(a, T));
+      int b;
+      cin >> b;
+      b--;
+      a[i].push_back(b);
     }
   }
-  cout << dfs(n-1, -1, t) << endl;
+  ck.assign(n, false);
+  cout << solve(n-1, t, a) << endl;
   return 0;
 }

@@ -1,54 +1,41 @@
-#include<iostream>
-#include<iomanip>
-#include<string>
-#include<vector>
-#include<algorithm>
-#include<utility>
-#include<tuple>
-#include<map>
-#include<queue>
-#include<deque>
-#include<set>
-#include<stack>
-#include<numeric>
-#include<bitset>
-#include<cstdio>
-#include<cstdlib>
-#include<cstring>
-#include<cmath>
-#include<cassert>
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <utility>
+#include <tuple>
+#include <map>
+#include <queue>
+#include <deque>
+#include <set>
+#include <stack>
+#include <numeric>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <cmath>
+#include <cassert>
+
+#include <atcoder/all>
 
 using namespace std;
+using namespace atcoder;
 
-#define DEBUG(var) cout << #var << ": " << var << " ";
-#define DEBUG_EN(var) cout << #var << ": " << var << endl;
-
-struct Edge {
-  int to;
-  long long weight;
-  Edge() : to(0), weight(0) {}
-  Edge(int to, long long weight) : to(to), weight(weight) {}
-  Edge(const Edge& e) : to(e.to), weight(e.weight) {}
-  bool operator>(const Edge &e) const { return weight > e.weight; }
-  bool operator<(const Edge &e) const { return weight < e.weight; }
-  bool operator==(const Edge &e) const { return weight == e.weight; }
-  bool operator<=(const Edge &e) const { return weight <= e.weight; }
-  bool operator>=(const Edge &e) const { return weight >= e.weight; }
-};
+#define DEBUG(var) cerr << #var << ": " << (var) << " "
+#define DEBUG_EN(var) cerr << #var << ": " << (var) << endl
 
 using ll = long long;
 using ld = long double;
 using pii = pair<int, int>;
 using pll = pair<ll, ll>;
 using Graph = vector<vector<int>>;
-using weightedGraph = vector<vector<Edge>>;
-template<class T> void print_with_space(T p) { for(auto e : p) cout << e << " "; cout << endl; }
+template<class T> void print_with_space(T p) { for(auto e : p) cerr << e << " "; cerr << endl; }
 
-const ll BIL = 1e9;
 const ll MOD = 998244353;
 const ll INF = 1LL << 60;
 const int inf = 1 << 29;
-const ld PI = 3.141592653589793238462643383;
+const ld PI = acos(-1);
 struct mint {
   ll val;
   constexpr mint(ll val=0) : val((val%MOD + MOD) % MOD) {}
@@ -94,46 +81,37 @@ struct combination {
     return fact[n] * ifact[k] * ifact[n-k];
   }
 };
-mint dfs(deque<pii> &nt, vector<vector<int>> &d, bitset<410> &b) {
-  int n = d.size() / 2;
-  mint res = 0;
-  for(int i=0;i<nt.size();i++) {
-    auto p = nt.front();
-    int l = p.first, r = p.second;
-    if(b.test(l) || b.test(r)) continue;
-    b.flip(l); b.flip(r);
-    while(r < 2*n && b.test(r)) r++;
-    while(l >= 0 && b.test(l)) l--;
-    if(0 <= l && r < 2*n) {
-      d[l][r] -= 2;
-      d[r][l] -= 2;
-      if(d[l][r] == 1) nt.push_back({l, r});
-    }
-    nt.pop_front();
-    res += dfs(nt, d, b);
-    b.flip(l); b.flip(r);
-    nt.pop_back(); nt.push_back(p);
-  }
-}
-int main(int argc,char* argv[]){
+int main(int argc, char* argv[]){
   cin.tie(0);
   ios::sync_with_stdio(0);
   cout << fixed << setprecision(20);
   int n, m;
   cin >> n >> m;
-  vector<vector<int>> d(2*n, vector<int>(2*n, -1));
+  vector<pii> p(m);
   for(int i=0;i<m;i++) {
     int a, b;
     cin >> a >> b;
     a--;b--;
-    if((b-a) % 2 == 0) continue;
-    d[a][b] = b-a;
-    d[b][a] = b-a;
+    p[i] = {min(a, b), max(a, b)};
   }
-  deque<pii> nt;
-  for(int i=0;i<2*n;i++) for(int j=i+1;j<2*n;j++) {
-    if(d[i][j] == 1) nt.push_back({i, j});
+  set<pii> ck;
+  for(int i=0;i<m;i++) ck.insert(p[i]);
+  int s = 2*n;
+  vector<vector<mint>> dp(s+1, vector<mint>(s+1, 0));
+  combination c(s+10);
+  for(int i=0;i<=s;i++) dp[i][i] = 1;
+  for(int len=2;len<=s;len+=2) {
+    for(int l=0;l<s;l++) {
+      int r = l + len;
+      if(r > s) break;
+      for(int m=l+2;m<=r;m+=2) {
+        if(ck.find({l, m-1}) != ck.end()) {
+          dp[l][r] += dp[l+1][m-1] * dp[m][r] * c((r-l)/2, (r-m)/2);
+        }
+      }
+    }
   }
-
+  cout << dp[0][s] << endl;
   return 0;
 }
+ 

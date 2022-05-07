@@ -1,23 +1,26 @@
-#include<iostream>
-#include<iomanip>
-#include<string>
-#include<vector>
-#include<algorithm>
-#include<utility>
-#include<tuple>
-#include<map>
-#include<queue>
-#include<deque>
-#include<set>
-#include<stack>
-#include<numeric>
-#include<cstdio>
-#include<cstdlib>
-#include<cstring>
-#include<cmath>
-#include<cassert>
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <utility>
+#include <tuple>
+#include <map>
+#include <queue>
+#include <deque>
+#include <set>
+#include <stack>
+#include <numeric>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <cmath>
+#include <cassert>
+
+#include <atcoder/all>
 
 using namespace std;
+using namespace atcoder;
 
 #define DEBUG(var) cerr << #var << ": " << var << " "
 #define DEBUG_EN(var) cerr << #var << ": " << var << endl
@@ -39,15 +42,36 @@ int main(int argc, char* argv[]){
   ios::sync_with_stdio(0);
   cout << fixed << setprecision(20);
   int n, k;
-  cin >> n >> k;
   string s;
-  cin >> s;
+  cin >> n >> k >> s;
   if(k < 2) {
     cout << s << endl;
     return 0;
   }
-  string t = s;
-  sort(t.begin(), t.end());
-  
+  map<char, int> mp, smp;
+  for(int i=0;i<n;i++) mp[s[i]]++, smp[s[i]]++;
+  string ans;
+  for(int i=0;i<n;i++) {
+    smp[s[i]]--;
+    k--;
+    for(auto [fi, se] : mp) {
+      if(fi == s[i]) {
+        ans += fi;
+        mp[fi]--;
+        k++;
+        break;
+      }
+      mp[fi]--;
+      int match = 0;
+      for(auto [f, s] : mp) match += min(s, smp[f]);
+      if(k >= n-1-i-match) {
+        ans += fi;
+        break;
+      }
+      mp[fi]++;
+    }
+    if(!mp[ans[i]]) mp.erase(ans[i]);
+  }
+  cout << ans << endl;
   return 0;
 }

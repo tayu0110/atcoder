@@ -1,60 +1,58 @@
-#include<iostream>
-#include<iomanip>
-#include<string>
-#include<vector>
-#include<algorithm>
-#include<utility>
-#include<tuple>
-#include<map>
-#include<queue>
-#include<set>
-#include<stack>
-#include<numeric>
-#include<cstdio>
-#include<cstdlib>
-#include<cstring>
-#include<cmath>
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <utility>
+#include <tuple>
+#include <map>
+#include <queue>
+#include <deque>
+#include <set>
+#include <stack>
+#include <numeric>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <cmath>
+#include <cassert>
+
+#include <atcoder/all>
 
 using namespace std;
+using namespace atcoder;
+
+#define DEBUG(var) cerr << #var << ": " << var << " "
+#define DEBUG_EN(var) cerr << #var << ": " << var << endl
 
 using ll = long long;
+using ld = long double;
 using pii = pair<int, int>;
 using pll = pair<ll, ll>;
+using Graph = vector<vector<int>>;
+template<class T> void print_with_space(T p) { for(auto e : p) cerr << e << " "; cerr << endl; }
 
-#define BIL ((ll)1e9)
-#define MOD ((ll)1e9+7)
-#define INF (1LL<<60)           //1LL<<63でオーバーフロー
-#define inf (1<<29)             //1<<29でオーバーフロー
+const ll MOD = 1e9 + 7;
+const ll INF = 1LL << 60;
+const int inf = 1 << 29;
+const ld PI = acos(-1);
 
-int main(int argc,char* argv[]){
-    cin.tie(0);
-    ios::sync_with_stdio(0);
-    cout << fixed << setprecision(20);
-
-    int n;
-    cin >> n;
-    vector<int> a(n);
-    for(auto &x:a)cin >> x;
-
-    bool gray=false,brown=false,green=false,sky=false,blue=false,yellow=false,orange=false,red=false;
-    int ansmin=0,ansmax=0;
-    for(int i=0;i<n;i++){
-        switch(a[i]/400){
-            case 0:if(!gray){ansmin++;ansmax++;gray=true;}break;
-            case 1:if(!brown){ansmin++;ansmax++;brown=true;}break;
-            case 2:if(!green){ansmin++;ansmax++;green=true;}break;
-            case 3:if(!sky){ansmin++;ansmax++;sky=true;}break;
-            case 4:if(!blue){ansmin++;ansmax++;blue=true;}break;
-            case 5:if(!yellow){ansmin++;ansmax++;yellow=true;}break;
-            case 6:if(!orange){ansmin++;ansmax++;orange=true;}break;
-            case 7:if(!red){ansmin++;ansmax++;red=true;}break;
-            default:ansmax++;break;
-        }
-    }
-
-    if(ansmin==0)ansmin++;
-
-    cout << ansmin << " " << ansmax << endl;
-
-    return 0;
+int main(int argc, char* argv[]){
+  cin.tie(0);
+  ios::sync_with_stdio(0);
+  cout << fixed << setprecision(20);
+  int n;
+  cin >> n;
+  vector<int> a(n);
+  for(int i=0;i<n;i++) cin >> a[i];
+  vector<int> t(10);
+  for(int i=0;i<n;i++) t[min(a[i] / 400, 8)]++;
+  int ans = 0;
+  for(int i=0;i<8;i++) ans += (t[i] != 0);
+  if(!t[8]) cout << ans << " " << ans << endl;
+  else {
+    if(t[7]) cout << ans << " " << ans + t[8] << endl;
+    else cout << ans + 1 << " " << ans + t[8] << endl;
+  }
+  return 0;
 }

@@ -1,26 +1,29 @@
-#include<iostream>
-#include<iomanip>
-#include<string>
-#include<vector>
-#include<algorithm>
-#include<utility>
-#include<tuple>
-#include<map>
-#include<queue>
-#include<deque>
-#include<set>
-#include<stack>
-#include<numeric>
-#include<cstdio>
-#include<cstdlib>
-#include<cstring>
-#include<cmath>
-#include<cassert>
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <utility>
+#include <tuple>
+#include <map>
+#include <queue>
+#include <deque>
+#include <set>
+#include <stack>
+#include <numeric>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <cmath>
+#include <cassert>
+
+#include <atcoder/all>
 
 using namespace std;
+using namespace atcoder;
 
-#define DEBUG(var) cerr << #var << ": " << var << " "
-#define DEBUG_EN(var) cerr << #var << ": " << var << endl
+#define DEBUG(var) cerr << #var << ": " << (var) << " "
+#define DEBUG_EN(var) cerr << #var << ": " << (var) << endl
 
 using ll = long long;
 using ld = long double;
@@ -32,7 +35,7 @@ template<class T> void print_with_space(T p) { for(auto e : p) cerr << e << " ";
 const ll MOD = 1e9 + 7;
 const ll INF = 1LL << 60;
 const int inf = 1 << 29;
-const ld PI = 3.141592653589793238462643383;
+const ld PI = acos(-1);
 struct Edge {
   int to;
   long long weight;
@@ -46,18 +49,50 @@ struct Edge {
   bool operator>=(const Edge &e) const { return weight >= e.weight; }
 };
 using weightedGraph = vector<vector<Edge>>;
-vector<vector<ll>> memo;
+vector<map<int, ll>> memo;
 vector<ll> d;
-ll dfs(int now, int par, int nd, weightedGraph &t) {
-  int cnt = -1;
-  ll res = 0;
+ll dfs(int now, int par, ll dist, weightedGraph &t) {
+  ll mx = 0;
   for(auto [to, w] : t[now]) {
-    cnt++;
     if(to == par) continue;
-    memo[now][cnt] = max(dfs(to, now, nd+w, t), nd+d[now]);
-    res = max(res, memo[now][cnt]);
+    memo[now][to] = dfs(to, now, w, t);
+    mx = max(mx, memo[now][to]);
   }
-  return res;
+  return max(dist + d[now], dist + mx);
+}
+void dfs2(int now, int par, ll mx, weightedGraph &t) {
+  // DEBUG(now);DEBUG(par);DEBUG_EN(mx);
+  if(par >= 0) memo[now][par] = mx;
+  int mi = par;
+  int si = -1;
+  ll smx = -1;
+  for(auto [f, s] : memo[now]) {
+    if(f == par) continue;
+    if(mx <= s) {
+      si = mi;
+      smx = mx;
+      mi = f;
+      mx = s;
+    } else if(smx <= s) {
+      smx = s;
+      si = f;
+    }
+  }
+  if(d[now] >= mx) {
+    si = mi;
+    smx = mx;
+    mi = -1;
+    mx = d[now];
+  } else if(d[now] >= smx) {
+    si = -1;
+    smx = d[now];
+  }
+  // DEBUG(mi);DEBUG(mx);DEBUG(si);DEBUG_EN(smx);
+  for(auto [to, w] : t[now]) {
+    if(to == par) continue;
+    if(to == mi) dfs2(to, now, smx+w, t);
+    else dfs2(to, now, mx+w, t);
+  }
 }
 int main(int argc, char* argv[]){
   cin.tie(0);
@@ -65,21 +100,27 @@ int main(int argc, char* argv[]){
   cout << fixed << setprecision(20);
   int n;
   cin >> n;
-  weightedGraph t(n);
-  memo.assign(n, vector<ll>(0));
+  vector<tuple<int, int, ll>> p(n-1);
   for(int i=0;i<n-1;i++) {
-    int a, b;
-    ll c;
+    int a, b, c;
     cin >> a >> b >> c;
+    p[i] = {a, b, c};
+  }
+  d.assign(n, 0);
+  for(int i=0;i<n;i++) cin >> d[i];
+  weightedGraph t(n);
+  for(auto [a, b, c] : p) {
     a--;b--;
     t[a].push_back(Edge(b, c));
     t[b].push_back(Edge(a, c));
-    memo[a].push_back(-1);
-    memo[b].push_back(-1);
   }
-  d.assign(n, -1);
-  for(int i=0;i<n;i++) cin >> d[i];
-  dfs(0, -1, 0, t);
-  
+  memo.resize(n);
+  dfs(1, -1, 0, t);
+  dfs2(1, -1, d[1], t);
+  for(int i=0;i<n;i++) {
+    ll res = 0;
+    for(auto [f, s] : memo[i]) res = max(res, s);
+    cout << res << endl;
+  }
   return 0;
 }
