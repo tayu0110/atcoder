@@ -14,18 +14,11 @@ fn main() {
     for _ in 0..t {
         input! {from &mut stdin, mut n: usize};
 
-        if n == 1 {
-            println!("? {}", 1);
-            input! {from &mut stdin, res: usize};
-            println!("! {}", res);
-            continue;
-        }
-
         let (nn, idx) = {
             let mut nn = 0;
             let mut idx = 0;
             for i in 1..40 {
-                if f[i] * 2 + f[i-1] >= n {
+                if f[i] * 2 + f[i-1] > n {
                     nn = f[i] * 2 + f[i-1];
                     idx = i;
                     break;
@@ -34,7 +27,7 @@ fn main() {
             (nn, idx)
         };
         let mut v = vec![-1; nn+1];
-        let (mut l, mut m1, mut m2, mut r) = (0, nn - f[idx] - f[idx-1], nn - f[idx], nn);
+        let (mut l, mut m1, mut m2, mut r) = (0, f[idx], f[idx] + f[idx-1], nn);
         v[0] = -1;
         for i in n+1..=nn {
             v[i] = v[i-1] - 1;
@@ -44,8 +37,13 @@ fn main() {
         v[m1] = na;
         let mut q = m2;
         loop {
-            println!("? {}", q);
-            input! {from &mut stdin, na: i32};
+            let na = if q > n {
+                v[q]
+            } else {
+                println!("? {}", q);
+                input! {from &mut stdin, na: i32};
+                na
+            };
             v[q] = na;
             if m1 - l == 1 && r - m2 == 1 {
                 println!("! {}", std::cmp::max(v[l], std::cmp::max(v[m1], std::cmp::max(v[m2], v[r]))));

@@ -1,0 +1,31 @@
+[package]
+name = "arc144"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+ascii = "1.0.0"
+either = "1.7.0"
+fixedbitset = "0.4.2"
+im-rc = "15.1.0"
+indexmap = "1.9.1"
+itertools = "0.10.3"
+itertools-num = "0.1.3"
+lazy_static = "1.4.0"
+maplit = "1.0.2"
+nalgebra = "0.31.0"
+ndarray = "0.15.4"
+num = "0.4.0"
+num-derive = "0.3.3"
+ordered-float = "3.0.0"
+permutohedron = "0.2.4"
+petgraph = "0.6.2"
+proconio = "0.4.3"
+rand = "0.8.5"
+rand_distr = "0.4.3"
+rustc-hash = "1.1.0"
+smallvec = "1.9.0"
+text_io = "0.1.10"
+whiteread = "0.5.0"
