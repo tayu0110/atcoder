@@ -4,7 +4,7 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/**",
-                "/home/yudai/documents/atcoder/atcoder"
+                "/home/yudai/atcoder/atcoder"
             ],
             "defines": [
                 "_DEBUG",
@@ -12,11 +12,10 @@
                 "_UNICODE"
             ],
             "windowsSdkVersion": "10.0.18362.0",
-            // "compilerPath": "C:/MinGW/bin/g++.exe",
             "compilerPath": "/usr/bin/g++",
             "cStandard": "c11",
             "cppStandard": "c++17",
-            "intelliSenseMode": "gcc-x64"
+            "intelliSenseMode": "linux-gcc-x64"
         }
     ],
     "version": 4

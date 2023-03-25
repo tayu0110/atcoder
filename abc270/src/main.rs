@@ -1,0 +1,4 @@
+use rand;
+
+fn main() {
+}

@@ -21,20 +21,32 @@ mkdir -p src/bin
 for prefix in {a..f}
 do
 	SRC=src/bin/$prefix.rs
-	printf "#[allow(unused_imports)]\n" > $SRC
-	printf "use proconio::{input, marker::Chars, source::line::LineSource};\n\n" >> $SRC
+	printf "use proconio::*;\n\n" >> $SRC
 	printf "fn main() {\n" >> $SRC
-	printf "\t\n" >> $SRC
+	printf "    \n" >> $SRC
 	printf "}\n" >> $SRC
 done
 
-cargo add proconio
-cargo add itertools itertools-num
-cargo add num num-derive
-cargo add ndarray nalgebra
-cargo add rand rand_distr
-cargo add petgraph indexmap lazy_static ordered-float ascii permutohedron maplit either im-rc fixedbitset text_io whiteread rustc-hash smallvec
+cargo add proconio@0.3.8 --features derive
+cargo add itertools@0.9.0
+cargo add num@0.2.1
+cargo add rand@0.7.3
+cargo add permutohedron@0.2.4
+
+cargo add convolution-simd --path ../../tayu-procon/convolution-simd
+cargo add flow --path ../../tayu-procon/flow
+cargo add geometry --path ../../tayu-procon/geometry
+cargo add math --path ../../tayu-procon/math
+cargo add mincost-flow --path ../../tayu-procon/mincost-flow
+cargo add --path ../../tayu-procon/modint/static-modint
+cargo add --path ../../tayu-procon/modint/montgomery-modint
+cargo add polynomial --path ../../tayu-procon/polynomial
+cargo add rational --path ../../tayu-procon/rational
+cargo add segtree --path ../../tayu-procon/segtree
+cargo add string --path ../../tayu-procon/string
+cargo add suffix-array --path ../../tayu-procon/suffix-array
 
 cargo build
+cargo build --release
 
 code .
