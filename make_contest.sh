@@ -27,24 +27,29 @@ do
 	printf "}\n" >> $SRC
 done
 
-cargo add proconio@0.3.8 --features derive
-cargo add itertools@0.9.0
-cargo add num@0.2.1
-cargo add rand@0.7.3
-cargo add permutohedron@0.2.4
+cargo add ac-library-rs@=0.1.1
+cargo add num@=0.4.1
+cargo add rand@=0.8.5
+cargo add regex@=1.9.1
+cargo add permutohedron@=0.2.4
+cargo add superslice@=1.0.0
+cargo add itertools@=0.11.0
+cargo add proconio@=0.4.5 --features derive
 
-cargo add convolution-simd --path ../../tayu-procon/convolution-simd
-cargo add flow --path ../../tayu-procon/flow
-cargo add geometry --path ../../tayu-procon/geometry
-cargo add math --path ../../tayu-procon/math
-cargo add mincost-flow --path ../../tayu-procon/mincost-flow
+cargo add --path ../../tayu-procon/convolution-simd
+cargo add --path ../../tayu-procon/fenwick-tree/
+cargo add --path ../../tayu-procon/flow
+cargo add --path ../../tayu-procon/geometry
+cargo add --path ../../tayu-procon/math
+cargo add --path ../../tayu-procon/mincost-flow
 cargo add --path ../../tayu-procon/modint/static-modint
 cargo add --path ../../tayu-procon/modint/montgomery-modint
-cargo add polynomial --path ../../tayu-procon/polynomial
-cargo add rational --path ../../tayu-procon/rational
-cargo add segtree --path ../../tayu-procon/segtree
-cargo add string --path ../../tayu-procon/string
-cargo add suffix-array --path ../../tayu-procon/suffix-array
+cargo add --path ../../tayu-procon/polynomial
+cargo add --path ../../tayu-procon/rational
+cargo add --path ../../tayu-procon/segtree
+cargo add --path ../../tayu-procon/string
+cargo add --path ../../tayu-procon/suffix-array
+cargo add --path ../../tayu-procon/unionfind
 
 cargo build
 cargo build --release

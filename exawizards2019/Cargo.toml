@@ -25,5 +25,6 @@ proconio = { version = "0.3.8", features = ["derive"] }
 rand = "0.7.3"
 rand_distr = "0.2.2"
 segtree = { version = "0.1.0", path = "../../tayu-procon/segtree" }
+static-modint = { version = "0.1.0", path = "../../tayu-procon/modint/static-modint" }
 string = { version = "0.1.0", path = "../../tayu-procon/string" }
 suffix-array = { version = "0.1.0", path = "../../tayu-procon/suffix-array" }

@@ -26,10 +26,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "arbitrary-modint"
-version = "0.1.0"
-
-[[package]]
 name = "arbitrary-montgomery-modint"
 version = "0.1.0"
 
@@ -120,17 +116,6 @@ dependencies = [
 [[package]]
 name = "mincost-flow"
 version = "0.1.0"
-
-[[package]]
-name = "modint"
-version = "0.1.0"
-dependencies = [
- "arbitrary-modint",
- "arbitrary-montgomery-modint",
- "modint-common",
- "montgomery-modint",
- "static-modint",
-]
 
 [[package]]
 name = "modint-common"
@@ -237,7 +222,7 @@ name = "polynomial"
 version = "0.1.0"
 dependencies = [
  "convolution-simd",
- "modint",
+ "montgomery-modint",
 ]
 
 [[package]]

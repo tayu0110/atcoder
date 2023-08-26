@@ -7,8 +7,10 @@ name = "abc294"
 version = "0.1.0"
 dependencies = [
  "convolution-simd",
+ "fenwick-tree",
  "flow",
  "geometry",
+ "graph",
  "itertools",
  "math",
  "mincost-flow",
@@ -59,6 +61,10 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7fcaabb2fef8c910e7f4c7ce9f67a1283a1715879a7c230ca9d6d1ae31f16d91"
 
 [[package]]
+name = "fenwick-tree"
+version = "0.1.0"
+
+[[package]]
 name = "flow"
 version = "0.1.0"
 dependencies = [
@@ -81,6 +87,13 @@ dependencies = [
  "cfg-if",
  "libc",
  "wasi",
+]
+
+[[package]]
+name = "graph"
+version = "0.1.0"
+dependencies = [
+ "unionfind",
 ]
 
 [[package]]
@@ -376,6 +389,10 @@ name = "unicode-xid"
 version = "0.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "fc72304796d0818e357ead4e000d19c9c174ab23dc11093ac919054d20a6a7fc"
+
+[[package]]
+name = "unionfind"
+version = "0.1.0"
 
 [[package]]
 name = "wasi"

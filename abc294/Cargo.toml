@@ -7,8 +7,10 @@ edition = "2021"
 
 [dependencies]
 convolution-simd = { version = "0.1.0", path = "../../tayu-procon/convolution-simd" }
+fenwick-tree = { version = "0.1.0", path = "../../tayu-procon/fenwick-tree" }
 flow = { version = "0.1.0", path = "../../tayu-procon/flow" }
 geometry = { version = "0.1.0", path = "../../tayu-procon/geometry" }
+graph = { version = "0.1.0", path = "../../tayu-procon/graph" }
 itertools = "0.9.0"
 math = { version = "0.1.0", path = "../../tayu-procon/math" }
 mincost-flow = { version = "0.1.0", path = "../../tayu-procon/mincost-flow" }

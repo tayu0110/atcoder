@@ -1,30 +1,40 @@
-#[allow(unused_imports)]
-use proconio::{input, marker::Chars, source::line::LineSource};
+use proconio::*;
 
-fn main() {
-    input! {a: usize, b: usize, p: [i32; a], q: [i32; b]};
+fn rec(n: usize, m: usize, a: &[usize], b: &[usize], memo: &mut Vec<Vec<usize>>) -> usize {
+    if n == a.len() && m == b.len() {
+        memo[n][m] = 0;
+        return 0;
+    }
 
-    let mut dp = vec![vec![0; b+1]; a+1];
-    for i in 0..a+1 {
-        for j in 0..b+1 {
-            if (i + j) % 2 == 0 {
-                if i < a {
-                    dp[i+1][j] = std::cmp::max(dp[i+1][j], dp[i][j] + p[i]);
-                }
-                if j < b {
-                    dp[i][j+1] = std::cmp::max(dp[i][j+1], dp[i][j] + q[j]);
-                }
-            } else {
-                if i < a {
-                    dp[i+1][j] = std::cmp::max(dp[i+1][j], dp[i][j]);
-                }
-                if j < b {
-                    dp[i][j+1] = std::cmp::max(dp[i][j+1], dp[i][j]);
-                }
-            }
+    if memo[n][m] < std::usize::MAX {
+        return memo[n][m];
+    }
+
+    let parity = (n + m) % 2;
+    let mut res = if parity == 0 { 0 } else { std::usize::MAX };
+    if n < a.len() {
+        if parity == 0 {
+            res = res.max(a[n] + rec(n + 1, m, a, b, memo));
+        } else {
+            res = res.min(rec(n + 1, m, a, b, memo));
         }
     }
 
-    let res = dp.iter().fold(0, |max, v| std::cmp::max(max, *v.iter().max().unwrap()));
-    println!("{}", res);
+    if m < b.len() {
+        if parity == 0 {
+            res = res.max(b[m] + rec(n, m + 1, a, b, memo));
+        } else {
+            res = res.min(rec(n, m + 1, a, b, memo));
+        }
+    }
+
+    memo[n][m] = res;
+    res
+}
+
+fn main() {
+    input! {n: usize, m: usize, a: [usize; n], b: [usize; m]}
+
+    let mut memo = vec![vec![std::usize::MAX; m + 1]; n + 1];
+    println!("{}", rec(0, 0, &a, &b, &mut memo))
 }

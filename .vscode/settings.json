@@ -61,5 +61,6 @@
         "all": "cpp"
     },
     "cmake.configureOnOpen": false,
-    "editor.tabSize": 2
+    "editor.tabSize": 2,
+    "cmake.sourceDirectory": "${workspaceFolder}/atcoder/test/unittest"
 }

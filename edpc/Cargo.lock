@@ -23,10 +23,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "arbitrary-modint"
-version = "0.1.0"
-
-[[package]]
 name = "arbitrary-montgomery-modint"
 version = "0.1.0"
 
@@ -46,7 +42,6 @@ checksum = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
 name = "convolution-simd"
 version = "0.1.0"
 dependencies = [
- "math",
  "montgomery-modint",
 ]
 
@@ -63,7 +58,6 @@ dependencies = [
  "math",
  "matrix",
  "mincost-flow",
- "modint",
  "nalgebra",
  "ndarray",
  "num",
@@ -74,6 +68,7 @@ dependencies = [
  "rand",
  "rand_distr",
  "segtree",
+ "static-modint",
  "string",
  "suffix-array",
 ]
@@ -210,17 +205,6 @@ dependencies = [
 [[package]]
 name = "mincost-flow"
 version = "0.1.0"
-
-[[package]]
-name = "modint"
-version = "0.1.0"
-dependencies = [
- "arbitrary-modint",
- "arbitrary-montgomery-modint",
- "modint-common",
- "montgomery-modint",
- "static-modint",
-]
 
 [[package]]
 name = "modint-common"

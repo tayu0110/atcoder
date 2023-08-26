@@ -1,8 +1,12 @@
-#[allow(unused_imports)]
-use proconio::{input, marker::{Chars, Bytes}, source::line::LineSource};
-#[allow(unused_imports)]
-use itertools::Itertools;
+use proconio::input;
 
 fn main() {
-    
+    input! {n: usize}
+
+    let mut res = 0;
+    for _ in 0..n {
+        input! {a: usize, b: usize}
+        res += a.max(b);
+    }
+    println!("{}", res)
 }

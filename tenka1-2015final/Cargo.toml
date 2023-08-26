@@ -1,0 +1,31 @@
+[package]
+name = "tenka1-2015final"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+ac-library-rs = "=0.1.1"
+convolution-simd = { version = "0.1.0", path = "../../tayu-procon/convolution-simd" }
+fenwick-tree = { version = "0.1.0", path = "../../tayu-procon/fenwick-tree" }
+flow = { version = "0.1.0", path = "../../tayu-procon/flow" }
+geometry = { version = "0.1.0", path = "../../tayu-procon/geometry" }
+itertools = "=0.11.0"
+math = { version = "0.1.0", path = "../../tayu-procon/math" }
+mincost-flow = { version = "0.1.0", path = "../../tayu-procon/mincost-flow" }
+montgomery-modint = { version = "0.1.0", path = "../../tayu-procon/modint/montgomery-modint" }
+num = "=0.4.1"
+once_cell = "=1.18.0"
+permutohedron = "=0.2.4"
+polynomial = { version = "0.1.0", path = "../../tayu-procon/polynomial" }
+proconio = { version = "=0.4.5", features = ["derive"] }
+rand = "=0.8.5"
+rational = { version = "0.1.0", path = "../../tayu-procon/rational" }
+regex = "=1.9.1"
+segtree = { version = "0.1.0", path = "../../tayu-procon/segtree" }
+static-modint = { version = "0.1.0", path = "../../tayu-procon/modint/static-modint" }
+string = { version = "0.1.0", path = "../../tayu-procon/string" }
+suffix-array = { version = "0.1.0", path = "../../tayu-procon/suffix-array" }
+superslice = "=1.0.0"
+unionfind = { version = "0.1.0", path = "../../tayu-procon/unionfind" }

@@ -3,59 +3,39 @@ use proconio::input;
 fn main() {
     input! {n: usize, m: usize, mut b: [usize; n], c: [usize; m]}
     b.sort();
+    b.reverse();
 
-    let b = {
-        let mut buf = vec![];
-        for (i, &b) in b.iter().enumerate() {
-            buf.push(b * (n - i));
-        }
-
-        let mut res = vec![(b[0], 0)];
-        for i in 1..n {
-            if buf[i - 1] <= buf[i] {
-                res.push((b[i], i));
+    let mut convex = vec![(0, 1, b[0])];
+    for i in 1..n {
+        let mut x;
+        let a = i + 1;
+        let b = a * b[i];
+        loop {
+            let (x_prev, a_prev, b_prev) = convex.pop().unwrap();
+            x = (b_prev + a - (b_prev + a).min(b + a_prev)) / (a - a_prev);
+            if x_prev < x {
+                convex.push((x_prev, a_prev, b_prev));
+                break;
+            }
+            if convex.is_empty() {
+                break;
             }
         }
-        res
-    };
 
-    eprintln!("b: {:?}", b);
-    // eprintln!("b: {:?}", b);
+        convex.push((x, a, b));
+    }
 
     for c in c {
-        let (mut l, mut r) = (0, b.len());
-        while r - l > 3 {
-            let (m1, m2) = ((l * 2 + r) / 3, (l + r * 2) / 3);
-            let res1 = {
-                let (b, index) = b[m1];
-                (b + c) * (n - index)
-            };
-            let res2 = {
-                let (b, index) = b[m2];
-                (b + c) * (n - index)
-            };
-
-            if res1 > res2 {
-                r = m2;
+        let (mut l, mut r) = (0, convex.len());
+        while r - l > 1 {
+            let m = (r + l) / 2;
+            if convex[m].0 < c + 1 {
+                l = m;
             } else {
-                l = m1;
+                r = m;
             }
         }
-
-        let mut max = 0;
-        for i in l.saturating_sub(5)..std::cmp::min(b.len(), r.saturating_add(5)) {
-            let (b, index) = b[i];
-            max = std::cmp::max(max, (b + c) * (n - index));
-        }
-
-        println!("{}", max);
+        let (_, a, b) = convex[l];
+        println!("{}", a * c + b);
     }
-    // for c in c {
-    //     let mut max = 0;
-    //     for (i, &b) in b.iter().enumerate() {
-    //         max = std::cmp::max(max, (b + c) * (n - i));
-    //     }
-
-    //     println!("{}", max);
-    // }
 }

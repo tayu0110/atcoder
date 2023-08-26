@@ -1,15 +1,17 @@
 use matrix::Matrix;
-use modint::{Mint, Mod1000000007};
 use proconio::input;
+use static_modint::{Mod1000000007, StaticModint};
+
+type Modint = StaticModint<Mod1000000007>;
 
 fn main() {
     input! {n: usize, k: usize, a: [[i32; n]; n]}
 
-    let matrix = Matrix::<Mod1000000007>::from(a);
+    let matrix = Matrix::from(a);
 
-    let res: Matrix<Mod1000000007> = matrix.pow(k);
+    let res: Matrix<StaticModint<Mod1000000007>> = matrix.pow(k);
 
-    let mut sum = Mint::zero();
+    let mut sum = Modint::zero();
     for i in 0..n {
         for j in 0..n {
             sum += res.get(i, j);
