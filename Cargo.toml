@@ -79,7 +79,7 @@ members = [
   "abc172",
   "arc57",
   "past4",
-  "ahc26", "make-contest-test",
+  "ahc26",
 ]
 exclude = []
 resolver = "2"
