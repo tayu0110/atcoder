@@ -6,20 +6,30 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-convolution-simd = { version = "0.1.0", path = "../../tayu-procon/convolution-simd" }
-flow = { version = "0.1.0", path = "../../tayu-procon/flow" }
-geometry = { version = "0.1.0", path = "../../tayu-procon/geometry" }
-itertools = "0.9.0"
-math = { version = "0.1.0", path = "../../tayu-procon/math" }
-mincost-flow = { version = "0.1.0", path = "../../tayu-procon/mincost-flow" }
-montgomery-modint = { version = "0.1.0", path = "../../tayu-procon/modint/montgomery-modint" }
-num = "0.2.1"
-permutohedron = "0.2.4"
-polynomial = { version = "0.1.0", path = "../../tayu-procon/polynomial" }
-proconio = { version = "0.3.8", features = ["derive"] }
-rand = "0.7.3"
-rational = { version = "0.1.0", path = "../../tayu-procon/rational" }
-segtree = { version = "0.1.0", path = "../../tayu-procon/segtree" }
-static-modint = { version = "0.1.0", path = "../../tayu-procon/modint/static-modint" }
-string = { version = "0.1.0", path = "../../tayu-procon/string" }
-suffix-array = { version = "0.1.0", path = "../../tayu-procon/suffix-array" }
+ac-library-rs.workspace = true
+convolution.workspace = true
+ds.workspace = true
+fenwick-tree.workspace = true
+flow.workspace = true
+geometry.workspace = true
+graph.workspace = true
+itertools.workspace = true
+math.workspace = true
+mincost-flow.workspace = true
+montgomery-modint.workspace = true
+num.workspace = true
+ordered-float.workspace = true
+permutohedron.workspace = true
+polynomial.workspace = true
+proconio.workspace = true
+rand.workspace = true
+rational.workspace = true
+regex.workspace = true
+rustc-hash.workspace = true
+segtree.workspace = true
+static-modint.workspace = true
+string.workspace = true
+suffix-array.workspace = true
+superslice.workspace = true
+unionfind.workspace = true
+utility.workspace = true

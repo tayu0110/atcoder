@@ -163,6 +163,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "modint-common"
+version = "0.1.0"
+
+[[package]]
 name = "nalgebra"
 version = "0.20.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -474,6 +478,10 @@ checksum = "08d43f7aa6b08d49f382cde6a7982047c3426db949b1424bc4b7ec9ae12c6ce2"
 [[package]]
 name = "segtree"
 version = "0.1.0"
+dependencies = [
+ "static-modint",
+ "zero-one",
+]
 
 [[package]]
 name = "sized-chunks"
@@ -490,6 +498,14 @@ name = "smallvec"
 version = "1.10.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a507befe795404456341dfab10cef66ead4c041f62b8b11bbb92bffe5d0953e0"
+
+[[package]]
+name = "static-modint"
+version = "0.1.0"
+dependencies = [
+ "modint-common",
+ "zero-one",
+]
 
 [[package]]
 name = "syn"
@@ -554,3 +570,7 @@ name = "whiteread"
 version = "0.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8bc25de0a968755322a6b517a7257df7ec3216ed7907b8fc064906542f9714b3"
+
+[[package]]
+name = "zero-one"
+version = "0.1.0"

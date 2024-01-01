@@ -20,10 +20,6 @@ name = "arbitrary-montgomery-modint"
 version = "0.1.0"
 
 [[package]]
-name = "iolib"
-version = "0.1.0"
-
-[[package]]
 name = "lazy_static"
 version = "1.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -48,14 +44,9 @@ version = "0.1.0"
 name = "montgomery-modint"
 version = "0.1.0"
 dependencies = [
- "iolib",
  "modint-common",
- "numeric",
+ "zero-one",
 ]
-
-[[package]]
-name = "numeric"
-version = "0.1.0"
 
 [[package]]
 name = "proconio"
@@ -69,11 +60,19 @@ dependencies = [
 [[package]]
 name = "segtree"
 version = "0.1.0"
+dependencies = [
+ "static-modint",
+ "zero-one",
+]
 
 [[package]]
 name = "static-modint"
 version = "0.1.0"
 dependencies = [
  "modint-common",
- "numeric",
+ "zero-one",
 ]
+
+[[package]]
+name = "zero-one"
+version = "0.1.0"

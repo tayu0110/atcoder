@@ -50,6 +50,7 @@ version = "0.1.0"
 dependencies = [
  "arbitrary-montgomery-modint",
  "numeric",
+ "simple-rand",
 ]
 
 [[package]]
@@ -136,6 +137,9 @@ dependencies = [
 [[package]]
 name = "numeric"
 version = "0.1.0"
+dependencies = [
+ "zero-one",
+]
 
 [[package]]
 name = "proc-macro2"
@@ -177,11 +181,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "simple-rand"
+version = "0.1.0"
+
+[[package]]
 name = "static-modint"
 version = "0.1.0"
 dependencies = [
  "modint-common",
- "numeric",
+ "zero-one",
 ]
 
 [[package]]
@@ -200,3 +208,7 @@ name = "unicode-xid"
 version = "0.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "fc72304796d0818e357ead4e000d19c9c174ab23dc11093ac919054d20a6a7fc"
+
+[[package]]
+name = "zero-one"
+version = "0.1.0"

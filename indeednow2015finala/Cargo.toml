@@ -7,7 +7,7 @@ edition = "2021"
 
 [dependencies]
 ac-library-rs = "=0.1.1"
-convolution-simd = { version = "0.1.0", path = "../../tayu-procon/convolution-simd" }
+convolution.workspace = true
 fenwick-tree = { version = "0.1.0", path = "../../tayu-procon/fenwick-tree" }
 flow = { version = "0.1.0", path = "../../tayu-procon/flow" }
 geometry = { version = "0.1.0", path = "../../tayu-procon/geometry" }

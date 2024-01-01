@@ -6,4 +6,5 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-proconio = "0.4.3"
+modint = { version = "0.1.0", path = "../../tayu-procon/modint" }
+proconio = "0.4.5"

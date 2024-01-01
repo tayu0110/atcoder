@@ -1,5 +1,5 @@
 use proconio::*;
-use segtree::range_add_range_minimum_query;
+use segtree::RangeAddRangeMinimumQuery;
 
 fn main() {
     input! {n: usize, c: [i64; n], q: usize}
@@ -13,7 +13,7 @@ fn main() {
             (n + 1) / 2 + idx / 2
         }
     };
-    let mut st = range_add_range_minimum_query(n);
+    let mut st = RangeAddRangeMinimumQuery::new(n);
     for (i, c) in c.into_iter().enumerate() {
         let i = convert(i);
         st.set(i, c);

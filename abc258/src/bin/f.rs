@@ -1,35 +1,57 @@
-#[allow(unused_imports)]
-use proconio::{input, marker::Chars, source::line::LineSource};
+use itertools::Itertools;
+use proconio::*;
 
 fn main() {
-    input! {t: usize};
+    input! {t: usize}
 
-    let mut resv = vec![];
+    let mut r = vec![];
 
     for _ in 0..t {
-        input! {b: i64, k: i64, mut sx: i64, mut sy: i64, mut gx: i64, mut gy: i64};
+        input! {b: u64, k: u64, sx: u64, sy: u64, gx: u64, gy: u64}
 
-        sx -= b;
-        sy -= b;
-        gx -= b;
-        gy -= b;
+        let mut res = (sy.abs_diff(gy) + sx.abs_diff(gx)) * k;
+        let f = |x: u64, y: u64| -> Vec<(u64, u64, u64)> {
+            let (fx, cx) = (x / b * b, (x + b - 1) / b * b);
+            let (fy, cy) = (y / b * b, (y + b - 1) / b * b);
+            vec![(fx, y), (cx, y), (x, fy), (x, cy)]
+                .into_iter()
+                .map(|(nx, ny)| (nx, ny, nx.abs_diff(x) + ny.abs_diff(y)))
+                .collect()
+        };
+        let g = |sx: u64, sy: u64, gx: u64, gy: u64| -> u64 {
+            let mut res = u64::MAX;
+            if sx % b == 0 && gx % b == 0 && sx / b == gx / b {
+                res = sy.abs_diff(gy);
+            }
+            if sy % b == 0 && gy % b == 0 && sy / b == gy / b {
+                res = sx.abs_diff(gx);
+            }
+            for px in vec![sx / b * b, (sx + b - 1) / b * b] {
+                for qx in vec![gx / b * b, (gx + b - 1) / b * b] {
+                    for py in vec![sy / b * b, (sy + b - 1) / b * b] {
+                        for qy in vec![gy / b * b, (gy + b - 1) / b * b] {
+                            res = res.min(
+                                px.abs_diff(sx)
+                                    + qx.abs_diff(gx)
+                                    + py.abs_diff(sy)
+                                    + qy.abs_diff(gy)
+                                    + px.abs_diff(qx)
+                                    + py.abs_diff(qy),
+                            );
+                        }
+                    }
+                }
+            }
+            res
+        };
+        for (sx, sy, ns) in f(sx, sy) {
+            for (gx, gy, ng) in f(gx, gy) {
+                res = res.min((ns + ng) * k + g(sx, sy, gx, gy));
+            }
+        }
 
-        let greedy = ((sx - gx).abs() + (sy - gy).abs()) * k;
-        let res1 = sx.abs() * k + (sy - gy).abs() + gx.abs() * k;
-        let res2 = sy.abs() * k + (sx - gx).abs() + gy.abs() * k;
-        let res3 = sx.abs() * k + sy.abs() + gx.abs() + gy.abs() * k;
-        let res4 = sy.abs() * k + sx.abs() + gy.abs() + gx.abs() * k;
-        let mut res = greedy;
-        res = std::cmp::min(res, res1);
-        res = std::cmp::min(res, res2);
-        res = std::cmp::min(res, res3);
-        res = std::cmp::min(res, res4);
-
-        // println!("{}", res);
-        resv.push(res);
+        r.push(res);
     }
 
-    for v in resv {
-        println!("{}", v);
-    }
+    println!("{}", r.iter().join("\n"))
 }

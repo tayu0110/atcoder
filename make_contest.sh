@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -l
 
 if [ -z "$1" ]; then
 	echo "Usage: ./make_contest.sh [CONTEST_NAME]"
@@ -7,49 +7,62 @@ fi
 
 DIR="$1"
 
-ls $DIR > /dev/null 2>&1
-
-if [ $? -eq 0 ]; then
+if ls "$DIR" >/dev/null 2>&1; then
 	echo "$DIR already exists."
 	exit
 fi
 
-cargo new $DIR
-cd $DIR
+cargo member new "$DIR"
+cd "$DIR" || exit
+
+mkdir .vscode -p
+cat <<EOF >.vscode/settings.json
+{
+    "rust-analyzer.check.command": "check"
+}
+EOF
+
+cat <<EOF >>Cargo.toml
+ac-library-rs.workspace = true
+convolution.workspace = true
+ds.workspace = true
+fenwick-tree.workspace = true
+flow.workspace = true
+geometry.workspace = true
+graph.workspace = true
+itertools.workspace = true
+math.workspace = true
+mincost-flow.workspace = true
+montgomery-modint.workspace = true
+num.workspace = true
+ordered-float.workspace = true
+permutohedron.workspace = true
+polynomial.workspace = true
+proconio.workspace = true
+rand.workspace = true
+rational.workspace = true
+regex.workspace = true
+rustc-hash.workspace = true
+segtree.workspace = true
+static-modint.workspace = true
+string.workspace = true
+suffix-array.workspace = true
+superslice.workspace = true
+unionfind.workspace = true
+utility.workspace = true
+EOF
 
 mkdir -p src/bin
-for prefix in {a..f}
-do
+for prefix in {a..f}; do
 	SRC=src/bin/$prefix.rs
-	printf "use proconio::*;\n\n" >> $SRC
-	printf "fn main() {\n" >> $SRC
-	printf "    \n" >> $SRC
-	printf "}\n" >> $SRC
+	{
+		printf "use proconio::*;\n\n"
+		printf "fn main() {\n"
+		printf "    \n"
+		printf "}\n"
+	} >>"$SRC"
+	cargo equip --exclude-atcoder-crates --exclude-atcoder-202301-crates --minify libs --no-rustfmt --no-check --remove docs --remove comments --bin "$prefix" >/dev/null
 done
-
-cargo add ac-library-rs@=0.1.1
-cargo add num@=0.4.1
-cargo add rand@=0.8.5
-cargo add regex@=1.9.1
-cargo add permutohedron@=0.2.4
-cargo add superslice@=1.0.0
-cargo add itertools@=0.11.0
-cargo add proconio@=0.4.5 --features derive
-
-cargo add --path ../../tayu-procon/convolution-simd
-cargo add --path ../../tayu-procon/fenwick-tree/
-cargo add --path ../../tayu-procon/flow
-cargo add --path ../../tayu-procon/geometry
-cargo add --path ../../tayu-procon/math
-cargo add --path ../../tayu-procon/mincost-flow
-cargo add --path ../../tayu-procon/modint/static-modint
-cargo add --path ../../tayu-procon/modint/montgomery-modint
-cargo add --path ../../tayu-procon/polynomial
-cargo add --path ../../tayu-procon/rational
-cargo add --path ../../tayu-procon/segtree
-cargo add --path ../../tayu-procon/string
-cargo add --path ../../tayu-procon/suffix-array
-cargo add --path ../../tayu-procon/unionfind
 
 cargo build
 cargo build --release

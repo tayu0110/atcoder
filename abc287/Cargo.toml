@@ -7,7 +7,7 @@ edition = "2021"
 
 [dependencies]
 ascii = "1.0.0"
-convolution-simd = { version = "0.1.0", path = "../../tayu-procon/convolution-simd" }
+convolution.workspace = true
 either = "1.5.3"
 fixedbitset = "0.2.0"
 im-rc = "14.3.0"

@@ -1,0 +1,122 @@
+[workspace]
+members = [
+  "abc333",
+  "abc334",
+  "joyacon2024",
+  "abc332",
+  "s8pc-3",
+  "kupc2015",
+  "s8pc-2",
+  "joig2022",
+  "tenka1-2015final",
+  "pakencamp2021day3",
+  "abc163",
+  "abc211",
+  "cpsco2019s2",
+  "abc229",
+  "codeformula2014quala",
+  "abc73",
+  "abc112",
+  "language-test-ver1",
+  "summerfes2018",
+  "arc137",
+  "abc293",
+  "abc153",
+  "pakencamp2022day3",
+  "abc274",
+  "abc266",
+  "agc50",
+  "agc46",
+  "abc162",
+  "adt_easy_20231017_1",
+  "abc177",
+  "codefes2018qualb",
+  "arc46",
+  "arc168",
+  "monamieHB2021",
+  "abc216",
+  "arc153",
+  "abc209",
+  "agc25",
+  "abc243",
+  "arc149",
+  "abc282",
+  "abc85",
+  "abc232",
+  "birthday0410",
+  "abc64",
+  "abc330",
+  "agc27",
+  "abc212",
+  "abc98",
+  "abc263",
+  "tenka1-2015qualb-b",
+  "abc276",
+  "abc204",
+  "abc119",
+  "kupc2016",
+  "xmascon16",
+  "acl_practice",
+  "adt_medium_20231017_1",
+  "abc241",
+  "arc100",
+  "arc161",
+  "iroha2019day1",
+  "abc247",
+  "abc287",
+  "abc317",
+  "past15",
+  "nomura2020c",
+  "indeednow2015finala",
+  "abc105",
+  "abc245",
+  "pakencamp2022day2",
+  "abc320",
+  "past3",
+  "codeformula2014final",
+  "abc292",
+  "abc130",
+  "abc172",
+  "arc57",
+  "past4",
+  "ahc26", "make-contest-test",
+]
+exclude = []
+resolver = "2"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[workspace.dependencies]
+ac-library-rs = "=0.1.1"
+bitset = { git = "https://github.com/tayu0110/tayu-procon.git", package = "bitset" }
+complex = { git = "https://github.com/tayu0110/tayu-procon.git", package = "complex" }
+convolution = { git = "https://github.com/tayu0110/tayu-procon.git", package = "convolution" }
+ds = { git = "https://github.com/tayu0110/tayu-procon.git", package = "ds", features = [
+  "full",
+] }
+fenwick-tree = { git = "https://github.com/tayu0110/tayu-procon.git", package = "fenwick-tree" }
+flow = { git = "https://github.com/tayu0110/tayu-procon.git", package = "flow" }
+geometry = { git = "https://github.com/tayu0110/tayu-procon.git", package = "geometry" }
+graph = { git = "https://github.com/tayu0110/tayu-procon.git", package = "graph" }
+itertools = "=0.11.0"
+math = { git = "https://github.com/tayu0110/tayu-procon.git", package = "math" }
+matrix = { git = "https://github.com/tayu0110/tayu-procon.git", package = "matrix" }
+mincost-flow = { git = "https://github.com/tayu0110/tayu-procon.git", package = "mincost-flow" }
+montgomery-modint = { git = "https://github.com/tayu0110/tayu-procon.git", package = "montgomery-modint" }
+num = "=0.4.1"
+ordered-float = "4.2.0"
+permutohedron = "=0.2.4"
+polynomial = { git = "https://github.com/tayu0110/tayu-procon.git", package = "polynomial" }
+proconio = { version = "=0.4.5", features = ["derive"] }
+rand = "=0.8.5"
+rational = { git = "https://github.com/tayu0110/tayu-procon.git", package = "rational" }
+regex = "=1.9.1"
+rustc-hash = "=1.1.0"
+segtree = { git = "https://github.com/tayu0110/tayu-procon.git", package = "segtree" }
+static-modint = { git = "https://github.com/tayu0110/tayu-procon.git", package = "static-modint" }
+string = { git = "https://github.com/tayu0110/tayu-procon.git", package = "string" }
+suffix-array = { git = "https://github.com/tayu0110/tayu-procon.git", package = "suffix-array" }
+superslice = "=1.0.0"
+unionfind = { git = "https://github.com/tayu0110/tayu-procon.git", package = "unionfind" }
+utility = { git = "https://github.com/tayu0110/tayu-procon.git", package = "utility" }
+wavelet-matrix = { git = "https://github.com/tayu0110/tayu-procon.git", package = "wavelet-matrix" }

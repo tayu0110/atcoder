@@ -1,4 +1,4 @@
-use convolution_simd::convolution;
+use convolution::convolution;
 use modint::{Mod998244353, Modulo};
 use proconio::input;
 

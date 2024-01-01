@@ -1,0 +1,21 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Cargo Run",
+            "type": "shell",
+            "command": "cargo",
+            "args": [
+                "run",
+                "--package",
+                "${workspaceFolderBasename}",
+                "--bin",
+                "${fileBasenameNoExtension}"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}

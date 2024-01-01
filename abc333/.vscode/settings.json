@@ -1,0 +1,6 @@
+{
+    "rust-analyzer.check.command": "check",
+    "deno.enable": true,
+    "deno.lint": true,
+    "deno.unstable": true
+}

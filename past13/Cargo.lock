@@ -19,10 +19,11 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
 
 [[package]]
-name = "convolution-simd"
+name = "convolution"
 version = "0.1.0"
 dependencies = [
  "montgomery-modint",
+ "number-theoretic-transform",
 ]
 
 [[package]]
@@ -57,10 +58,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "iolib"
-version = "0.1.0"
-
-[[package]]
 name = "itertools"
 version = "0.9.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -87,6 +84,7 @@ version = "0.1.0"
 dependencies = [
  "arbitrary-montgomery-modint",
  "numeric",
+ "simple-rand",
 ]
 
 [[package]]
@@ -101,9 +99,8 @@ version = "0.1.0"
 name = "montgomery-modint"
 version = "0.1.0"
 dependencies = [
- "iolib",
  "modint-common",
- "numeric",
+ "zero-one",
 ]
 
 [[package]]
@@ -184,8 +181,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "number-theoretic-transform"
+version = "0.1.0"
+dependencies = [
+ "montgomery-modint",
+]
+
+[[package]]
 name = "numeric"
 version = "0.1.0"
+dependencies = [
+ "zero-one",
+]
 
 [[package]]
 name = "past13"
@@ -219,8 +226,9 @@ checksum = "b687ff7b5da449d39e418ad391e5e08da53ec334903ddbb921db208908fc372c"
 name = "polynomial"
 version = "0.1.0"
 dependencies = [
- "convolution-simd",
+ "convolution",
  "montgomery-modint",
+ "number-theoretic-transform",
 ]
 
 [[package]]
@@ -320,6 +328,10 @@ dependencies = [
 [[package]]
 name = "segtree"
 version = "0.1.0"
+dependencies = [
+ "static-modint",
+ "zero-one",
+]
 
 [[package]]
 name = "simple-rand"
@@ -330,7 +342,7 @@ name = "static-modint"
 version = "0.1.0"
 dependencies = [
  "modint-common",
- "numeric",
+ "zero-one",
 ]
 
 [[package]]
@@ -366,3 +378,7 @@ name = "wasi"
 version = "0.9.0+wasi-snapshot-preview1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "cccddf32554fecc6acb585f82a32a72e28b48f8c4c1883ddfeeeaa96f7d8e519"
+
+[[package]]
+name = "zero-one"
+version = "0.1.0"

@@ -9,7 +9,7 @@ fn main() {
     let mut memo = vec![Modint::one(); k + 1];
     for i in (1..=k).rev() {
         let m = k / i;
-        memo[i] = Modint::raw(m as u32).pow(n);
+        memo[i] = Modint::raw(m as u32).pow(n as u64);
         for j in (2..).take_while(|&j| i * j <= k) {
             memo[i] = memo[i] - memo[i * j];
         }

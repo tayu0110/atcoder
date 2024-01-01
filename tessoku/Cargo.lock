@@ -19,17 +19,26 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
 
 [[package]]
-name = "convolution-simd"
+name = "convolution"
 version = "0.1.0"
 dependencies = [
  "montgomery-modint",
+ "number-theoretic-transform",
 ]
+
+[[package]]
+name = "ds"
+version = "0.1.0"
 
 [[package]]
 name = "either"
 version = "1.8.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7fcaabb2fef8c910e7f4c7ce9f67a1283a1715879a7c230ca9d6d1ae31f16d91"
+
+[[package]]
+name = "fenwick-tree"
+version = "0.1.0"
 
 [[package]]
 name = "flow"
@@ -55,10 +64,6 @@ dependencies = [
  "libc",
  "wasi",
 ]
-
-[[package]]
-name = "iolib"
-version = "0.1.0"
 
 [[package]]
 name = "itertools"
@@ -87,6 +92,7 @@ version = "0.1.0"
 dependencies = [
  "arbitrary-montgomery-modint",
  "numeric",
+ "simple-rand",
 ]
 
 [[package]]
@@ -101,9 +107,8 @@ version = "0.1.0"
 name = "montgomery-modint"
 version = "0.1.0"
 dependencies = [
- "iolib",
  "modint-common",
- "numeric",
+ "zero-one",
 ]
 
 [[package]]
@@ -184,8 +189,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "number-theoretic-transform"
+version = "0.1.0"
+dependencies = [
+ "montgomery-modint",
+]
+
+[[package]]
 name = "numeric"
 version = "0.1.0"
+dependencies = [
+ "zero-one",
+]
 
 [[package]]
 name = "permutohedron"
@@ -197,8 +212,9 @@ checksum = "b687ff7b5da449d39e418ad391e5e08da53ec334903ddbb921db208908fc372c"
 name = "polynomial"
 version = "0.1.0"
 dependencies = [
- "convolution-simd",
+ "convolution",
  "montgomery-modint",
+ "number-theoretic-transform",
 ]
 
 [[package]]
@@ -296,8 +312,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "rustc-hash"
+version = "1.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "08d43f7aa6b08d49f382cde6a7982047c3426db949b1424bc4b7ec9ae12c6ce2"
+
+[[package]]
 name = "segtree"
 version = "0.1.0"
+dependencies = [
+ "static-modint",
+ "zero-one",
+]
 
 [[package]]
 name = "simple-rand"
@@ -308,13 +334,14 @@ name = "static-modint"
 version = "0.1.0"
 dependencies = [
  "modint-common",
- "numeric",
+ "zero-one",
 ]
 
 [[package]]
 name = "string"
 version = "0.1.0"
 dependencies = [
+ "segtree",
  "simple-rand",
 ]
 
@@ -337,7 +364,9 @@ dependencies = [
 name = "tessoku"
 version = "0.1.0"
 dependencies = [
- "convolution-simd",
+ "convolution",
+ "ds",
+ "fenwick-tree",
  "flow",
  "geometry",
  "itertools",
@@ -350,10 +379,12 @@ dependencies = [
  "proconio",
  "rand",
  "rational",
+ "rustc-hash",
  "segtree",
  "static-modint",
  "string",
  "suffix-array",
+ "unionfind",
 ]
 
 [[package]]
@@ -363,7 +394,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "fc72304796d0818e357ead4e000d19c9c174ab23dc11093ac919054d20a6a7fc"
 
 [[package]]
+name = "unionfind"
+version = "0.1.0"
+
+[[package]]
 name = "wasi"
 version = "0.9.0+wasi-snapshot-preview1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "cccddf32554fecc6acb585f82a32a72e28b48f8c4c1883ddfeeeaa96f7d8e519"
+
+[[package]]
+name = "zero-one"
+version = "0.1.0"
