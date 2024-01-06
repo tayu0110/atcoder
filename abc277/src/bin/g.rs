@@ -3,7 +3,7 @@ use proconio::input;
 type Mint = modint::Mint<modint::Mod998244353>;
 
 fn main() {
-    input! {n: usize, m: usize, k: usize, p: [(usize, usize); m], c: [usize; n]}
+    input! {n: usize, m: usize, k: usize, _p: [(usize, usize); m], _c: [usize; n]}
     
 
     let mut p = vec![vec![Mint::zero(); n]; k+1];

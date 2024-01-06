@@ -15,5 +15,5 @@ fn naive(mut s: Vec<char>, k: usize) -> usize {
 fn main() {
     input! {s: marker::Chars, k: usize}
 
-    let res = naive(s.clone(), k);
+    let _res = naive(s.clone(), k);
 }

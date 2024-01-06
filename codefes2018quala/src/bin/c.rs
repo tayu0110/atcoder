@@ -28,7 +28,7 @@ fn main() {
             a >>= 1;
             t.push(a);
         }
-        let t = t.len();
+        let _t = t.len();
     }
 
     println!("{}", memo[max]);

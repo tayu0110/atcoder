@@ -75,7 +75,7 @@ fn main() {
         t[b].push(a);
     }
 
-    let leaf = {
+    let _leaf = {
         let mut res = 0;
         for v in &t {
             if v.len() == 1 {

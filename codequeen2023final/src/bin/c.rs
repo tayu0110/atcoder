@@ -1,7 +1,7 @@
 use proconio::*;
 
 fn main() {
-    input! {n: usize, s: usize, t: usize, e: [(usize, usize); n-1]}
+    input! {n: usize, _s: usize, _t: usize, e: [(usize, usize); n-1]}
 
     let mut g = vec![vec![]; n];
     for (u, v) in e {

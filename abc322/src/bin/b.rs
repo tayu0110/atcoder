@@ -1,7 +1,7 @@
 use proconio::*;
 
 fn main() {
-    input! {n: usize, m: usize, s: String, t: String}
+    input! {_n: usize, _m: usize, s: String, t: String}
 
     let f = t.starts_with(&s);
     let g = t.ends_with(&s);

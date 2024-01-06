@@ -2,5 +2,5 @@ use proconio::input;
 use proconio::marker::Chars;
 
 fn main() {
-    input! {n: usize, s: Chars}
+    input! {_n: usize, _s: Chars}
 }

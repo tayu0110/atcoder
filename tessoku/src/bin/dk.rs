@@ -1,7 +1,7 @@
 use proconio::*;
 
 fn main() {
-    input! {n: usize, s: marker::Bytes}
+    input! {n: usize, _s: marker::Bytes}
 
-    let mut dp = vec![vec![i32::MAX; n + 1]; n + 1];
+    let _dp = vec![vec![i32::MAX; n + 1]; n + 1];
 }

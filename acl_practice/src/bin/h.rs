@@ -2,7 +2,7 @@
 use proconio::input;
 
 fn main() {
-    input! {n: usize, d: usize, p: [(usize, usize); n]}
+    input! {n: usize, _d: usize, _p: [(usize, usize); n]}
 
 
 }

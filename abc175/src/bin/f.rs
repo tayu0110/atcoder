@@ -6,5 +6,5 @@ use proconio::{
 };
 
 fn main() {
-    input! {n: usize, p: [(String, usize); n]}
+    input! {n: usize, _p: [(String, usize); n]}
 }

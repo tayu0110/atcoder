@@ -20,7 +20,7 @@ fn main() {
     items.sort();
 
     let mut tak = 0;
-    for (i, &(co, tp, _)) in items.iter().enumerate() {
+    for (i, &(_co, tp, _)) in items.iter().enumerate() {
         if tp == 0 {
             tak = i;
             break;

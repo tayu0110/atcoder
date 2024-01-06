@@ -18,12 +18,12 @@ fn main() {
     }
 
     for _ in 0..q {
-        input! {tp: usize, l: usize, r: usize};
+        input! {tp: usize, _l: usize, _r: usize};
 
         if tp == 1 {
             println!("{}", sum);
         } else {
-            input! {s: usize, t: usize, u: usize};
+            input! {_s: usize, _t: usize, _u: usize};
 
             
         }

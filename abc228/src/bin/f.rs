@@ -6,7 +6,7 @@ use itertools::Itertools;
 fn main() {
     input! {h: usize, w: usize, h1: usize, w1: usize, h2: usize, w2: usize, a: [[usize; w]; h]}
 
-    let (h2, w2) = (std::cmp::min(h1, h2), std::cmp::min(w1, w2));
+    let (_h2, _w2) = (std::cmp::min(h1, h2), std::cmp::min(w1, w2));
 
     let mut sum = vec![vec![0; w+1]; h+1];
     for i in 0..h {

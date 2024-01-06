@@ -1,5 +1,5 @@
 use proconio::*;
 
 fn main() {
-    input! {f: [u32; 26]}
+    input! {_f: [u32; 26]}
 }

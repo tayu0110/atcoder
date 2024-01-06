@@ -2,7 +2,7 @@ use itertools::Itertools;
 use proconio::*;
 
 fn main() {
-    input! {n: usize, m: usize, s: marker::Chars}
+    input! {n: usize, _m: usize, s: marker::Chars}
 
     let mut players = vec![0; n];
     let mut now = 0;

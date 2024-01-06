@@ -34,8 +34,8 @@ fn main() {
     }
 
     let (g, j, k) = ext_gcd(b, c);
-    let (b, c) = (b / g, c / g);
-    let mut res = 0;
+    let (_b, _c) = (b / g, c / g);
+    let res = 0;
     for i in 0..n {
         let x = x - a * i;
         if x < 0 {
@@ -47,7 +47,7 @@ fn main() {
         }
 
         let x = x / g;
-        let (j, k) = (j * x, k * x);
+        let (_j, _k) = (j * x, k * x);
     }
 
     println!("{}", res)

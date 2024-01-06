@@ -1,4 +1,4 @@
-use itertools::Itertools;
+
 use proconio::*;
 // use rand::{thread_rng, Rng};
 
@@ -16,7 +16,7 @@ fn main() {
 
     println!("Yes");
 
-    let av = a.iter().sum::<usize>() / n;
+    let _av = a.iter().sum::<usize>() / n;
     // let mut res = vec![];
     loop {}
     // println!("{}", res.len());

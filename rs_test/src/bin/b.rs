@@ -4,7 +4,7 @@ fn main() {
 	input! {n: usize, _a: [i64; n]};
 
     for _ in 0..5 {
-        input! {k: i32};
-        input! {l: i16};
+        input! {_k: i32};
+        input! {_l: i16};
     }
 }

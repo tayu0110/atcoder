@@ -1,5 +1,5 @@
 use proconio::*;
 
 fn main() {
-    input! {ax: f64}
+    input! {_ax: f64}
 }

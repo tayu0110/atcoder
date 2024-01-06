@@ -4,7 +4,7 @@ use static_modint::{Mod1000000007, StaticModint};
 type Modint = StaticModint<Mod1000000007>;
 
 fn main() {
-    input! {n: usize, p: [usize; n]}
+    input! {n: usize, _p: [usize; n]}
 
     let mut dp = vec![vec![Modint::zero(); n + 1]; n];
     dp[n - 1][n] = Modint::one();

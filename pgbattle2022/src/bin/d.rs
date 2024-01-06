@@ -43,7 +43,7 @@ fn dfs2(now: usize, r: Mint, memo: &mut Vec<Vec<Mint>>, reached: &mut Vec<Vec<bo
 
 #[fastout]
 fn main() {
-    input! {n: usize, k: usize, a: [usize; n], p: [(usize, usize); n-1]}
+    input! {n: usize, _k: usize, _a: [usize; n], p: [(usize, usize); n-1]}
 
     let mut t = vec![vec![]; n];
     let mut memo = vec![vec![]; n];

@@ -17,8 +17,8 @@ fn main() {
 
     let mut st = SegmentTree::<UsizeMin>::new(n);
     st.set(0, 0);
-    for (i, &now) in x.iter().enumerate().skip(1) {
-        let nl = x.partition_point(|&x| x <= now.saturating_sub(r));
-        let nr = x.partition_point(|&x| x <= now.saturating_sub(l));
+    for (_i, &now) in x.iter().enumerate().skip(1) {
+        let _nl = x.partition_point(|&x| x <= now.saturating_sub(r));
+        let _nr = x.partition_point(|&x| x <= now.saturating_sub(l));
     }
 }

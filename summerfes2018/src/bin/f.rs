@@ -29,7 +29,7 @@ fn totient(mut x: usize) -> usize {
 }
 
 fn main() {
-    input! {a: usize, m: usize, k: usize}
+    input! {_a: usize, _m: usize, _k: usize}
 
     
 }

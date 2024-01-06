@@ -1,7 +1,7 @@
 use proconio::input;
 
 fn main() {
-    input! {n: usize, m: usize}
+    input! {_n: usize, _m: usize}
 
     // for n in 3..7 {
     //     let mut res = 0;

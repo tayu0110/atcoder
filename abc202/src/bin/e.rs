@@ -6,5 +6,5 @@ use proconio::{
 };
 
 fn main() {
-    input! {n: usize, p: [usize; n-1], q: usize, q: [(usize, usize); q]}
+    input! {n: usize, _p: [usize; n-1], q: usize, _q: [(usize, usize); q]}
 }

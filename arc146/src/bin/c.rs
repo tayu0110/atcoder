@@ -6,7 +6,7 @@ type Mint = modint::Mint<modint::Mod998244353>;
 fn main() {
     input! {n: i64};
 
-    let mut comb = modint::Combination::<modint::Mod998244353>::new(n as usize + 10);
+    let comb = modint::Combination::<modint::Mod998244353>::new(n as usize + 10);
     let mut res = Mint::zero();
     for i in 0..=n+2 {
         res += comb.get(n as usize, i as usize);

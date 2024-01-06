@@ -3,7 +3,7 @@ use proconio::input;
 
 #[fastout]
 fn main() {
-    input! {n: usize, r: [usize; n], c: [usize; n]}
+    input! {n: usize, _r: [usize; n], _c: [usize; n]}
 
     
 }

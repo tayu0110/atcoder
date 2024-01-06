@@ -151,7 +151,7 @@ impl Matrix {
 }
 
 fn main() {
-    input! {n: usize, k: usize};
+    input! {n: usize, _k: usize};
 
     let mut t = Matrix::new(2, 2);
     for i in 0..2 {

@@ -1,5 +1,5 @@
 use proconio::*;
 
 fn main() {
-    input! {h: usize, w: usize, k: usize}
+    input! {_h: usize, _w: usize, _k: usize}
 }

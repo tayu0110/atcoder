@@ -1,5 +1,5 @@
 use proconio::*;
-use std::{cmp::Reverse, collections::BinaryHeap};
+
 
 fn main() {
     input! {n: usize, m: usize, k: usize, a: [usize; n]}

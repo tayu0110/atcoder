@@ -1,7 +1,7 @@
 use proconio::input;
 
 fn main() {
-    input! {n: usize, p: [(usize, usize); n-1]}
+    input! {n: usize, _p: [(usize, usize); n-1]}
 
     
 }

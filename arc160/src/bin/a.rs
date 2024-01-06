@@ -1,6 +1,6 @@
 use itertools::Itertools;
 use proconio::*;
-use rand::{thread_rng, Rng};
+
 
 fn rec(
     now: usize,

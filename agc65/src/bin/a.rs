@@ -1,6 +1,6 @@
 use itertools::Itertools;
 use proconio::*;
-use rand::{thread_rng, Rng};
+
 use std::{
     cmp::Reverse,
     collections::{BTreeMap, VecDeque},
@@ -35,7 +35,7 @@ fn solve2(n: usize, k: usize, a: &[usize]) -> usize {
 
     let mut t = vec![];
     while !map.is_empty() {
-        let mut keys = map.keys().rev().cloned().collect::<VecDeque<_>>();
+        let keys = map.keys().rev().cloned().collect::<VecDeque<_>>();
         for &k in &keys {
             *map.entry(k).or_insert(0) -= 1;
             if *map.get(&k).unwrap() == 0 {

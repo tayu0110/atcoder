@@ -62,7 +62,7 @@ fn solve(
 }
 
 fn main() {
-    input! {n: usize, m: usize, c: [usize; n], a: [usize; m], l: [[usize; n]; m]}
+    input! {n: usize, m: usize, _c: [usize; n], _a: [usize; m], l: [[usize; n]; m]}
 
     let mut num_l = vec![[0; 6]; n];
     for v in &l {

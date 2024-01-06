@@ -2,10 +2,10 @@ use proconio::input;
 use proconio::marker::Chars;
 
 fn main() {
-    input! {s: Chars, t: Chars, k: usize, p: [(char, Chars); k]};
+    input! {_s: Chars, _t: Chars, k: usize, p: [(char, Chars); k]};
 
-    for (i, (c, a)) in p.iter().enumerate() {
-        for (j, (nc, na)) in p.iter().enumerate() {
+    for (_i, (_c, _a)) in p.iter().enumerate() {
+        for (_j, (_nc, _na)) in p.iter().enumerate() {
             
         }
     }

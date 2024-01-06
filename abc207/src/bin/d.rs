@@ -23,8 +23,8 @@ fn main() {
             for k in 0..n {
                 let (cx, cy) = c[k];
                 if bx * bx + by * by == cx * cx + cy * cy {
-                    let mut d = c.clone();
-                    for l in 0..n {
+                    let _d = c.clone();
+                    for _l in 0..n {
 
                     }
                 }

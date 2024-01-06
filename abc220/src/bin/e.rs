@@ -10,7 +10,7 @@ type Mint = modint::Mint<modint::Mod998244353>;
 fn main() {
     input! {n: i64, d: i64}
 
-    let mut res = if d <= n {
+    let _res = if d <= n {
         Mint::raw(2).pow(d)
     } else {
         Mint::zero()

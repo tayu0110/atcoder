@@ -1,5 +1,5 @@
 use itertools::Itertools;
-use proconio::*;
+
 use static_modint::{Mod998244353, StaticModint};
 
 type Modint = StaticModint<Mod998244353>;
@@ -54,8 +54,8 @@ fn x2(n: usize, memo: &mut Vec<Option<Modint>>) -> Modint {
     }
 
     let nn = Modint::raw(n as u32);
-    let one = Modint::one();
-    let zero = Modint::zero();
+    let _one = Modint::one();
+    let _zero = Modint::zero();
     memo[n] = Some((nn - Modint::one()) * (x1(n - 1, memo) + x1(n - 2, memo)));
     memo[n].unwrap()
 }

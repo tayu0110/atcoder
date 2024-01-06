@@ -3,7 +3,7 @@ use proconio::input;
 type Mint = modint::Mint<modint::Mod998244353>;
 
 fn main() {
-    input! {n: i64, k: i64, c: i64}
+    input! {n: i64, _k: i64, c: i64}
 
     if c <= 2 {
         println!("{}", Mint::raw(c).pow(n));

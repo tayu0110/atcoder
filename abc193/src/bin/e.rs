@@ -9,6 +9,6 @@ fn main() {
     input! {t: usize}
 
     for _ in 0..t {
-        input! {x: usize, y: usize, p: usize, q: usize}
+        input! {_x: usize, _y: usize, _p: usize, _q: usize}
     }
 }
