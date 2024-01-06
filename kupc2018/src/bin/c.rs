@@ -6,8 +6,8 @@ fn main() {
         let mut t = vec![vec!['.'; 9]; 9];
         for _ in 0..11 {
             loop {
-                let r: usize = rng.gen_range(0, 9);
-                let c: usize = rng.gen_range(0, 9);
+                let r: usize = rng.gen_range(0..9);
+                let c: usize = rng.gen_range(0..9);
                 if t[r][c] == '.' {
                     t[r][c] = '#';
                     break;

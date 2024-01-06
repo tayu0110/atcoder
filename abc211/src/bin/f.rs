@@ -1,11 +1,11 @@
 use itertools::Itertools;
 use proconio::*;
-use segtree::range_add_range_minimum_query;
+use segtree::RangeAddRangeMinimumQuery;
 
 fn main() {
     input! {n: usize}
 
-    let mut st = range_add_range_minimum_query(100010);
+    let mut st = RangeAddRangeMinimumQuery::new(100010);
 
     // (x, inout, low, high), in = 0, out = 1
     let mut edges = vec![];

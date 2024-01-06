@@ -61,7 +61,7 @@ fn main() {
             }
 
             for mid in l + 1..r {
-                let new = dp[l][mid] * dp[mid + 1][r] * com(len / 2, (r - mid) / 2);
+                let new = dp[l][mid] * dp[mid + 1][r] * com(len as u32 / 2, (r - mid) as u32 / 2);
                 dp[l][r] += new;
             }
         }

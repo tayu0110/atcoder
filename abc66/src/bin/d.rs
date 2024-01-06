@@ -19,13 +19,15 @@ fn main() {
     let com = combination::<Mod1000000007>(n as u32 + 1);
 
     for k in 1..=n + 1 {
-        let mut res = com(n + 1, k);
+        let mut res = com(n as u32 + 1, k as u32);
         if k == 1 {
             res -= Modint::one();
         } else {
-            res -= com(n - r, k - 1);
-            res -= com(l, k - 1);
-            res -= com(n - r + l, k - 1) - com(n - r, k - 1) - com(l, k - 1);
+            res -= com(n as u32 - r as u32, k as u32 - 1);
+            res -= com(l as u32, k as u32 - 1);
+            res -= com(n as u32 - r as u32 + l as u32, k as u32 - 1)
+                - com(n as u32 - r as u32, k as u32 - 1)
+                - com(l as u32, k as u32 - 1);
         }
 
         println!("{}", res);

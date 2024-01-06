@@ -73,18 +73,18 @@ fn main() {
         }
     }
 
-    let mut mat = Matrix::new(cnt, cnt);
+    let mut mat = Matrix::zeros(cnt, cnt);
     for (k, v) in map {
         for v in v {
             mat.set(k, *v, Modint::one());
         }
     }
 
-    let p = mat.pow(n - 6);
+    let p = mat.pow(n as u64 - 6);
     let mut res = Modint::zero();
     for i in 0..cnt {
         for j in 0..cnt {
-            res += p.get(i, j);
+            res += *p.get(i, j);
         }
     }
 

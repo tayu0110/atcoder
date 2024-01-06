@@ -10,7 +10,7 @@ fn main() {
     let mut res = Modint::zero();
 
     for i in n - k..=n {
-        let p = Modint::raw(m - 1).pow(i - 1) * Modint::raw(m);
+        let p = Modint::raw(m - 1).pow(i as u64 - 1) * Modint::raw(m);
         let lack = n - i;
         res += p * com(n - 1, lack);
     }

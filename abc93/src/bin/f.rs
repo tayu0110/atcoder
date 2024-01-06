@@ -1,5 +1,3 @@
-use proconio::*;
+// use proconio::*;
 
-fn main() {
-    
-}
+fn main() {}

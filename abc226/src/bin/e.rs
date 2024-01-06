@@ -59,5 +59,5 @@ fn main() {
         set.insert(uf.root(i));
     }
 
-    println!("{}", Modint::raw(2).pow(set.len() as u32))
+    println!("{}", Modint::raw(2).pow(set.len() as u64))
 }

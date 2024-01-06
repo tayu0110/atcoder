@@ -19,7 +19,7 @@ impl MapMonoid for RangeAddRangeSumQuery {
     fn e() -> Self::E {
         (Modint::zero(), Modint::zero())
     }
-    fn apply(l: Self::E, r: Self::E) -> Self::E {
+    fn op(l: Self::E, r: Self::E) -> Self::E {
         (l.0 + r.0, l.1 + r.1)
     }
     fn id() -> Self::Act {

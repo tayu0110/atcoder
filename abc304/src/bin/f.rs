@@ -21,7 +21,7 @@ fn main() {
             }
         }
 
-        res[d as usize] = Modint::raw(2).pow(must.into_iter().filter(|&f| !f).count() as u32);
+        res[d as usize] = Modint::raw(2).pow(must.into_iter().filter(|&f| !f).count() as u64);
         for j in 0..i {
             if d % divisors[j] == 0 {
                 res[d as usize] = res[d as usize] - res[divisors[j] as usize];

@@ -1,5 +1,17 @@
 use proconio::input;
-use segtree::SegmentTree;
+use segtree::{Monoid, SegmentTree};
+
+struct I64Add;
+
+impl Monoid for I64Add {
+    type M = i64;
+    fn id() -> Self::M {
+        0
+    }
+    fn op(l: &Self::M, r: &Self::M) -> Self::M {
+        l + r
+    }
+}
 
 fn main() {
     input! {n: usize, p: [(i64, i64); n], q: usize}
@@ -37,12 +49,12 @@ fn main() {
         (map, rev)
     };
 
-    let mut st = SegmentTree::new(map.len(), 0, |&l, &r| l + r);
-    let mut num = SegmentTree::new(map.len(), 0, |&l, &r| l + r);
+    let mut st = SegmentTree::<I64Add>::new(map.len());
+    let mut num = SegmentTree::<I64Add>::new(map.len());
     for (&a, &b) in a.iter().zip(b.iter()) {
         let index = *map.get(&a).unwrap();
-        st.update_by(index, a * b, |&old, &val| old + val);
-        num.update_by(index, b, |&l, &r| l + r);
+        st.update_by(index, |&old| old + a * b);
+        num.update_by(index, |&l| l + b);
     }
 
     for (t, x, y) in query {
@@ -58,16 +70,17 @@ fn main() {
             let oi = *map.get(&old).unwrap();
             let yi = *map.get(&y).unwrap();
 
-            st.update_by(oi, old * b[x], |&old, &val| {
+            let val = old * b[x];
+            st.update_by(oi, |&old| {
                 assert!(old >= val);
                 old - val
             });
-            num.update_by(oi, b[x], |&l, &r| {
-                assert!(l >= r);
-                l - r
+            num.update_by(oi, |&l| {
+                assert!(l >= b[x]);
+                l - b[x]
             });
-            st.update_by(yi, y * b[x], |&old, &val| old + val);
-            num.update_by(yi, b[x], |&l, &r| l + r);
+            st.update_by(yi, |&old| old + y * b[x]);
+            num.update_by(yi, |&l| l + b[x]);
         } else if t == 2 {
             let x = x - 1;
             let old = b[x];
@@ -79,19 +92,20 @@ fn main() {
 
             let index = *map.get(&a[x]).unwrap();
 
-            st.update_by(index, a[x] * (y - old), |&old, &val| {
+            let val = a[x] * (y - old);
+            st.update_by(index, |&old| {
                 assert!(old + val >= 0);
                 old + val
             });
-            num.update_by(index, y - old, |&l, &r| {
-                assert!(l + r >= 0);
-                l + r
+            num.update_by(index, |&l| {
+                assert!(l + y - old >= 0);
+                l + y - old
             });
         } else {
             let (mut l, mut r) = (-1, map.len() as i32);
             while r - l > 1 {
                 let m = (r + l) / 2;
-                let k = num.foldl(m as usize, map.len());
+                let k = num.fold(m as usize..map.len());
                 if k <= x as i64 {
                     r = m;
                 } else {
@@ -99,17 +113,17 @@ fn main() {
                 }
             }
 
-            let k = num.foldl(r as usize, map.len());
+            let k = num.fold(r as usize..map.len());
             if k == x as i64 {
-                println!("{}", st.foldl(r as usize, map.len()))
+                println!("{}", st.fold(r as usize..map.len()))
             } else if k < x as i64 {
                 if r == 0 {
                     println!("-1")
                 } else {
-                    assert!(num.foldl(l as usize, l as usize + 1) >= 0);
+                    assert!(num.fold(l as usize..l as usize + 1) >= 0);
                     println!(
                         "{}",
-                        st.foldl(r as usize, map.len()) + reverse_map[l as usize] * (x as i64 - k)
+                        st.fold(r as usize..map.len()) + reverse_map[l as usize] * (x as i64 - k)
                     )
                 }
             } else {

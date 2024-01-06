@@ -1,7 +1,7 @@
-use modint::{combination, Mod998244353, Modint};
+use modint::{combination, Mod998244353, StaticModint};
 use proconio::input;
 
-type Mint = Modint<Mod998244353>;
+type Mint = StaticModint<Mod998244353>;
 
 fn main() {
     input! {n: usize, k: usize, a: [usize; n]}

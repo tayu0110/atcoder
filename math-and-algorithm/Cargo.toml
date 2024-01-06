@@ -15,6 +15,7 @@ geometry.workspace = true
 graph.workspace = true
 itertools.workspace = true
 math.workspace = true
+matrix.workspace = true
 mincost-flow.workspace = true
 montgomery-modint.workspace = true
 num.workspace = true

@@ -1,4 +1,4 @@
-use flow::maximum_matching_of_bipartite_graph;
+use flow::hopcroft_karp;
 use proconio::*;
 
 fn main() {
@@ -6,16 +6,15 @@ fn main() {
 
     println!(
         "{}",
-        maximum_matching_of_bipartite_graph(
-            n * 2,
-            c.into_iter()
+        hopcroft_karp(
+            &c.into_iter()
                 .enumerate()
                 .map(|(i, v)| v
                     .into_iter()
                     .enumerate()
                     .filter_map(move |(j, c)| (c == b'#').then_some((i, j + n))))
                 .flatten()
-                .collect()
+                .collect::<Vec<_>>()
         )
         .len()
     )

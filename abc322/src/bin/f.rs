@@ -10,7 +10,7 @@ impl MapMonoid for RangeFlipRangeLongestTerm {
     fn e() -> Self::E {
         (0, 0, 0, 0, 1, 1, 1)
     }
-    fn apply(l: Self::E, r: Self::E) -> Self::E {
+    fn op(l: Self::E, r: Self::E) -> Self::E {
         let (rm, rl, rr, rt, rm0, rl0, rr0) = r;
         let (m, l, r, t, m0, l0, r0) = l;
         (

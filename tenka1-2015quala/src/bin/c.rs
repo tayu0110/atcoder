@@ -1,4 +1,4 @@
-use flow::maximum_matching_of_bipartite_graph;
+use flow::hopcroft_karp;
 use proconio::input;
 
 fn main() {
@@ -33,7 +33,7 @@ fn main() {
         }
     }
 
-    let matching = maximum_matching_of_bipartite_graph(n * m, edges);
+    let matching = hopcroft_karp(&edges);
 
     println!("{}", diff - matching.len());
 }

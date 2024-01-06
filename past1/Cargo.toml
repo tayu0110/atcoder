@@ -30,3 +30,5 @@ segtree = { version = "0.1.0", path = "../../tayu-procon/segtree" }
 smallvec = "1.2.0"
 text_io = "0.1.8"
 whiteread = "0.5.0"
+ds.workspace = true
+unionfind.workspace = true

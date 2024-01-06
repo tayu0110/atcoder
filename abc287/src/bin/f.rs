@@ -1,5 +1,5 @@
 use convolution::convolution;
-use modint::{Mod998244353, Modulo};
+use montgomery_modint::{Mod998244353, Modulo};
 use proconio::input;
 
 fn rec(now: usize, par: usize, t: &Vec<Vec<usize>>, memo: &mut Vec<Vec<Vec<u32>>>) {
@@ -24,8 +24,8 @@ fn rec(now: usize, par: usize, t: &Vec<Vec<usize>>, memo: &mut Vec<Vec<Vec<u32>>
             }
             r1.iter_mut().zip(r2).for_each(|(s, v)| {
                 *s += v;
-                if *s >= Mod998244353::MOD {
-                    *s -= Mod998244353::MOD;
+                if *s >= Mod998244353::N {
+                    *s -= Mod998244353::N;
                 }
             });
             memo[now][0] = r1;
@@ -39,8 +39,8 @@ fn rec(now: usize, par: usize, t: &Vec<Vec<usize>>, memo: &mut Vec<Vec<Vec<u32>>
             }
             r1.iter_mut().zip(r2.into_iter()).for_each(|(s, v)| {
                 *s += v;
-                if *s >= Mod998244353::MOD {
-                    *s -= Mod998244353::MOD;
+                if *s >= Mod998244353::N {
+                    *s -= Mod998244353::N;
                 }
             });
             memo[now][1] = r1;
@@ -63,6 +63,6 @@ fn main() {
     memo[0][0].resize(n + 1, 0);
     memo[0][1].resize(n + 1, 0);
     for i in 1..=n {
-        println!("{}", (memo[0][0][i] + memo[0][1][i]) % Mod998244353::MOD)
+        println!("{}", (memo[0][0][i] + memo[0][1][i]) % Mod998244353::N)
     }
 }

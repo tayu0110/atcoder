@@ -32,7 +32,9 @@ fn main() {
 
         let p = Modint::raw(m as u32 + 1 - i as u32) / Modint::raw(m as u32);
         for j in rem..=zero {
-            res += com(zero, j) * p.pow(j as u32) * (Modint::one() - p).pow(zero as u32 - j as u32);
+            res += com(zero as u32, j as u32)
+                * p.pow(j as u64)
+                * (Modint::one() - p).pow(zero as u64 - j as u64);
         }
     }
 

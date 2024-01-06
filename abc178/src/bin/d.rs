@@ -15,7 +15,7 @@ fn main() {
         }
 
         let rem = s - len * 3;
-        res += com((rem + len) as usize - 1, rem as usize);
+        res += com((rem + len) as u32 - 1, rem as u32);
     }
 
     println!("{}", res)

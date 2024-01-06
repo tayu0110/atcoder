@@ -53,7 +53,7 @@ utility.workspace = true
 EOF
 
 mkdir -p src/bin
-for prefix in {a..f}; do
+for prefix in {a..g}; do
 	SRC=src/bin/$prefix.rs
 	{
 		printf "use proconio::*;\n\n"

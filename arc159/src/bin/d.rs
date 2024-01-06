@@ -1,5 +1,17 @@
 use proconio::*;
-use segtree::SegmentTree;
+use segtree::{Monoid, SegmentTree};
+
+struct I64Min;
+
+impl Monoid for I64Min {
+    type M = i64;
+    fn id() -> Self::M {
+        i64::MAX
+    }
+    fn op(l: &Self::M, r: &Self::M) -> Self::M {
+        (*l).min(*r)
+    }
+}
 
 fn binary_search(t: usize, p: &[usize]) -> usize {
     let (mut l, mut r) = (-1, p.len() as i32);
@@ -29,8 +41,8 @@ fn main() {
 
     let len = q.len();
 
-    let mut st1 = SegmentTree::new(len, std::i64::MAX >> 10, |&l, &r| l.min(r));
-    let mut st2 = SegmentTree::new(len, std::i64::MAX >> 10, |&l, &r| l.min(r));
+    let mut st1 = SegmentTree::<I64Min>::new(len);
+    let mut st2 = SegmentTree::<I64Min>::new(len);
 
     st1.set(0, 0);
     st2.set(0, 0);
@@ -39,8 +51,8 @@ fn main() {
     for (l, r) in p {
         let (li, ri) = (binary_search(l - 1, &q), binary_search(r, &q));
 
-        let a = st1.foldl(li, ri + 1);
-        let b = st2.foldl(0, li) + l as i64 - 1;
+        let a = st1.fold(li..ri + 1);
+        let b = st2.fold(0..li) + l as i64 - 1;
         let c = a.min(b);
 
         st1.set(ri, c);

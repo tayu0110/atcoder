@@ -22,11 +22,11 @@ fn main() {
         }
 
         for j in 1..=m {
-            sum += Modint::new(m - j).pow(i as u32 - 1);
+            sum += Modint::new(m - j).pow(i as u64 - 1);
         }
 
-        res += v * sum * Modint::raw(m).pow(n as u32 - i as u32 - 1);
+        res += v * sum * Modint::raw(m).pow(n as u64 - i as u64 - 1);
     }
 
-    println!("{}", Modint::raw(m).pow(n as u32) * (n as u32).into() - res)
+    println!("{}", Modint::raw(m).pow(n as u64) * (n as u32).into() - res)
 }

@@ -8,7 +8,7 @@ impl segtree::Monoid for UsizeMin {
         usize::MAX
     }
     fn op(l: &Self::M, r: &Self::M) -> Self::M {
-        l.min(r)
+        (*l).min(*r)
     }
 }
 

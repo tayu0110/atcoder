@@ -1,17 +1,29 @@
 use proconio::*;
-use segtree::SegmentTree;
+use segtree::{Monoid, SegmentTree};
+
+struct TupleMax;
+
+impl Monoid for TupleMax {
+    type M = (usize, usize);
+    fn id() -> Self::M {
+        (0, 0)
+    }
+    fn op(l: &Self::M, r: &Self::M) -> Self::M {
+        (*l).max(*r)
+    }
+}
 
 fn main() {
     input! {n: usize, m: usize, a: [usize; m]}
 
-    let mut st = SegmentTree::new(n, (0usize, 0usize), |&l, &r| l.max(r));
+    let mut st = SegmentTree::<TupleMax>::new(n);
     for i in 0..n {
         st.set(i, (0, usize::MAX - i));
     }
 
     for a in a {
-        st.update_by(a - 1, (1, 0), |&l, &r| (l.0 + r.0, l.1));
-        let (_, res) = st.foldl(0, n);
+        st.update_by(a - 1, |&l| (l.0 + 1, l.1));
+        let (_, res) = st.fold(0..n);
         println!("{}", usize::MAX - res + 1);
     }
 }

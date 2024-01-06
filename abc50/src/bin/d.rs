@@ -1,8 +1,5 @@
-#[allow(unused_imports)]
-use proconio::{input, marker::Chars, source::line::LineSource};
+use proconio::*;
 
 fn main() {
-    input! {n: usize};
-
-    
+    input! {_n: usize};
 }

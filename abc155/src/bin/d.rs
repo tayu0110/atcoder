@@ -1,9 +1,4 @@
-#![allow(unused_imports)]
-use proconio::{
-    input,
-    marker::{Bytes, Chars},
-    *,
-};
+use proconio::input;
 
 fn main() {
     input! {n: usize, k: usize, a: [i64; n]}
@@ -18,6 +13,6 @@ fn main() {
     } else if pos.len() * neg.len() + zeros <= k {
         println!("0")
     } else {
-        let k = k - pos.len() * neg.len() - zeros;
+        let _k = k - pos.len() * neg.len() - zeros;
     }
 }

@@ -4,9 +4,9 @@ use static_modint::{combination, Mod1000000007, StaticModint};
 type Modint = StaticModint<Mod1000000007>;
 
 fn main() {
-    input! {h: usize, w: usize, n: usize, mut p: [(usize, usize); n]}
+    input! {h: usize, w: usize, n: usize, mut p: [(u32, u32); n]}
 
-    p.push((h, w));
+    p.push((h as u32, w as u32));
     p.sort_by_key(|&(l, r)| l + r);
 
     let n = p.len();

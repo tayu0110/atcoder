@@ -1,10 +1,22 @@
 use proconio::*;
-use segtree::SegmentTree;
+use segtree::{Monoid, SegmentTree};
+
+struct UsizeAdd;
+
+impl Monoid for UsizeAdd {
+    type M = usize;
+    fn id() -> Self::M {
+        0
+    }
+    fn op(l: &Self::M, r: &Self::M) -> Self::M {
+        l + r
+    }
+}
 
 fn main() {
     input! {n: usize, q: usize}
 
-    let mut st = SegmentTree::new(n, 0, |l, r| l + r);
+    let mut st = SegmentTree::<UsizeAdd>::new(n);
     for _ in 0..q {
         input! {ty: usize}
 
@@ -13,7 +25,7 @@ fn main() {
             st.set(pos - 1, x);
         } else {
             input! {l: usize, r: usize}
-            println!("{}", st.foldl(l - 1, r - 1))
+            println!("{}", st.fold(l - 1..r - 1))
         }
     }
 }

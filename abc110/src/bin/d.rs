@@ -1,8 +1,8 @@
 use math::{divisors_enumeration, factorize};
-use modint::{combination, Mod1000000007, Modint};
 use proconio::*;
+use static_modint::{combination, Mod1000000007, StaticModint};
 
-type M = Modint<Mod1000000007>;
+type M = StaticModint<Mod1000000007>;
 
 fn main() {
     input! {n: usize, m: usize}
@@ -47,7 +47,7 @@ fn main() {
             break;
         }
 
-        res += com(n, i) * dp[i][0];
+        res += com(n as u32, i as u32) * dp[i][0];
     }
 
     println!("{}", res);
