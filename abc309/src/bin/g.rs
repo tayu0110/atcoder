@@ -34,31 +34,31 @@ fn x1(n: usize, memo: &mut Vec<Option<Modint>>) -> Modint {
     memo[n].unwrap()
 }
 
-fn x2(n: usize, memo: &mut Vec<Option<Modint>>) -> Modint {
-    if let Some(res) = memo[n] {
-        return res;
-    }
+// fn x2(n: usize, memo: &mut Vec<Option<Modint>>) -> Modint {
+//     if let Some(res) = memo[n] {
+//         return res;
+//     }
 
-    if n == 0 {
-        return Modint::one();
-    } else if n == 1 {
-        return Modint::zero();
-    } else if n == 2 {
-        return Modint::zero();
-    } else if n == 3 {
-        return Modint::zero();
-    } else if n == 4 {
-        return Modint::one();
-    } else if n == 5 {
-        return Modint::raw(4);
-    }
+//     if n == 0 {
+//         return Modint::one();
+//     } else if n == 1 {
+//         return Modint::zero();
+//     } else if n == 2 {
+//         return Modint::zero();
+//     } else if n == 3 {
+//         return Modint::zero();
+//     } else if n == 4 {
+//         return Modint::one();
+//     } else if n == 5 {
+//         return Modint::raw(4);
+//     }
 
-    let nn = Modint::raw(n as u32);
-    let _one = Modint::one();
-    let _zero = Modint::zero();
-    memo[n] = Some((nn - Modint::one()) * (x1(n - 1, memo) + x1(n - 2, memo)));
-    memo[n].unwrap()
-}
+//     let nn = Modint::raw(n as u32);
+//     let _one = Modint::one();
+//     let _zero = Modint::zero();
+//     memo[n] = Some((nn - Modint::one()) * (x1(n - 1, memo) + x1(n - 2, memo)));
+//     memo[n].unwrap()
+// }
 
 fn main() {
     // input! {n: usize, x: usize}

@@ -14,8 +14,8 @@ fn main() {
         }
     }
 
-    let mut log = 0;
-    let mut m = 0;
+    // let mut log = 0;
+    // let mut m = 0;
     for i in 0..=60 {
         if a.contains(&(1usize << i)) {
             let p = a.iter().position(|v| *v == 1 << i).unwrap();
@@ -23,8 +23,8 @@ fn main() {
             continue;
         }
 
-        log = i - 1;
-        m = (1usize << i) - 1;
+        // log = i - 1;
+        // m = (1usize << i) - 1;
         break;
     }
 }

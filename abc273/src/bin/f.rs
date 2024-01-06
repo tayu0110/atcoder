@@ -1,7 +1,12 @@
 #[allow(unused_imports)]
-use proconio::{*, input, marker::{Chars, Bytes}, source::line::LineSource};
-#[allow(unused_imports)]
 use itertools::Itertools;
+#[allow(unused_imports)]
+use proconio::{
+    input,
+    marker::{Bytes, Chars},
+    source::line::LineSource,
+    *,
+};
 
 // #[fastout]
 fn main() {
@@ -19,12 +24,11 @@ fn main() {
 
     items.sort();
 
-    let mut tak = 0;
-    for (i, &(_co, tp, _)) in items.iter().enumerate() {
-        if tp == 0 {
-            tak = i;
-            break;
-        }
-    }
-
+    // let mut tak = 0;
+    // for (i, &(_co, tp, _)) in items.iter().enumerate() {
+    //     if tp == 0 {
+    //         tak = i;
+    //         break;
+    //     }
+    // }
 }

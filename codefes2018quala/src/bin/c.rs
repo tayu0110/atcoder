@@ -1,11 +1,4 @@
-#![allow(unused_imports)]
-use proconio::{
-    input,
-    marker::{Bytes, Chars},
-    *,
-};
-
-const MOD: usize = 1000_000_007;
+use proconio::input;
 
 fn main() {
     input! {n: usize, k: usize, a: [usize; n]}

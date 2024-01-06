@@ -1,8 +1,6 @@
 #![allow(unused_imports)]
 use proconio::input;
 
-type Mint = modint::Mint<modint::Mod1000000007>;
-
 fn main() {
     input! {n: usize, p: [(usize, usize, usize); n-1]}
 

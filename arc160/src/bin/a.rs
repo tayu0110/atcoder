@@ -1,7 +1,6 @@
 use itertools::Itertools;
 use proconio::*;
 
-
 fn rec(
     now: usize,
     k: usize,
@@ -49,22 +48,22 @@ fn rec(
     // None
 }
 
-fn naive(n: usize, k: usize, a: Vec<usize>) -> Vec<usize> {
-    let mut buf = vec![];
-    for i in 0..n {
-        for j in i..n {
-            let mut t = a.clone();
-            t[i..=j].reverse();
-            buf.push(t);
-        }
-    }
+// fn naive(n: usize, k: usize, a: Vec<usize>) -> Vec<usize> {
+//     let mut buf = vec![];
+//     for i in 0..n {
+//         for j in i..n {
+//             let mut t = a.clone();
+//             t[i..=j].reverse();
+//             buf.push(t);
+//         }
+//     }
 
-    buf.sort();
-    eprintln!("buf: {:?}", buf);
-    let mut res = buf[k - 1].clone();
-    res.iter_mut().for_each(|v| *v += 1);
-    res
-}
+//     buf.sort();
+//     eprintln!("buf: {:?}", buf);
+//     let mut res = buf[k - 1].clone();
+//     res.iter_mut().for_each(|v| *v += 1);
+//     res
+// }
 
 fn main() {
     // let mut rng = thread_rng();

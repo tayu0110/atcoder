@@ -15,7 +15,7 @@ fn main() {
                 let t = last.get_mut(&na).unwrap();
                 *t -= c;
                 if *t == 0 {
-                    drop(t);
+                    let _ = t;
                     last.remove(&na);
                 }
                 if na == a {
