@@ -12,7 +12,7 @@ if ls "$DIR" >/dev/null 2>&1; then
 	exit
 fi
 
-cargo member new "$DIR"
+cargo new "$DIR"
 cd "$DIR" || exit
 
 mkdir .vscode -p
@@ -22,35 +22,44 @@ cat <<EOF >.vscode/settings.json
 }
 EOF
 
-cat <<EOF >>Cargo.toml
-ac-library-rs.workspace = true
-convolution.workspace = true
-ds.workspace = true
-fenwick-tree.workspace = true
-flow.workspace = true
-geometry.workspace = true
-graph.workspace = true
-itertools.workspace = true
-math.workspace = true
-mincost-flow.workspace = true
-montgomery-modint.workspace = true
-num.workspace = true
-ordered-float.workspace = true
-permutohedron.workspace = true
-polynomial.workspace = true
-proconio.workspace = true
-rand.workspace = true
-rational.workspace = true
-regex.workspace = true
-rustc-hash.workspace = true
-segtree.workspace = true
-static-modint.workspace = true
-string.workspace = true
-suffix-array.workspace = true
-superslice.workspace = true
-unionfind.workspace = true
-utility.workspace = true
+mkdir .cargo -p
+cat <<EOF >.cargo/config.toml
+[build]
+target-dir = "../target"
 EOF
+
+echo "1.72.0" >> rust-toolchain
+
+cargo add "ac-library-rs@=0.1.1"
+cargo add num@=0.4.1
+cargo add rand@=0.8.5
+cargo add regex@=1.9.1
+cargo add permutohedron@=0.2.4
+cargo add superslice@=1.0.0
+cargo add "rustc-hash@=1.1.0"
+cargo add itertools@=0.11.0
+cargo add proconio@=0.4.5 --features derive
+
+cargo add bitset --git https://github.com/tayu0110/tayu-procon.git
+cargo add complex --git https://github.com/tayu0110/tayu-procon.git
+cargo add convolution --git https://github.com/tayu0110/tayu-procon.git
+cargo add fenwick-tree --git https://github.com/tayu0110/tayu-procon.git
+cargo add flow --git https://github.com/tayu0110/tayu-procon.git
+cargo add geometry --git https://github.com/tayu0110/tayu-procon.git
+cargo add graph --git https://github.com/tayu0110/tayu-procon.git
+cargo add math --git https://github.com/tayu0110/tayu-procon.git
+cargo add matrix --git https://github.com/tayu0110/tayu-procon.git
+cargo add mincost-flow --git https://github.com/tayu0110/tayu-procon.git
+cargo add montgomery-modint --git https://github.com/tayu0110/tayu-procon.git
+cargo add polynomial --git https://github.com/tayu0110/tayu-procon.git
+cargo add rational --git https://github.com/tayu0110/tayu-procon.git
+cargo add segtree --git https://github.com/tayu0110/tayu-procon.git
+cargo add static-modint --git https://github.com/tayu0110/tayu-procon.git
+cargo add string --git https://github.com/tayu0110/tayu-procon.git
+cargo add unionfind --git https://github.com/tayu0110/tayu-procon.git
+cargo add utility --git https://github.com/tayu0110/tayu-procon.git
+cargo add wavelet-matrix --git https://github.com/tayu0110/tayu-procon.git
+echo 'ds = { git = "https://github.com/tayu0110/tayu-procon.git", version = "0.1.0", features = ["full",] }' >> Cargo.toml
 
 mkdir -p src/bin
 for prefix in {a..g}; do
