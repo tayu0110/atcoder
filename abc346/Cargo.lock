@@ -10,7 +10,7 @@ dependencies = [
  "bitset",
  "complex",
  "convolution",
- "ds 0.1.0 (git+https://github.com/tayu0110/tayu-procon.git)",
+ "ds",
  "fenwick-tree",
  "flow",
  "geometry",
@@ -101,10 +101,6 @@ dependencies = [
 [[package]]
 name = "ds"
 version = "0.1.0"
-
-[[package]]
-name = "ds"
-version = "0.1.0"
 source = "git+https://github.com/tayu0110/tayu-procon.git#8f9c90a28cfad37b51b646369aa00abcebfe3e68"
 
 [[package]]
@@ -151,7 +147,7 @@ name = "graph"
 version = "0.1.0"
 source = "git+https://github.com/tayu0110/tayu-procon.git#8f9c90a28cfad37b51b646369aa00abcebfe3e68"
 dependencies = [
- "ds 0.1.0 (git+https://github.com/tayu0110/tayu-procon.git)",
+ "ds",
  "unionfind",
 ]
 
@@ -159,7 +155,7 @@ dependencies = [
 name = "iolib"
 version = "0.1.0"
 dependencies = [
- "ds 0.1.0",
+ "ds",
 ]
 
 [[package]]

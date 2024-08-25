@@ -53,10 +53,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "arbitrary-montgomery-modint"
-version = "0.1.0"
-
-[[package]]
 name = "ascii"
 version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -191,8 +187,6 @@ checksum = "3e2e65a1a2e43cfcb47a895c4c8b10d1f4a61097f9f254f183aee60cad9c651d"
 name = "math"
 version = "0.1.0"
 dependencies = [
- "arbitrary-montgomery-modint",
- "numeric",
  "simple-rand",
 ]
 
@@ -323,13 +317,6 @@ checksum = "578ede34cf02f8924ab9447f50c28075b4d3e5b269972345e7e0372b38c6cdcd"
 dependencies = [
  "autocfg",
  "libm",
-]
-
-[[package]]
-name = "numeric"
-version = "0.1.0"
-dependencies = [
- "zero-one",
 ]
 
 [[package]]
@@ -574,7 +561,3 @@ name = "whiteread"
 version = "0.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8bc25de0a968755322a6b517a7257df7ec3216ed7907b8fc064906542f9714b3"
-
-[[package]]
-name = "zero-one"
-version = "0.1.0"
