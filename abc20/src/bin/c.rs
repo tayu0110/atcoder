@@ -1,4 +1,4 @@
-use itertools::{Itertools, iproduct};
+use itertools::{iproduct, Itertools};
 #[allow(unused_imports)]
 use proconio::{input, marker::Chars, source::line::LineSource};
 
@@ -6,9 +6,9 @@ fn main() {
     input! {h: usize, w: usize, t: usize, s: [Chars; h]};
 
     let ((sy, sx), (ty, tx)) = iproduct!(0..h, 0..w)
-                                .filter(|&(y, x)| s[y][x] == 'S' || s[y][x] == 'G')
-                                .collect_tuple()
-                                .unwrap();
+        .filter(|&(y, x)| s[y][x] == 'S' || s[y][x] == 'G')
+        .collect_tuple()
+        .unwrap();
 
     const INF: usize = 0x3f3f3f3f3f3f3f3f;
     let dx = [0, 1, 0, -1];
@@ -30,7 +30,7 @@ fn main() {
                 let nx = x as i32 + *dx;
                 let ny = y as i32 + *dy;
                 if 0 <= nx && nx < w as i32 && 0 <= ny && ny < h as i32 {
-                    let nnd =  if s[ny as usize][nx as usize] == '#' {
+                    let nnd = if s[ny as usize][nx as usize] == '#' {
                         nd + m
                     } else {
                         nd + 1

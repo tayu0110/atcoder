@@ -1,6 +1,6 @@
 use proconio::input;
 
-const MOD: usize = 1000_000_007;
+const MOD: usize = 1_000_000_007;
 
 fn rec(now: usize, par: usize, t: &Vec<Vec<usize>>, memo: &mut Vec<Vec<usize>>) {
     memo[now] = vec![1; 2];

@@ -42,7 +42,7 @@ fn pairwise_coprime(a: &[usize]) -> bool {
 }
 
 fn setwise_coprime(a: &[usize]) -> bool {
-    a.into_iter().fold(0, |s, v| gcd(s, *v)) == 1
+    a.iter().fold(0, |s, v| gcd(s, *v)) == 1
 }
 
 #[fastout]

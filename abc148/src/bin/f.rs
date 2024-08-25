@@ -3,7 +3,7 @@ use proconio::{input, marker::Chars, source::line::LineSource};
 
 const INF: usize = 0x3f3f3f3f3f3f3f3f;
 
-fn bfs(start: usize, t: &Vec<Vec<usize>>) -> Vec<usize> {
+fn bfs(start: usize, t: &[Vec<usize>]) -> Vec<usize> {
     let mut nt = std::collections::VecDeque::new();
     let mut dist = vec![INF; t.len()];
     nt.push_back(start);

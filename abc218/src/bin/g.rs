@@ -9,7 +9,7 @@ fn dfs(now: usize, par: usize, mut diff: i32, target: i64, mut small: i64, mut l
 
     if t[now].len() == 1 && t[now][0] == par {
         return if diff < 0 {
-            !(diff % 2 == 0)
+            diff % 2 != 0
         } else if diff > 0 {
             diff % 2 == 0
         } else {
@@ -38,7 +38,7 @@ fn main() {
         t[v-1].push(u-1);
     }
 
-    let (mut l, mut r) = (-1, 1000_000_000_000);
+    let (mut l, mut r) = (-1, 1_000_000_000_000);
     while r - l > 1 {
         let m = (r + l) / 2;
 

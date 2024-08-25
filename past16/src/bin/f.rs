@@ -4,7 +4,7 @@ fn main() {
     input! {s: String}
     println!(
         "{}",
-        s.split("*")
+        s.split('*')
             .map(|s| s
                 .chars()
                 .fold(0, |s, v| (s * 10 + (v as usize - b'0' as usize))

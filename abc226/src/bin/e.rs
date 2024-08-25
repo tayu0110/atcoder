@@ -42,7 +42,7 @@ fn main() {
         uf.merge(u - 1, v - 1);
     }
 
-    if t.iter().any(|v| v.len() == 0) {
+    if t.iter().any(|v| v.is_empty()) {
         println!("0");
         return;
     }
@@ -50,11 +50,9 @@ fn main() {
     let mut set = HashSet::new();
     let mut used = vec![false; n];
     for i in 0..n {
-        if !set.contains(&uf.root(i)) {
-            if !cycle_detect(i, i, &mut used, &t) {
-                println!("0");
-                return;
-            }
+        if !set.contains(&uf.root(i)) && !cycle_detect(i, i, &mut used, &t) {
+            println!("0");
+            return;
         }
         set.insert(uf.root(i));
     }

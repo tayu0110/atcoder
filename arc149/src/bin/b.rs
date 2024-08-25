@@ -24,7 +24,7 @@ fn lis(a: &Vec<usize>) -> usize {
     dp.into_iter().take_while(|v| *v < std::usize::MAX).count()
 }
 
-fn solve(c: &Vec<(usize, usize)>) -> usize {
+fn solve(c: &[(usize, usize)]) -> usize {
     let (a, b) = c.iter().map(|(a, b)| (*a, *b)).unzip::<usize, usize, Vec<usize>, Vec<usize>>();
 
     lis(&a) + lis(&b)
@@ -33,7 +33,7 @@ fn solve(c: &Vec<(usize, usize)>) -> usize {
 fn main() {
     input! {n: usize, a: [usize; n], b: [usize; n]}
 
-    let mut c = a.into_iter().zip(b.into_iter()).collect_vec();
+    let mut c = a.into_iter().zip(b).collect_vec();
 
     c.sort();
     let mut res = solve(&c);

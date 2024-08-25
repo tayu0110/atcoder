@@ -16,5 +16,5 @@ fn main() {
         *v = (*v - x).abs();
     }
 
-    println!("{}", p.into_iter().fold(0, |s, v| gcd(s, v)));
+    println!("{}", p.into_iter().fold(0, gcd));
 }

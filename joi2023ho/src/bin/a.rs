@@ -33,8 +33,7 @@ fn main() {
     println!(
         "{}",
         v.into_iter()
-            .map(|(a, cnt)| vec![a; cnt])
-            .flatten()
+            .flat_map(|(a, cnt)| vec![a; cnt])
             .join("\n")
     )
 }

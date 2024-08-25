@@ -13,7 +13,7 @@ fn solve<L: Modulo, M: Modulo, N: Modulo>(
 ) -> MontgomeryModint<Mod1000000007> {
     let p = Polynomial::<L>::interpolation(
         (0..n + 1)
-            .map(|v| MontgomeryModint::raw(v as u32))
+            .map(|v| MontgomeryModint::new(v as u32))
             .collect(),
         a.iter()
             .cloned()
@@ -24,7 +24,7 @@ fn solve<L: Modulo, M: Modulo, N: Modulo>(
 
     let q = Polynomial::<M>::interpolation(
         (0..n + 1)
-            .map(|v| MontgomeryModint::raw(v as u32))
+            .map(|v| MontgomeryModint::new(v as u32))
             .collect(),
         a.iter()
             .cloned()
@@ -35,7 +35,7 @@ fn solve<L: Modulo, M: Modulo, N: Modulo>(
 
     let r = Polynomial::<N>::interpolation(
         (0..n + 1)
-            .map(|v| MontgomeryModint::raw(v as u32))
+            .map(|v| MontgomeryModint::new(v as u32))
             .collect(),
         a.into_iter().map(|v| MontgomeryModint::new(v)).collect(),
     );
@@ -52,7 +52,7 @@ fn solve<L: Modulo, M: Modulo, N: Modulo>(
         );
 
         res += x * MontgomeryModint::from(coef);
-        x *= MontgomeryModint::raw(t);
+        x *= MontgomeryModint::new(t);
     }
 
     res

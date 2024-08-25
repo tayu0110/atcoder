@@ -5,10 +5,8 @@ use std::collections::VecDeque;
 fn dfs(now: usize, par: usize, need: &mut [bool], t: &Vec<Vec<usize>>) {
     need[now] = true;
     for &to in &t[now] {
-        if to != par {
-            if !need[to] {
-                dfs(to, par, need, t);
-            }
+        if to != par && !need[to] {
+            dfs(to, par, need, t);
         }
     }
 }

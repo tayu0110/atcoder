@@ -4,7 +4,7 @@ use proconio::{input, marker::Chars, source::line::LineSource};
 fn main() {
     input! {n: usize, s: [usize; n], t: usize};
 
-    let mut nt = s.into_iter().map(|v| std::cmp::Reverse(v)).collect::<std::collections::BinaryHeap<std::cmp::Reverse<usize>>>();
+    let mut nt = s.into_iter().map(std::cmp::Reverse).collect::<std::collections::BinaryHeap<std::cmp::Reverse<usize>>>();
 
     let mut now = 0;
     let mut res = 0usize;

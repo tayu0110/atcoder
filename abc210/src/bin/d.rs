@@ -1,6 +1,6 @@
 use proconio::input;
 
-fn solve(h: usize, w: usize, c: i64, a: &Vec<Vec<i64>>) -> i64 {
+fn solve(h: usize, w: usize, c: i64, a: &[Vec<i64>]) -> i64 {
     let mut min = vec![vec![std::i64::MAX; w]; h];
     min[0][0] = a[0][0];
 

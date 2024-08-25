@@ -22,10 +22,8 @@ fn main() {
                 continue;
             } else if tn < nn+1 {
                 dp[to] = (nn+1, i);
-            } else {
-                if prev < i {
-                    dp[to] = (nn+1, i);
-                }
+            } else if prev < i {
+                dp[to] = (nn+1, i);
             }
         }
 

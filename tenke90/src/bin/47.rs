@@ -16,7 +16,7 @@ fn modpow(a: i64, n: i64, p: i64) -> i64 {
     }
 }
 
-fn solve(s: &Vec<char>, t: &Vec<char>, c: [char; 3]) -> usize {
+fn solve(s: &[char], t: &[char], c: [char; 3]) -> usize {
     let t = t.iter().map(|&nc| if nc == c[0] { nc } else { (nc as u8 ^ c[1] as u8 ^ c[2] as u8) as char }).collect::<Vec<_>>();
     let n = s.len() as i64;
 

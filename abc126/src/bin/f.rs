@@ -24,7 +24,7 @@ fn main() {
         std::process::exit(0);
     }
 
-    let a = (0..(1 << m)).into_iter().filter(|v| v != &k).collect_vec();
+    let a = (0..(1 << m)).filter(|v| v != &k).collect_vec();
     let mut b = a.clone();
     b.reverse();
 

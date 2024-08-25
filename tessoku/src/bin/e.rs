@@ -5,7 +5,7 @@ fn main() {
     let mut res = 0;
     for i in 1..=n {
         for j in 1..=n {
-            if i + j + 1 <= k && k <= i + j + n {
+            if i + j < k && k <= i + j + n {
                 res += 1;
             }
         }

@@ -6,7 +6,7 @@ fn main() {
 
     for i in 0..n {
         for j in 0..n {
-            for (dx, dy) in vec![(1, 0), (0, 1), (1, 1), (-1, 1)] {
+            for (dx, dy) in [(1, 0), (0, 1), (1, 1), (-1, 1)] {
                 let (mut w, mut b) = (0, 0);
                 let (mut r, mut c) = (i, j);
                 for _ in 0..6 {

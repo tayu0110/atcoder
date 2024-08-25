@@ -9,5 +9,5 @@ use proconio::{
 fn main() {
     input! {k: i32, x: i32}
 
-    println!("{}", (x - k + 1..x + k).into_iter().join(" "));
+    println!("{}", (x - k + 1..x + k).join(" "));
 }

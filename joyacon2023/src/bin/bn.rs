@@ -15,11 +15,9 @@ fn main() {
         for (_, c) in v {
             if *c == 'R' {
                 f = true;
-            } else {
-                if f {
-                    println!("Yes");
-                    return;
-                }
+            } else if f {
+                println!("Yes");
+                return;
             }
         }
     }

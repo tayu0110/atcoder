@@ -9,11 +9,11 @@ fn main() {
         let mut buf = vec![];
         for v in &p {
             let mut sum = 0;
-            for j in 0..3 {
+            for (j, v) in v.iter().enumerate().take(3) {
                 if i & (1 << j) == 0 {
-                    sum -= v[j];
+                    sum -= v;
                 } else {
-                    sum += v[j];
+                    sum += v;
                 }
             }
 

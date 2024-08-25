@@ -7,7 +7,7 @@ fn main() {
     for i in 0..r {
         for j in 0..c {
             let nc = b[i][j];
-            if '0' <= nc && nc <= '9' {
+            if nc.is_ascii_digit() {
                 let nc = nc as usize - b'0' as usize;
                 for ni in 0..r {
                     for nj in 0..c {

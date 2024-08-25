@@ -13,11 +13,8 @@ fn main() {
     let mut res = 0;
     for a in a {
         if *map.get(&a).unwrap() == 1
-            && (1..=a)
-                .take_while(|&i| i * i <= a)
-                .filter(|&i| a % i == 0 && (f[i] || f[a / i]))
-                .next()
-                .is_none()
+            && !(1..=a)
+                .take_while(|&i| i * i <= a).any(|i| a % i == 0 && (f[i] || f[a / i]))
         {
             res += 1;
         }

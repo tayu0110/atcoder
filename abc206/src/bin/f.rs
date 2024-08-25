@@ -24,7 +24,7 @@ fn solve(l: usize, r: usize, p: &Vec<(usize, usize)>, memo: &mut Vec<Vec<i32>>) 
     }
 
     memo[l][r] = res;
-    return res;
+    res
 }
 
 fn main() {

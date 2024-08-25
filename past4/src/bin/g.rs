@@ -1,7 +1,7 @@
 use proconio::input;
 use proconio::marker::Chars;
 
-fn check(n: usize, m: usize, s: &Vec<Vec<char>>) -> bool {
+fn check(n: usize, m: usize, s: &[Vec<char>]) -> bool {
     let mut uf = unionfind::UnionFind::new(n * m);
     let get_index = |i: usize, j: usize| i * m + j;
 
@@ -20,9 +20,9 @@ fn check(n: usize, m: usize, s: &Vec<Vec<char>>) -> bool {
     }
 
     let mut set = std::collections::HashSet::new();
-    for i in 0..n {
-        for j in 0..m {
-            if s[i][j] == '#' {
+    for (i, s) in s.iter().enumerate() {
+        for (j, &s) in s.iter().enumerate() {
+            if s == '#' {
                 continue;
             }
             set.insert(uf.root(get_index(i, j)));

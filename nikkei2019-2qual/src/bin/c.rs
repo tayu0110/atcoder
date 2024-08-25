@@ -5,7 +5,7 @@ use proconio::input;
 fn main() {
     input! {n: usize, a: [usize; n], b: [usize; n]}
 
-    let mut c = b.into_iter().zip(a.into_iter()).collect::<Vec<_>>();
+    let mut c = b.into_iter().zip(a).collect::<Vec<_>>();
     c.sort();
     let (b, mut a) = c.into_iter().unzip::<usize, usize, Vec<_>, Vec<_>>();
     let mut set = BTreeSet::new();

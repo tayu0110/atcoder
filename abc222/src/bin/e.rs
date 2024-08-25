@@ -8,11 +8,9 @@ fn dfs(now: usize, par: usize, target: usize, used: &mut Vec<i64>, t: &Vec<Vec<(
     }
 
     for (to, idx) in &t[now] {
-        if *to != par {
-            if dfs(*to, now, target, used, t) {
-                used[*idx] += 1;
-                return true;
-            }
+        if *to != par && dfs(*to, now, target, used, t) {
+            used[*idx] += 1;
+            return true;
         }
     }
 

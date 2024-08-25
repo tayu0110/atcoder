@@ -57,7 +57,7 @@ mod segtree {
         pub fn new(size: usize, op: fn(S, S) -> S, e: fn() -> S, id: fn() -> F, mapping: fn(F, S) -> S, composition: fn(F, F) -> F) -> Self {
             LazySegtree::from_vec(&vec![e(); size], op, e, id, mapping, composition)
         }
-        pub fn from_vec(v: &Vec<S>, op: fn(S, S) -> S, e: fn() -> S, id: fn() -> F, mapping: fn(F, S) -> S, composition: fn(F, F) -> F) -> Self {
+        pub fn from_vec(v: &[S], op: fn(S, S) -> S, e: fn() -> S, id: fn() -> F, mapping: fn(F, S) -> S, composition: fn(F, F) -> F) -> Self {
             let n = v.len();
             let (log, size) = {
                 let (mut size, mut log) = (1, 0);

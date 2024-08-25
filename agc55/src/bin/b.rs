@@ -6,7 +6,7 @@ fn convert(s: Vec<u8>) -> Vec<u8> {
         stack.push(c);
 
         if stack.len() >= 3 {
-            let mut ns = (&stack[stack.len() - 3..]).to_vec();
+            let mut ns = stack[stack.len() - 3..].to_vec();
             ns.reverse();
 
             if [b"ABC", b"BCA", b"CAB"].iter().any(|&t| t[..] == ns[..]) {

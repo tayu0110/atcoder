@@ -15,14 +15,14 @@ fn main() {
         }
 
         {
-            if s.windows(2).all(|v| v != &['A', 'B']) {
+            if s.windows(2).all(|v| v != ['A', 'B']) {
                 println!("A");
                 continue;
             }
         }
 
         {
-            if s.windows(2).all(|v| v != &['B', 'A']) {
+            if s.windows(2).all(|v| v != ['B', 'A']) {
                 println!("B");
                 continue;
             }

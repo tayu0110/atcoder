@@ -25,11 +25,9 @@ fn main() {
                 if color[to] == 2 {
                     color[to] = (color[now] + 1) % 2;
                     nt.push_back(to);
-                } else {
-                    if color[to] != (color[now] + 1) % 2 {
-                        println!("No");
-                        return;
-                    }
+                } else if color[to] != (color[now] + 1) % 2 {
+                    println!("No");
+                    return;
                 }
             }
         }

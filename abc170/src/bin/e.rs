@@ -27,7 +27,7 @@ fn main() {
     for (child, d) in q.into_iter().map(|(c, d)| (c - 1, d)) {
         t[class[child]].remove(&(s[child], child));
         t[d].insert((s[child], child));
-        for class in vec![class[child], d] {
+        for class in [class[child], d] {
             if let Some(&(b, child)) = t[class].iter().next_back() {
                 set.insert((b, class, child));
                 u[class] = b;

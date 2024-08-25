@@ -28,7 +28,7 @@ fn main() {
             }
         }
 
-        if dist.iter().find(|&&d| d == x).is_some() {
+        if dist.iter().any(|&d| d == x) {
             println!("Yes");
             return;
         }

@@ -71,7 +71,7 @@ fn solve() {
         }
     }
 
-    println!("{}", res as f64 / 100.0);
+    println!("{}", res / 100.0);
 }
 
 fn main() {

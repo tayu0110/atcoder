@@ -43,18 +43,16 @@ fn main() {
                 pos.swap(p[now], p[now-2]);
                 p.swap(now, now-2);
                 now -= 2;
+            } else if p[now-1] % 2 != (now-1) % 2 {
+                res.push(format!("A {}", now));
+                pos.swap(p[now], p[now-1]);
+                p.swap(now, now-1);
+                now -= 1;
             } else {
-                if p[now-1] % 2 != (now-1) % 2 {
-                    res.push(format!("A {}", now));
-                    pos.swap(p[now], p[now-1]);
-                    p.swap(now, now-1);
-                    now -= 1;
-                } else {
-                    res.push(format!("B {}", now-1));
-                    pos.swap(p[now], p[now-2]);
-                    p.swap(now, now-2);
-                    now -= 2;    
-                }
+                res.push(format!("B {}", now-1));
+                pos.swap(p[now], p[now-2]);
+                p.swap(now, now-2);
+                now -= 2;    
             }
         }
     }

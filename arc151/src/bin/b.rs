@@ -32,7 +32,7 @@ fn main() {
         }
         set.insert(root);
     }
-    if s.len() == 0 {
+    if s.is_empty() {
         println!("0");
         return;
     }

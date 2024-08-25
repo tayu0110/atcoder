@@ -24,12 +24,10 @@ fn main() {
             } else {
                 map.insert(w, nv);
             }
+        } else if k == 1 {
+            res[w] = i as i32 + 1;
         } else {
-            if k == 1 {
-                res[w] = i as i32 + 1;
-            } else {
-                map.insert(w, 1usize);
-            }
+            map.insert(w, 1usize);
         }
     }
 

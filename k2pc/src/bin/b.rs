@@ -4,8 +4,8 @@ use proconio::{input, marker::Chars, source::line::LineSource};
 fn main() {
     input! {n: usize, mut a: [usize; 10], c: [Chars; n]}
 
-    let mut max = vec![0; 7];
-    let mut now = vec![0; 7];
+    let mut max = [0; 7];
+    let mut now = [0; 7];
     for v in c {
         for (i, c) in v.into_iter().enumerate() {
             if c == 'X' {

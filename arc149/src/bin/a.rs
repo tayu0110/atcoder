@@ -42,7 +42,7 @@ fn main() {
         }
     }
 
-    if res == "" {
+    if res.is_empty() {
         println!("-1");
     } else {
         println!("{}", res);

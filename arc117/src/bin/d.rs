@@ -3,7 +3,7 @@ use std::collections::VecDeque;
 use itertools::Itertools;
 use proconio::*;
 
-fn bfs(root: usize, t: &Vec<Vec<usize>>) -> Vec<usize> {
+fn bfs(root: usize, t: &[Vec<usize>]) -> Vec<usize> {
     let mut res = vec![std::usize::MAX; t.len()];
     res[root] = 0;
     let mut nt = VecDeque::new();
@@ -20,7 +20,7 @@ fn bfs(root: usize, t: &Vec<Vec<usize>>) -> Vec<usize> {
     res
 }
 
-fn rec(now: usize, par: usize, t: &Vec<Vec<usize>>, memo: &mut Vec<Vec<(usize, usize)>>) -> usize {
+fn rec(now: usize, par: usize, t: &[Vec<usize>], memo: &mut Vec<Vec<(usize, usize)>>) -> usize {
     let mut res = 0;
     for &to in &t[now] {
         if to != par {
@@ -37,7 +37,6 @@ fn solve(
     now: usize,
     par: usize,
     cnt: &mut usize,
-    t: &Vec<Vec<usize>>,
     memo: &Vec<Vec<(usize, usize)>>,
     res: &mut [usize],
 ) {
@@ -48,7 +47,7 @@ fn solve(
 
     for (_, to) in r {
         if to != par {
-            solve(to, now, cnt, t, memo, res);
+            solve(to, now, cnt, memo, res);
             *cnt += 1;
         }
     }
@@ -79,7 +78,7 @@ fn main() {
 
         let mut res = vec![0; n];
         let mut cnt = 0;
-        solve(root, root, &mut cnt, &t, &memo, &mut res);
+        solve(root, root, &mut cnt, &memo, &mut res);
         r.push(res);
     }
 

@@ -32,7 +32,7 @@ fn main() {
             }
         }
 
-        if r + 1 <= k as i32 {
+        if r < k as i32 {
             println!("Yes");
         } else {
             println!("No");

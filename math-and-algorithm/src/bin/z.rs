@@ -1,6 +1,6 @@
 use proconio::*;
 
-const N: [f64; 1000001] = {
+static N: [f64; 1000001] = {
     let mut n = [0.; 1000001];
     let mut i = 1;
     let mut sum = 0.;

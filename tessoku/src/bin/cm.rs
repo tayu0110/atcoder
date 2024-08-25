@@ -25,13 +25,11 @@ fn main() {
 
     println!(
         "{}",
-        (r0.contains(&k)
+        if r0.contains(&k)
             || r1.contains(&k)
             || r0
                 .into_iter()
                 .filter(|&r0| r0 < k)
-                .any(|r0| r1.contains(&(k - r0))))
-        .then_some("Yes")
-        .unwrap_or("No")
+                .any(|r0| r1.contains(&(k - r0))) { "Yes" } else { "No" }
     )
 }

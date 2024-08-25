@@ -17,11 +17,9 @@ fn main() {
             if *entry == 0 {
                 map.remove(&x);
             }
-        } else {
-            if let Some((min, _)) = map.iter().next() {
-                if let Some((max, _)) = map.iter().next_back() {
-                    println!("{}", max - min);
-                }
+        } else if let Some((min, _)) = map.iter().next() {
+            if let Some((max, _)) = map.iter().next_back() {
+                println!("{}", max - min);
             }
         }
     }

@@ -21,6 +21,5 @@ fn main() {
 
     if a.iter().sum::<usize>() % g != 0 {
         println!("-1");
-        return;
     }
 }

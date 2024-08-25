@@ -6,7 +6,7 @@ fn main() {
     let a = tmp
                                 .into_iter()
                                 .fold(vec![], |mut v, s| {
-                                    v.push(s.into_iter().map(|c| (c as u8 - '0' as u8) as usize).collect::<Vec<_>>());
+                                    v.push(s.into_iter().map(|c| (c as u8 - b'0') as usize).collect::<Vec<_>>());
                                     v
                                 });
     const INF: usize = 0x3f3f3f3f3f3f3f3f;

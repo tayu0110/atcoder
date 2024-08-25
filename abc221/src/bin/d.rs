@@ -43,5 +43,5 @@ fn main() {
         }
         print!("{}", res[i]);
     }
-    println!("");
+    println!();
 }

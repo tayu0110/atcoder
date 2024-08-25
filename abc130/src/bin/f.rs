@@ -32,8 +32,8 @@ fn main() {
     let (mut l, mut r) = (0.0, 5e8);
     let mut cnt = 0;
     while r - l > 1e-10 {
-        let m = vec![(2.0*r + l) / 3.0, (r + 2.0*l) / 3.0];
-        let mut res = vec![0.0, 0.0];
+        let m = [(2.0*r + l) / 3.0, (r + 2.0*l) / 3.0];
+        let mut res = [0.0, 0.0];
         for j in 0..2 {
             let (mut xx, mut xn, mut yx, mut yn) = (-INF as f64, INF as f64, -INF as f64, INF as f64);
             for i in 0..2 {

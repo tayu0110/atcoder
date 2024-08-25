@@ -60,7 +60,7 @@ impl UnionFind {
         for (k, v) in self.group[rr].clone() {
             *self.group[rl].entry(k).or_insert(0) += v;
         }
-        return true;
+        true
     }
     fn class(&self, idx: usize, c: usize) -> usize {
         let root = self.root(idx);

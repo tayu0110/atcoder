@@ -12,8 +12,7 @@ fn main() {
     let (mut l, mut r) = (0, n - 1);
     while l <= r {
         let set = a[l]
-            .iter()
-            .map(|&a| a)
+            .iter().copied()
             .collect::<std::collections::HashSet<_>>();
         for i in 0..n {
             if set.contains(&a[r][i]) {

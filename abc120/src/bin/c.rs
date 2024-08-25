@@ -11,12 +11,10 @@ fn main() {
     for c in s {
         if stack.is_empty() {
             stack.push_back(c);
+        } else if stack.back().unwrap() != &c {
+            stack.pop_back().unwrap();
         } else {
-            if stack.back().unwrap() != &c {
-                stack.pop_back().unwrap();
-            } else {
-                stack.push_back(c);
-            }
+            stack.push_back(c);
         }
     }
 

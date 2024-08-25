@@ -100,11 +100,9 @@ fn main() {
             nt.push(y);
         }
 
-        if !ns.is_empty() {
-            if !solve(&mut ns, &mut nt) {
-                res.push(false);
-                continue 'B;
-            }
+        if !ns.is_empty() && !solve(&mut ns, &mut nt) {
+            res.push(false);
+            continue 'B;
         }
 
         res.push(true);

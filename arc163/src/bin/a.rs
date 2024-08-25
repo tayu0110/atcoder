@@ -21,11 +21,9 @@ fn main() {
 
         let mut t = vec![c];
         for i in 1..n {
-            if s[i] == c {
-                if &t[..] < &s[i..] {
-                    println!("Yes");
-                    continue 'base;
-                }
+            if s[i] == c && &t[..] < &s[i..] {
+                println!("Yes");
+                continue 'base;
             }
 
             t.push(s[i]);

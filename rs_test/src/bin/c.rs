@@ -59,11 +59,11 @@ mod geometry {
     impl std::ops::SubAssign for Vector { fn sub_assign(&mut self, rhs: Self) { self.0 -= rhs.0; self.1 -= rhs.1; } }
     struct Error(&'static str);
 
-    pub fn convex_hull(points: &Vec<(i64, i64)>) -> Vec<(i64, i64)> {
+    pub fn convex_hull(points: &[(i64, i64)]) -> Vec<(i64, i64)> {
         if points.len() < 2 {
-            return points.clone();
+            return points.to_owned();
         }
-        let mut points = points.clone();
+        let mut points = points.to_owned();
         points.sort();
         let (mut upper, mut lower) = (vec![], vec![]);
         for (x, y) in points {

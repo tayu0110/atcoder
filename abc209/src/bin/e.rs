@@ -3,7 +3,7 @@ use proconio::input;
 fn main() {
     input! {n: usize, s: [String; n]}
     const MAX: usize = 52 * 52 * 52;
-    let to_index = |c: &[u8]| c.into_iter().fold(0, |s, c| s * 52 + if c <= &b'Z' { *c - b'A' } else { *c - b'a' + 26 } as usize );
+    let to_index = |c: &[u8]| c.iter().fold(0, |s, c| s * 52 + if c <= &b'Z' { *c - b'A' } else { *c - b'a' + 26 } as usize );
 
     let mut f = vec![];
     let mut out = vec![0; MAX];

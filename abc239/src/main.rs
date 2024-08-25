@@ -43,7 +43,7 @@ fn main() {
     }
 
     const C_MIN: usize = 800_000_000;
-    const C_MAX: usize = 1000_000_000;
+    const C_MAX: usize = 1_000_000_000;
     write!(file, "0").unwrap();
     for _ in 0..N-2 {
         let c: usize = rng.gen_range(C_MIN, C_MAX+1);

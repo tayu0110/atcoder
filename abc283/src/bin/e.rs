@@ -1,6 +1,6 @@
 use proconio::input;
 
-fn flip(s: &Vec<u32>) -> Vec<u32> {
+fn flip(s: &[u32]) -> Vec<u32> {
     s.iter().cloned().map(|v| 1 - v).collect()
 }
 

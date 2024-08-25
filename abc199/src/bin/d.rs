@@ -6,7 +6,7 @@ fn rec(now: usize, state: &mut [u8], t: &Vec<Vec<usize>>) -> usize {
         return 1;
     }
 
-    if t[now].len() == 0 {
+    if t[now].is_empty() {
         return 3 * rec(now + 1, state, t);
     }
 
@@ -44,7 +44,7 @@ fn main() {
 
     let mut res = 1;
     for i in 0..n {
-        if nt[i].len() > 0 {
+        if !nt[i].is_empty() {
             let mut state = vec![0; nt[i].len()];
             let mut v = vec![vec![]; nt[i].len()];
             for &now in &nt[i] {

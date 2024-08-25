@@ -33,7 +33,7 @@ impl Bitset {
 impl PartialEq for Bitset { fn eq(&self, other: &Self) -> bool { for (v, w) in self.bits.iter().zip(other.bits.iter()) { if v != w { return false; } } true } }
 impl Eq for Bitset { }
 impl PartialOrd for Bitset {
-    fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> { self.bits.partial_cmp(&other.bits) }
+    fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> { Some(self.cmp(other)) }
     fn lt(&self, other: &Self) -> bool { for (v, w) in self.bits.iter().zip(other.bits.iter()) { if v != w { return v < w; } } false }
     fn le(&self, other: &Self) -> bool { for (v, w) in self.bits.iter().zip(other.bits.iter()) { if v != w { return v < w; } } true }
     fn gt(&self, other: &Self) -> bool { for (v, w) in self.bits.iter().zip(other.bits.iter()) { if v != w { return v > w; } } false }

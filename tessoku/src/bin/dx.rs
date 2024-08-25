@@ -9,7 +9,7 @@ fn main() {
     for (i, c) in s.into_iter().enumerate() {
         if c == ')' {
             match buf.last() {
-                Some(&(pc, j)) if pc == '(' => {
+                Some(&('(', j)) => {
                     res.push((j as u32 + 1, i as u32 + 1));
                     buf.pop();
                 }

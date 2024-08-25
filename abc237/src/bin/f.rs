@@ -17,7 +17,7 @@ fn main() {
                         if j == 0 { j = std::usize::MAX; }
                         if k == 0 { k = std::usize::MAX; }
                         if l == 0 { l = std::usize::MAX; }
-                        let mut lis = vec![j, k, l, std::usize::MAX];
+                        let mut lis = [j, k, l, std::usize::MAX];
                         if lis[0] > lis[1] || lis[1] > lis[2] || lis[2] > lis[3] {
                             continue;
                         }

@@ -10,11 +10,9 @@ fn main() {
         println!("Takahashi");
     } else if a > c {
         println!("Aoki");
+    } else if b <= d {
+        println!("Takahashi");
     } else {
-        if b <= d {
-            println!("Takahashi");
-        } else {
-            println!("Aoki");
-        }
+        println!("Aoki");
     }
 }

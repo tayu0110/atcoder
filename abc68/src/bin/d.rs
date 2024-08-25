@@ -9,9 +9,7 @@ fn main() {
     for _ in 0..50 - d {
         res.push(49 - d);
     }
-    for _ in 0..d {
-        res.push(50);
-    }
+    res.resize(d, 50);
 
     let a = k / 50;
     for i in 0..50 {

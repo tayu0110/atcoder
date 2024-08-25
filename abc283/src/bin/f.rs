@@ -8,8 +8,8 @@ fn main() {
     let p = p.into_iter().map(|p| p - 1).collect::<Vec<_>>();
 
     let (s, t) = {
-        let mut inc = segtree::SegmentTree::new(n, -INF, |l, r| std::cmp::max(l, r));
-        let mut dec = segtree::SegmentTree::new(n, INF, |l, r| std::cmp::min(l, r));
+        let mut inc = segtree::SegmentTree::new(n, -INF, std::cmp::max);
+        let mut dec = segtree::SegmentTree::new(n, INF, std::cmp::min);
         let mut res_inc = vec![];
         let mut res_dec = vec![];
         for (i, &p) in p.iter().enumerate() {
@@ -23,8 +23,8 @@ fn main() {
         (res_inc, res_dec)
     };
     let (u, v) = {
-        let mut inc = segtree::SegmentTree::new(n, INF, |l, r| std::cmp::min(l, r));
-        let mut dec = segtree::SegmentTree::new(n, -INF, |l, r| std::cmp::max(l, r));
+        let mut inc = segtree::SegmentTree::new(n, INF, std::cmp::min);
+        let mut dec = segtree::SegmentTree::new(n, -INF, std::cmp::max);
         let mut res_inc = vec![];
         let mut res_dec = vec![];
         for (i, &p) in p.iter().enumerate().rev() {
@@ -119,7 +119,7 @@ mod segtree {
         pub fn new(size: usize, op: fn(S, S) -> S, e: fn() -> S, id: fn() -> F, mapping: fn(F, S) -> S, composition: fn(F, F) -> F) -> Self {
             LazySegtree::from_vec(&vec![e(); size], op, e, id, mapping, composition)
         }
-        pub fn from_vec(v: &Vec<S>, op: fn(S, S) -> S, e: fn() -> S, id: fn() -> F, mapping: fn(F, S) -> S, composition: fn(F, F) -> F) -> Self {
+        pub fn from_vec(v: &[S], op: fn(S, S) -> S, e: fn() -> S, id: fn() -> F, mapping: fn(F, S) -> S, composition: fn(F, F) -> F) -> Self {
             let n = v.len();
             let (log, size) = {
                 let (mut size, mut log) = (1, 0);
@@ -315,11 +315,11 @@ mod segtree {
     }
     #[allow(dead_code)]
     pub fn range_add_range_maximum_query(size: usize) -> LazySegtree<i64, i64> {
-        LazySegtree::from_vec(&vec![0i64; size], |l, r| std::cmp::max(l, r), || -9223372036854775808i64, || 0i64, |f, x| f + x, |f, g| f + g)
+        LazySegtree::from_vec(&vec![0i64; size], std::cmp::max, || -9223372036854775808i64, || 0i64, |f, x| f + x, |f, g| f + g)
     }
     #[allow(dead_code)]
     pub fn range_add_range_minimum_query(size: usize) -> LazySegtree<i64, i64> {
-        LazySegtree::from_vec(&vec![0i64; size], |l, r| std::cmp::min(l, r), || 0x7FFFFFFFFFFFFFFFi64, || 0i64, |f, x| f + x, |f, g| f + g)
+        LazySegtree::from_vec(&vec![0i64; size], std::cmp::min, || 0x7FFFFFFFFFFFFFFFi64, || 0i64, |f, x| f + x, |f, g| f + g)
     }
     // Range Add Range Maximum Query: F: i64, S: i64, from_vec(&vec![0i64; size], |l, r| std::cmp::max(l, r), || -111222333444555666i64, || 0i64, |f, x| f + x, |f, g| f + g);
     // Range Add Range Minimum Query: F: i64, S: i64, from_vec(&vec![0i64; size], |l, r| std::cmp::min(l, r), || 111222333444555666i64, || 0i64, |f, x| f + x, |f, g| f + g);

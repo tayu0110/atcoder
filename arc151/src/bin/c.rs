@@ -7,7 +7,7 @@ use itertools::Itertools;
 fn main() {
     input! {n: usize, m: usize, mut p: [(usize, usize); m]}
     if m == 0 {
-        println!("{}", ["Aoki", "Takahashi"][n as usize % 2]);
+        println!("{}", ["Aoki", "Takahashi"][n % 2]);
         return;
     }
 
@@ -20,10 +20,8 @@ fn main() {
         if let [(px, py), (x, y)] = v {
             if py == &std::usize::MAX || y == &std::usize::MAX {
                 g ^= *x - *px - 1;
-            } else {
-                if py == y {
-                    g ^= 1;
-                }
+            } else if py == y {
+                g ^= 1;
             }
         }
     }

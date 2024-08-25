@@ -57,37 +57,33 @@ fn main() {
                 ny += nk;
                 nx = tx - nk;
             }
+        } else if (tx - nx).abs() < k && (ty - ny).abs() < k {
+            nx -= kx;
+            ny = ty;
+            res.push((nx, ny));
+            ny += ky;
+            nx = tx - kx;
+            res.push((nx, ny));
+            nx += kx;
+            ny -= ky;
+        } else if (tx - nx).abs() == k && (ty - ny).abs() == k {
+            nx += kx;
+            ny += ky;
+        } else if (tx - nx).abs() == k && (ty - ny).abs() < k {
+            nx += kx;
+            ny = ty - ky;
+        } else if (tx - nx).abs() < k && (ty - ny).abs() == k {
+            ny += ky;
+            nx = tx - kx;
+        } else if (tx - nx).abs() <= 2 * k {
+            nx = tx - kx;
+            ny += ky;
+        } else if (ty - ny).abs() <= 2 * k {
+            ny = ty - ky;
+            nx += kx;
         } else {
-            if (tx - nx).abs() < k && (ty - ny).abs() < k {
-                nx -= kx;
-                ny = ty;
-                res.push((nx, ny));
-                ny += ky;
-                nx = tx - kx;
-                res.push((nx, ny));
-                nx += kx;
-                ny -= ky;
-            } else if (tx - nx).abs() == k && (ty - ny).abs() == k {
-                nx += kx;
-                ny += ky;
-            } else if (tx - nx).abs() == k && (ty - ny).abs() < k {
-                nx += kx;
-                ny = ty - ky;
-            } else if (tx - nx).abs() < k && (ty - ny).abs() == k {
-                ny += ky;
-                nx = tx - kx;
-            } else {
-                if (tx - nx).abs() <= 2 * k {
-                    nx = tx - kx;
-                    ny += ky;
-                } else if (ty - ny).abs() <= 2 * k {
-                    ny = ty - ky;
-                    nx += kx;
-                } else {
-                    nx += kx;
-                    ny += ky;
-                }
-            }
+            nx += kx;
+            ny += ky;
         }
         res.push((nx, ny));
     }

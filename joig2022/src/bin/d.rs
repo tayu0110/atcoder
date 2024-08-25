@@ -7,16 +7,14 @@ fn main() {
     let mut map = HashMap::new();
     for (a, b) in p {
         *map.entry((a, b)).or_insert(0) += 1;
-        for (dx, dy) in vec![
-            (0, -1),
+        for (dx, dy) in [(0, -1),
             (-1, 0),
             (-1, -1),
             (-2, 0),
             (0, -2),
             (-2, -2),
             (-1, -2),
-            (-2, -1),
-        ] {
+            (-2, -1)] {
             let (na, nb) = (a + dx, b + dy);
             map.entry((na, nb)).or_insert(0);
         }
@@ -25,8 +23,7 @@ fn main() {
     let mut res = 0;
     for (a, b) in map.keys() {
         let mut t = 0;
-        for (dx, dy) in vec![
-            (0, 1),
+        for (dx, dy) in [(0, 1),
             (0, 0),
             (1, 0),
             (1, 1),
@@ -34,8 +31,7 @@ fn main() {
             (0, 2),
             (2, 2),
             (1, 2),
-            (2, 1),
-        ] {
+            (2, 1)] {
             let (na, nb) = (a + dx, b + dy);
             t += map.get(&(na, nb)).unwrap_or(&0);
         }

@@ -16,7 +16,7 @@ fn find(
     len += ns.last().unwrap().len();
 
     if ns.len() == 1 {
-        if len < 3 || 16 < len {
+        if !(3..=16).contains(&len) {
             now.pop();
             return None;
         }

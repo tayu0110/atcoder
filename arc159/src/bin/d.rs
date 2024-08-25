@@ -32,8 +32,7 @@ fn main() {
     let mut q = p
         .iter()
         .cloned()
-        .map(|(l, r)| vec![l - 1, r])
-        .flatten()
+        .flat_map(|(l, r)| vec![l - 1, r])
         .collect::<Vec<_>>();
     q.insert(0, 0);
     q.sort();

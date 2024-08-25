@@ -13,6 +13,6 @@ fn main() {
             }
         }
 
-        println!("");
+        println!();
     }
 }

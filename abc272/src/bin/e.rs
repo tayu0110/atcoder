@@ -18,7 +18,7 @@ fn main() {
 
     for i in 1..=m {
         if let Some(v) = map.get(&i) {
-            let set = v.into_iter().map(|v| *v).collect::<std::collections::HashSet<_>>();
+            let set = v.iter().copied().collect::<std::collections::HashSet<_>>();
             println!("{}", (0..=n as i64).take_while(|v| set.contains(v)).count());
         } else {
             println!("0");

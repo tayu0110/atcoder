@@ -3,7 +3,7 @@ use proconio::input;
 fn main() {
     input! {a: u128, b: u128}
 
-    let (mut l, mut r) = (0, 1000_000_000_000);
+    let (mut l, mut r) = (0, 1_000_000_000_000);
     while r - l > 2 {
         let g1 = (l * 2 + r) / 3;
         let g2 = (l + r * 2) / 3;

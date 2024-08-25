@@ -164,6 +164,7 @@ name = "montgomery-modint"
 version = "0.1.0"
 dependencies = [
  "modint-common",
+ "simple-rand",
  "zero-one",
 ]
 
@@ -270,6 +271,7 @@ dependencies = [
  "convolution",
  "montgomery-modint",
  "number-theoretic-transform",
+ "zero-one",
 ]
 
 [[package]]

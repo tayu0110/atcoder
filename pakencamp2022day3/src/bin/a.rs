@@ -23,8 +23,8 @@ fn main() {
         }
         dist[r][c] = nd;
 
-        for di in vec![1usize.wrapping_neg(), 0, 1] {
-            for dj in vec![1usize.wrapping_neg(), 0, 1] {
+        for di in [1usize.wrapping_neg(), 0, 1] {
+            for dj in [1usize.wrapping_neg(), 0, 1] {
                 let (ni, nj) = (r.wrapping_add(di), c.wrapping_add(dj));
 
                 if ni < m && nj < m && a[ni][nj] > 0 && dist[ni][nj] == std::i64::MAX {

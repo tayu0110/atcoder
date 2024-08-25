@@ -7,14 +7,12 @@ fn main() {
     for &c in &s {
         if c == '(' {
             stack.push(c);
+        } else if stack.is_empty() {
+            stack.push(c);
+        } else if stack.last().unwrap() == &')' {
+            stack.push(c);
         } else {
-            if stack.is_empty() {
-                stack.push(c);
-            } else if stack.last().unwrap() == &')' {
-                stack.push(c);
-            } else {
-                stack.pop().unwrap();
-            }
+            stack.pop().unwrap();
         }
     }
 

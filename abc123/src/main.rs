@@ -17,19 +17,19 @@ fn main() {
         }
         write!(file, "{}", rng.gen_range::<usize, usize, usize>(1, 100)).unwrap();
     }
-    writeln!(file, "").unwrap();
+    writeln!(file).unwrap();
     for i in 0..y {
         if i > 0 {
             write!(file, " ").unwrap();
         }
         write!(file, "{}", rng.gen_range::<usize, usize, usize>(1, 100)).unwrap();
     }
-    writeln!(file, "").unwrap();
+    writeln!(file).unwrap();
     for i in 0..z {
         if i > 0 {
             write!(file, " ").unwrap();
         }
         write!(file, "{}", rng.gen_range::<usize, usize, usize>(1, 100)).unwrap();
     }
-    writeln!(file, "").unwrap();
+    writeln!(file).unwrap();
 }

@@ -5,16 +5,14 @@ fn main() {
 
     let mut map = vec![vec![false; n]; n];
     for (r, c) in p {
-        for (dx, dy) in vec![
-            (0, 1),
+        for (dx, dy) in [(0, 1),
             (1, 0),
             (0, !0),
             (!0, 0),
             (1, 1),
             (!0, !0),
             (1, !0),
-            (!0, 1),
-        ] {
+            (!0, 1)] {
             let (mut r, mut c) = (r - 1, c - 1);
             while r < n && c < n {
                 map[r][c] = true;

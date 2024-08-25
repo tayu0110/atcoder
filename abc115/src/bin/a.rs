@@ -14,5 +14,5 @@ fn main() {
         print!(" Eve Eve Eve");
     }
 
-    println!("")
+    println!()
 }

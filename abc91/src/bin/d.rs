@@ -7,7 +7,7 @@ struct AlignedArrayx8 {
 }
 
 #[target_feature(enable = "avx2")]
-unsafe fn solve(n: usize, a: &Vec<i32>, b: &Vec<i32>) -> i32 {
+unsafe fn solve(n: usize, a: &[i32], b: &[i32]) -> i32 {
     let mut res = _mm256_setzero_si256();
     let mut k = 0;
     let rest_start = (n >> 3) << 3;
@@ -57,7 +57,7 @@ unsafe fn solve(n: usize, a: &Vec<i32>, b: &Vec<i32>) -> i32 {
         }
     }
 
-    for na in a.into_iter().take(n).skip(rest_start) {
+    for na in a.iter().take(n).skip(rest_start) {
         for &nb in b.iter().take(n) {
             k ^= na + nb;
         }

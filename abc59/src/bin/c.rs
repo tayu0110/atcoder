@@ -7,14 +7,12 @@ fn solve(mut def: i64, a: &[i64]) -> i64 {
         if now + a[i] == 0 {
             def += 1;
             now += (a[i].abs() + 1) * a[i].signum()
+        } else if n != (now + a[i]).signum() {
+            now += a[i];
         } else {
-            if n != (now + a[i]).signum() {
-                now += a[i];
-            } else {
-                now += a[i];
-                def += now.abs() + 1;
-                now = now.signum() * -1;
-            }
+            now += a[i];
+            def += now.abs() + 1;
+            now = -now.signum();
         }
     }
 

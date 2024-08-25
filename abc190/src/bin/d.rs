@@ -9,7 +9,7 @@ fn main() {
     for i in (1..=n).take_while(|i| *i * *i <= n) {
         if n % i == 0 {
             let (x, y) = (i, n / i);
-            if y - 1 >= x && (y + x - 1) % 2 == 0 {
+            if y > x && (y + x - 1) % 2 == 0 {
                 res += 2;
             }
         }

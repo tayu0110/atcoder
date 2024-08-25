@@ -26,12 +26,12 @@ fn main() {
             if c == '(' {
                 dp[open + 1][close] += now;
             } else if c == ')' {
-                if open >= close + 1 {
+                if open > close {
                     dp[open][close + 1] += now;
                 }
             } else {
                 dp[open + 1][close] += now;
-                if open >= close + 1 {
+                if open > close {
                     dp[open][close + 1] += now;
                 }
             }

@@ -17,7 +17,7 @@ fn main() {
     let (mut x, mut y) = (0, 0);
     let (mut dx, mut dy) = (1, 0);
     let mut now = 1;
-    while now <= n * n - 1 {
+    while now < n * n {
         res[y][x] = now;
         now += 1;
 

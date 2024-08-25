@@ -3,7 +3,7 @@ use std::collections::VecDeque;
 use proconio::*;
 use unionfind::UnionFind;
 
-fn dfs_tree(t: &Vec<Vec<usize>>) -> Vec<Vec<usize>> {
+fn dfs_tree(t: &[Vec<usize>]) -> Vec<Vec<usize>> {
     let n = t.len();
     let mut stack = vec![(0, 0)];
     let mut uf = UnionFind::new(n);
@@ -26,7 +26,7 @@ fn dfs_tree(t: &Vec<Vec<usize>>) -> Vec<Vec<usize>> {
     res
 }
 
-fn bfs_tree(t: &Vec<Vec<usize>>) -> Vec<Vec<usize>> {
+fn bfs_tree(t: &[Vec<usize>]) -> Vec<Vec<usize>> {
     let n = t.len();
     let mut nt = VecDeque::new();
     nt.push_back(0);

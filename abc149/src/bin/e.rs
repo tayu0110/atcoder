@@ -13,7 +13,7 @@ fn main() {
     }).collect_vec();
     sum.insert(0, 0);
 
-    let (mut l, mut r) = (-1, 1000_000_000_000i64);
+    let (mut l, mut r) = (-1, 1_000_000_000_000_i64);
     let mut rk = 0;
     let mut res = 0;
     while r - l > 1 {
@@ -38,7 +38,7 @@ fn main() {
             // eprintln!("\tl: {}, r: {}, sum[n]-sum[r]: {}, s: {}", l, r, sum[n] - sum[r as usize], sum[n] - sum[r as usize] + *v * (n as i64 - r));
         }
 
-        if k <= m as i64 {
+        if k <= m {
             r = mid;
             res = score;
             rk = k;

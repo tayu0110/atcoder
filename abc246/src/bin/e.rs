@@ -15,7 +15,7 @@ fn main() {
         dist[x][y] = nd;
         reached[x][y] = true;
 
-        for (dx, dy) in vec![(1, 1), (1, -1), (-1, 1), (-1, -1)] {
+        for (dx, dy) in [(1, 1), (1, -1), (-1, 1), (-1, -1)] {
             let (mut nx, mut ny) = (x as i32, y as i32);
             loop {
                 nx += dx;

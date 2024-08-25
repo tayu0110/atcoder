@@ -20,5 +20,4 @@ fn main() {
     }
     println!("! {t}");
     std::io::stdout().flush().ok();
-    return;
 }

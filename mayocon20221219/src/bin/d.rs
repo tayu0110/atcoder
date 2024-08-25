@@ -17,7 +17,7 @@ fn transpose(s: Vec<Vec<char>>) -> Vec<Vec<char>> {
     t
 }
 
-fn f(s: &Vec<Vec<char>>) -> (usize, usize) {
+fn f(s: &[Vec<char>]) -> (usize, usize) {
     let (mut r, mut c) = (std::usize::MAX, std::usize::MAX);
     for (i, v) in s.iter().enumerate() {
         for (j, w) in v.iter().enumerate() {
@@ -31,7 +31,7 @@ fn f(s: &Vec<Vec<char>>) -> (usize, usize) {
     (r, c)
 }
 
-fn check(s: &Vec<Vec<char>>, t: &Vec<Vec<char>>) -> Option<usize> {
+fn check(s: &[Vec<char>], t: &[Vec<char>]) -> Option<usize> {
     let (rs, cs) = f(s);
     let (rt, ct) = f(t);
     let mut res = 0;

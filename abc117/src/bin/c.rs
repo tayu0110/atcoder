@@ -13,5 +13,5 @@ fn main() {
     let mut t = x.windows(2).map(|v| v[1] - v[0]).collect::<Vec<_>>();
     t.sort();
 
-    println!("{}", t[..t.len() - (n - 1)].into_iter().sum::<i32>())
+    println!("{}", t[..t.len() - (n - 1)].iter().sum::<i32>())
 }

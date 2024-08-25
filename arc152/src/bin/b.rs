@@ -4,10 +4,8 @@ use proconio::{*, input, marker::{Chars, Bytes}};
 fn main() {
     input! {n: usize, l: usize, mut a: [usize; n]}
 
-    if n == 1 {
-        if l - a[0] < a[0] {
-            a[0] = l - a[0];
-        }
+    if n == 1 && l - a[0] < a[0] {
+        a[0] = l - a[0];
     }
 
     a.insert(0, 0);

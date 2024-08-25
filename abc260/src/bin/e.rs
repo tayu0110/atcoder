@@ -47,5 +47,5 @@ fn main() {
         res[i] += res[i-1];
         print!("{}", res[i]);
     }
-    println!("");
+    println!();
 }

@@ -13,11 +13,9 @@ fn main() {
             for dx in -3..=3 {
                 let na = a + dy;
                 let nb = b + dx;
-                if (a-na).abs() + (b-nb).abs() <= 3 {
-                    if na + nb == c + d || na - nb == c - d || (na-c).abs() + (nb-d).abs() <= 3 {
-                        println!("2");
-                        std::process::exit(0);
-                    }
+                if (a-na).abs() + (b-nb).abs() <= 3 && (na + nb == c + d || na - nb == c - d || (na-c).abs() + (nb-d).abs() <= 3) {
+                    println!("2");
+                    std::process::exit(0);
                 }
             }
         }

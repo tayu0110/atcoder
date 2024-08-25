@@ -18,7 +18,7 @@ fn main() {
                 + (1 << time.len())
                 - 1;
         let time = NaiveDateTime::from_timestamp_opt(timestamp, 0).unwrap();
-        println!("{}", time.to_string());
+        println!("{}", time);
         // let fmt = format!("{}T{}", ymd.replace("/", "-"), hms.replace(":", ":"));
         // eprintln!("fmt: {fmt}");
         // let timestamp = DateTime::parse_from_rfc3339(fmt.as_str())

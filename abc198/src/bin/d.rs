@@ -9,8 +9,7 @@ fn main() {
 
     let mut v = s
         .iter()
-        .chain(t.iter().chain(u.iter()))
-        .map(|&c| c)
+        .chain(t.iter().chain(u.iter())).copied()
         .collect::<Vec<char>>();
     v.sort();
     v.dedup();

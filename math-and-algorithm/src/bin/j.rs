@@ -2,5 +2,5 @@ use proconio::input;
 
 fn main() {
     input! {n: u128}
-    println!("{}", (1..=n).fold(1, |s, v| s * v))
+    println!("{}", (1..=n).product::<u128>())
 }

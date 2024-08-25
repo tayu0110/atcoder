@@ -49,13 +49,7 @@ fn solve(mut n: usize) -> Option<usize> {
 
     d.sort();
 
-    for nd in d {
-        if pow_mod(10, nd, n) == 1 {
-            return Some(nd);
-        }
-    }
-
-    None
+    d.into_iter().find(|&nd| pow_mod(10, nd, n) == 1)
 }
 
 fn main() {

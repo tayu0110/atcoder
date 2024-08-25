@@ -20,7 +20,7 @@ fn main() {
     while let Some(now) = nt.pop() {
         let v = &balls[now];
         let (a, b) = (v[0], v[1]);
-        for a in vec![a, b] {
+        for a in [a, b] {
             t[a].pop();
             if let Some(&last) = t[a].last() {
                 balls[last].push(a);

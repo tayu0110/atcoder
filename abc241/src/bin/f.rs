@@ -53,19 +53,17 @@ fn main() {
             c += 1;
         }
         if let Some(v) = row.get(&r) {
-            let upper = bin_search(c, &v);
+            let upper = bin_search(c, v);
             if upper < v.len() - 1 {
                 let next = *point.get(&(r, v[upper])).unwrap();
                 if dist[next][2] == usize::MAX {
                     nt.push_back((nd + 1, 2, next));
                 }
             }
-            if c > v[upper - 1] {
-                if upper > 1 {
-                    let next = *point.get(&(r, v[upper - 1])).unwrap();
-                    if dist[next][3] == usize::MAX {
-                        nt.push_back((nd + 1, 3, next));
-                    }
+            if c > v[upper - 1] && upper > 1 {
+                let next = *point.get(&(r, v[upper - 1])).unwrap();
+                if dist[next][3] == usize::MAX {
+                    nt.push_back((nd + 1, 3, next));
                 }
             }
         }
@@ -77,12 +75,10 @@ fn main() {
                     nt.push_back((nd + 1, 0, next));
                 }
             }
-            if r > v[upper - 1] {
-                if upper > 1 {
-                    let next = *point.get(&(v[upper - 1], c)).unwrap();
-                    if dist[next][1] == usize::MAX {
-                        nt.push_back((nd + 1, 1, next));
-                    }
+            if r > v[upper - 1] && upper > 1 {
+                let next = *point.get(&(v[upper - 1], c)).unwrap();
+                if dist[next][1] == usize::MAX {
+                    nt.push_back((nd + 1, 1, next));
                 }
             }
         }

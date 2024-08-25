@@ -6,7 +6,7 @@ use std::collections::{
 
 const INF: usize = 0x3f3f3f3f3f3f3f3f;
 
-fn bfs(root: usize, dist: &mut Vec<usize>, t: &Vec<Vec<usize>>) {
+fn bfs(root: usize, dist: &mut [usize], t: &[Vec<usize>]) {
     let mut nt = VecDeque::new();
     nt.push_back((root, 0));
     while let Some((now, nd)) = nt.pop_front() {
@@ -55,7 +55,7 @@ fn main() {
     let mut stack = vec![];
     dfs(root, INF, 0, max, &mut stack, &t);
 
-    let is_spine = stack.iter().map(|v| *v).collect::<HashSet<usize>>();
+    let is_spine = stack.iter().copied().collect::<HashSet<usize>>();
 
     let mut spine = HashMap::new();
     let mut leaf_dist = vec![INF; n];
@@ -79,16 +79,14 @@ fn main() {
 
     let mut doubling = vec![vec![INF; 20]; n];
     for i in 0..20 {
-        for j in (0..n).into_iter().filter(|j| !is_spine.contains(j)) {
+        for j in (0..n).filter(|j| !is_spine.contains(j)) {
             if i == 0 {
-                for to in t[j].iter().filter(|to| dist[**to] < dist[j]) {
+                if let Some(to) = t[j].iter().find(|to| dist[**to] < dist[j]) {
                     doubling[j][0] = *to;
                     break;
                 }
-            } else {
-                if doubling[j][i-1] != INF {
-                    doubling[j][i] = doubling[doubling[j][i-1]][i-1];
-                }
+            } else if doubling[j][i-1] != INF {
+                doubling[j][i] = doubling[doubling[j][i-1]][i-1];
             }
         }
     }

@@ -28,7 +28,7 @@ fn main() {
         }
 
         let mut k = 1;
-        for (_, v) in &map {
+        for v in map.values() {
             k *= *v + 1;
         }
 

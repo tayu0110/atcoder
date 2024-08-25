@@ -21,13 +21,13 @@ fn main() {
         buf
     };
 
-    let v = d.into_iter().chain(vec![-1].into_iter()).chain(c.iter().cloned()).chain(c.iter().cloned()).collect::<Vec<_>>();
+    let v = d.into_iter().chain(vec![-1]).chain(c.iter().cloned()).chain(c.iter().cloned()).collect::<Vec<_>>();
     let z = zalgorithm(&v);
 
     let k = z.into_iter().skip(n+1).take(n).enumerate().filter(|(_, k)| *k == n).map(|(i, _)| i).collect::<Vec<_>>();
     let l = k.iter().map(|i| a[*i] ^ b[0]).collect::<Vec<_>>();
 
-    k.into_iter().zip(l.into_iter()).for_each(|(k, l)| { println!("{} {}", k, l); });
+    k.into_iter().zip(l).for_each(|(k, l)| { println!("{} {}", k, l); });
 }
 
 pub fn zalgorithm(s: &[i64]) -> Vec<usize> {
@@ -36,7 +36,7 @@ pub fn zalgorithm(s: &[i64]) -> Vec<usize> {
 
     let (mut i, mut j) = (1, 0);
     while i < s.len() {
-        while i + j < s.len() && &s[j] == &s[i+j] {
+        while i + j < s.len() && s[j] == s[i+j] {
             j += 1;
         }
         z[i] = j;

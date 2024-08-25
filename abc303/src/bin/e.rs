@@ -19,7 +19,7 @@ fn rec(now: usize, par: usize, t: &Vec<Vec<usize>>, cores: &mut Vec<usize>) -> u
     }
 
     if k & 4 != 0 {
-        return 2;
+        2
     } else if k & 1 != 0 {
         cores.push(now);
         return 4;

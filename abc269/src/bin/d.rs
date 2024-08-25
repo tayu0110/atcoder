@@ -8,7 +8,7 @@ fn main() {
 
     let mut uf = UnionFind::new(n);
     for (k, (x, y)) in p.into_iter().enumerate() {
-        for (i, j) in vec![(-1, -1), (-1, 0), (0, -1), (0, 1), (1, 0), (1, 1)] {
+        for (i, j) in [(-1, -1), (-1, 0), (0, -1), (0, 1), (1, 0), (1, 1)] {
             let (nx, ny) = (x + i, y + j);
             if let Some(idx) = map.get(&(nx, ny)) {
                 uf.merge(k, *idx);
@@ -60,12 +60,10 @@ impl UnionFind {
             return false;
         }
         if self.tree[rl] > self.tree[rr] {
-            let tmp = rl;
-            rl = rr;
-            rr = tmp;
+            std::mem::swap(&mut rl, &mut rr);
         }
         self.tree[rl] += self.tree[rr];
         self.tree[rr] = rl as i32;
-        return true;
+        true
     }
 }

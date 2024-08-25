@@ -10,8 +10,8 @@ fn main() {
                 continue;
             }
             let mut cnt = 0;
-            for dx in vec![0, 1, !0] {
-                for dy in vec![0, 1, !0] {
+            for dx in [0, 1, !0] {
+                for dy in [0, 1, !0] {
                     if dx == 0 && dy == 0 {
                         continue;
                     }

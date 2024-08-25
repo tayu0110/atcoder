@@ -7,7 +7,7 @@ fn main() {
 
     if p.iter()
         .map(|v| {
-            v.into_iter()
+            v.iter()
                 .fold(0, |s, v| (s << 1) | (*v == 'o') as usize)
         })
         .fold(0, |s, v| s | v)

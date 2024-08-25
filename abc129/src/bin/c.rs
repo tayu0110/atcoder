@@ -1,7 +1,7 @@
 use proconio::*;
 use std::collections::HashSet;
 
-const MOD: usize = 1000_000_007;
+const MOD: usize = 1_000_000_007;
 
 fn main() {
     input! {n: usize, m: usize, a: [usize; m]}

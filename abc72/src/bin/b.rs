@@ -7,5 +7,5 @@ fn main() {
     for i in (0..s.len()).filter(|v| v % 2 == 0) {
         print!("{}", s[i]);
     }
-    println!("");
+    println!();
 }

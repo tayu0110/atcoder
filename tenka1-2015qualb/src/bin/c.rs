@@ -1,6 +1,6 @@
 use proconio::*;
 
-const MOD: u128 = 1000_000_007;
+const MOD: u128 = 1_000_000_007;
 
 fn main() {
     input! {l: u128}

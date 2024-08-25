@@ -16,9 +16,7 @@ fn main() {
             input! {u: u32, v: u32}
             println!(
                 "{}",
-                uf.is_same(u as usize - 1, v as usize - 1)
-                    .then_some("Yes")
-                    .unwrap_or("No")
+                if uf.is_same(u as usize - 1, v as usize - 1) { "Yes" } else { "No" }
             )
         }
     }

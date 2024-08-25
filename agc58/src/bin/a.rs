@@ -11,7 +11,7 @@ fn main() {
             println!("1");
         } else {
             println!("0");
-            println!("");
+            println!();
         }
         std::process::exit(0);
     }
@@ -43,5 +43,5 @@ fn main() {
         }
         print!("{}", res[i]);
     }
-    println!("");
+    println!();
 }

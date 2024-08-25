@@ -15,15 +15,15 @@ fn main() {
     a.sort_by_key(|a| -a.abs());
 
     let res = a[..k]
-        .into_iter()
+        .iter()
         .fold(Modint::one(), |s, v| s * Modint::from(*v));
     if a[..k].iter().filter(|&&a| a < 0).count() % 2 == 0 {
         println!("{}", res);
         return;
     }
 
-    let mut p = vec![None; 2];
-    let mut m = vec![None; 2];
+    let mut p = [None; 2];
+    let mut m = [None; 2];
     for &a in a.iter().take(k).rev() {
         if a > 0 && p[0].is_none() {
             p[0] = Some(a);

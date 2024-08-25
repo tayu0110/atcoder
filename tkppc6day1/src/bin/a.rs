@@ -8,7 +8,7 @@ fn main() {
 
     if n < 2015 || n == 2017 {
         println!("-1");
-    } else if 2015 <= n && n < 2017 {
+    } else if (2015..2017).contains(&n) {
         println!("{}", n - 2014);
     } else {
         println!("{}", n - 2015);

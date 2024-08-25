@@ -1,6 +1,6 @@
 use proconio::*;
 
-const MOD: usize = 1000_000_007;
+const MOD: usize = 1_000_000_007;
 
 fn main() {
     input! {_: usize, k: i32, s: marker::Chars}
@@ -11,7 +11,7 @@ fn main() {
         if d.abs() > k {
             None
         } else {
-            Some((d + k as i32) as usize)
+            Some((d + k) as usize)
         }
     };
     let g = |i: usize| i as i32 - k;
@@ -37,7 +37,7 @@ fn main() {
 
                 for (ni, nj) in v {
                     if let (Some(ni), Some(nj)) = (f(ni), f(nj)) {
-                        new[ni][nj] += dp[i as usize][j as usize];
+                        new[ni][nj] += dp[i][j];
                         new[ni][nj] %= MOD;
                     }
                 }

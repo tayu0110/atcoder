@@ -15,9 +15,7 @@ fn main() {
 
         println!(
             "{}",
-            (hash.get(l..r) == rev.get(n - r..n - l))
-                .then_some("Yes")
-                .unwrap_or("No")
+            if hash.get(l..r) == rev.get(n - r..n - l) { "Yes" } else { "No" }
         )
     }
 }

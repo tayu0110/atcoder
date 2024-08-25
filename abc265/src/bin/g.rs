@@ -3,7 +3,7 @@ use proconio::input;
 fn main() {
     input! {n: usize, q: usize, a: [usize; n]};
 
-    let mut st = (0..3).into_iter().fold(vec![], |mut v, _| {
+    let mut st = (0..3).fold(vec![], |mut v, _| {
         v.push(segtree::SegmentTree::new(n, 0, |l, r| l + r));
         v
     });
@@ -87,7 +87,7 @@ mod segtree {
         pub fn new(size: usize, op: fn(S, S) -> S, e: fn() -> S, id: fn() -> F, mapping: fn(F, S) -> S, composition: fn(F, F) -> F) -> Self {
             LazySegtree::from_vec(&vec![e(); size], op, e, id, mapping, composition)
         }
-        pub fn from_vec(v: &Vec<S>, op: fn(S, S) -> S, e: fn() -> S, id: fn() -> F, mapping: fn(F, S) -> S, composition: fn(F, F) -> F) -> Self {
+        pub fn from_vec(v: &[S], op: fn(S, S) -> S, e: fn() -> S, id: fn() -> F, mapping: fn(F, S) -> S, composition: fn(F, F) -> F) -> Self {
             let n = v.len();
             let (log, size) = {
                 let (mut size, mut log) = (1, 0);
@@ -207,7 +207,7 @@ mod segtree {
     pub fn range_add_range_maximum_query(size: usize) -> LazySegtree<i64, i64> {
         LazySegtree::from_vec(
             &vec![0i64; size],
-            |l, r| std::cmp::max(l, r),
+            std::cmp::max,
             || -9223372036854775808i64,
             || 0i64,
             |f, x| f + x,
@@ -217,7 +217,7 @@ mod segtree {
     pub fn range_add_range_minimum_query(size: usize) -> LazySegtree<i64, i64> {
         LazySegtree::from_vec(
             &vec![0i64; size],
-            |l, r| std::cmp::min(l, r),
+            std::cmp::min,
             || 0x7FFFFFFFFFFFFFFFi64,
             || 0i64,
             |f, x| f + x,

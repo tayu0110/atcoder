@@ -36,13 +36,11 @@ impl UnionFind {
             return false;
         }
         if self.tree[rl] > self.tree[rr] {
-            let tmp = rl;
-            rl = rr;
-            rr = tmp;
+            std::mem::swap(&mut rl, &mut rr);
         }
         self.tree[rl] += self.tree[rr];
         self.tree[rr] = rl as i32;
-        return true;
+        true
     }
 }
 
@@ -55,7 +53,7 @@ fn main() {
 
     let mut map = vec![];
     for v in c {
-        let buf = v.into_iter().fold(vec![], |mut v, nc| { v.push((nc as u8 - '0' as u8) as i32); v });
+        let buf = v.into_iter().fold(vec![], |mut v, nc| { v.push((nc as u8 - b'0') as i32); v });
         map.push(buf);
     }
 

@@ -19,10 +19,8 @@ fn main() {
         } else if t == 2 {
             input! {x: usize}
             set.remove(&x);
-        } else {
-            if let Some(&r) = set.iter().next() {
-                res.push(r);
-            }
+        } else if let Some(&r) = set.iter().next() {
+            res.push(r);
         }
     }
 

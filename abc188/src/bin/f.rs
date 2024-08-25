@@ -5,6 +5,5 @@ fn main() {
 
     if x >= y {
         println!("{}", x - y);
-        return;
     }
 }

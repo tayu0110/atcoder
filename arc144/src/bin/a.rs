@@ -19,11 +19,11 @@ fn main() {
 
     s.reverse();
     if m == 1 {
-        s[0] = 10 + s[0];
+        s[0] += 10;
     }
 
     for w in s {
         print!("{}", w / 2);
     }
-    println!("");
+    println!();
 }

@@ -11,7 +11,7 @@ fn main() {
 
     for i in 0..h {
         for j in 0..w {
-            for (dx, dy) in vec![(0, 1), (1, 0)] {
+            for (dx, dy) in [(0, 1), (1, 0)] {
                 let (x, y) = (j + dx, i + dy);
                 if x >= w || y >= h {
                     continue;
@@ -27,7 +27,7 @@ fn main() {
                 } else {
                     b[0] += a[0];
                     b[1] += a[0] + a[1];
-                    b[2] += a[0] + a[1] * Modint::raw(2) + a[2];
+                    b[2] += a[0] + a[1] * Modint::new(2) + a[2];
                 }
 
                 dp[i][j] = a;

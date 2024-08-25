@@ -1,3 +1,3 @@
 fn main() {
-    print!("{}", main as u64 % 7)
+    print!("{}", main as usize % 7)
 }

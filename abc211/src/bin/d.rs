@@ -2,7 +2,7 @@
 use proconio::{*, input, marker::{Chars, Bytes}};
 
 fn main() {
-    const MOD: usize = 1000_000_007;
+    const MOD: usize = 1_000_000_007;
     input! {n: usize, m: usize, p: [(usize, usize); m]}
 
     let mut t = vec![vec![]; n];

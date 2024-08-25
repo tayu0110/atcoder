@@ -45,6 +45,7 @@ name = "montgomery-modint"
 version = "0.1.0"
 dependencies = [
  "modint-common",
+ "simple-rand",
  "zero-one",
 ]
 
@@ -64,6 +65,10 @@ dependencies = [
  "static-modint",
  "zero-one",
 ]
+
+[[package]]
+name = "simple-rand"
+version = "0.1.0"
 
 [[package]]
 name = "static-modint"

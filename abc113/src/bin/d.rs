@@ -1,6 +1,6 @@
 use proconio::*;
 
-const MOD: usize = 1000_000_007;
+const MOD: usize = 1_000_000_007;
 
 fn main() {
     input! {h: usize, w: usize, k: usize}

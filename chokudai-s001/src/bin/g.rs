@@ -6,7 +6,7 @@ fn main() {
         "{}",
         a.iter().fold(0, |s, v| {
             v.iter().fold(s, |s, v| {
-                (s * 10 + (*v as usize - b'0' as usize)) % 1000_000_007
+                (s * 10 + (*v as usize - b'0' as usize)) % 1_000_000_007
             })
         })
     )

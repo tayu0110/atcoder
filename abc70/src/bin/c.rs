@@ -14,5 +14,5 @@ fn lcm(x: usize, y: usize) -> usize {
 
 fn main() {
     input! {n: usize, t: [usize; n]}
-    println!("{}", t.into_iter().fold(1, |s, v| lcm(s, v)))
+    println!("{}", t.into_iter().fold(1, lcm))
 }

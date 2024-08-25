@@ -13,12 +13,12 @@ fn main() {
         }
         map.insert((px, py), nd);
 
-        for (dx, dy) in vec![(1, 1), (0, 1), (-1, 1), (1, 0), (-1, 0), (0, -1)] {
+        for (dx, dy) in [(1, 1), (0, 1), (-1, 1), (1, 0), (-1, 0), (0, -1)] {
             let (nx, ny) = (px + dx, py + dy);
             if map.contains_key(&(nx, ny)) {
                 continue;
             }
-            if nx < -210 || nx > 210 || ny < -210 || ny > 210 {
+            if !(-210..=210).contains(&nx) || !(-210..=210).contains(&ny) {
                 continue;
             }
             if set.contains(&(nx, ny)) {

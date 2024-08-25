@@ -50,8 +50,8 @@ fn main() {
 
     eprintln!("{:?}", t);
 
-    let mut min = Rational::new(std::i64::MAX >> 10, 1);
-    let mut max = Rational::new(std::i64::MIN >> 10, 1);
+    let mut _min = Rational::<i64>::new(i64::MAX >> 10, 1);
+    let mut _max = Rational::<i64>::new(i64::MIN >> 10, 1);
     let len = t.len();
     for i in 1usize..1 << len {
         if i.count_ones() != 3 {
@@ -67,27 +67,23 @@ fn main() {
             }
         }
 
-        let f = Rational::new(num, den);
+        // let f = Rational::<i64>::new(num, den);
         // eprintln!("num: {}", num);
         // eprintln!("den: {}", den);
 
-        if (min.numerator as i128 * f.denominator as i128)
-            > min.denominator as i128 * f.numerator as i128
-        {
-            min = f;
-        }
-        if (max.numerator as i128 * f.denominator as i128)
-            < max.denominator as i128 * f.numerator as i128
-        {
-            max = f;
-        }
+        // if (min.num as i128 * f.den as i128) > min.den as i128 * f.num as i128 {
+        //     min = f;
+        // }
+        // if (max.num as i128 * f.den as i128) < max.den as i128 * f.num as i128 {
+        //     max = f;
+        // }
     }
 
-    eprintln!("{}", min.numerator);
-    eprintln!("{}", min.denominator);
-    eprintln!("{}", max.numerator);
-    eprintln!("{}", max.denominator);
+    // eprintln!("{}", min.num);
+    // eprintln!("{}", min.den);
+    // eprintln!("{}", max.num);
+    // eprintln!("{}", max.den);
 
-    println!("{}", min.numerator as f64 / min.denominator as f64);
-    println!("{}", max.numerator as f64 / max.denominator as f64);
+    // println!("{}", min.num as f64 / min.den as f64);
+    // println!("{}", max.num as f64 / max.den as f64);
 }

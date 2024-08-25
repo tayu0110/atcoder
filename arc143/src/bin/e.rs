@@ -35,7 +35,7 @@ fn main() {
         ck[now] = true;
         res.push(now);
         for to in &t[now] {
-            s[*to] = (s[*to] as u8 ^ 'W' as u8 ^ 'B' as u8) as char;
+            s[*to] = (s[*to] as u8 ^ b'W' ^ b'B') as char;
             if s[*to] == 'W' && !ck[*to] {
                 nt.push(std::cmp::Reverse(*to));
             }

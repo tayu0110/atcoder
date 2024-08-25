@@ -1,7 +1,11 @@
 #[allow(unused_imports)]
-use proconio::{input, marker::{Chars, Bytes}, source::line::LineSource};
-#[allow(unused_imports)]
 use itertools::Itertools;
+#[allow(unused_imports)]
+use proconio::{
+    input,
+    marker::{Bytes, Chars},
+    source::line::LineSource,
+};
 
 fn main() {
     input! {h: usize, w: usize, s: [Chars; h]}
@@ -16,7 +20,7 @@ fn main() {
         }
         dist[r][c] = nd;
 
-        for (dy, dx) in vec![(0, 1), (1, 0), (0, -1), (-1, 0)] {
+        for (dy, dx) in [(0, 1), (1, 0), (0, -1), (-1, 0)] {
             let nr = r as i32 + dy;
             let nc = c as i32 + dx;
 
@@ -32,8 +36,8 @@ fn main() {
             nt.push(std::cmp::Reverse((nd, nr as usize, nc as usize)));
         }
 
-        for dy in vec![-2, -1, 0, 1, 2] {
-            for dx in vec![-2, -1, 0, 1, 2] {
+        for dy in [-2, -1, 0, 1, 2] {
+            for dx in [-2, -1, 0, 1, 2] {
                 if (dy as i32).abs() + (dx as i32).abs() == 4 {
                     continue;
                 }
@@ -46,10 +50,10 @@ fn main() {
                 if dist[nr as usize][nc as usize] != std::usize::MAX {
                     continue;
                 }
-                nt.push(std::cmp::Reverse((nd+1, nr as usize, nc as usize)));
+                nt.push(std::cmp::Reverse((nd + 1, nr as usize, nc as usize)));
             }
         }
     }
 
-    println!("{}", dist[h-1][w-1]);
+    println!("{}", dist[h - 1][w - 1]);
 }

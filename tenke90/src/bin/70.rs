@@ -34,7 +34,7 @@ fn search(v: &Vec<i64>) -> i64 {
         // eprintln!("t: {}, d: {}", t, d);
         res = std::cmp::min(res, d);
     }
-    res as i64
+    res
 }
 
 fn main() {

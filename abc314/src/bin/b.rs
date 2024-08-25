@@ -23,7 +23,7 @@ fn main() {
 
     if t.is_empty() {
         println!("0");
-        println!("");
+        println!();
         return;
     }
 

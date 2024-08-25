@@ -28,13 +28,11 @@ fn main() {
 
     for i in 0..9 {
         for j in 0..9 {
-            for (dx, dy) in vec![(1usize, 2usize), (2, 1)] {
-                for (dx, dy) in vec![
-                    (dx, dy),
+            for (dx, dy) in [(1usize, 2usize), (2, 1)] {
+                for (dx, dy) in [(dx, dy),
                     (dx.wrapping_neg(), dy),
                     (dx, dy.wrapping_neg()),
-                    (dx.wrapping_neg(), dy.wrapping_neg()),
-                ] {
+                    (dx.wrapping_neg(), dy.wrapping_neg())] {
                     let (x, y) = (dx.wrapping_add(i), dy.wrapping_add(j));
                     if x < 9 && y < 9 && s[i][j] == s[x][y] {
                         println!("No");

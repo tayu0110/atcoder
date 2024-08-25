@@ -22,10 +22,10 @@ fn main() {
                 if t[x][y][z] == std::u32::MAX {
                     continue;
                 }
-                for dx in vec![!0, 1] {
-                    for dy in vec![!0, 1] {
-                        for dz in vec![!0, 1] {
-                            for (dx, dy, dz) in vec![(dx, 0, 0), (0, dy, 0), (0, 0, dz)] {
+                for dx in [!0, 1] {
+                    for dy in [!0, 1] {
+                        for dz in [!0, 1] {
+                            for (dx, dy, dz) in [(dx, 0, 0), (0, dy, 0), (0, 0, dz)] {
                                 let (nx, ny, nz) =
                                     (x.wrapping_add(dx), y.wrapping_add(dy), z.wrapping_add(dz));
 

@@ -8,7 +8,7 @@ fn dfs(now: usize, par: usize, res: &mut [u32], t: &Vec<Vec<u32>>) -> u32 {
             continue;
         }
 
-        rank = rank.max(dfs(to as usize, now as usize, res, t) + 1);
+        rank = rank.max(dfs(to as usize, now, res, t) + 1);
     }
 
     res[now] = rank;

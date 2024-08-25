@@ -17,6 +17,6 @@ fn main() {
         res[c[i].1] = i + 1;
     }
 
-    println!("{}", res[0..n].to_vec().into_iter().join(" "));
-    println!("{}", res[n..].to_vec().into_iter().join(" "));
+    println!("{}", res[0..n].iter().copied().join(" "));
+    println!("{}", res[n..].iter().copied().join(" "));
 }

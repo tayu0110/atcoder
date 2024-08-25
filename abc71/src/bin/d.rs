@@ -26,12 +26,10 @@ fn main() {
                 } else {
                     dp[i] = dp[i-1];
                 }
+            } else if ps == pt {
+                dp[i] = dp[i-1] * 2;
             } else {
-                if ps == pt {
-                    dp[i] = dp[i-1] * 2;
-                } else {
-                    dp[i] = dp[i-1] * 3;
-                }
+                dp[i] = dp[i-1] * 3;
             }
         }
 

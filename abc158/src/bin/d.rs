@@ -19,12 +19,10 @@ fn main() {
                 } else {
                     res.push_back(c);
                 }
+            } else if f == 1 {
+                res.push_back(c);
             } else {
-                if f == 1 {
-                    res.push_back(c);
-                } else {
-                    res.push_front(c);
-                }
+                res.push_front(c);
             }
         }
     }

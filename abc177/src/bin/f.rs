@@ -8,7 +8,7 @@ fn main() {
     let p = p.into_iter().map(|(a, b)| (a-1, b-1)).collect::<Vec<(_, _)>>();
 
     let mut map = (0..w).map(|i| (i, i)).collect::<std::collections::BTreeMap<_, _>>();
-    let mut st = segtree::SegmentTree::new(w, std::usize::MAX, |l, r| std::cmp::min(l, r));
+    let mut st = segtree::SegmentTree::new(w, std::usize::MAX, std::cmp::min);
     for i in 0..w {
         st.update(i, 0);
     }

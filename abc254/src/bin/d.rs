@@ -11,7 +11,7 @@ impl<K, V> MapWrapper<K, V> where K: Ord {
     fn is_empty(&self) -> bool { self.map.is_empty() }
     fn first(&self) -> Option<(&K, &V)> { if self.is_empty() { None } else { self.map.iter().next() } }
     fn first_mut(&mut self) -> Option<(&K, &mut V)> { if self.is_empty() { None } else { self.map.iter_mut().next() } }
-    fn last(&self) -> Option<(&K, &V)> { if self.is_empty() { None } else { self.map.iter().rev().next() } }
+    fn last(&self) -> Option<(&K, &V)> { if self.is_empty() { None } else { self.map.iter().next_back() } }
     fn last_mut(&mut self) -> Option<(&K, &mut V)> { if self.is_empty() { None } else { self.map.iter_mut().next() } }
     fn iter(&self) -> std::collections::btree_map::Iter<'_, K, V> { self.map.iter() }
     fn iter_mut(&mut self) -> std::collections::btree_map::IterMut<'_, K, V> { self.map.iter_mut() }
@@ -21,7 +21,7 @@ impl<K, V> std::ops::Index<K> for MapWrapper<K, V> where K: Ord {
     fn index(&self, index: K) -> &Self::Output { &self.map[&index] }
 }
 impl<K, V> std::ops::IndexMut<K> for MapWrapper<K, V> where K: Ord, V: Default {
-    fn index_mut(&mut self, index: K) -> &mut Self::Output { self.map.entry(index).or_insert(Default::default()) }
+    fn index_mut(&mut self, index: K) -> &mut Self::Output { self.map.entry(index).or_default() }
 }
 
 const BIT_SIZE: usize = 128;
@@ -39,7 +39,7 @@ impl Bitset {
 impl PartialEq for Bitset { fn eq(&self, other: &Self) -> bool { for (v, w) in self.bits.iter().zip(other.bits.iter()) { if v != w { return false; } } true } }
 impl Eq for Bitset { }
 impl PartialOrd for Bitset {
-    fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> { self.bits.partial_cmp(&other.bits) }
+    fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> { Some(self.cmp(other)) }
     fn lt(&self, other: &Self) -> bool { for (v, w) in self.bits.iter().zip(other.bits.iter()) { if v != w { return v < w; } } false }
     fn le(&self, other: &Self) -> bool { for (v, w) in self.bits.iter().zip(other.bits.iter()) { if v != w { return v < w; } } true }
     fn gt(&self, other: &Self) -> bool { for (v, w) in self.bits.iter().zip(other.bits.iter()) { if v != w { return v > w; } } false }

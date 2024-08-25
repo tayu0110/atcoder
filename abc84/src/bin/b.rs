@@ -10,11 +10,9 @@ fn main() {
                 println!("No");
                 std::process::exit(0);
             }
-        } else {
-            if !c.is_ascii_digit() {
-                println!("No");
-                std::process::exit(0);
-            }
+        } else if !c.is_ascii_digit() {
+            println!("No");
+            std::process::exit(0);
         }
     }
 

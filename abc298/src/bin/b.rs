@@ -18,10 +18,8 @@ fn main() {
         let mut bad = false;
         for i in 0..n {
             for j in 0..n {
-                if a[i][j] == 1 {
-                    if b[i][j] == 0 {
-                        bad = true;
-                    }
+                if a[i][j] == 1 && b[i][j] == 0 {
+                    bad = true;
                 }
             }
         }

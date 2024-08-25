@@ -6,7 +6,7 @@ use proconio::{
 };
 
 fn rec(p: i32, a: i32, b: i32, c: i32, na: i32, nb: i32, nc: i32, l: &[i32]) -> i32 {
-    if l.len() == 0 {
+    if l.is_empty() {
         if na == 0 || nb == 0 || nc == 0 {
             return std::i32::MAX;
         }

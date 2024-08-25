@@ -49,7 +49,7 @@ fn main() {
             while buf.len() < len-1 {
                 buf.push('9');
             }
-            if buf.len() > 0 {
+            if !buf.is_empty() {
                 buf.parse::<usize>().unwrap()
             } else {
                 0

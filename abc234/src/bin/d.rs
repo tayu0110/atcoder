@@ -6,7 +6,7 @@ use itertools::Itertools;
 fn main() {
     input! {n: usize, k: usize, p: [usize; n]}
 
-    let mut nt = p.iter().take(k).cloned().map(|f| std::cmp::Reverse(f)).collect::<std::collections::BinaryHeap<std::cmp::Reverse<_>>>();
+    let mut nt = p.iter().take(k).cloned().map(std::cmp::Reverse).collect::<std::collections::BinaryHeap<std::cmp::Reverse<_>>>();
     println!("{}", p.iter().take(k).min().unwrap());
     for i in k..n {
         let std::cmp::Reverse(f) = nt.pop().unwrap();

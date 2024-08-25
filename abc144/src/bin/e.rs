@@ -8,7 +8,7 @@ fn main() {
     a.sort_by_key(|v| std::cmp::Reverse(*v));
     f.sort();
 
-    let v = f.into_iter().zip(a.into_iter()).map(|(f, a)| (f, a)).collect_vec();
+    let v = f.into_iter().zip(a).collect_vec();
 
     let (mut l, mut r) = (-1, 0x3f3f3f3f3f3f3f3f);
     while r - l > 1 {

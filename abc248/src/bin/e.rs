@@ -11,13 +11,13 @@ fn main() {
     }
 
     let mut res = 0;
-    let mut set = BTreeSet::new();
+    // let mut set = BTreeSet::new();
     let mut nan = HashSet::new();
     for i in 0..n {
         for j in i + 1..n {
             let (x, y) = p[i];
             let (nx, ny) = p[j];
-            let a = Rational::new(ny - y, nx - x);
+            let a = Rational::<i64>::new(ny - y, nx - x);
             if a.is_nan() {
                 if nan.contains(&x) {
                     continue;
@@ -28,11 +28,11 @@ fn main() {
                 }
                 continue;
             }
-            let b = Rational::new(y, 1) - a * Rational::new(x, 1);
-            if set.contains(&(a, b)) {
-                continue;
-            }
-            set.insert((a, b));
+            let b = Rational::<i64>::new(y, 1) - a * Rational::<i64>::new(x, 1);
+            // if set.contains(&(a, b)) {
+            //     continue;
+            // }
+            // set.insert((a, b));
 
             let mut cnt = 2;
             for k in 0..n {
@@ -41,8 +41,8 @@ fn main() {
                 }
 
                 let (px, py) = p[k];
-                let ry = a * Rational::new(px, 1) + b;
-                if ry == Rational::new(py, 1) {
+                let ry = a * Rational::<i64>::new(px, 1) + b;
+                if ry == Rational::<i64>::new(py, 1) {
                     cnt += 1;
                 }
             }

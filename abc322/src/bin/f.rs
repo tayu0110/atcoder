@@ -41,22 +41,22 @@ impl MapMonoid for RangeFlipRangeLongestTerm {
 fn main() {
     input! {_: usize, q: usize, s: marker::Chars}
 
-    let mut st = LazySegtree::<RangeFlipRangeLongestTerm>::from_vec(
-        &s.into_iter()
-            .map(|c| {
-                let c = c as u32 - b'0' as u32;
-                (c, c, c, 1, 1 - c, 1 - c, 1 - c)
-            })
-            .collect(),
-    );
-    for _ in 0..q {
-        input! {c: u8, l: usize, r: usize}
+    // let mut st = LazySegtree::<RangeFlipRangeLongestTerm>::from_vec(
+    //     &s.into_iter()
+    //         .map(|c| {
+    //             let c = c as u32 - b'0' as u32;
+    //             (c, c, c, 1 as u32, 1 - c, 1 - c, 1 - c)
+    //         })
+    //         .collect(),
+    // );
+    // for _ in 0..q {
+    //     input! {c: u8, l: usize, r: usize}
 
-        if c == 1 {
-            st.apply_range(l - 1, r, true);
-        } else {
-            let res = st.prod(l - 1, r);
-            println!("{}", res.0)
-        }
-    }
+    //     if c == 1 {
+    //         st.apply_range(l - 1, r, true);
+    //     } else {
+    //         let res = st.prod(l - 1, r);
+    //         println!("{}", res.0)
+    //     }
+    // }
 }

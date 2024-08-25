@@ -4,7 +4,7 @@ fn main() {
     input! {n: usize, a: usize, b: usize, h: [usize; n]}
 
     let diff = a - b;
-    let (mut l, mut r) = (0, 1000_000_010);
+    let (mut l, mut r) = (0, 1_000_000_010);
     while r - l > 1 {
         let m = (r + l) / 2;
         let mut t = vec![];

@@ -30,10 +30,8 @@ fn main() {
             } else {
                 sum += max;
             }
-        } else {
-            if let Some(k) = rem.pop() {
-                sum += k;
-            }
+        } else if let Some(k) = rem.pop() {
+            sum += k;
         }
 
         res.push(sum);

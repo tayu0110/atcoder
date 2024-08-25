@@ -7,11 +7,9 @@ fn main() {
     for i in 0..len {
         if s[i] == 'B' {
             for j in i + 1..len {
-                if s[j] == 'B' {
-                    if i % 2 == j % 2 {
-                        println!("No");
-                        return;
-                    }
+                if s[j] == 'B' && i % 2 == j % 2 {
+                    println!("No");
+                    return;
                 }
             }
         }

@@ -13,7 +13,7 @@ fn main() {
         return;
     }
 
-    let (mut l, mut r) = (0, 1000_000_000_000);
+    let (mut l, mut r) = (0, 1_000_000_000_000);
     while r - l > 1 {
         let t = (r + l) / 2;
         let cnt = 1 + (m - 1) * (t - 1) + m;

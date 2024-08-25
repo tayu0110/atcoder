@@ -10,11 +10,9 @@ fn main() {
         println!("T")
     } else if a > t {
         println!("A")
+    } else if s[n - 1] == 'T' {
+        println!("A")
     } else {
-        if s[n - 1] == 'T' {
-            println!("A")
-        } else {
-            println!("T")
-        }
+        println!("T")
     }
 }

@@ -19,7 +19,7 @@ fn main() {
     let mut base = vec![];
     let mut a = vec![];
     for i in 0u32..1 << n {
-        if (i as u32).count_ones() != k {
+        if i.count_ones() != k {
             continue;
         }
 

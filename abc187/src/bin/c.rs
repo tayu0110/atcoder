@@ -8,8 +8,8 @@ fn main() {
     let mut ex = HashSet::new();
     let mut nex = HashSet::new();
     for s in s {
-        if s.starts_with("!") {
-            ex.insert(s[1..].to_string());
+        if let Some(rem) = s.strip_prefix('!') {
+            ex.insert(rem.to_string());
         } else {
             nex.insert(s);
         }
@@ -17,7 +17,7 @@ fn main() {
 
     let un = ex.intersection(&nex).cloned().collect::<Vec<_>>();
 
-    if un.len() > 0 {
+    if !un.is_empty() {
         println!("{}", un[0])
     } else {
         println!("satisfiable")

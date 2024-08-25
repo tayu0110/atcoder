@@ -8,7 +8,7 @@ fn main() {
     input! {n: u64}
 
     let fact = factorize(n);
-    let mut t = vec![0; 6];
+    let mut t = [0; 6];
     for &f in &fact {
         if f != 2 && f != 3 && f != 5 {
             println!("0");

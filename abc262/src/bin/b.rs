@@ -27,10 +27,8 @@ fn main() {
                 if *k <= *j {
                     continue;
                 }
-                if !t[*k].is_empty() {
-                    if let Ok(_) = t[*k].binary_search(&i) {
-                        res += 1;
-                    }
+                if !t[*k].is_empty() && t[*k].binary_search(&i).is_ok() {
+                    res += 1;
                 }
             }
         }

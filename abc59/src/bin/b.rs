@@ -7,13 +7,11 @@ fn main() {
         println!("GREATER")
     } else if a.len() < b.len() {
         println!("LESS")
+    } else if a > b {
+        println!("GREATER")
+    } else if a < b {
+        println!("LESS")
     } else {
-        if a > b {
-            println!("GREATER")
-        } else if a < b {
-            println!("LESS")
-        } else {
-            println!("EQUAL")
-        }
+        println!("EQUAL")
     }
 }

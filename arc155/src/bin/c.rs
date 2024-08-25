@@ -25,7 +25,7 @@ fn solve(a: &[usize], b: &[usize]) -> bool {
         return true;
     }
 
-    if !check(&a, &b) {
+    if !check(a, b) {
         return false;
     }
 
@@ -63,10 +63,8 @@ fn solve(a: &[usize], b: &[usize]) -> bool {
                     if !check(&na, &nb) {
                         return false;
                     }
-                } else {
-                    if na != nb {
-                        return false;
-                    }
+                } else if na != nb {
+                    return false;
                 }
 
                 na = vec![];
@@ -81,10 +79,8 @@ fn solve(a: &[usize], b: &[usize]) -> bool {
             if !check(&na, &nb) {
                 return false;
             }
-        } else {
-            if na != nb {
-                return false;
-            }
+        } else if na != nb {
+            return false;
         }
     }
 

@@ -15,7 +15,7 @@ fn main() {
 
     let mut nt = x.into_iter().enumerate().map(|(i, x)| std::cmp::Reverse((x, i))).collect::<std::collections::BinaryHeap<_>>();
 
-    for (_i, _v) in d.into_iter().enumerate() {
+    for _v in d.into_iter() {
         if let Some(std::cmp::Reverse((_now, _j))) = nt.pop() {
 
         }

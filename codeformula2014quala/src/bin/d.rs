@@ -1,6 +1,6 @@
 use proconio::*;
 
-const S: &'static str = "1234567890abcdefghijklmnopqrstuvwxyz";
+const S: &str = "1234567890abcdefghijklmnopqrstuvwxyz";
 
 fn main() {
     input! {s: marker::Chars, k: marker::Chars}

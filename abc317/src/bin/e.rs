@@ -1,7 +1,7 @@
 use proconio::*;
 use std::collections::VecDeque;
 
-fn resolve(a: &mut Vec<Vec<char>>) {
+fn resolve(a: &mut [Vec<char>]) {
     const D: [(usize, usize); 4] = [(0, 1), (1, 0), (0, !0), (!0, 0)];
     let h = a.len();
     let w = a[0].len();
@@ -70,7 +70,7 @@ fn main() {
             continue;
         }
         reached[r][c] = nd;
-        for (dx, dy) in vec![(0usize, 1usize), (1, 0), (0, !0), (!0, 0)] {
+        for (dx, dy) in [(0usize, 1usize), (1, 0), (0, !0), (!0, 0)] {
             let (nr, nc) = (r.wrapping_add(dy), c.wrapping_add(dx));
 
             if nr < h && nc < w && a[nr][nc] != '#' && reached[nr][nc] == usize::MAX {

@@ -3,7 +3,7 @@ use std::{cmp::Reverse, collections::BinaryHeap};
 
 fn main() {
     input! {n: usize, k: usize, p: [(usize, usize); n]}
-    let mut nt = p.into_iter().map(|p| Reverse(p)).collect::<BinaryHeap<_>>();
+    let mut nt = p.into_iter().map(Reverse).collect::<BinaryHeap<_>>();
 
     let mut res = 0;
     for _ in 0..k {

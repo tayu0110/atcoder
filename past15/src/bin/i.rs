@@ -4,7 +4,7 @@ use proconio::*;
 fn main() {
     input! {n: usize, k: usize, a: [u64; n]}
 
-    let mut cnt = vec![0; 1000_010];
+    let mut cnt = vec![0; 1_000_010];
     for a in a {
         for d in divisors_enumeration(a) {
             cnt[d as usize] += 1;

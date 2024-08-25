@@ -7,5 +7,5 @@ fn main() {
     for (i, p) in p.into_iter().enumerate() {
         q[p] = i + 1;
     }
-    println!("{}", q[1..].into_iter().join(" "))
+    println!("{}", q[1..].iter().join(" "))
 }

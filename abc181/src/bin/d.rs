@@ -24,7 +24,7 @@ fn main() {
         return;
     }
 
-    let mut v = vec![0; 10];
+    let mut v = [0; 10];
 
     for c in s {
         v[c] += 1;

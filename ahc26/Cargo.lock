@@ -92,6 +92,7 @@ name = "flow"
 version = "0.1.0"
 dependencies = [
  "numeric",
+ "zero-one",
 ]
 
 [[package]]
@@ -163,6 +164,7 @@ name = "montgomery-modint"
 version = "0.1.0"
 dependencies = [
  "modint-common",
+ "simple-rand",
  "zero-one",
 ]
 
@@ -275,6 +277,7 @@ dependencies = [
  "convolution",
  "montgomery-modint",
  "number-theoretic-transform",
+ "zero-one",
 ]
 
 [[package]]
@@ -418,6 +421,7 @@ dependencies = [
 name = "string"
 version = "0.1.0"
 dependencies = [
+ "segtree",
  "simple-rand",
 ]
 
@@ -455,6 +459,9 @@ version = "0.1.0"
 [[package]]
 name = "utility"
 version = "0.1.0"
+dependencies = [
+ "zero-one",
+]
 
 [[package]]
 name = "wasi"

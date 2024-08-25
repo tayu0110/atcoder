@@ -21,17 +21,15 @@ fn main() {
                 next[p] = i+1;
                 next[i+1] = i;
             }
+        } else if next[i] == std::usize::MAX {
+            next[i] = i+1;
+            prev[i+1] = i;
         } else {
-            if next[i] == std::usize::MAX {
-                next[i] = i+1;
-                prev[i+1] = i;
-            } else {
-                let n = next[i];
-                next[i] = i+1;
-                next[i+1] = n;
-                prev[n] = i+1;
-                prev[i+1] = i;
-            }
+            let n = next[i];
+            next[i] = i+1;
+            next[i+1] = n;
+            prev[n] = i+1;
+            prev[i+1] = i;
         }
     }
 

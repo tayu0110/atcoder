@@ -66,7 +66,7 @@ fn main() {
 
     let mut num_l = vec![[0; 6]; n];
     for v in &l {
-        for (i, &v) in v.into_iter().enumerate() {
+        for (i, &v) in v.iter().enumerate() {
             num_l[i][v] += 1;
         }
     }

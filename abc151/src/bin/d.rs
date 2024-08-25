@@ -2,14 +2,14 @@ use std::collections::VecDeque;
 
 use proconio::*;
 
-fn solve(r: usize, c: usize, s: &Vec<Vec<char>>) -> usize {
+fn solve(r: usize, c: usize, s: &[Vec<char>]) -> usize {
     let (h, w) = (s.len(), s[0].len());
     let mut dist = vec![vec![std::usize::MAX; w]; h];
     dist[r][c] = 0;
     let mut nt = VecDeque::new();
     nt.push_back((r, c));
     while let Some((r, c)) = nt.pop_front() {
-        for (dx, dy) in vec![(0, 1), (1, 0), (0, !0), (!0, 0)] {
+        for (dx, dy) in [(0, 1), (1, 0), (0, !0), (!0, 0)] {
             let nr = r.wrapping_add(dy);
             let nc = c.wrapping_add(dx);
 

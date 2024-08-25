@@ -9,11 +9,9 @@ fn main() {
         } else {
             println!("No")
         }
+    } else if y - x <= 2 {
+        println!("Yes")
     } else {
-        if y - x <= 2 {
-            println!("Yes")
-        } else {
-            println!("No")
-        }
+        println!("No")
     }
 }

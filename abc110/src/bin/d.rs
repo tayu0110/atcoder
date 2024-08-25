@@ -42,12 +42,12 @@ fn main() {
 
     let com = combination::<Mod1000000007>(n as u32 + 10);
     let mut res = M::zero();
-    for i in 1..=f.len() {
+    for (i, f) in dp.iter().enumerate().skip(1).take(f.len()) {
         if i > n {
             break;
         }
 
-        res += com(n as u32, i as u32) * dp[i][0];
+        res += com(n as u32, i as u32) * f[0];
     }
 
     println!("{}", res);

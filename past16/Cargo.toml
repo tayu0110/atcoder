@@ -3,31 +3,38 @@ name = "past16"
 version = "0.1.0"
 edition = "2021"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [dependencies]
 ac-library-rs = "=0.1.1"
-convolution = { version = "0.1.0", path = "../../tayu-procon/convolution" }
-fenwick-tree = { version = "0.1.0", path = "../../tayu-procon/fenwick-tree" }
-flow = { version = "0.1.0", path = "../../tayu-procon/flow" }
-geometry = { version = "0.1.0", path = "../../tayu-procon/geometry" }
-graph = { version = "0.1.0", path = "../../tayu-procon/graph" }
+bitset = { git = "https://github.com/tayu0110/tayu-procon.git", package = "bitset" }
+complex = { git = "https://github.com/tayu0110/tayu-procon.git", package = "complex" }
+convolution = { git = "https://github.com/tayu0110/tayu-procon.git", version = "0.1.0" }
+ds = { git = "https://github.com/tayu0110/tayu-procon.git", package = "ds", features = [
+  "full",
+] }
+fenwick-tree = { git = "https://github.com/tayu0110/tayu-procon.git", package = "fenwick-tree" }
+flow = { git = "https://github.com/tayu0110/tayu-procon.git", package = "flow" }
+geometry = { git = "https://github.com/tayu0110/tayu-procon.git", package = "geometry" }
+graph = { git = "https://github.com/tayu0110/tayu-procon.git", package = "graph" }
+iolib = { version = "0.1.0", path = "../../tayu-procon/iolib" }
 itertools = "=0.11.0"
-math = { version = "0.1.0", path = "../../tayu-procon/math" }
-mincost-flow = { version = "0.1.0", path = "../../tayu-procon/mincost-flow" }
-montgomery-modint = { version = "0.1.0", path = "../../tayu-procon/modint/montgomery-modint" }
+math = { git = "https://github.com/tayu0110/tayu-procon.git", package = "math" }
+matrix = { git = "https://github.com/tayu0110/tayu-procon.git", package = "matrix" }
+mincost-flow = { git = "https://github.com/tayu0110/tayu-procon.git", package = "mincost-flow" }
+montgomery-modint = { git = "https://github.com/tayu0110/tayu-procon.git", package = "montgomery-modint" }
 num = "=0.4.1"
+ordered-float = "4.2.0"
 permutohedron = "=0.2.4"
-polynomial = { version = "0.1.0", path = "../../tayu-procon/polynomial" }
+polynomial = { git = "https://github.com/tayu0110/tayu-procon.git", package = "polynomial" }
 proconio = { version = "=0.4.5", features = ["derive"] }
 rand = "=0.8.5"
-rational = { version = "0.1.0", path = "../../tayu-procon/rational" }
+rational = { git = "https://github.com/tayu0110/tayu-procon.git", package = "rational" }
 regex = "=1.9.1"
 rustc-hash = "=1.1.0"
-segtree = { version = "0.1.0", path = "../../tayu-procon/segtree" }
-static-modint = { version = "0.1.0", path = "../../tayu-procon/modint/static-modint" }
-string = { version = "0.1.0", path = "../../tayu-procon/string" }
-suffix-array = { version = "0.1.0", path = "../../tayu-procon/suffix-array" }
+segtree = { git = "https://github.com/tayu0110/tayu-procon.git", package = "segtree" }
+static-modint = { git = "https://github.com/tayu0110/tayu-procon.git", package = "static-modint" }
+string = { git = "https://github.com/tayu0110/tayu-procon.git", package = "string" }
+suffix-array = { git = "https://github.com/tayu0110/tayu-procon.git", package = "suffix-array" }
 superslice = "=1.0.0"
-unionfind = { version = "0.1.0", path = "../../tayu-procon/unionfind" }
-utility = { version = "0.1.0", path = "../../tayu-procon/utility" }
+unionfind = { git = "https://github.com/tayu0110/tayu-procon.git", package = "unionfind" }
+utility = { git = "https://github.com/tayu0110/tayu-procon.git", package = "utility" }
+wavelet-matrix = { git = "https://github.com/tayu0110/tayu-procon.git", package = "wavelet-matrix" }

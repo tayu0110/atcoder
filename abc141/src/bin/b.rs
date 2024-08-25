@@ -10,11 +10,9 @@ fn main() {
                 println!("No");
                 std::process::exit(0);
             }
-        } else {
-            if c == 'R' {
-                println!("No");
-                std::process::exit(0);
-            }
+        } else if c == 'R' {
+            println!("No");
+            std::process::exit(0);
         }
     }
 

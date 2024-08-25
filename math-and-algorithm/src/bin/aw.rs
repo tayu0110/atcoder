@@ -1,6 +1,6 @@
 use proconio::*;
 
-const MOD: u32 = 1000_000_007;
+const MOD: u32 = 1_000_000_007;
 
 const fn mul<const L: usize, const M: usize, const N: usize>(
     a: [[u32; M]; L],

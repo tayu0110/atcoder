@@ -1,6 +1,6 @@
 use proconio::input;
 
-const MOD: i64 = 1000_000_007;
+const MOD: i64 = 1_000_000_007;
 
 fn main() {
     input! {n: usize, k: usize, a: [usize; n]}
@@ -12,7 +12,7 @@ fn main() {
         for i in 0..=k {
             new[i] += dp[i];
             new[i] %= MOD;
-            if i + a + 1 <= k {
+            if i + a < k {
                 new[i + a + 1] -= dp[i];
                 new[i + a + 1] = new[i + a + 1].rem_euclid(MOD);
             }

@@ -35,13 +35,11 @@ impl UnionFind {
             return false;
         }
         if self.tree[rl] > self.tree[rr] {
-            let tmp = rl;
-            rl = rr;
-            rr = tmp;
+            std::mem::swap(&mut rl, &mut rr);
         }
         self.tree[rl] += self.tree[rr];
         self.tree[rr] = rl as i32;
-        return true;
+        true
     }
 }
 
@@ -56,12 +54,10 @@ fn main() {
         if t == 0 {
             uf.merge(x, y);
             list.push((x, y, v));
+        } else if !uf.is_same(x, y) {
+            np.push((0, 0, -1));
         } else {
-            if !uf.is_same(x, y) {
-                np.push((0, 0, -1));
-            } else {
-                np.push((x, y, v));
-            }
+            np.push((x, y, v));
         }
     }
 
@@ -76,12 +72,10 @@ fn main() {
     for (x, y, v) in np {
         if v < 0 {
             println!("Ambiguous");
+        } else if x % 2 == y % 2 {
+            println!("{}", v - t[x] + t[y]);
         } else {
-            if x % 2 == y % 2 {
-                println!("{}", v - t[x] + t[y]);
-            } else {
-                println!("{}", t[y] - v + t[x]);
-            }
+            println!("{}", t[y] - v + t[x]);
         }
     }
 }

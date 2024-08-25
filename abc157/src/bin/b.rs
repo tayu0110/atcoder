@@ -21,7 +21,7 @@ fn main() {
 
     for i in 0..3 {
         for j in 0..3 {
-            for (di, dj) in vec![(0, 1), (1, 0), (1, 1)] {
+            for (di, dj) in [(0, 1), (1, 0), (1, 1)] {
                 let (mut i, mut j) = (i, j);
                 let mut cnt = 0;
                 for _ in 0..3 {

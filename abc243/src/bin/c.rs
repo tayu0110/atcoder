@@ -3,7 +3,7 @@ use proconio::{input, marker::Chars, source::line::LineSource};
 
 fn main() {
     input! {n: usize, p: [(usize, usize); n], s: Chars}
-    let mut p = p.into_iter().zip((0..n).into_iter()).collect::<Vec<((usize, usize), usize)>>();
+    let mut p = p.into_iter().zip(0..n).collect::<Vec<((usize, usize), usize)>>();
     p.sort();
 
     let mut map = std::collections::HashMap::new();
@@ -16,11 +16,9 @@ fn main() {
         for c in v {
             if c == 'R' {
                 found = true;
-            } else {
-                if found {
-                    println!("Yes");
-                    std::process::exit(0);
-                }
+            } else if found {
+                println!("Yes");
+                std::process::exit(0);
             }
         }
     }

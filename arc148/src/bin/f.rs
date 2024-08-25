@@ -14,7 +14,7 @@ fn pow_mod(a: u64, n: u64, p: u64) -> u64 {
 }
 
 const R: u64 = 998244353;
-const N: u64 = 1000_000_007;
+const N: u64 = 1_000_000_007;
 
 fn mr(res: char, t: char, t_val: u64, n: u64, ninv: u64, rinv: u64) -> u64 {
     // MR(T) = (T + (T*NINV mod R) * N) * RINV

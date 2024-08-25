@@ -13,7 +13,7 @@ fn main() {
         }
     }
 
-    let mut nt = a.into_iter().map(|a| Reverse(a)).collect::<BinaryHeap<_>>();
+    let mut nt = a.into_iter().map(Reverse).collect::<BinaryHeap<_>>();
     for _ in 0..cnt {
         let Reverse(a) = nt.pop().unwrap();
         nt.push(Reverse(a * 3));

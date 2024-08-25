@@ -78,18 +78,16 @@ fn main() {
         });
 
         if let (Some(f), Some(b)) = (&f, &b) {
-            if let Some((fi, ba)) = f.iter().zip(b.iter()).skip_while(|(f, b)| f == b).next() {
+            if let Some((fi, ba)) = f.iter().zip(b.iter()).find(|(f, b)| f != b) {
                 if fi < ba {
                     println!("{}", f.iter().join(" "))
                 } else {
                     println!("{}", b.iter().join(" "))
                 }
+            } else if f.len() < b.len() {
+                println!("{}", f.iter().join(" "))
             } else {
-                if f.len() < b.len() {
-                    println!("{}", f.iter().join(" "))
-                } else {
-                    println!("{}", b.iter().join(" "))
-                }
+                println!("{}", b.iter().join(" "))
             }
         } else if let Some(f) = f {
             println!("{}", f.iter().join(" "))

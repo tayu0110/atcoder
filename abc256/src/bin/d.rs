@@ -21,13 +21,11 @@ fn main() {
                 prev = i;
             }
             continue;
+        } else if t[prev] == 0 {
+            prev = i;
         } else {
-            if t[prev] == 0 {
-                prev = i;
-            } else {
-                println!("{} {}", prev, i);
-                prev = i;
-            }
+            println!("{} {}", prev, i);
+            prev = i;
         }
     }
 }

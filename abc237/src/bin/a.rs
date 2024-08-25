@@ -6,7 +6,7 @@ use itertools::Itertools;
 fn main() {
     input! {n: i64}
 
-    if -(1 << 31) <= n && n < (1 << 31) {
+    if (-(1 << 31)..(1 << 31)).contains(&n) {
         println!("Yes");
     } else {
         println!("No");

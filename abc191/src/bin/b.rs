@@ -12,5 +12,5 @@ fn main() {
         }
         print!("{}", v[i]);
     }
-    println!("");
+    println!();
 }

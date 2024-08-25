@@ -42,7 +42,7 @@ fn main() {
                 for l in 0..w {
                     let mut ok = vec![vec![false; w]; h];
                     let mut good = true;
-                    for (i, j, v) in vec![(i, j, &a), (k, l, &b)] {
+                    for (i, j, v) in [(i, j, &a), (k, l, &b)] {
                         let r = v.len();
                         let c = v[0].len();
                         let mut bad = false;

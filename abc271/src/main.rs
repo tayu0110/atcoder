@@ -16,6 +16,6 @@ fn main() {
             let r: i32 = rng.gen_range(0, 1 << 30);
             write!(file, "{}", r).unwrap();
         }
-        writeln!(file, "").unwrap();
+        writeln!(file).unwrap();
     }
 }

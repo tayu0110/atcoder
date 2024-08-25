@@ -16,8 +16,8 @@ fn check(n: usize, s: &Vec<Vec<char>>, t: &Vec<Vec<char>>) -> bool {
         }
         (u, d, l, r)
     };
-    let (su, sd, sl, sr) = udlr(&s);
-    let (tu, td, tl, tr) = udlr(&t);
+    let (su, sd, sl, sr) = udlr(s);
+    let (tu, td, tl, tr) = udlr(t);
 
     if sd - su != td - tu || sr - sl != tr - tl {
         return false;

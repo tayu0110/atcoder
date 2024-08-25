@@ -16,26 +16,22 @@ fn main() {
                     now = 0;
                     xor_sum = -1;
                     base = 0;
-                } else {
-                    if xor_sum >= 0 {
-                        if base >= 0 {
-                            now = base;
-                        }
-                        now ^= xor_sum;
+                } else if xor_sum >= 0 {
+                    if base >= 0 {
+                        now = base;
                     }
+                    now ^= xor_sum;
                 }
             } else if t == 2 {
                 if q == 1 {
                     now = 1;
                     xor_sum = -1;
                     base = 1;
-                } else {
-                    if xor_sum >= 0 {
-                        if base >= 0 {
-                            now = base;
-                        }
-                        now ^= xor_sum;
+                } else if xor_sum >= 0 {
+                    if base >= 0 {
+                        now = base;
                     }
+                    now ^= xor_sum;
                 }
             } else {
                 if xor_sum < 0 {

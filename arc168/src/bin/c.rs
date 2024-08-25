@@ -25,7 +25,7 @@ fn main() {
 
     if n == 3 {
         let mut set = HashSet::default();
-        set.insert(s.iter().cloned().collect::<Vec<_>>());
+        set.insert(s.to_vec());
         set.insert([s[0], s[2], s[1]].into_iter().collect());
         set.insert([s[1], s[0], s[2]].into_iter().collect());
         set.insert([s[2], s[1], s[0]].into_iter().collect());

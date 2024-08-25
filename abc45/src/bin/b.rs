@@ -3,7 +3,7 @@ use proconio::*;
 fn main() {
     input! {s: [marker::Chars; 3]}
 
-    let mut index = vec![0; 3];
+    let mut index = [0; 3];
     let mut now = 0;
     loop {
         if s[now].len() == index[now] {

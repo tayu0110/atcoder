@@ -8,7 +8,7 @@ fn main() {
         for v in a {
             let mut t = vec![];
             for w in v {
-                t.push((w as u8 - '0' as u8) as usize);
+                t.push((w as u8 - b'0') as usize);
             }
             buf.push(t);
         }

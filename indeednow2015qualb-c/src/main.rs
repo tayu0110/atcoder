@@ -84,5 +84,5 @@ fn main() {
         }
         print!("{}", res[i]+1);
     }
-    println!("");
+    println!();
 }

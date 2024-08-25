@@ -16,9 +16,7 @@ fn main() {
             n -= now;
         }
         if n != 0 {
-            for _ in 0..n {
-                res.push(1);
-            }
+            res.resize(res.len() + n, 1);
         }
 
         if res.len() > k {

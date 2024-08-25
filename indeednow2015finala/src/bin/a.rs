@@ -6,8 +6,8 @@ fn main() {
     let (a, b) = a.split_at_mut(n / 2);
     b.reverse();
     let k = a
-        .into_iter()
-        .zip(b.into_iter())
+        .iter_mut()
+        .zip(b)
         .map(|(a, b)| *a + *b)
         .collect::<Vec<_>>();
     println!("{}", k.iter().max().unwrap() - k.iter().min().unwrap())

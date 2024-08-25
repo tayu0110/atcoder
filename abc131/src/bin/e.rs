@@ -21,8 +21,8 @@ fn solve(n: usize, k: usize) -> Vec<(usize, usize)> {
 
 fn checker(n: usize, e: &[(usize, usize)]) -> usize {
     let mut dp = vec![vec![std::usize::MAX >> 10; n]; n];
-    for i in 0..n {
-        dp[i][i] = 0;
+    for (i, dp) in dp.iter_mut().enumerate().take(n) {
+        dp[i] = 0;
     }
     for &(u, v) in e {
         dp[u][v] = 1;

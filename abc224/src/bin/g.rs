@@ -17,7 +17,7 @@ fn main() {
 
     let k = l;
     let x = x(n, a, b, k);
-    if s >= t - k + 1 && s <= t {
+    if s > t - k && s <= t {
         println!("{}", (t-s) * a);
     } else {
         println!("{}", x);

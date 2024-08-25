@@ -11,13 +11,11 @@ fn main() {
 
     if y < 0 || x < y {
         println!("{}", x);
+    } else if z < 0 {
+        println!("{}", z.abs() * 2 + x);
+    } else if y < z {
+        println!("-1");
     } else {
-        if z < 0 {
-            println!("{}", z.abs() * 2 + x);
-        } else if y < z {
-            println!("-1");
-        } else {
-            println!("{}", x);
-        }
+        println!("{}", x);
     }
 }

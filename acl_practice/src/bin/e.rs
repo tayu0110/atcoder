@@ -111,6 +111,6 @@ fn main() {
         for w in v {
             print!("{}", w);
         }
-        println!("");
+        println!();
     }
 }

@@ -104,12 +104,12 @@ fn main() {
 
     for w in &p {
         let sum = pst.get(*w, n*2);
-        pt[*w as usize] = sum;
+        pt[*w] = sum;
         pst.update(*w, 1);
     }
     for w in &q {
         let sum = qst.get(*w, n*2);
-        if sum % 2 != pt[*w as usize] % 2 {
+        if sum % 2 != pt[*w] % 2 {
             println!("-1");
             std::process::exit(0);
         }

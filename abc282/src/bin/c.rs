@@ -12,10 +12,8 @@ fn main() {
     for c in s.iter_mut() {
         if *c == '"' {
             f = !f;
-        } else if *c == ',' {
-            if !f {
-                *c = '.';
-            }
+        } else if *c == ',' && !f {
+            *c = '.';
         }
     }
 

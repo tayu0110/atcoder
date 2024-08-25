@@ -2,7 +2,7 @@ use proconio::input;
 
 const INF: i64 = 111222333444555666;
 
-fn warshall_floyd(m: i64, p: i64, a: &Vec<Vec<i64>>) -> usize {
+fn warshall_floyd(m: i64, p: i64, a: &[Vec<i64>]) -> usize {
     let mut dp = a.iter().map(|v| v.iter().map(|w| if *w < 0 { m } else { *w }).collect()).collect::<Vec<Vec<i64>>>();
     // eprintln!("dp: {:?}", dp);
     let n = a.len();

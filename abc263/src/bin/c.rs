@@ -24,6 +24,6 @@ fn main() {
             }
             print!("{}", v);
         }
-        println!("");
+        println!();
     }
 }

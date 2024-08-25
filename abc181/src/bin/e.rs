@@ -7,16 +7,14 @@ fn main() {
 
     let mut f = h
         .chunks_exact(2)
-        .map(|v| vec![v[1] - v[0], 0])
-        .flatten()
+        .flat_map(|v| vec![v[1] - v[0], 0])
         .collect::<Vec<_>>();
     f.insert(0, 0);
     // eprintln!("h: {h:?}");
     h.reverse();
     let mut b = h
         .chunks_exact(2)
-        .map(|v| vec![0, v[0] - v[1]])
-        .flatten()
+        .flat_map(|v| vec![0, v[0] - v[1]])
         .collect::<Vec<_>>();
     b.reverse();
     b.push(0);

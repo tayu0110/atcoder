@@ -34,7 +34,7 @@ fn main() {
     }
 
     if let Ok(s) = s.into_iter().collect::<String>().parse::<usize>() {
-        if 100000 <= s && s < 1000000 {
+        if (100000..1000000).contains(&s) {
             println!("Yes");
         } else {
             println!("No");

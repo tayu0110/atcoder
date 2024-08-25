@@ -86,36 +86,36 @@ pub mod convolution {
             std::mem::swap(a, &mut b);
         }
     }
-    pub fn convolution(a: &Vec<Mint>, b: &Vec<Mint>) -> Vec<Mint> {
+    pub fn convolution(a: &[Mint], b: &[Mint]) -> Vec<Mint> {
         let mut n = 1;
         let deg = a.len() + b.len() - 1;
         while n < deg { n <<= 1; }
-        let mut na = a.clone();
-        let mut nb = b.clone();
+        let mut na = a.to_owned();
+        let mut nb = b.to_owned();
         na.resize(n, Mint::new(0));
         nb.resize(n, Mint::new(0));
         ntt(&mut na, false);
         ntt(&mut nb, false);
-        let mut nc = na.into_iter().zip(nb.into_iter()).map(|(l, r)| l * r).collect::<Vec<_>>();
+        let mut nc = na.into_iter().zip(nb).map(|(l, r)| l * r).collect::<Vec<_>>();
         ntt(&mut nc, true);
         let ninv = Mint::new(n as i64).inv();
-        nc[0..deg].into_iter().map(|v| *v * ninv).collect::<Vec<_>>()
+        nc[0..deg].iter().map(|v| *v * ninv).collect::<Vec<_>>()
     }
-    pub fn fconvolution(a: &Vec<f64>, b: &Vec<f64>) -> Vec<f64> {
+    pub fn fconvolution(a: &[f64], b: &[f64]) -> Vec<f64> {
         let deg = a.len() + b.len() - 1;
         let mut n = 1;
         while n < deg { n <<= 1; }
         let mut a2 = vec![num::Complex::default(); n];
-        a.into_iter().enumerate().for_each(|(i, v)| a2[i] = num::Complex::new(*v, 0f64));
+        a.iter().enumerate().for_each(|(i, v)| a2[i] = num::Complex::new(*v, 0f64));
         let mut b2 = vec![num::Complex::default(); n];
-        b.into_iter().enumerate().for_each(|(i, v)| b2[i] = num::Complex::new(*v, 0f64));
+        b.iter().enumerate().for_each(|(i, v)| b2[i] = num::Complex::new(*v, 0f64));
         fft(&mut a2, false);
         fft(&mut b2, false);
-        let mut c2 = a2.into_iter().zip(b2.into_iter()).map(|(l, r)| l * r).collect::<Vec<_>>();
+        let mut c2 = a2.into_iter().zip(b2).map(|(l, r)| l * r).collect::<Vec<_>>();
         fft(&mut c2, true);
-        c2[0..deg].into_iter().map(|v| v.re).collect()
+        c2[0..deg].iter().map(|v| v.re).collect()
     }
-    pub fn iconvolution(a: &Vec<i64>, b: &Vec<i64>) -> Vec<i64> {
+    pub fn iconvolution(a: &[i64], b: &[i64]) -> Vec<i64> {
         let a = a.iter().map(|v| *v as f64).collect::<Vec<_>>();
         let b = b.iter().map(|v| *v as f64).collect::<Vec<_>>();
         fconvolution(&a, &b).into_iter().map(|v| v.round() as i64).collect()

@@ -41,7 +41,7 @@ fn main() {
                     index = j;
                 } else if *t[j][i].front().unwrap() == min
                     && t[j][i].len() > 1
-                    && next > *t[j][i].iter().skip(1).next().unwrap()
+                    && next > *t[j][i].iter().nth(1).unwrap()
                 {
                     index = j;
                     let l = t[j][i].pop_front().unwrap();

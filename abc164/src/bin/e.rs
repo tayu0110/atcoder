@@ -40,7 +40,7 @@ fn main() {
                 nt.push(std::cmp::Reverse((nnd, nc - a, to)));
             }
             while nc < amax {
-                nnd = nnd + d;
+                nnd += d;
                 nc = std::cmp::min(amax, nc + c);
 
                 if nnd < dist[to][nc - a] {

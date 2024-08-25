@@ -5,8 +5,8 @@ fn main() {
     input! {n: usize, mut p: [(usize, usize); n]}
     p.sort();
 
-    let mut max_seg = segtree::SegmentTree::new(n, 0, |l, r| std::cmp::max(l, r));
-    let mut min_seg = segtree::SegmentTree::new(n, std::usize::MAX, |l, r| std::cmp::min(l, r));
+    let mut max_seg = segtree::SegmentTree::new(n, 0, std::cmp::max);
+    let mut min_seg = segtree::SegmentTree::new(n, std::usize::MAX, std::cmp::min);
 
     let (px, py) = p.iter().cloned().unzip::<usize, usize, Vec<_>, Vec<_>>();
     for (i, &y) in py.iter().enumerate() {

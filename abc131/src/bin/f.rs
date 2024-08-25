@@ -21,11 +21,11 @@ fn main() {
     }
 
     let mut res = 0;
-    for i in 0..MAX * 2 + 10 {
-        if xs[i] > 0 {
+    for (i, xs) in xs.iter().enumerate().take(MAX * 2 + 10) {
+        if *xs > 0 {
             let size = uf.size(i);
-            let ys = size - xs[i];
-            res += xs[i] * ys;
+            let ys = size - xs;
+            res += xs * ys;
         }
     }
 

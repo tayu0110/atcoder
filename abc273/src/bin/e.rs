@@ -7,7 +7,7 @@ use itertools::Itertools;
 fn main() {
     input! {q: usize}
 
-    const ROOT: i64 = 1000_000_010;
+    const ROOT: i64 = 1_000_000_010;
 
     let mut par_val_list = std::collections::HashMap::new();
     let mut now = ROOT;

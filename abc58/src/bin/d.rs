@@ -1,6 +1,6 @@
 use proconio::*;
 
-const MOD: i64 = 1000_000_007;
+const MOD: i64 = 1_000_000_007;
 
 fn main() {
     input! {n: usize, m: usize, mut x: [i64; n], mut y: [i64; m]}

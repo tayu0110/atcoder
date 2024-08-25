@@ -37,10 +37,8 @@ fn main() {
                 if tak[i] + aok[j] + 2 > k {
                     continue;
                 }
-            } else {
-                if tak[i] + aok[i] + 1 > k || tak[j] + aok[j] + 1 > k {
-                    continue;
-                }
+            } else if tak[i] + aok[i] + 1 > k || tak[j] + aok[j] + 1 > k {
+                continue;
             }
 
             tak[i] += 1;

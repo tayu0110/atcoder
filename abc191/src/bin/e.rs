@@ -1,7 +1,7 @@
 #[allow(unused_imports)]
 use proconio::{input, marker::Chars, source::line::LineSource};
 
-fn dijkstra(start: usize, t: &Vec<Vec<(usize, i64)>>) -> i64 {
+fn dijkstra(start: usize, t: &[Vec<(usize, i64)>]) -> i64 {
     let mut nt = std::collections::BinaryHeap::new();
     let n = t.len();
     let mut dist = vec![-1; n];

@@ -1,3 +1,5 @@
+use std::cmp::Ordering;
+
 use proconio::*;
 
 fn main() {
@@ -10,11 +12,9 @@ fn main() {
         b += 13;
     }
 
-    if a > b {
-        println!("Alice")
-    } else if a == b {
-        println!("Draw")
-    } else {
-        println!("Bob")
+    match a.cmp(&b) {
+        Ordering::Greater => println!("Alice"),
+        Ordering::Equal => println!("Draw"),
+        Ordering::Less => println!("Bob"),
     }
 }

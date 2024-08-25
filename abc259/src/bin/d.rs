@@ -36,13 +36,11 @@ impl UnionFind {
             return false;
         }
         if self.tree[rl] > self.tree[rr] {
-            let tmp = rl;
-            rl = rr;
-            rr = tmp;
+            std::mem::swap(&mut rl, &mut rr);
         }
         self.tree[rl] += self.tree[rr];
         self.tree[rr] = rl as i32;
-        return true;
+        true
     }
 }
 

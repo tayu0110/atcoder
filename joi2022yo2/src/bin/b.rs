@@ -10,7 +10,7 @@ fn main() {
     nt.push_back((0usize, 0usize));
     dist[0][0] = 0;
     while let Some((r, c)) = nt.pop_front() {
-        for (dx, dy) in vec![(0usize, 1usize), (1, 0), (0, !0), (!0, 0)] {
+        for (dx, dy) in [(0usize, 1usize), (1, 0), (0, !0), (!0, 0)] {
             let (nr, nc) = (r.wrapping_add(dy), c.wrapping_add(dx));
             if nr < h && nc < w && s[r][c] != s[nr][nc] && dist[nr][nc] == std::usize::MAX {
                 dist[nr][nc] = dist[r][c] + 1;

@@ -23,10 +23,8 @@ fn main() {
                     if h != nh + (x - cx).abs() + (y - cy).abs() {
                         continue 'inner;
                     }
-                } else {
-                    if h > (x - cx).abs() + (y - cy).abs() {
-                        continue 'inner;
-                    }
+                } else if h > (x - cx).abs() + (y - cy).abs() {
+                    continue 'inner;
                 }
             }
 

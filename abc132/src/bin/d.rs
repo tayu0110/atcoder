@@ -15,7 +15,7 @@ fn main() {
         }
         let c = com(k - 1, i - 1);
         let mut nc = Modint::zero();
-        for d in vec![i - 1, i, i + 1] {
+        for d in [i - 1, i, i + 1] {
             if n - k > 0 {
                 nc += com(n - k - 1, d - 1);
                 if d == i {

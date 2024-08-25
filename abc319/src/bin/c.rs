@@ -22,16 +22,14 @@ fn main() {
         let mut bad = false;
         'K: for i in 0..3 {
             for j in 0..3 {
-                for (dy, dx) in vec![
-                    (0usize, 1usize),
+                for (dy, dx) in [(0usize, 1usize),
                     (1, 0),
                     (0, !0),
                     (!0, 0),
                     (1, 1),
                     (1, !0),
                     (!0, 1),
-                    (!0, !0),
-                ] {
+                    (!0, !0)] {
                     let mut p = vec![];
                     let (mut y, mut x) = (i, j);
                     for _ in 0..3 {

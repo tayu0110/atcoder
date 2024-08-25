@@ -16,7 +16,7 @@ fn main() {
             .as_bytes(),
         )
         .unwrap();
-        file.write_all(format!("echo '======================================='\n").as_bytes())
+        file.write_all("echo '======================================='\n".to_string().as_bytes())
             .unwrap();
     }
 }

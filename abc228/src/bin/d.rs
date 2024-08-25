@@ -28,12 +28,10 @@ fn main() {
                 a[i] = x;
                 set.remove(&i);
             }
+        } else if a[x % N] == std::usize::MAX {
+            println!("-1");
         } else {
-            if a[x % N] == std::usize::MAX {
-                println!("-1");
-            } else {
-                println!("{}", a[x % N]);
-            }
+            println!("{}", a[x % N]);
         }
     }
 }

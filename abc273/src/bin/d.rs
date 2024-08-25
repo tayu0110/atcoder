@@ -52,34 +52,32 @@ fn main() {
                     nr = std::cmp::min(nr + rep, v.get(r as usize).unwrap_or(&(h+1)) - 1);
                 }
             }
+        } else if !row.contains_key(&nr) {
+            if d == 'L' {
+                nc = std::cmp::max(1, nc - rep);
+            } else {
+                nc = std::cmp::min(w, nc + rep);
+            }
         } else {
-            if !row.contains_key(&nr) {
-                if d == 'L' {
-                    nc = std::cmp::max(1, nc - rep);
+            let v = row.get(&nr).unwrap();
+            let (mut l, mut r) = (-1, v.len() as i64);
+            while r - l > 1 {
+                let m = (r + l) / 2;
+                if v[m as usize] > nc {
+                    r = m;
                 } else {
-                    nc = std::cmp::min(w, nc + rep);
+                    l = m;
+                }
+            }
+
+            if d == 'L' {
+                if l < 0 {
+                    nc = std::cmp::max(nc - rep, 1);
+                } else {
+                    nc = std::cmp::max(nc - rep, std::cmp::max(1, v[l as usize] + 1));
                 }
             } else {
-                let v = row.get(&nr).unwrap();
-                let (mut l, mut r) = (-1, v.len() as i64);
-                while r - l > 1 {
-                    let m = (r + l) / 2;
-                    if v[m as usize] > nc {
-                        r = m;
-                    } else {
-                        l = m;
-                    }
-                }
-
-                if d == 'L' {
-                    if l < 0 {
-                        nc = std::cmp::max(nc - rep, 1);
-                    } else {
-                        nc = std::cmp::max(nc - rep, std::cmp::max(1, v[l as usize] + 1));
-                    }
-                } else {
-                    nc = std::cmp::min(nc + rep, v.get(r as usize).unwrap_or(&(w+1)) - 1);
-                }
+                nc = std::cmp::min(nc + rep, v.get(r as usize).unwrap_or(&(w+1)) - 1);
             }
         }
 

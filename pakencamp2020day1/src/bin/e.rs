@@ -10,19 +10,15 @@ fn main() {
         } else {
             println!("-1");
         }
-    } else {
-        if x < y {
-            if x == 0 {
-                println!("{} {}", 2*y, y);
-            } else {
-                println!("{} {}", x + y, y);
-            }
+    } else if x < y {
+        if x == 0 {
+            println!("{} {}", 2*y, y);
         } else {
-            if y == 0 {
-                println!("{} {}", x, 2*x);
-            } else {
-                println!("{} {}", x, x + y);
-            }
+            println!("{} {}", x + y, y);
         }
+    } else if y == 0 {
+        println!("{} {}", x, 2*x);
+    } else {
+        println!("{} {}", x, x + y);
     }
 }

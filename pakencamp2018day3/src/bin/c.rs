@@ -16,5 +16,5 @@ fn main() {
         }
     }
 
-    println!("{}", check.into_iter().fold(0, |sum, x| sum + x));
+    println!("{}", check.into_iter().sum::<i32>());
 }

@@ -8,7 +8,7 @@ use proconio::{
 fn main() {
     input! {n: usize}
 
-    let (mut l, mut r) = (0, 1000_000_010);
+    let (mut l, mut r) = (0, 1_000_000_010);
     while r - l > 1 {
         let m = (r + l) / 2;
         if m * m <= n {

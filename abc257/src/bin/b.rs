@@ -29,5 +29,5 @@ fn main() {
         }
         print!("{}", a[i]);
     }
-    println!("");
+    println!();
 }

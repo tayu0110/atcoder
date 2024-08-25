@@ -22,7 +22,7 @@ fn main() {
             let tm = i + 1000;
             let mut s = vec![std::usize::MAX; n];
             s[i] = tm;
-            for (_, &(_, ni)) in t.iter().take(v).rev().enumerate() {
+            for &(_, ni) in t.iter().take(v).rev() {
                 s[ni] = tm - ni;
             }
             let &min = s.iter().min().unwrap();

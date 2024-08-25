@@ -1,5 +1,9 @@
 #![allow(unused_imports)]
-use proconio::{*, input, marker::{Chars, Bytes}};
+use proconio::{
+    input,
+    marker::{Bytes, Chars},
+    *,
+};
 
 fn min_except_0(v: &[usize]) -> usize {
     if let Some(min) = v.iter().filter(|c| **c != 0).min() {
@@ -17,14 +21,14 @@ fn max_except_0(v: &[usize]) -> usize {
     }
 }
 
-fn transpose(a: &Vec<Vec<usize>>) -> Vec<Vec<usize>> {
+fn transpose(a: &[Vec<usize>]) -> Vec<Vec<usize>> {
     let h = a.len();
     let w = a[0].len();
 
     let mut res = vec![vec![0; h]; w];
     for i in 0..h {
         for j in 0..w {
-            res[w-1-j][i] = a[i][j];
+            res[w - 1 - j][i] = a[i][j];
         }
     }
 
@@ -66,7 +70,7 @@ fn main() {
         max.push(max_except_0(&a[i]));
     }
     for i in 1..h {
-        let pmax = max[i-1];
+        let pmax = max[i - 1];
         let min = min[i];
 
         if min < pmax {
@@ -103,7 +107,7 @@ fn main() {
         }
 
         if !decided {
-            i.cmp(&j)
+            i.cmp(j)
         } else {
             cmp
         }

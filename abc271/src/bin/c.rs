@@ -1,7 +1,11 @@
 #[allow(unused_imports)]
-use proconio::{input, marker::{Chars, Bytes}, source::line::LineSource};
-#[allow(unused_imports)]
 use itertools::Itertools;
+#[allow(unused_imports)]
+use proconio::{
+    input,
+    marker::{Bytes, Chars},
+    source::line::LineSource,
+};
 
 fn main() {
     input! {n: usize, mut a: [usize; n]}
@@ -14,9 +18,7 @@ fn main() {
     for (k, v) in map {
         a.push(k);
         if v > 1 {
-            for _ in 0..v-1 {
-                a.push(std::usize::MAX);
-            }
+            a.resize(a.len() + v - 1, usize::MAX);
         }
     }
 
@@ -42,5 +44,5 @@ fn main() {
         }
     }
 
-    println!("{}", req-1);
+    println!("{}", req - 1);
 }

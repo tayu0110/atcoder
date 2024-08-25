@@ -25,6 +25,6 @@ fn main() {
             }
             print!("{}", v[i] + u[j] - a[i][j]);
         }
-        println!("");
+        println!();
     }
 }

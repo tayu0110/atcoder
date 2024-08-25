@@ -10,8 +10,8 @@ fn shortest_path(
     n: usize,
     now: usize,
     to: usize,
-    reached: &mut Vec<Vec<bool>>,
-    t: &Vec<Vec<usize>>,
+    reached: &mut [Vec<bool>],
+    t: &[Vec<usize>],
 ) -> Vec<u8> {
     let mut nt = VecDeque::new();
     nt.push_back(now);

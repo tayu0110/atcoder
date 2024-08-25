@@ -17,28 +17,20 @@ fn rec(
         return true;
     }
 
-    if r > 0 && s[r - 1][c] == '#' && !reached[r - 1][c] {
-        if rec(r - 1, c, h, w, res, reached, s) {
-            return true;
-        }
+    if r > 0 && s[r - 1][c] == '#' && !reached[r - 1][c] && rec(r - 1, c, h, w, res, reached, s) {
+        return true;
     }
 
-    if c > 0 && s[r][c - 1] == '#' && !reached[r][c - 1] {
-        if rec(r, c - 1, h, w, res, reached, s) {
-            return true;
-        }
+    if c > 0 && s[r][c - 1] == '#' && !reached[r][c - 1] && rec(r, c - 1, h, w, res, reached, s) {
+        return true;
     }
 
-    if r + 1 < h && s[r + 1][c] == '#' && !reached[r + 1][c] {
-        if rec(r + 1, c, h, w, res, reached, s) {
-            return true;
-        }
+    if r + 1 < h && s[r + 1][c] == '#' && !reached[r + 1][c] && rec(r + 1, c, h, w, res, reached, s) {
+        return true;
     }
 
-    if c + 1 < w && s[r][c + 1] == '#' && !reached[r][c + 1] {
-        if rec(r, c + 1, h, w, res, reached, s) {
-            return true;
-        }
+    if c + 1 < w && s[r][c + 1] == '#' && !reached[r][c + 1] && rec(r, c + 1, h, w, res, reached, s) {
+        return true;
     }
 
     reached[r][c] = false;

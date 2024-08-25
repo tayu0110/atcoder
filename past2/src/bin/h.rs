@@ -17,8 +17,8 @@ fn main() {
     }
 
     let mut dp = vec![];
-    for i in 0..11 {
-        dp.push(vec![std::usize::MAX; t[i].len()]);
+    for t in &t {
+        dp.push(vec![usize::MAX; t.len()]);
     }
     dp[0][0] = 0;
     for i in 0..10 {

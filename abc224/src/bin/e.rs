@@ -1,7 +1,21 @@
 #![allow(unused_imports)]
-use proconio::{*, input, marker::{Chars, Bytes}};
+use proconio::{
+    input,
+    marker::{Bytes, Chars},
+    *,
+};
 
-fn dfs(r: usize, c: usize, a: usize, i: usize, row_dir: &Vec<Vec<(usize, usize, usize)>>, col_dir: &Vec<Vec<(usize, usize, usize)>>, res: &mut [i64], row_memo: &mut std::collections::HashMap<(usize, usize), i64>, col_memo: &mut std::collections::HashMap<(usize, usize), i64>) -> i64 {
+fn dfs(
+    r: usize,
+    c: usize,
+    a: usize,
+    i: usize,
+    row_dir: &Vec<Vec<(usize, usize, usize)>>,
+    col_dir: &Vec<Vec<(usize, usize, usize)>>,
+    res: &mut [i64],
+    row_memo: &mut std::collections::HashMap<(usize, usize), i64>,
+    col_memo: &mut std::collections::HashMap<(usize, usize), i64>,
+) -> i64 {
     if res[i] != std::i64::MAX {
         return res[i];
     }
@@ -34,7 +48,6 @@ fn dfs(r: usize, c: usize, a: usize, i: usize, row_dir: &Vec<Vec<(usize, usize, 
 
                 row_memo.insert((r, a), rmax);
             }
-
         }
     }
 
@@ -76,8 +89,8 @@ fn dfs(r: usize, c: usize, a: usize, i: usize, row_dir: &Vec<Vec<(usize, usize, 
 fn main() {
     input! {h: usize, w: usize, n: usize, p: [(usize, usize, usize); n]}
 
-    let mut row_dir = vec![vec![]; h+1];
-    let mut col_dir = vec![vec![]; w+1];
+    let mut row_dir = vec![vec![]; h + 1];
+    let mut col_dir = vec![vec![]; w + 1];
 
     let mut v = vec![];
     for (i, (r, c, a)) in p.into_iter().enumerate() {
@@ -87,8 +100,14 @@ fn main() {
         v.push((a, r, c, i));
     }
 
-    row_dir.iter_mut().filter(|v| !v.is_empty()).for_each(|v| v.sort());
-    col_dir.iter_mut().filter(|v| !v.is_empty()).for_each(|v| v.sort());
+    row_dir
+        .iter_mut()
+        .filter(|v| !v.is_empty())
+        .for_each(|v| v.sort());
+    col_dir
+        .iter_mut()
+        .filter(|v| !v.is_empty())
+        .for_each(|v| v.sort());
     v.sort();
 
     let mut row_memo = std::collections::HashMap::new();
@@ -99,8 +118,18 @@ fn main() {
         if res[i] != std::i64::MAX {
             continue;
         }
-    
-        dfs(r, c, a, i, &row_dir, &col_dir, &mut res, &mut row_memo, &mut col_memo);
+
+        dfs(
+            r,
+            c,
+            a,
+            i,
+            &row_dir,
+            &col_dir,
+            &mut res,
+            &mut row_memo,
+            &mut col_memo,
+        );
     }
 
     for res in res {

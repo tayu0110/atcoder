@@ -4,7 +4,7 @@ use proconio::*;
 fn main() {
     input! {p: [[usize; 6]; 3]}
 
-    let mut res = vec![0; 19];
+    let mut res = [0; 19];
     for i in 1..=6 {
         for j in 1..=6 {
             for k in 1..=6 {

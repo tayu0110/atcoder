@@ -3,7 +3,7 @@ use proconio::{input, marker::Chars, source::line::LineSource};
 
 type Mint = modint::Mint<modint::Mod998244353>;
 
-fn bfs(start: usize, dist: &mut Vec<usize>, t: &Vec<Vec<usize>>) -> usize {
+fn bfs(start: usize, dist: &mut [usize], t: &[Vec<usize>]) -> usize {
     let mut nt = std::collections::VecDeque::new();
     nt.push_back((start, 0));
 
@@ -52,7 +52,6 @@ fn main() {
 
     if max % 2 == 1 {
         let middle = (0..n)
-                .into_iter()
                 .filter(|v| std::cmp::min(dist[*v], nd[*v]) == max / 2 && std::cmp::max(dist[*v], nd[*v]) == max / 2 + 1)
                 .collect::<Vec<_>>();
         let mut dist = vec![std::usize::MAX; n];
@@ -93,7 +92,7 @@ fn main() {
         std::process::exit(0);
     }
 
-    let middle = (0..n).into_iter().find(|v| dist[*v] == max / 2 && nd[*v] == max / 2).unwrap();
+    let middle = (0..n).find(|v| dist[*v] == max / 2 && nd[*v] == max / 2).unwrap();
 
     let mut dist = vec![std::usize::MAX; n];
     let mut buf = vec![];

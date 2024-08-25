@@ -32,7 +32,7 @@ fn main() {
             }
         }
 
-        if cnt >= k+1 {
+        if cnt > k {
             l = m;
         } else {
             r = m;

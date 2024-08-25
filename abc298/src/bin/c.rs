@@ -6,7 +6,7 @@ fn main() {
     input! {n: usize, q: usize}
 
     let mut boxes = vec![BTreeMap::new(); n + 1];
-    let mut ball = vec![BTreeSet::new(); 2000_10];
+    let mut ball = vec![BTreeSet::new(); 200_010];
     for _ in 0..q {
         input! {t: usize}
 

@@ -5,7 +5,7 @@ use proconio::{
     *,
 };
 
-fn solve(n: usize, m: usize, s: &Vec<Vec<char>>) -> usize {
+fn solve(n: usize, m: usize, s: &[Vec<char>]) -> usize {
     let mut v = vec![vec![0; m + 2]; n + 2];
     for i in 2..=n {
         for j in 1..=m {
@@ -27,7 +27,7 @@ fn solve(n: usize, m: usize, s: &Vec<Vec<char>>) -> usize {
     u.iter().flatten().sum()
 }
 
-fn transpose(s: &Vec<Vec<char>>) -> Vec<Vec<char>> {
+fn transpose(s: &[Vec<char>]) -> Vec<Vec<char>> {
     let (n, m) = (s.len(), s[0].len());
 
     let mut res = vec![vec!['.'; n]; m];

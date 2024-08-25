@@ -28,10 +28,8 @@ fn main() {
                 if i + 1 == dp[m].len() {
                     let tmp = dp[m][i].0;
                     dp[m].push((tmp + h[i + 1], e));
-                } else {
-                    if dp[m][i + 1].0 < dp[m][i].0 + h[i + 1] {
-                        dp[m][i + 1] = (dp[m][i].0 + h[i + 1], e);
-                    }
+                } else if dp[m][i + 1].0 < dp[m][i].0 + h[i + 1] {
+                    dp[m][i + 1] = (dp[m][i].0 + h[i + 1], e);
                 }
             }
         }
@@ -45,10 +43,8 @@ fn main() {
                     if dp[m].is_empty() {
                         let tmp = dp[i][j].0;
                         dp[m].push((tmp + h[0], e));
-                    } else {
-                        if dp[m][0].0 < dp[i][j].0 + h[0] {
-                            dp[m][0] = (dp[i][j].0 + h[0], e);
-                        }
+                    } else if dp[m][0].0 < dp[i][j].0 + h[0] {
+                        dp[m][0] = (dp[i][j].0 + h[0], e);
                     }
                 }
             }

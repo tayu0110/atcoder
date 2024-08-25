@@ -25,8 +25,8 @@ fn main() {
     }
 
     let mut r = 0;
-    for i in 0..n {
-        r += res[i][(1 << n) - 1];
+    for res in res {
+        r += res[(1 << n) - 1];
     }
 
     println!("{}", r)

@@ -1,7 +1,11 @@
 #[allow(unused_imports)]
-use proconio::{input, marker::{Chars, Bytes}, source::line::LineSource};
-#[allow(unused_imports)]
 use itertools::Itertools;
+#[allow(unused_imports)]
+use proconio::{
+    input,
+    marker::{Bytes, Chars},
+    source::line::LineSource,
+};
 
 fn main() {
     input! {x: usize}
@@ -11,13 +15,13 @@ fn main() {
     for i in 2..max {
         if d[i] == std::usize::MAX {
             for j in (2..max).take_while(|j| i * *j < max) {
-                d[i*j] = i;
+                d[i * j] = i;
             }
         }
     }
 
-    for i in x..max {
-        if d[i] == std::usize::MAX {
+    for (i, d) in d.iter().enumerate().take(max).skip(x) {
+        if d == &usize::MAX {
             println!("{}", i);
             std::process::exit(0);
         }

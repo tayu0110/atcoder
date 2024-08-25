@@ -1,9 +1,9 @@
 use proconio::*;
 
 fn rec(
-    l: usize,
+    _l: usize,
     index: usize,
-    now: usize,
+    _now: usize,
     eq: bool,
     v: &[usize],
     res: &mut Vec<(usize, usize, usize)>,
@@ -21,9 +21,9 @@ fn rec(
                     w * 5usize.pow((v.len() - index - 1) as u32),
                 ));
                 rec(
-                    l,
+                    _l,
                     index + 1,
-                    now + w * 5usize.pow((v.len() - index - 1) as u32),
+                    _now + w * 5usize.pow((v.len() - index - 1) as u32),
                     true,
                     v,
                     res,
@@ -35,9 +35,9 @@ fn rec(
                     w * 5usize.pow((v.len() - index - 1) as u32),
                 ));
                 rec(
-                    l,
+                    _l,
                     index + 1,
-                    now + w * 5usize.pow((v.len() - index - 1) as u32),
+                    _now + w * 5usize.pow((v.len() - index - 1) as u32),
                     false,
                     v,
                     res,
@@ -52,9 +52,9 @@ fn rec(
                 w * 5usize.pow((v.len() - index - 1) as u32),
             ));
             rec(
-                l,
+                _l,
                 index + 1,
-                now + w * 5usize.pow((v.len() - index - 1) as u32),
+                _now + w * 5usize.pow((v.len() - index - 1) as u32),
                 false,
                 v,
                 res,

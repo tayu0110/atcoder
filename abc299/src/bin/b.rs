@@ -9,11 +9,9 @@ fn main() {
     let mut res = 0;
     let mut max = 0;
     for i in 0..n {
-        if c[i] == t {
-            if max < r[i] {
-                max = r[i];
-                res = i + 1;
-            }
+        if c[i] == t && max < r[i] {
+            max = r[i];
+            res = i + 1;
         }
     }
     println!("{}", res)

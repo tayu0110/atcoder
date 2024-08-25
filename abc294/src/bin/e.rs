@@ -4,7 +4,7 @@ fn main() {
     input! {_l: usize, n: usize, m: usize, p: [(usize, usize); n], q: [(usize, usize); m]}
 
     let mut t = vec![];
-    for v in vec![&p, &q] {
+    for v in [&p, &q] {
         let mut now = 0;
         for &(_, l) in v {
             now += l;

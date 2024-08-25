@@ -33,5 +33,8 @@ fn main() {
         res.push(tres / *v);
     }
 
-    println!("{}", (res.into_iter().fold(0i64, |s, v| (s + v) % 1000000007) * k) % 1000000007);
+    println!(
+        "{}",
+        (res.into_iter().fold(0i64, |s, v| (s + v) % 1000000007) * k) % 1000000007
+    );
 }

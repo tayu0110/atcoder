@@ -6,7 +6,7 @@ fn rec(now: usize, a: &[usize], b: &[usize], memo: &mut [usize]) -> usize {
     }
 
     memo[now] = (rec(a[now], a, b, memo) + 100).max(rec(b[now], a, b, memo) + 150);
-    return memo[now];
+    memo[now]
 }
 
 fn main() {

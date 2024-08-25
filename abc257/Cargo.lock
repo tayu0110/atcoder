@@ -18,6 +18,10 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e2abad23fbc42b3700f2f279844dc832adb2b2eb069b2df918f455c4e18cc646"
 
 [[package]]
+name = "modint-common"
+version = "0.1.0"
+
+[[package]]
 name = "proconio"
 version = "0.3.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -27,16 +31,37 @@ dependencies = [
 ]
 
 [[package]]
+name = "segtree"
+version = "0.1.0"
+dependencies = [
+ "static-modint",
+ "zero-one",
+]
+
+[[package]]
 name = "simple-rand"
 version = "0.1.0"
+
+[[package]]
+name = "static-modint"
+version = "0.1.0"
+dependencies = [
+ "modint-common",
+ "zero-one",
+]
 
 [[package]]
 name = "string"
 version = "0.1.0"
 dependencies = [
+ "segtree",
  "simple-rand",
 ]
 
 [[package]]
 name = "suffix-array"
+version = "0.1.0"
+
+[[package]]
+name = "zero-one"
 version = "0.1.0"

@@ -32,25 +32,23 @@ fn main() {
                     row_major.insert((-top, -(x + 1), -bottom, -right));
                 }
             }
-        } else {
-            if let Some(&(top, left, bottom, right)) =
-                row_major.range(..=(x, std::i64::MAX, 0, 0)).next_back()
-            {
-                if x < top || bottom < x || -left > 2 {
-                    continue;
-                }
-                row_major.remove(&(top, left, bottom, right));
-                col_major.remove(&(-left, -top, -right, -bottom));
+        } else if let Some(&(top, left, bottom, right)) =
+            row_major.range(..=(x, std::i64::MAX, 0, 0)).next_back()
+        {
+            if x < top || bottom < x || -left > 2 {
+                continue;
+            }
+            row_major.remove(&(top, left, bottom, right));
+            col_major.remove(&(-left, -top, -right, -bottom));
 
-                if top < x {
-                    row_major.insert((top, left, x - 1, right));
-                    col_major.insert((-left, -top, -right, -(x - 1)));
-                }
+            if top < x {
+                row_major.insert((top, left, x - 1, right));
+                col_major.insert((-left, -top, -right, -(x - 1)));
+            }
 
-                if x < bottom {
-                    row_major.insert((x + 1, left, bottom, right));
-                    col_major.insert((-left, -(x + 1), -right, -bottom));
-                }
+            if x < bottom {
+                row_major.insert((x + 1, left, bottom, right));
+                col_major.insert((-left, -(x + 1), -right, -bottom));
             }
         }
     }

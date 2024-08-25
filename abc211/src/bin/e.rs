@@ -54,7 +54,7 @@ fn main() {
     let mut t = vec![vec![vec![]; n+1]; n];
     for (i, s) in s.iter().enumerate() {
         let mut k = 0;
-        for (i, c) in s.into_iter().enumerate() {
+        for (i, c) in s.iter().enumerate() {
             if c == &'#' {
                 k |= 1 << i;
             }

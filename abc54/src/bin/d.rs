@@ -35,11 +35,11 @@ fn solve(p: &[(i32, i32, i32)]) -> HashMap<(i32, i32), i32> {
         let mut cost = 0;
         let mut ma = 0;
         let mut mb = 0;
-        for j in 0..n {
+        for (j, (a, b, c)) in p.iter().enumerate() {
             if i & (1 << j) != 0 {
-                cost += p[j].2;
-                ma += p[j].0;
-                mb += p[j].1;
+                cost += c;
+                ma += a;
+                mb += b;
             }
         }
 
@@ -67,7 +67,7 @@ fn main() {
     let r = solve(&p[n / 2..]);
 
     let mut res = std::i32::MAX;
-    for (l, r) in vec![(&l, &r), (&r, &l)] {
+    for (l, r) in [(&l, &r), (&r, &l)] {
         for (k, v) in l {
             let &(a, b) = k;
             if a == 0 && b == 0 {

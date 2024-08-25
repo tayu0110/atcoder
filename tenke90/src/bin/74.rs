@@ -2,7 +2,7 @@ use proconio::input;
 use proconio::marker::Chars;
 
 fn dfs(s: &mut [char], memo: &mut Vec<Vec<i64>>) -> i64 {
-    if s.len() == 0 {
+    if s.is_empty() {
         return 0;
     }
 
@@ -10,7 +10,7 @@ fn dfs(s: &mut [char], memo: &mut Vec<Vec<i64>>) -> i64 {
     for i in 0..s.len() {
         while s[i] != 'a' {
             let c = s[i];
-            let nc = c as u8 - 'a' as u8;
+            let nc = c as u8 - b'a';
             s[i] = (c as u8- 1) as char;
             if memo[nc as usize][i] >= 0 {
                 res += 1 + memo[nc as usize][i];
@@ -18,7 +18,7 @@ fn dfs(s: &mut [char], memo: &mut Vec<Vec<i64>>) -> i64 {
             }
 
             for j in 0..i {
-                s[j] = ((s[j] as u8 - 'a' as u8 + 1) % 3 + 'a' as u8) as char;
+                s[j] = ((s[j] as u8 - b'a' + 1) % 3 + b'a') as char;
             }
             memo[nc as usize][i] = dfs(&mut s[0..i], memo);
             res += 1 + memo[nc as usize][i];

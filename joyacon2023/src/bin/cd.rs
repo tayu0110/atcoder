@@ -17,7 +17,7 @@ fn main() {
                 dup -= 2;
                 prev += 1;
             } else if dup == 1 {
-                if a.len() < 1 {
+                if a.is_empty() {
                     break;
                 }
 

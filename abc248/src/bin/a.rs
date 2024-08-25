@@ -5,9 +5,7 @@ fn main() {
     println!(
         "{}",
         "0123456789"
-            .chars()
-            .filter(|c| !s.contains(c))
-            .next()
+            .chars().find(|c| !s.contains(c))
             .unwrap()
     )
 }

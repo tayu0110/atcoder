@@ -7,12 +7,10 @@ fn main() {
     for i in 0..h {
         for j in 0..w {
             let k = a[i][j];
-            for (dy, dx) in vec![
-                (0, 1),
+            for (dy, dx) in [(0, 1),
                 (1, 0),
                 (0, 1usize.wrapping_neg()),
-                (1usize.wrapping_neg(), 0),
-            ] {
+                (1usize.wrapping_neg(), 0)] {
                 let ni = i.wrapping_add(dy);
                 let nj = j.wrapping_add(dx);
 

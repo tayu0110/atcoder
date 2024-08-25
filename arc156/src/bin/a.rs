@@ -19,14 +19,12 @@ fn main() {
         } else if cnt.len() == 2 {
             if cnt[1] - cnt[0] >= 2 {
                 res.push(1);
+            } else if n < 4 {
+                res.push(-1)
+            } else if cnt[0] >= 2 || n - cnt[1] > 2 {
+                res.push(2);
             } else {
-                if n < 4 {
-                    res.push(-1)
-                } else if cnt[0] >= 2 || n - cnt[1] - 1 >= 2 {
-                    res.push(2);
-                } else {
-                    res.push(3);
-                }
+                res.push(3);
             }
         } else {
             res.push(cnt.len() as i32 / 2);

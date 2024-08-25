@@ -2,7 +2,7 @@ use itertools::Itertools;
 use std::collections::HashSet;
 
 const LEN: usize = 100000;
-const MAX: usize = 2000_000;
+const MAX: usize = 2_000_000;
 
 fn verify(a: &[usize], b: &[usize]) {
     eprintln!("start verify");

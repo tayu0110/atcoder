@@ -6,11 +6,9 @@ fn main() {
     let max = *a.iter().max().unwrap();
 
     for i in 0..n {
-        if a[i] == max {
-            if b.contains(&(i + 1)) {
-                println!("Yes");
-                return;
-            }
+        if a[i] == max && b.contains(&(i + 1)) {
+            println!("Yes");
+            return;
         }
     }
 

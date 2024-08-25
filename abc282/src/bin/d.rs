@@ -39,11 +39,9 @@ fn main() {
                         white += 1;
                     }
                     nt.push_back(to);
-                } else {
-                    if state[to] != 3 - state[now] {
-                        println!("0");
-                        return;
-                    }
+                } else if state[to] != 3 - state[now] {
+                    println!("0");
+                    return;
                 }
             }
         }

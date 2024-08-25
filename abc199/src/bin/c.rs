@@ -21,7 +21,7 @@ fn main() {
     if f {
         let (a, b) = s.split_at(n);
         s = b
-            .into_iter()
+            .iter()
             .cloned()
             .chain(a.iter().cloned())
             .collect::<Vec<_>>();

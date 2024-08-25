@@ -7,7 +7,7 @@ fn main() {
     let mut res = 0;
     let p = 10usize.pow(n as u32 - 1);
     eprintln!("p: {p}");
-    for i in 0..1000_000_0 {
+    for i in 0..10_000_000 {
         let q = i * i;
         if q < p * 10 {
             let mut q = q.to_string().chars().collect::<Vec<_>>();

@@ -12,11 +12,9 @@ fn dfs(
     }
 
     for &(to, id) in &t[now] {
-        if to != par {
-            if dfs(to, now, tar, stack, t) {
-                stack.push(id);
-                return true;
-            }
+        if to != par && dfs(to, now, tar, stack, t) {
+            stack.push(id);
+            return true;
         }
     }
     false

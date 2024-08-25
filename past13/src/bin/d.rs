@@ -15,8 +15,7 @@ fn main() {
         } else if c == '-' {
             t += players[now];
             players[now] = 0;
-        } else {
-        }
+        } 
 
         now = (now + 1) % n;
     }

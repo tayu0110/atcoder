@@ -10,8 +10,8 @@ fn main() {
 
     let mut res = 0;
     for i in 1..n {
-        let a = s[..i].into_iter().collect::<std::collections::HashSet<_>>();
-        let b = s[i..].into_iter().collect::<std::collections::HashSet<_>>();
+        let a = s[..i].iter().collect::<std::collections::HashSet<_>>();
+        let b = s[i..].iter().collect::<std::collections::HashSet<_>>();
 
         let c = a.intersection(&b).count();
         res = std::cmp::max(res, c);

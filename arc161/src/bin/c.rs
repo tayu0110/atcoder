@@ -18,9 +18,9 @@ fn dfs(now: usize, par: usize, colors: &mut [u8], s: &[u8], t: &Vec<Vec<usize>>)
         res &= !(colors[par] != 0 && colors[par] != s[now]);
         colors[par] = s[now];
     } else if b < w {
-        res &= !(s[now] == b'B');
+        res &= s[now] != b'B';
     } else {
-        res &= !(s[now] == b'W');
+        res &= s[now] != b'W';
     }
 
     if colors[now] == 0 {

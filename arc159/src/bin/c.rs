@@ -1,4 +1,3 @@
-
 use proconio::*;
 // use rand::{thread_rng, Rng};
 
@@ -18,7 +17,7 @@ fn main() {
 
     let _av = a.iter().sum::<usize>() / n;
     // let mut res = vec![];
-    loop {}
+    // loop {}
     // println!("{}", res.len());
     // for v in res {
     //     println!("{}", v.iter().map(|a| a + 1).join(" "));

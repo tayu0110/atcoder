@@ -1,6 +1,11 @@
 #![allow(unused_imports)]
-use proconio::{*, input, marker::{Chars, Bytes}, source::line::LineSource};
 use itertools::Itertools;
+use proconio::{
+    input,
+    marker::{Bytes, Chars},
+    source::line::LineSource,
+    *,
+};
 
 #[fastout]
 fn main() {
@@ -40,11 +45,11 @@ fn main() {
             if ki >= 4 && kj >= 14 {
                 res += 1;
             }
-            for k in 0..keys.len() {
+            for (k, key) in keys.iter().enumerate() {
                 if i == k || j == k {
                     continue;
                 }
-                let kk = *map.get(&keys[k]).unwrap();
+                let kk = *map.get(key).unwrap();
                 if i < j && ki >= 4 && kj >= 4 && kk >= 2 && !set.contains(&(i, j, k)) {
                     res += 1;
                     set.insert((i, j, k));

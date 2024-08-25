@@ -18,7 +18,7 @@ fn main() {
     }
 
     let mut buf = vec![vec![]; w];
-    for i in 0..(1 << w+1) {
+    for i in 0..(1 << (w+1)) {
         let mut bad = 0;
         let mut pos = 0;
         for j in 0..w {
@@ -31,10 +31,8 @@ fn main() {
         if bad <= 1 {
             for j in 0..w {
                 let mut flag = false;
-                if bad == 1 {
-                    if j != w - pos - 1 {
-                        flag = true;
-                    }
+                if bad == 1 && j != w - pos - 1 {
+                    flag = true;
                 }
 
                 if !flag {
@@ -44,11 +42,11 @@ fn main() {
         }
     }
 
-    let mut dp = vec![0; 1 << w+1];
+    let mut dp = vec![0; 1 << (w+1)];
     dp[0] = 1;
     for i in 0..h {
         for j in 0..w {
-            let mut tmp = vec![0; 1 << w+1];
+            let mut tmp = vec![0; 1 << (w+1)];
             for k in &buf[j] {
                 let k = *k;
             // for k in 0..(1 << w+1) {

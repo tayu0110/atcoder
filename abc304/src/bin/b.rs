@@ -7,7 +7,7 @@ fn main() {
         return;
     }
 
-    let mut ns = s[..3].into_iter().copied().collect::<Vec<char>>();
+    let mut ns = s[..3].to_vec();
     ns.resize(s.len(), '0');
     println!("{}", ns.into_iter().collect::<String>())
 }

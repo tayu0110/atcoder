@@ -18,11 +18,9 @@ fn main() {
             r += 1;
         }
 
-        if a[r] - a[l] == p {
-            if ck.contains(&(q + a[r])) && ck.contains(&(q + rr + a[r])) {
-                println!("Yes");
-                std::process::exit(0);
-            }
+        if a[r] - a[l] == p && ck.contains(&(q + a[r])) && ck.contains(&(q + rr + a[r])) {
+            println!("Yes");
+            std::process::exit(0);
         }
 
         l += 1;

@@ -17,7 +17,7 @@ fn main() {
     }
 
     for (a, _) in p.iter_mut() {
-        let na = a.clone();
+        let na = *a;
         *a = *map.get(&na).unwrap();
     }
 
@@ -38,15 +38,11 @@ fn main() {
 
         let mut buf = vec![];
         for w in &v {
-            if *w > 0 {
-                if set.contains(&(*w-1)) {
-                    buf.push(*w);
-                }
+            if *w > 0 && set.contains(&(*w-1)) {
+                buf.push(*w);
             }
-            if *w < 2*n {
-                if set.contains(&(*w+1)) {
-                    buf.push(*w);
-                }
+            if *w < 2*n && set.contains(&(*w+1)) {
+                buf.push(*w);
             }
         }
 

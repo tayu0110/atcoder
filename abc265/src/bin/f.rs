@@ -5,12 +5,12 @@ type Mint = modint::Mint<modint::Mod998244353>;
 fn main() {
     input! {n: usize, d: i32, p: [i32; n], q: [i32; n]};
 
-    let max = 2022 as usize;
+    let max = 2022_usize;
     let mut dp = vec![vec![Mint::zero(); max]; max];
     dp[1][1] = Mint::one();
-    for (_, (np, nq)) in p.into_iter().zip(q.into_iter()).enumerate() {
+    for (np, nq) in p.into_iter().zip(q.into_iter()) {
         let mut tmp = vec![vec![Mint::zero(); max]; max];
-        let diff = (np - nq).abs() as usize;
+        let diff = (np - nq).unsigned_abs() as usize;
         for j in 1..=d+1 {
             for k in 1..=d+1 {
                 let v = dp[j as usize][k as usize];

@@ -18,7 +18,7 @@ fn solve(x: i64, y: i64, a: i64, b: i64, c: i64) -> bool {
 
 fn main() {
     input! {x: i64, y: i64, a: i64, b: i64, c: i64}
-    let mut v = vec![a, b, c];
+    let mut v = [a, b, c];
 
     for _ in 0..3 {
         if solve(x, y, v[0], v[1], v[2]) {

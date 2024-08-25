@@ -3,33 +3,35 @@ name = "codequeen2023final"
 version = "0.1.0"
 edition = "2021"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [dependencies]
-ac-library-rs.workspace = true
-convolution.workspace = true
-ds.workspace = true
-fenwick-tree.workspace = true
-flow.workspace = true
-geometry.workspace = true
-graph.workspace = true
-itertools.workspace = true
-math.workspace = true
-mincost-flow.workspace = true
-montgomery-modint.workspace = true
-num.workspace = true
-ordered-float.workspace = true
-permutohedron.workspace = true
-polynomial.workspace = true
-proconio.workspace = true
-rand.workspace = true
-rational.workspace = true
-regex.workspace = true
-rustc-hash.workspace = true
-segtree.workspace = true
-static-modint.workspace = true
-string.workspace = true
-suffix-array.workspace = true
-superslice.workspace = true
-unionfind.workspace = true
-utility.workspace = true
+ac-library-rs = "=0.1.1"
+bitset = { git = "https://github.com/tayu0110/tayu-procon.git", version = "0.1.0" }
+complex = { git = "https://github.com/tayu0110/tayu-procon.git", version = "0.1.0" }
+convolution = { git = "https://github.com/tayu0110/tayu-procon.git", version = "0.1.0" }
+cpgraph = { git = "https://github.com/tayu0110/tayu-procon.git", version = "0.1.0" }
+fenwick-tree = { git = "https://github.com/tayu0110/tayu-procon.git", version = "0.1.0" }
+flow = { git = "https://github.com/tayu0110/tayu-procon.git", version = "0.1.0" }
+geometry = { git = "https://github.com/tayu0110/tayu-procon.git", version = "0.1.0" }
+graph = { git = "https://github.com/tayu0110/tayu-procon.git", version = "0.1.0" }
+itertools = "=0.11.0"
+math = { git = "https://github.com/tayu0110/tayu-procon.git", version = "0.1.0" }
+matrix = { git = "https://github.com/tayu0110/tayu-procon.git", version = "0.1.0" }
+mincost-flow = { git = "https://github.com/tayu0110/tayu-procon.git", version = "0.1.0" }
+montgomery-modint = { git = "https://github.com/tayu0110/tayu-procon.git", version = "0.1.0" }
+num = "=0.4.1"
+permutohedron = "=0.2.4"
+polynomial = { git = "https://github.com/tayu0110/tayu-procon.git", version = "0.1.0" }
+proconio = { version = "=0.4.5", features = ["derive"] }
+rand = "=0.8.5"
+rational = { git = "https://github.com/tayu0110/tayu-procon.git", version = "0.1.0" }
+regex = "=1.9.1"
+rustc-hash = "=1.1.0"
+segtree = { git = "https://github.com/tayu0110/tayu-procon.git", version = "0.1.0" }
+static-modint = { git = "https://github.com/tayu0110/tayu-procon.git", version = "0.1.0" }
+string = { git = "https://github.com/tayu0110/tayu-procon.git", version = "0.1.0" }
+superslice = "=1.0.0"
+unionfind = { git = "https://github.com/tayu0110/tayu-procon.git", version = "0.1.0" }
+utility = { git = "https://github.com/tayu0110/tayu-procon.git", version = "0.1.0" }
+ds = { git = "https://github.com/tayu0110/tayu-procon.git", version = "0.1.0", features = [
+  "full",
+] }

@@ -4,7 +4,7 @@ use proconio::{*, input, marker::{Chars, Bytes}};
 fn main() {
     input! {n: u128, m: usize}
 
-    const MAX: u128 = 1000_000_000;
+    const MAX: u128 = 1_000_000_000;
     let mut res = String::new();
     let mut now = 1;
     for _ in 0..m {

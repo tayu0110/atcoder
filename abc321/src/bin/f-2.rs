@@ -24,7 +24,7 @@ fn main() {
             r.shrink();
             // eprintln!("x: {x}, r_inv: {r:?}");
         }
-        poly = poly * r;
+        poly *= r;
 
         poly.shrink();
 

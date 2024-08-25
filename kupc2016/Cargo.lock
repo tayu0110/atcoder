@@ -66,6 +66,7 @@ name = "flow"
 version = "0.1.0"
 dependencies = [
  "numeric",
+ "zero-one",
 ]
 
 [[package]]

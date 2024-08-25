@@ -290,7 +290,7 @@ mod graph {
         let mut order = vec![];
         for start in 0..graph.size {
             if !used[start] {
-                dfs_for_scc(start, &mut used, &mut order, &graph);
+                dfs_for_scc(start, &mut used, &mut order, graph);
             }
         }
 
@@ -335,7 +335,7 @@ mod graph {
         let mut res = vec![];
         for start in 0..graph.size {
             if ord[start] == std::usize::MAX {
-                next_ord = dfs_for_lowlink(start, std::usize::MAX, next_ord, &mut ord, &mut low, &mut res, &graph);
+                next_ord = dfs_for_lowlink(start, std::usize::MAX, next_ord, &mut ord, &mut low, &mut res, graph);
             }
         }
         res

@@ -38,6 +38,7 @@ name = "montgomery-modint"
 version = "0.1.0"
 dependencies = [
  "modint-common",
+ "simple-rand",
  "zero-one",
 ]
 
@@ -46,6 +47,10 @@ name = "proconio"
 version = "0.4.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0eb404616795079e2390e7115acf0ada24e9332e8476de2aada7bacb9992dc9e"
+
+[[package]]
+name = "simple-rand"
+version = "0.1.0"
 
 [[package]]
 name = "static-modint"

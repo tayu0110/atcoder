@@ -11,7 +11,7 @@ fn main() {
     let mut map = std::collections::HashMap::new();
     for v in s.iter_mut() {
         v.sort();
-        *map.entry(v).or_insert(0usize) += 1;
+        *map.entry(v.clone()).or_insert(0usize) += 1;
     }
 
     let mut res = 0;

@@ -1,7 +1,7 @@
 use proconio::*;
 
 const MAX: usize = 200001;
-const M: u32 = 1000_000_007;
+const M: u32 = 1_000_000_007;
 
 const fn pow(a: u32, mut exp: u32) -> u32 {
     let (mut res, mut val) = (1, a as u64);

@@ -25,7 +25,7 @@ fn main() {
     }
 
     let get_index = |i: usize| {
-        let (mut l, mut r) = (-1 as i32, t.len() as i32);
+        let (mut l, mut r) = (-1_i32, t.len() as i32);
         while r - l > 1 {
             let m = (r + l) / 2;
             let (j, _) = t[m as usize];

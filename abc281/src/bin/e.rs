@@ -9,7 +9,7 @@ fn main() {
         .map(|(i, a)| (a, i))
         .collect::<Vec<_>>();
 
-    let mut b = a[0..m].iter().cloned().collect::<Vec<_>>();
+    let mut b = a[0..m].to_vec();
     b.sort();
     let mut sum = b.iter().map(|(a, _)| a).take(k).sum::<usize>();
 

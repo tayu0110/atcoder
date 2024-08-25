@@ -16,11 +16,9 @@ fn main() {
 
     if a[0] == a[1] && a[1] == a[2] {
         println!("{}", res)
+    } else if a[0] == a[1] {
+        println!("{}", res + 1)
     } else {
-        if a[0] == a[1] {
-            println!("{}", res + 1)
-        } else {
-            println!("{}", res + 2)
-        }
+        println!("{}", res + 2)
     }
 }

@@ -64,12 +64,10 @@ fn main() {
             } else if *multiset.get(&x).unwrap() == 1 {
                 dup -= 1;
             }
+        } else if dup > 0 {
+            println!("0");
         } else {
-            if dup > 0 {
-                println!("0");
-            } else {
-                println!("{}", min.iter().next().unwrap().0);
-            }
+            println!("{}", min.iter().next().unwrap().0);
         }
     }
 }

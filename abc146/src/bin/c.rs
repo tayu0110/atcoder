@@ -1,6 +1,6 @@
 use proconio::*;
 
-const MAX: usize = 1000_000_000;
+const MAX: usize = 1_000_000_000;
 
 fn main() {
     input! {a: usize, b: usize, x: usize}

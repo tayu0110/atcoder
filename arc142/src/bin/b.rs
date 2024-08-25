@@ -14,7 +14,7 @@ fn main() {
                 }
                 print!("{}", front * n + j + 1);
             }
-            println!("");
+            println!();
             front += 1;
         } else {
             for j in 0..n {
@@ -23,7 +23,7 @@ fn main() {
                 }
                 print!("{}", back * n + j + 1);
             }
-            println!("");
+            println!();
             back -= 1;
         }
     }

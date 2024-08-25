@@ -21,9 +21,7 @@ fn main() {
                 prev = s[v[i]];
                 s[v[i]] = s[v[len - 1]];
             } else {
-                let tmp = s[v[i]];
-                s[v[i]] = prev;
-                prev = tmp;
+                std::mem::swap(&mut s[v[i]], &mut prev);
             }
         }
     }

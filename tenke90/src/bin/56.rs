@@ -41,5 +41,5 @@ fn main() {
             print!("B");
         }
     }
-    println!("");
+    println!();
 }

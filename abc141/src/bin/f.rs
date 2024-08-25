@@ -20,7 +20,10 @@ fn main() {
         }
 
         let now = a[r];
-        a.iter_mut().enumerate().filter(|(j, v)| (**v >> i) & 1 != 0 && *j != r).for_each(|(_, v)| *v ^= now);
+        a.iter_mut()
+            .enumerate()
+            .filter(|(j, v)| (**v >> i) & 1 != 0 && *j != r)
+            .for_each(|(_, v)| *v ^= now);
         r += 1;
     }
 
@@ -29,10 +32,10 @@ fn main() {
     for i in (0..61).rev() {
         let nk = k | (1usize << i);
         let mut b = nk;
-        for j in 0..r {
-            let top = 63 - a[j].leading_zeros();
+        for a in a.iter().take(r) {
+            let top = 63 - a.leading_zeros();
             if (b >> top) & 1 != 0 {
-                b ^= a[j];
+                b ^= a;
             }
         }
         if b & nk == 0 {

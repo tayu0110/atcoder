@@ -49,7 +49,7 @@ fn solve(mut a: usize, mut b: usize) -> usize {
         }
     }
 
-    return 0;
+    0
 }
 
 fn main() {

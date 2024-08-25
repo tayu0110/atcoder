@@ -39,7 +39,7 @@ fn main() {
         if c == 'M' {
             for j in 0..3 {
                 for k in 0..3 {
-                    let v = vec![a[i], j, k];
+                    let v = [a[i], j, k];
                     let mut mex = 0;
                     while v.contains(&mex) {
                         mex += 1;

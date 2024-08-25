@@ -19,17 +19,14 @@ fn f(h: usize, x: Vec<usize>) -> Vec<usize> {
     }
 
     if x.len() % 2 == 0 {
-        (zero..h).into_iter().chain((0..zero).into_iter()).collect()
+        (zero..h).chain(0..zero).collect()
+    } else if zero == h - 1 {
+        (0..h).rev().collect()
     } else {
-        if zero == h - 1 {
-            (0..h).into_iter().rev().collect()
-        } else {
-            (0..=zero)
-                .into_iter()
-                .rev()
-                .chain((zero + 1..h).into_iter().rev())
-                .collect()
-        }
+        (0..=zero)
+            .rev()
+            .chain((zero + 1..h).rev())
+            .collect()
     }
 }
 

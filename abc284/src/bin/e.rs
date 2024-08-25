@@ -5,7 +5,7 @@ use proconio::{
     *,
 };
 
-const MAX: usize = 1000_000;
+const MAX: usize = 1_000_000;
 
 fn dfs(now: usize, res: &mut usize, reached: &mut [bool], t: &Vec<Vec<usize>>) {
     if reached[now] {

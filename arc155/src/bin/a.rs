@@ -41,8 +41,7 @@ fn main() {
 
             let s2 = s
                 .iter()
-                .chain(s.iter().rev())
-                .map(|&c| c)
+                .chain(s.iter().rev()).copied()
                 .collect::<Vec<char>>();
             if solve(n * 2, v, s2) {
                 println!("Yes")

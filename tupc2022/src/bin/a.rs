@@ -10,7 +10,7 @@ fn main() {
         }
     }
 
-    if 1 + q.iter().max().unwrap() <= k {
+    if *q.iter().max().unwrap() < k {
         println!("Yes")
     } else {
         println!("No")

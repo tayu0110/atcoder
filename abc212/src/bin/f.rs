@@ -14,7 +14,7 @@ fn main() {
 
     let mut doubling = vec![vec![std::usize::MAX; 20]; m];
     for (i, (_, b, _, t)) in p.iter().enumerate() {
-        let (mut l, mut r) = (-1 as i64, bus[*b].len() as i64);
+        let (mut l, mut r) = (-1_i64, bus[*b].len() as i64);
         while r - l > 1 {
             let m = (r + l) / 2;
             let (ts, _, _, _) = bus[*b][m as usize];
@@ -40,7 +40,7 @@ fn main() {
     }
 
     for (x, y, z) in q {
-        let (mut l, mut r) = (-1 as i64, bus[y].len() as i64);
+        let (mut l, mut r) = (-1_i64, bus[y].len() as i64);
         while r - l > 1 {
             let m = (r + l) / 2;
             let (ts, _, _, _) = bus[y][m as usize];

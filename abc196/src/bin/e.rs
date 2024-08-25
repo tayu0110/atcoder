@@ -35,24 +35,22 @@ fn main() {
 
                 nt.push_front((a - g, uf.root(i)));
             }
-        } else {
-            if let Some((c, i)) = nt.pop_back() {
-                if c + g < a {
-                    nt.push_back((c, i));
-                    continue;
-                }
-
-                while let Some((c, j)) = nt.pop_back() {
-                    if c + g < a {
-                        nt.push_back((c, j));
-                        break;
-                    }
-
-                    uf.merge(i, j);
-                }
-
-                nt.push_back((a - g, uf.root(i)));
+        } else if let Some((c, i)) = nt.pop_back() {
+            if c + g < a {
+                nt.push_back((c, i));
+                continue;
             }
+
+            while let Some((c, j)) = nt.pop_back() {
+                if c + g < a {
+                    nt.push_back((c, j));
+                    break;
+                }
+
+                uf.merge(i, j);
+            }
+
+            nt.push_back((a - g, uf.root(i)));
         }
     }
 

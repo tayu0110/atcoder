@@ -36,7 +36,7 @@ fn main() {
                 res = std::cmp::max(res, r);
                 for k in 1..=len {
                     for i in 0..len {
-                        res = std::cmp::max(res, r - sum + v[i + k as usize] - v[i]);
+                        res = std::cmp::max(res, r - sum + v[i + k] - v[i]);
                     }
                 }
             }
@@ -49,7 +49,7 @@ fn main() {
         } else {
             for k in 1..=std::cmp::min(len, k as usize) {
                 for i in 0..len {
-                    res = std::cmp::max(res, v[i + k as usize] - v[i]);
+                    res = std::cmp::max(res, v[i + k] - v[i]);
                 }
             }
         }

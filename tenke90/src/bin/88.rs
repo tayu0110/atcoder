@@ -17,7 +17,7 @@ fn response(mut ans: i128) {
         bit += tr;
         ans >>= tr;
     }
-    println!("");
+    println!();
 }
 
 const INF: i128 = -1;

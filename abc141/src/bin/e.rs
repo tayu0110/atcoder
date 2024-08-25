@@ -12,7 +12,7 @@ fn main() {
             if i + len > n {
                 break;
             }
-            let buf = s[i..i+len].iter().map(|v| *v).collect::<String>();
+            let buf = s[i..i+len].iter().copied().collect::<String>();
             map.entry(buf).or_insert(vec![]).push(i);
         }
 

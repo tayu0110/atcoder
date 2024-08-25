@@ -6,10 +6,10 @@ fn main() {
 
     let mut map: std::collections::BTreeMap<char, i32> = std::collections::BTreeMap::new();
     for v in s {
-        if map.contains_key(&v) {
-            *map.entry(v).or_insert(0) += 1;
+        if let std::collections::btree_map::Entry::Vacant(e) = map.entry(v) {
+            e.insert(1);
         } else {
-            map.insert(v, 1);
+            *map.entry(v).or_insert(0) += 1;
         }
     }
 

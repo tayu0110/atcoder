@@ -8,7 +8,7 @@ fn main() {
     a.sort();
 
     let mut res = Modint::zero();
-    for (i, a) in a.into_iter().map(|a| Modint::raw(a)).enumerate() {
+    for (i, a) in a.into_iter().map(Modint::raw).enumerate() {
         res += Modint::raw(2).pow(i as u64) * a;
     }
 

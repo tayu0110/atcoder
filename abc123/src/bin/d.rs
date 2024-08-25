@@ -2,11 +2,11 @@
 use proconio::{input, marker::Chars, source::line::LineSource};
 
 fn main() {
-    input! {x: usize, y: usize, z: usize, k: usize, mut a: [usize; x], mut b: [usize; y], mut c: [usize; z]}    
+    input! {x: usize, y: usize, z: usize, k: usize, mut a: [usize; x], mut b: [usize; y], mut c: [usize; z]}
     let mut t = vec![];
-    for i in 0..x {
-        for j in 0..y {
-            t.push(a[i] + b[j]);
+    for a in a.iter().take(x) {
+        for b in b.iter().take(y) {
+            t.push(*a + *b);
         }
     }
     t.sort();
@@ -15,9 +15,9 @@ fn main() {
     c.reverse();
 
     let mut nt = std::collections::BinaryHeap::new();
-    for i in 0..x+y {
-        for j in 0..z {
-            let s = t[i] + c[j];
+    for t in t.iter().take(x + y) {
+        for c in c.iter().take(z) {
+            let s = t + c;
             if nt.len() < k {
                 nt.push(std::cmp::Reverse(s));
             } else {

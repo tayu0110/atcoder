@@ -2,7 +2,7 @@
 use proconio::{input, marker::Chars, source::line::LineSource};
 const INF: usize = 0x3f3f3f3f3f3f3f3f;
 
-fn dijkstra(start: usize, l: usize, t: &Vec<Vec<(usize, usize)>>) -> Vec<usize> {
+fn dijkstra(start: usize, l: usize, t: &[Vec<(usize, usize)>]) -> Vec<usize> {
     let n = t.len();
     let mut dist = vec![(INF, INF); n];
     let mut ck = vec![false; n];

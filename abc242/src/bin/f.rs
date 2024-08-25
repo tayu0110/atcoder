@@ -13,7 +13,7 @@ fn main() {
     let mut dp = vec![vec![vec![Mint::zero(); std::cmp::max(w, b)+1]; m+1]; n+1];
     for i in 1..=n {
         for j in 1..=m {
-            for k in vec![w, b] {
+            for k in [w, b] {
                 dp[i][j][k] = com.get(i*j, k);
                 for ni in 1..=i {
                     for nj in 1..=j {

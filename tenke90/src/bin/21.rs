@@ -43,8 +43,8 @@ mod scc {
         let mut g = 0;
         let mut res = vec![-1; n];
         for w in v.iter_mut() {
-            while !w.is_empty() {
-                let now = w.pop().unwrap();
+            while let Some(now) = w.pop() {
+                
                 if res[now] < 0 {
                     dfs2(now, g, &group, &mut res, &rt);
                     g += 1;

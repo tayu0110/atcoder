@@ -1,7 +1,7 @@
 use proconio::input;
 
 fn main() {
-    const MOD: usize = 1000_000_007;
+    const MOD: usize = 1_000_000_007;
     input! {n: usize, p: [(usize, usize); n * (n - 1) / 2]}
 
     let mut uf = unionfind::UnionFind::new(n * n);

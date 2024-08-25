@@ -15,11 +15,9 @@ fn dfs(
     }
 
     for &to in &t[now] {
-        if to != par && !reached[to] {
-            if dfs(to, now, res, reached, t) {
-                res.push(now + 1);
-                return true;
-            }
+        if to != par && !reached[to] && dfs(to, now, res, reached, t) {
+            res.push(now + 1);
+            return true;
         }
     }
 

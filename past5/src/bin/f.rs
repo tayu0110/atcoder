@@ -6,7 +6,7 @@ fn main() {
 
     let v = p
         .into_iter()
-        .map(|(a, b, c)| (1 << a - 1) | (1 << b - 1) | (1 << c - 1))
+        .map(|(a, b, c)| (1 << (a - 1)) | (1 << (b - 1)) | (1 << (c - 1)))
         .collect::<Vec<_>>();
     let mut res = 0;
     'base: for i in 0u32..(1 << n) {

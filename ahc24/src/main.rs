@@ -20,7 +20,7 @@ fn transpose(c: Vec<Vec<u8>>) -> Vec<Vec<u8>> {
     new
 }
 
-fn make_adj(c: &Vec<Vec<u8>>) -> Vec<u128> {
+fn make_adj(c: &[Vec<u8>]) -> Vec<u128> {
     let mut adj = vec![0; M + 1];
     for i in 0..c.len() {
         for j in 0..c[0].len() {
@@ -30,7 +30,7 @@ fn make_adj(c: &Vec<Vec<u8>>) -> Vec<u128> {
             if i == 0 {
                 adj[c[i][j] as usize] |= 1;
             }
-            for (dx, dy) in vec![(0, 1), (1, 0)] {
+            for (dx, dy) in [(0, 1), (1, 0)] {
                 let (ni, nj) = (i.wrapping_add(dx), j.wrapping_add(dy));
                 if ni < c.len() && nj < c[0].len() {
                     adj[c[i][j] as usize] |= 1 << c[ni][nj];
@@ -45,12 +45,12 @@ fn make_adj(c: &Vec<Vec<u8>>) -> Vec<u128> {
     adj
 }
 
-fn verify(adj: &Vec<u128>, nadj: &Vec<u128>, nc: &Vec<Vec<u8>>) -> bool {
+fn verify(adj: &Vec<u128>, nadj: &Vec<u128>, nc: &[Vec<u8>]) -> bool {
     let (h, w) = (nc.len(), nc[0].len());
     let mut uf = UnionFind::new(h * w);
     for i in 0..h {
         for j in 0..w {
-            for (dx, dy) in vec![(0, 1), (1, 0), (0, !0), (!0, 0)] {
+            for (dx, dy) in [(0, 1), (1, 0), (0, !0), (!0, 0)] {
                 let (ni, nj) = (i.wrapping_add(dx), j.wrapping_add(dy));
                 if ni < h && nj < w && nc[i][j] == nc[ni][nj] {
                     uf.merge(i * w + j, ni * w + nj);
@@ -68,7 +68,7 @@ fn try_remove(c: &mut Vec<Vec<u8>>, adj: &Vec<u128>, r: usize) -> bool {
         nc.remove(r);
         let nadj = make_adj(&nc);
 
-        if verify(&adj, &nadj, &nc) {
+        if verify(adj, &nadj, &nc) {
             *c = nc;
             true
         } else {
@@ -130,10 +130,10 @@ fn main() {
     }
 
     let (h, w) = (res.len(), res[0].len());
-    fn power_play(i: usize, j: usize, res: &mut Vec<Vec<u8>>) {
+    fn power_play(i: usize, j: usize, res: &mut [Vec<u8>]) {
         let (h, w) = (res.len(), res[0].len());
         let mut e = vec![];
-        for (dx, dy) in vec![
+        for (dx, dy) in [
             (0, 1),
             (1, 0),
             (0, !0),

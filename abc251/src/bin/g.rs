@@ -3,12 +3,12 @@ use rand::{thread_rng, Rng};
 fn main() {
     let mut rng = thread_rng();
     loop {
-        let x: i64 = rng.gen_range(-1000_000_000, -500_000_000);
-        let y: i64 = rng.gen_range(-1000_000_000, 1000_000_000);
-        let h: i64 = rng.gen_range(500_000_000, 1000_000_000);
-        let w: i64 = rng.gen_range(-1000_000_000, 1000_000_000);
-        let rxy: i64 = rng.gen_range(900_000_000, 1000_000_000);
-        let rhw: i64 = rng.gen_range(900_000_000, 1000_000_000);
+        let x: i64 = rng.gen_range(-1_000_000_000, -500_000_000);
+        let y: i64 = rng.gen_range(-1_000_000_000, 1_000_000_000);
+        let h: i64 = rng.gen_range(500_000_000, 1_000_000_000);
+        let w: i64 = rng.gen_range(-1_000_000_000, 1_000_000_000);
+        let rxy: i64 = rng.gen_range(900_000_000, 1_000_000_000);
+        let rhw: i64 = rng.gen_range(900_000_000, 1_000_000_000);
 
         eprintln!(
             "x: {}, y: {}, h: {}, w: {}, rxy: {}, rhw: {}",

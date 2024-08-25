@@ -34,7 +34,7 @@ impl SuffixArray {
     const THRESHOLD_NAIVE: usize = 10;
 
     pub fn new(s: impl Into<String>) -> Self {
-        let s = s.into().bytes().map(|b| b as u32).chain(vec![0].into_iter()).collect::<Vec<_>>();
+        let s = s.into().bytes().map(|b| b as u32).chain(vec![0]).collect::<Vec<_>>();
         let mut sa = vec![std::u32::MAX; s.len()];
         Self::sa_is(Self::CHARS, &s, &mut sa);
 
@@ -130,7 +130,7 @@ impl SuffixArray {
                     .map(|(i, c)| (i as u32, c))
                     .unzip::<u32, u32, Vec<u32>, Vec<u32>>();
             Self::sa_is(rank as usize + 1, &new_s, sa);
-            sa.into_iter()
+            sa.iter_mut()
                 .take(new_s.len())
                 .map(|i| restore_index[*i as usize])
                 .collect()
@@ -145,7 +145,7 @@ impl SuffixArray {
         sa[0] = s.len() as u32 - 1;
 
         let mut filled_lms = vec![0; kinds];
-        for (lms, c) in lms_indices.into_iter().map(|lms| (*lms, s[*lms as usize] as usize)) {
+        for (lms, c) in lms_indices.iter().map(|lms| (*lms, s[*lms as usize] as usize)) {
             sa[(char_start[c] + char_num[c] - 1 - filled_lms[c]) as usize] = lms;
             filled_lms[c] += 1;
         }

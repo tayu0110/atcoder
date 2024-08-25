@@ -3,7 +3,7 @@ use proconio::*;
 fn main() {
     input! {n: usize, mut d: usize}
 
-    let mut div = vec![0; 6];
+    let mut div = [0; 6];
     for i in 2..6 {
         let t = i;
         while d % t == 0 {

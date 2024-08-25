@@ -12,7 +12,7 @@ fn main() {
     let mut uf = unionfind::UnionFind::new(n);
 
     for (i, (x, y)) in p.into_iter().enumerate() {
-        for (dx, dy) in vec![(-1, -1), (-1, 0), (0, -1), (0, 1), (1, 0), (1, 1)] {
+        for (dx, dy) in [(-1, -1), (-1, 0), (0, -1), (0, 1), (1, 0), (1, 1)] {
             let (nx, ny) = (x + dx, y + dy);
             if let Some(idx) = map.get(&(nx, ny)) {
                 uf.merge(i, *idx);

@@ -51,17 +51,15 @@ fn main() {
             } else {
                 println!("No")
             }
-        } else {
-            if cs == ct {
-                if is_match[i + 1] {
-                    println!("Yes")
-                } else {
-                    println!("No")
-                }
+        } else if cs == ct {
+            if is_match[i + 1] {
+                println!("Yes")
             } else {
-                f = false;
-                println!("No");
+                println!("No")
             }
+        } else {
+            f = false;
+            println!("No");
         }
     }
 }

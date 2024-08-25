@@ -8,7 +8,7 @@ fn main() {
     for s in p {
         *map.entry(s[0]).or_insert(0) += 1;
     }
-    let mut map = map.into_iter().map(|(_, v)| v).collect::<Vec<_>>();
+    let mut map = map.into_values().collect::<Vec<_>>();
 
     eprintln!("map: {:?}", map);
 

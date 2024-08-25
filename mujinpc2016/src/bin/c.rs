@@ -10,7 +10,7 @@ fn set(l: &mut u128, r: &mut u128, i: usize) {
     }
 }
 
-fn solve(n: usize, b: usize, t: &Vec<Vec<(usize, usize)>>) -> Option<(u128, u128)> {
+fn solve(n: usize, b: usize, t: &[Vec<(usize, usize)>]) -> Option<(u128, u128)> {
     let mut uf = unionfind::UnionFind::new(n);
     let mut res = (0, 0);
     for i in 0..n {

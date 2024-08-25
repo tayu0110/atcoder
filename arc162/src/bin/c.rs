@@ -28,12 +28,10 @@ fn dfs(now: usize, k: i32, a: &[i32], t: &Vec<Vec<usize>>) -> (bool, usize, Hash
         } else {
             (false, undecided, mex)
         }
+    } else if (0..k).filter(|v| !mex.contains(v)).count() <= 1 && !mex.contains(&k) {
+        (true, 0, HashSet::new())
     } else {
-        if (0..k).filter(|v| !mex.contains(v)).count() <= 1 && !mex.contains(&k) {
-            (true, 0, HashSet::new())
-        } else {
-            (false, undecided, mex)
-        }
+        (false, undecided, mex)
     }
 }
 

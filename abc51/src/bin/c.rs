@@ -29,20 +29,18 @@ fn main() {
                     sx += 1;
                     res.push('R');
                 }
+            } else if sx < tx {
+                sx += 1;
+                res.push('R');
+            } else if sx > tx {
+                sx -= 1;
+                res.push('L');
+            } else if sy > ty {
+                sy -= 1;
+                res.push('D');
             } else {
-                if sx < tx {
-                    sx += 1;
-                    res.push('R');
-                } else if sx > tx {
-                    sx -= 1;
-                    res.push('L');
-                } else if sy > ty {
-                    sy -= 1;
-                    res.push('D');
-                } else {
-                    sy += 1;
-                    res.push('U');
-                }
+                sy += 1;
+                res.push('U');
             }
         }
         res.push(d);

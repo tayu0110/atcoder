@@ -1,6 +1,9 @@
-#[allow(unused_imports)]
-use proconio::{input, marker::Chars, source::line::LineSource};
+use num::integer::Roots;
+use proconio::*;
 
 fn main() {
-    
+    input! {n: usize}
+
+    let sqrt = n.sqrt();
+    println!("{}", sqrt.pow(2))
 }

@@ -8,7 +8,7 @@ fn solve(l: usize, x: usize, now: &mut usize, p: &Vec<usize>, pb: &Vec<usize>) -
     }
 
     let mut res = 0;
-    if *now + 1 <= x {
+    if *now < x {
         *now += 1;
     }
 
@@ -19,7 +19,7 @@ fn solve(l: usize, x: usize, now: &mut usize, p: &Vec<usize>, pb: &Vec<usize>) -
         res += solve(l-1, x, now, p, pb);
     }
 
-    if *now + 1 <= x {
+    if *now < x {
         *now += 1;
         res += 1;
     }
@@ -31,7 +31,7 @@ fn solve(l: usize, x: usize, now: &mut usize, p: &Vec<usize>, pb: &Vec<usize>) -
         res += solve(l-1, x, now, p, pb);
     }
 
-    if *now + 1 <= x {
+    if *now < x {
         *now += 1;
     }
 

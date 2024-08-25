@@ -2,7 +2,7 @@ use proconio::*;
 
 fn main() {
     input! {x: String}
-    let s = x.split(".").collect::<Vec<_>>();
+    let s = x.split('.').collect::<Vec<_>>();
     let y: usize = s[1].parse().unwrap();
 
     if y <= 2 {

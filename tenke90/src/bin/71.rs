@@ -36,7 +36,7 @@ fn dfs(n: usize, k: usize, depth: usize, ie: &mut Vec<i32>, nt: &mut Vec<usize>,
         }
         nt.insert(i, x);
     }
-    return true;
+    true
 }
 
 fn main() {
@@ -69,7 +69,7 @@ fn main() {
                 }
                 print!("{}", v[i]+1);
             }
-            println!("");
+            println!();
         }
     }
 }

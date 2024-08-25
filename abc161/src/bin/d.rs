@@ -2,7 +2,7 @@ use proconio::*;
 
 fn main() {
     input! {k: usize}
-    let mut res = vec![0usize; 11];
+    let mut res = [0usize; 11];
     let mut dig = 10;
     for _ in 0..k {
         let mut found = false;

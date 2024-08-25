@@ -6,7 +6,7 @@ fn main() {
 
     let mut map = std::collections::HashMap::new();
     for v in s.windows(2) {
-        *map.entry(v.into_iter().collect::<String>()).or_insert(0) += 1;
+        *map.entry(v.iter().collect::<String>()).or_insert(0) += 1;
     }
 
     let mut max = 0;

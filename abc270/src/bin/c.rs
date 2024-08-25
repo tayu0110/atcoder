@@ -8,11 +8,9 @@ fn dfs(now: usize, par: usize, target: usize, res: &mut Vec<usize>, t: &Vec<Vec<
     }
 
     for to in &t[now] {
-        if *to != par {
-            if dfs(*to, now, target, res, t) {
-                res.push(now);
-                return true;
-            }
+        if *to != par && dfs(*to, now, target, res, t) {
+            res.push(now);
+            return true;
         }
     }
 
@@ -39,5 +37,5 @@ fn main() {
         }
         print!("{}", res[i]+1);
     }
-    println!("");
+    println!();
 }

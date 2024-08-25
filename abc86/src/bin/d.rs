@@ -34,16 +34,16 @@ fn main() {
             .unwrap()
     };
     let calc = |i: usize, j: usize, b: &mut u32, black: &Vec<Vec<u32>>, white: &Vec<Vec<u32>>| {
-        *b += get(i + k, i, j, j + k, &black);
-        *b += get(m, i + k, j + k, m, &black);
-        *b += get(i, 0, 0, j, &black);
-        *b += get(m, i + k, 0, j, &black);
-        *b += get(i, 0, j + k, m, &black);
+        *b += get(i + k, i, j, j + k, black);
+        *b += get(m, i + k, j + k, m, black);
+        *b += get(i, 0, 0, j, black);
+        *b += get(m, i + k, 0, j, black);
+        *b += get(i, 0, j + k, m, black);
 
-        *b += get(m, i + k, j, j + k, &white);
-        *b += get(i + k, i, j + k, m, &white);
-        *b += get(i, 0, j, j + k, &white);
-        *b += get(i + k, i, 0, j, &white);
+        *b += get(m, i + k, j, j + k, white);
+        *b += get(i + k, i, j + k, m, white);
+        *b += get(i, 0, j, j + k, white);
+        *b += get(i + k, i, 0, j, white);
     };
 
     let mut res = 0;

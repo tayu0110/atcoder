@@ -110,12 +110,12 @@ fn main() {
 
         let mut cnt = 0;
         for w in &in_d[v] {
-            if ck.contains(&w) {
+            if ck.contains(w) {
                 cnt += 1;
             }
         }
         for w in &out_d[v] {
-            if ck.contains(&w) {
+            if ck.contains(w) {
                 cnt += 1;
             }
         }

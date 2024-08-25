@@ -12,7 +12,7 @@ impl<K, V> MapWrapper<K, V> where K: Ord {
     fn is_empty(&self) -> bool { self.map.is_empty() }
     fn first(&self) -> Option<(&K, &V)> { if self.is_empty() { None } else { self.map.iter().next() } }
     fn first_mut(&mut self) -> Option<(&K, &mut V)> { if self.is_empty() { None } else { self.map.iter_mut().next() } }
-    fn last(&self) -> Option<(&K, &V)> { if self.is_empty() { None } else { self.map.iter().rev().next() } }
+    fn last(&self) -> Option<(&K, &V)> { if self.is_empty() { None } else { self.map.iter().next_back() } }
     fn last_mut(&mut self) -> Option<(&K, &mut V)> { if self.is_empty() { None } else { self.map.iter_mut().next() } }
     fn iter(&self) -> std::collections::btree_map::Iter<'_, K, V> { self.map.iter() }
     fn iter_mut(&mut self) -> std::collections::btree_map::IterMut<'_, K, V> { self.map.iter_mut() }
@@ -22,7 +22,7 @@ impl<K, V> std::ops::Index<K> for MapWrapper<K, V> where K: Ord {
     fn index(&self, index: K) -> &Self::Output { &self.map[&index] }
 }
 impl<K, V> std::ops::IndexMut<K> for MapWrapper<K, V> where K: Ord, V: Default {
-    fn index_mut(&mut self, index: K) -> &mut Self::Output { self.map.entry(index).or_insert(Default::default()) }
+    fn index_mut(&mut self, index: K) -> &mut Self::Output { self.map.entry(index).or_default() }
 }
 
 fn main() {

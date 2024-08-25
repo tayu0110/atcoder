@@ -28,7 +28,7 @@ fn main() {
                     continue;
                 }
                 group[r][c] = cnt;
-                for (dy, dx) in vec![(1, 0), (0, 1), (!0, 0), (0, !0)] {
+                for (dy, dx) in [(1, 0), (0, 1), (!0, 0), (0, !0)] {
                     let nr = r.wrapping_add(dy);
                     let nc = c.wrapping_add(dx);
                     if nr >= h || nc >= w || s[nr][nc] != '#' || group[nr][nc] > 0 {
@@ -44,15 +44,15 @@ fn main() {
     let mut set = HashSet::new();
     let mut res = Modint::zero();
     let mut red = 0;
-    for i in 0..h {
+    for (i, s) in s.iter().enumerate() {
         for j in 0..w {
-            if s[i][j] == '#' {
+            if s[j] == '#' {
                 continue;
             }
 
             red += 1;
             set.clear();
-            for (dy, dx) in vec![(1, 0), (0, 1), (!0, 0), (0, !0)] {
+            for (dy, dx) in [(1, 0), (0, 1), (!0, 0), (0, !0)] {
                 let r = i.wrapping_add(dy);
                 let c = j.wrapping_add(dx);
                 if r < h && c < w && group[r][c] > 0 {
@@ -60,13 +60,14 @@ fn main() {
                 }
             }
 
-            if set.len() == 0 {
+            if set.is_empty() {
                 res += Modint::raw(cnt as u32) + Modint::one();
             } else {
                 res += Modint::raw(cnt as u32) - Modint::raw(set.len() as u32 - 1);
             }
         }
     }
+    for _i in 0..h {}
 
     println!("{}", res / Modint::raw(red));
 }

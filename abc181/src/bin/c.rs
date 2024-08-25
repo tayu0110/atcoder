@@ -6,7 +6,7 @@ fn main() {
     for i in 0..n {
         for j in i + 1..n {
             for k in j + 1..n {
-                let mut v = vec![p[i], p[j], p[k]];
+                let mut v = [p[i], p[j], p[k]];
                 v.sort();
 
                 let (a, b) = v[0];

@@ -63,7 +63,7 @@ fn main() {
 
     if memo
         .iter()
-        .any(|v| v.into_iter().filter(|&&v| v > 0).count() >= 3)
+        .any(|v| v.iter().filter(|&&v| v > 0).count() >= 3)
     {
         println!("trumpet")
     } else {

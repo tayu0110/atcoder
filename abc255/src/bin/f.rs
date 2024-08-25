@@ -68,7 +68,7 @@ fn main() {
     let nq = q.iter().map(|x| np[*x].1).collect::<Vec<usize>>();
     np.sort_by(|l, r| l.1.cmp(&r.1));
 
-    let mut st = SegmentTree::new(n, INF, |l, r| std::cmp::min(l, r));
+    let mut st = SegmentTree::new(n, INF, std::cmp::min);
     let mut indices = vec![0; n];
     for (i, v) in nq.iter().enumerate() {
         st.update(i, *v);

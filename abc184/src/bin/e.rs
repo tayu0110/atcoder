@@ -9,7 +9,7 @@ fn main() {
     let mut goal = (0, 0);
     for (i, v) in a.iter().enumerate() {
         for (j, c) in v.iter().enumerate() {
-            if &'a' <= c && c <= &'z' {
+            if (&'a'..=&'z').contains(&c) {
                 t[(*c as u8 - b'a') as usize].push((i, j));
             } else if *c == 'S' {
                 start = (i, j);

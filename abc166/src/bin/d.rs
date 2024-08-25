@@ -30,8 +30,8 @@ fn main() {
         }
     };
     for i in (1..=x).take_while(|&i| i * i <= x).filter(|&i| x % i == 0) {
-        for j in vec![i, x / i] {
-            for d in vec![1, -1] {
+        for j in [i, x / i] {
+            for d in [1, -1] {
                 let (mut a, mut b) = (j, 0);
                 while let Some(res) = f(a, b) {
                     if res == x / j {

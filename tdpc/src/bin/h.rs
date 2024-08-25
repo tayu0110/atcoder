@@ -10,7 +10,7 @@ fn main() {
 
     let mut dp = vec![vec![-1; w + 1]; c + 1];
     dp[0][0] = 0;
-    for (_k, t) in t.iter().enumerate() {
+    for t in t.iter() {
         if t.is_empty() {
             continue;
         }

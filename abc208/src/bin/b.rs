@@ -4,7 +4,7 @@ fn main() {
     input! {mut p: usize}
 
     let mut res = 0;
-    let mut m = (1..=10).fold(1, |s, v| s * v);
+    let mut m = (1..=10).product::<usize>();
     for rem in (1..=10).rev() {
         res += p / m;
         p %= m;

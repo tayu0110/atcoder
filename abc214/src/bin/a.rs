@@ -8,7 +8,7 @@ use proconio::{
 fn main() {
     input! {n: usize}
 
-    if 1 <= n && n <= 125 {
+    if (1..=125).contains(&n) {
         println!("4")
     } else if n <= 211 {
         println!("6")

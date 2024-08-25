@@ -2,7 +2,7 @@
 use proconio::{*, input, marker::{Chars, Bytes}};
 
 fn main() {
-    const MOD: usize = 1000_000_007;
+    const MOD: usize = 1_000_000_007;
     input! {n: usize, a: [usize; n]}
 
     let mut res = 0;

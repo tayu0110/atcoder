@@ -48,12 +48,12 @@ fn main() {
             break;
         }
 
-        if si == None && ti == None {
+        if si.is_none() && ti.is_none() {
             break;
-        } else if si == None {
+        } else if si.is_none() {
             tt.push(std::cmp::Reverse(ti.unwrap()));
             break;
-        } else if ti == None {
+        } else if ti.is_none() {
             st.push(std::cmp::Reverse(si.unwrap()));
             break;
         }
@@ -90,7 +90,7 @@ fn main() {
             b = Some(i);
             break;
         }
-        if f == None && b == None {
+        if f.is_none() && b.is_none() {
             break;
         }
         let (f, b) = (f.unwrap(), b.unwrap());

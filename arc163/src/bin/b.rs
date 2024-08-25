@@ -8,7 +8,7 @@ fn main() {
 
     let mut res = std::i64::MAX;
     for i in 0..t.len() {
-        if i + m - 1 >= t.len() {
+        if i + m > t.len() {
             break;
         }
 

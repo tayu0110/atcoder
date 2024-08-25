@@ -115,7 +115,7 @@ fn main() {
         let mut now = 1;
         for i in 0..n/2 {
             for j in 0..n {
-                if i == n/2-1 && j >= n/2+1 {
+                if i == n/2-1 && j > n/2 {
                     break;
                 }
                 while !set.contains(&now) {

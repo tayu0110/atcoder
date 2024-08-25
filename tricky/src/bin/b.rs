@@ -42,11 +42,9 @@ fn main() {
             writeln!(out, "1 {}", -b as f64 / (2 * a) as f64).unwrap()
         } else {
             let dr = ((b2 - ac) as f64).sqrt();
-            let mut res = vec![
-                (-(b as f64) - dr) / (2 * a) as f64,
-                (-(b as f64) + dr) / (2 * a) as f64,
-            ];
-            res.sort_by(|l, r| l.partial_cmp(&r).unwrap());
+            let mut res = [(-(b as f64) - dr) / (2 * a) as f64,
+                (-(b as f64) + dr) / (2 * a) as f64];
+            res.sort_by(|l, r| l.partial_cmp(r).unwrap());
             writeln!(out, "2 {} {}", res[0], res[1]).unwrap()
         }
     }

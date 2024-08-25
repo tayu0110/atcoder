@@ -114,7 +114,7 @@ fn main() {
             input!(mut m: f64);
             m -= f();
             sum += (m.round() as i64).pow(3);
-            for (dy, dx) in SQURE.iter().cloned() {
+            for (dy, dx) in SQURE.iter() {
                 cnt += 1;
                 println!("{} {} {}", i, dy, dx);
                 std::io::stdout().flush().unwrap();

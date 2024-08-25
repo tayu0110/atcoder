@@ -37,14 +37,12 @@ fn main() {
     for (s, e) in p {
         if s >= e {
             println!("{}", e + 1000 - s);
+        } else if (sr - 1000 < s && s < er + 1000) || (sr - 1000 < e && e < er + 1000) {
+            println!("-1");
+        } else if s <= sr && er <= e {
+            println!("{}", e + 1000 - s)
         } else {
-            if (sr - 1000 < s && s < er + 1000) || (sr - 1000 < e && e < er + 1000) {
-                println!("-1");
-            } else if s <= sr && er <= e {
-                println!("{}", e + 1000 - s)
-            } else {
-                println!("{}", e - s)
-            }
+            println!("{}", e - s)
         }
     }
 }

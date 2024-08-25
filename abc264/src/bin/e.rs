@@ -36,7 +36,7 @@ impl UnionFind {
         }
         self.tree[rl] += self.tree[rr];
         self.tree[rr] = rl as i32;
-        return true;
+        true
     }
 }
 

@@ -5,8 +5,8 @@ fn main() {
     input! {a1: usize, a2: usize, b1: usize, b2: usize, c: usize}
 
     let mut res: Vec<usize> = vec![];
-    let a = vec![a1, a2];
-    let b = vec![b1, b2];
+    let a = [a1, a2];
+    let b = [b1, b2];
     if a.contains(&c) && b.contains(&c) {
         res.extend(a.iter());
         res.extend(b.iter());

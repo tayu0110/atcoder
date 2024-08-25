@@ -9,11 +9,9 @@ fn main() {
         } else {
             println!("Devil")
         }
+    } else if b % 4 == 0 {
+        println!("Devil")
     } else {
-        if b % 4 == 0 {
-            println!("Devil")
-        } else {
-            println!("Angel")
-        }
+        println!("Angel")
     }
 }

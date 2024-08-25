@@ -30,12 +30,10 @@ fn main() {
             continue;
         }
 
-        for (dy, dx) in vec![
-            (0, 1),
+        for (dy, dx) in [(0, 1),
             (1, 0),
             (0, 1usize.wrapping_neg()),
-            (1usize.wrapping_neg(), 0),
-        ] {
+            (1usize.wrapping_neg(), 0)] {
             let nr = r.wrapping_add(dy);
             let nc = c.wrapping_add(dx);
 
@@ -69,12 +67,10 @@ fn main() {
             return;
         }
 
-        for (dy, dx) in vec![
-            (0, 1),
+        for (dy, dx) in [(0, 1),
             (1, 0),
             (0, 1usize.wrapping_neg()),
-            (1usize.wrapping_neg(), 0),
-        ] {
+            (1usize.wrapping_neg(), 0)] {
             let nr = r.wrapping_add(dy);
             let nc = c.wrapping_add(dx);
 

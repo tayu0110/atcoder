@@ -1,6 +1,8 @@
 #![allow(unused_imports)]
-use proconio::{*, input, marker::{Chars, Bytes}};
+use proconio::{
+    input,
+    marker::{Bytes, Chars},
+    *,
+};
 
-fn main() {
-    
-}
+fn main() {}

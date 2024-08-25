@@ -68,5 +68,5 @@ fn main() {
     }
 
     eprintln!("map: {:?}", map);
-    assert_eq!(*map.get("C").unwrap(), A * B % 1000_000_007);
+    assert_eq!(*map.get("C").unwrap(), A * B % 1_000_000_007);
 }

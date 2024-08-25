@@ -6,7 +6,7 @@ fn main() {
     println!(
         "{}",
         a.into_iter()
-            .filter(|a| a.into_iter().zip(&b).map(|(a, b)| a * b).sum::<i32>() > -c)
+            .filter(|a| a.iter().zip(&b).map(|(a, b)| a * b).sum::<i32>() > -c)
             .count()
     )
 }

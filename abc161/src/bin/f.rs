@@ -6,7 +6,7 @@ fn main() {
     let mut res = vec![];
     for i in (1..=n).take_while(|&i| i * i <= n) {
         if n % i == 0 {
-            for j in vec![i, n / i] {
+            for j in [i, n / i] {
                 if j == 1 {
                     continue;
                 }
@@ -22,7 +22,7 @@ fn main() {
             }
         }
     }
-    for i in (1..=n).take_while(|&i| i * i <= n - 1) {
+    for i in (1..=n).take_while(|&i| i * i < n) {
         if (n - 1) % i == 0 {
             if i != 1 {
                 res.push(i);

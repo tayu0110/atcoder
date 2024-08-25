@@ -3,7 +3,7 @@ use proconio::*;
 fn main() {
     input! {_: usize, d: marker::Bytes}
 
-    let mut v = vec![0usize; 10];
+    let mut v = [0usize; 10];
     for c in d {
         v[(c - b'0') as usize] += 1;
     }

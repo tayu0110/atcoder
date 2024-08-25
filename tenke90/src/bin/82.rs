@@ -98,12 +98,10 @@ fn main() {
                 // eprintln!("a: {}, b: {}, cnt: {}, l-1: {}, r-l+1: {}", a, b, cnt, l-1, r-l+1);
                 res += Mint::new(cnt) * (Mint::new(l-1) * Mint::new(r - l + 1) + Mint::new(r - l + 1) * (Mint::new(r - l + 1) + Mint::new(1)) / Mint::new(2));
             }
+        } else if b <= r {
+            res += Mint::new(cnt) * (Mint::new(a-1) * Mint::new(b - a) + Mint::new(b - a) * (Mint::new(b - a) + Mint::new(1)) / Mint::new(2));
         } else {
-            if b <= r {
-                res += Mint::new(cnt) * (Mint::new(a-1) * Mint::new(b - a) + Mint::new(b - a) * (Mint::new(b - a) + Mint::new(1)) / Mint::new(2));
-            } else {
-                res += Mint::new(cnt) * (Mint::new(a-1) * Mint::new(r - a + 1) + Mint::new(r - a + 1) * (Mint::new(r - a + 1) + Mint::new(1)) / Mint::new(2));
-            }
+            res += Mint::new(cnt) * (Mint::new(a-1) * Mint::new(r - a + 1) + Mint::new(r - a + 1) * (Mint::new(r - a + 1) + Mint::new(1)) / Mint::new(2));
         }
 
         eprintln!("{}", res);

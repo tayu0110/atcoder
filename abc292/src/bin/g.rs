@@ -10,7 +10,7 @@ fn main() {
         let mut dp = vec![vec![vec![vec![0; 2]; 10]; 10]; m + 1];
         dp[0][0][0][1] = 1;
         if let [s0, s1] = v {
-            for (i, (&c0, &c1)) in s0.into_iter().zip(s1.into_iter()).enumerate() {
+            for (i, (&c0, &c1)) in s0.iter().zip(s1.iter()).enumerate() {
                 for j in 0..10 {
                     for k in 0..10 {
                         for f in 0..2 {

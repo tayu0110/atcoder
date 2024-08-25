@@ -16,7 +16,7 @@ fn main() {
     let mut res = 0;
     for (_, v) in map {
         let mut sum = 0usize;
-        for (_, v) in &v {
+        for v in v.values() {
             sum += *v;
         }
 

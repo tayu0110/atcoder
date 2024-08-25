@@ -13,12 +13,10 @@ fn solve(n: usize, a: usize, b: usize, s: &[char]) -> Option<Vec<usize>> {
             } else {
                 state[i + 1] = 1 - state[i - 1];
             }
+        } else if s[i] == 'o' {
+            state[i + 1] = 1 - state[i - 1];
         } else {
-            if s[i] == 'o' {
-                state[i + 1] = 1 - state[i - 1];
-            } else {
-                state[i + 1] = state[i - 1];
-            }
+            state[i + 1] = state[i - 1];
         }
     }
 

@@ -1,7 +1,7 @@
 use proconio::input;
 
 fn solve(dig: usize, a: &mut [usize]) -> usize {
-    if a.len() == 0 {
+    if a.is_empty() {
         return 0;
     }
     if dig == 0 {
@@ -35,7 +35,7 @@ fn solve(dig: usize, a: &mut [usize]) -> usize {
             }
         }
 
-        if res == None {
+        if res.is_none() {
             res = Some(solve(dig - 1, a));
         }
     }

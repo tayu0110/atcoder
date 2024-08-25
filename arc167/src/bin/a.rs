@@ -11,8 +11,8 @@ fn main() {
 
     a[..b.len()]
         .iter_mut()
-        .zip(b.into_iter())
+        .zip(b)
         .for_each(|(l, r)| *l += *r);
 
-    println!("{}", a.into_iter().map(|l| *l * *l).sum::<usize>())
+    println!("{}", a.iter_mut().map(|l| *l * *l).sum::<usize>())
 }

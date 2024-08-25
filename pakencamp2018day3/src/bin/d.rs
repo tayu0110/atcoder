@@ -1,7 +1,7 @@
 #[allow(unused_imports)]
 use proconio::{input, marker::Chars, source::line::LineSource};
 
-fn solve(n: usize, c: &Vec<i64>) -> Vec<i64> {
+fn solve(n: usize, c: &[i64]) -> Vec<i64> {
     let mut t = vec![0; n];
 
     for (i, v) in c.iter().enumerate() {

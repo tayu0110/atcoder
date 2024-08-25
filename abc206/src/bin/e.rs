@@ -4,11 +4,11 @@ use proconio::{input, marker::Chars, source::line::LineSource};
 fn main() {
     input! {l: usize, r: usize}
 
-    let mut d = vec![std::usize::MAX; r+1];
+    let mut d = vec![std::usize::MAX; r + 1];
     for i in 2..=r {
         if d[i] == std::usize::MAX {
-            for j in (2..=r).take_while(|j| i**j <= r) {
-                d[i*j] = i;
+            for j in (2..=r).take_while(|j| i * *j <= r) {
+                d[i * j] = i;
             }
         }
     }
@@ -48,5 +48,5 @@ fn main() {
         res += coprime as usize + r / now - 1;
     }
 
-    println!("{}", (r-l+1) * (r-l+1) - res*2 - (r-l+1));
+    println!("{}", (r - l + 1) * (r - l + 1) - res * 2 - (r - l + 1));
 }

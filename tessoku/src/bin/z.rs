@@ -8,7 +8,7 @@ fn main() {
     println!(
         "{}",
         x.into_iter()
-            .map(|x| miller_rabin_test(x))
+            .map(miller_rabin_test)
             .map(|f| if f { "Yes" } else { "No" })
             .join("\n")
     )

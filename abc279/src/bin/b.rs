@@ -18,7 +18,7 @@ fn main() {
 
     for i in 0..slen {
         let mut bad = false;
-        for (j, k) in (0..tlen).into_iter().zip(i..) {
+        for (j, k) in (0..tlen).zip(i..) {
             if k == slen {
                 bad = true;
                 break;

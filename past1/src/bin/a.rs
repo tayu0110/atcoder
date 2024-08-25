@@ -26,6 +26,6 @@ fn main() {
     }
     buf.push(ns);
 
-    buf.sort_by(|s, v| s.to_ascii_lowercase().cmp(&v.to_ascii_lowercase()));
+    buf.sort_by_key(|s| s.to_ascii_lowercase());
     println!("{}", buf.into_iter().collect::<String>());
 }

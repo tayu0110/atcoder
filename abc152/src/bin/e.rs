@@ -29,7 +29,7 @@ fn main() {
     let base = t
         .into_iter()
         .filter(|&v| v != 0)
-        .map(|v| Modint::raw(v))
+        .map(Modint::raw)
         .fold(Modint::one(), |s, v| s * v);
     let mut res = Modint::zero();
     for a in a {

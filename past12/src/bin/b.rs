@@ -7,6 +7,6 @@ fn main() {
     if len < 3 {
         println!("0")
     } else {
-        println!("{}", n[..len - 2].to_string())
+        println!("{}", &n[..len - 2])
     }
 }

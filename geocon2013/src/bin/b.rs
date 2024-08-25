@@ -98,10 +98,8 @@ mod mincost_flow {
                     return (T::inf(), T::inf());
                 }
                 for i in 0..self.graph[before[now]].len() {
-                    if self.graph[before[now]][i].to == now {
-                        if self.graph[before[now]][i].cap < res_cap {
-                            res_cap = self.graph[before[now]][i].cap;
-                        }
+                    if self.graph[before[now]][i].to == now && self.graph[before[now]][i].cap < res_cap {
+                        res_cap = self.graph[before[now]][i].cap;
                     }
                 }
                 now = before[now];

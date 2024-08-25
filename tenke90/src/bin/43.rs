@@ -14,10 +14,10 @@ const L: Direction = Direction(0, -1);
 const R: Direction = Direction(0, 1);
 impl Direction {
     fn index(&self) -> usize {
-        match self {
-            &U => 0,
-            &D => 1,
-            &L => 2,
+        match *self {
+            U => 0,
+            D => 1,
+            L => 2,
             _ => 3
         }
     }

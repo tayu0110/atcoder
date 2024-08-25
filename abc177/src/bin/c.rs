@@ -5,7 +5,7 @@ use itertools::Itertools;
 #[fastout]
 fn main() {
     input! {n: usize, a: [i64; n]}
-    const MOD: i64 = 1000_000_007;
+    const MOD: i64 = 1_000_000_007;
 
     let mut cum = vec![0; n+1];
     for i in 0..n {

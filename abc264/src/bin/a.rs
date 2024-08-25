@@ -7,5 +7,5 @@ fn main() {
     for i in l-1..r {
         print!("{}", v[i]);
     }
-    println!("");
+    println!();
 }

@@ -5,7 +5,7 @@ use proconio::{input, marker::Chars, source::line::LineSource};
 fn main() {
     input! {n: usize, m: usize, k: usize, a: [usize; n]};
 
-    let mut a = a.into_iter().zip(vec![0; n].into_iter()).collect_vec();
+    let mut a = a.into_iter().zip(vec![0; n]).collect_vec();
 
     let mut res = 0;
     for i in (0..31).rev() {

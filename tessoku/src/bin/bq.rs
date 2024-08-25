@@ -9,11 +9,10 @@ fn main() {
         hopcroft_karp(
             &c.into_iter()
                 .enumerate()
-                .map(|(i, v)| v
+                .flat_map(|(i, v)| v
                     .into_iter()
                     .enumerate()
                     .filter_map(move |(j, c)| (c == b'#').then_some((i, j + n))))
-                .flatten()
                 .collect::<Vec<_>>()
         )
         .len()

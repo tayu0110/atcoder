@@ -21,7 +21,7 @@ impl Map {
         Map { h, v }
     }
     fn check(&self, ny: i32, nx: i32, py: i32, px: i32) -> bool {
-        if ny < 0 || 20 <= ny || nx < 0 || 20 <= nx {
+        if !(0..20).contains(&ny) || !(0..20).contains(&nx) {
             return false;
         }
         if py != ny && self.v[cmp::min(py, ny) as usize][px as usize] == '1' {
@@ -95,7 +95,7 @@ impl Solver {
         let mut res_rev = String::new();
         self.dfs(self.sy, self.sx, &mut res_rev);
         let mut res = String::new();
-        while res_rev.len() > 0 {
+        while !res_rev.is_empty() {
             res.push(res_rev.pop().unwrap());
         }
         println!("{}", res);

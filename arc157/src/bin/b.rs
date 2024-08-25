@@ -1,7 +1,7 @@
 use proconio::{marker::Chars, *};
 // use rand::{thread_rng, Rng};
 
-fn naive(k: usize, s: &Vec<char>) -> usize {
+fn naive(k: usize, s: &[char]) -> usize {
     let len = s.len();
     let mut res = 0;
 
@@ -10,7 +10,7 @@ fn naive(k: usize, s: &Vec<char>) -> usize {
             continue;
         }
 
-        let mut s = s.clone();
+        let mut s = s.to_vec();
         for j in 0..len {
             if i & (1 << j) != 0 {
                 if s[j] == 'X' {

@@ -26,10 +26,10 @@ fn main() {
             if sy % b == 0 && gy % b == 0 && sy / b == gy / b {
                 res = sx.abs_diff(gx);
             }
-            for px in vec![sx / b * b, (sx + b - 1) / b * b] {
-                for qx in vec![gx / b * b, (gx + b - 1) / b * b] {
-                    for py in vec![sy / b * b, (sy + b - 1) / b * b] {
-                        for qy in vec![gy / b * b, (gy + b - 1) / b * b] {
+            for px in [sx / b * b, (sx + b - 1) / b * b] {
+                for qx in [gx / b * b, (gx + b - 1) / b * b] {
+                    for py in [sy / b * b, (sy + b - 1) / b * b] {
+                        for qy in [gy / b * b, (gy + b - 1) / b * b] {
                             res = res.min(
                                 px.abs_diff(sx)
                                     + qx.abs_diff(gx)

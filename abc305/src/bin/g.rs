@@ -8,7 +8,7 @@ type Modint = StaticModint<Mod998244353>;
 fn naive(n: usize, s: Vec<Vec<char>>) -> usize {
     let s = s
         .iter()
-        .map(|v| v.into_iter().collect::<String>())
+        .map(|v| v.iter().collect::<String>())
         .collect::<Vec<_>>();
     let mut res = 0;
     for mut i in 0..1 << n {
@@ -38,7 +38,7 @@ fn main() {
 
     let s = s
         .iter()
-        .map(|v| v.into_iter().collect::<String>())
+        .map(|v| v.iter().collect::<String>())
         .collect::<Vec<_>>();
     let mut node = HashMap::new();
     let mut cnt = 0;
@@ -65,7 +65,7 @@ fn main() {
     let mut map = HashMap::new();
     for (t, &id) in &node {
         let suf = t[1..].to_string();
-        for c in vec!["a", "b"] {
+        for c in ["a", "b"] {
             let nt = [suf.clone(), c.to_string()].concat();
             if let Some(nid) = node.get(&nt) {
                 map.entry(id).or_insert(vec![]).push(nid);

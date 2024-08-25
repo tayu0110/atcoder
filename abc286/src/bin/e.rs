@@ -15,10 +15,8 @@ fn main() {
         for j in 0..n {
             if i == j {
                 dp[i][j] = (0, 0);
-            } else {
-                if s[i][j] == 'Y' {
-                    dp[i][j] = (1, -a[j]);
-                }
+            } else if s[i][j] == 'Y' {
+                dp[i][j] = (1, -a[j]);
             }
         }
     }

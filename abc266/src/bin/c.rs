@@ -11,7 +11,7 @@ fn main() {
     }
 }
 
-fn in_area(a: &Vec<i32>, b: &Vec<i32>, c: &Vec<i32>, p: &Vec<i32>) -> bool {
+fn in_area(a: &[i32], b: &[i32], c: &[i32], p: &[i32]) -> bool {
     let (ax, ay) = (a[0], a[1]);
     let (bx, by) = (b[0], b[1]);
     let (cx, cy) = (c[0], c[1]);

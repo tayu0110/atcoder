@@ -13,7 +13,7 @@ fn main() {
     for _ in 0..m {
         input! {t: usize}
 
-        let nop = op[op.len() - 1].clone();
+        let nop = op[op.len() - 1];
         if t == 1 {
             op.push(nop.rotate_clockwise());
         } else if t == 2 {

@@ -12,7 +12,7 @@ fn main() {
         cnt += 1;
     }
 
-    let mut c = a.into_iter().zip(b.into_iter()).collect::<Vec<_>>();
+    let mut c = a.into_iter().zip(b).collect::<Vec<_>>();
     c.sort_by(
         |(la, lb), (ra, rb)| {
             if la != ra {
@@ -124,7 +124,7 @@ mod segtree {
             LazySegtree::from_vec(&vec![e(); size], op, e, id, mapping, composition)
         }
         pub fn from_vec(
-            v: &Vec<S>,
+            v: &[S],
             op: fn(S, S) -> S,
             e: fn() -> S,
             id: fn() -> F,
@@ -335,7 +335,7 @@ mod segtree {
     pub fn range_add_range_maximum_query(size: usize) -> LazySegtree<i64, i64> {
         LazySegtree::from_vec(
             &vec![0i64; size],
-            |l, r| std::cmp::max(l, r),
+            std::cmp::max,
             || -9223372036854775808i64,
             || 0i64,
             |f, x| f + x,
@@ -346,7 +346,7 @@ mod segtree {
     pub fn range_add_range_minimum_query(size: usize) -> LazySegtree<i64, i64> {
         LazySegtree::from_vec(
             &vec![0i64; size],
-            |l, r| std::cmp::min(l, r),
+            std::cmp::min,
             || 0x7FFFFFFFFFFFFFFFi64,
             || 0i64,
             |f, x| f + x,

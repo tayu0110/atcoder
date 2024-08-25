@@ -8,12 +8,10 @@ fn main() {
     for (t, u, v) in p {
         if t == 0 {
             uf.merge(u, v);
+        } else if uf.is_same(u, v) {
+            println!("1");
         } else {
-            if uf.is_same(u, v) {
-                println!("1");
-            } else {
-                println!("0");
-            }
+            println!("0");
         }
     }
 }

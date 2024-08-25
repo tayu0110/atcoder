@@ -49,12 +49,10 @@ fn main() {
         }
         if c1 != a[i] {
             println!("{}", d1);
+        } else if d2 == std::usize::MAX {
+            println!("-1");
         } else {
-            if d2 == std::usize::MAX {
-                println!("-1");
-            } else {
-                println!("{}", d2);
-            }
+            println!("{}", d2);
         }
     }
 }

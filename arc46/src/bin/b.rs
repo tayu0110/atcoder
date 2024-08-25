@@ -52,11 +52,9 @@ fn main() {
         } else {
             println!("Takahashi");
         }
+    } else if a > b {
+        println!("Takahashi");
     } else {
-        if a > b {
-            println!("Takahashi");
-        } else {
-            println!("Aoki");
-        }
+        println!("Aoki");
     }
 }

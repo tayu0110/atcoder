@@ -111,7 +111,7 @@ fn main() {
     if s == vec![0; m] {
         let mut ans = Mint::new(1);
         for _ in pos..n {
-            ans = ans * Mint::new(2);
+            ans *= Mint::new(2);
         }
         println!("{}", ans);
     } else {

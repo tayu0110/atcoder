@@ -7,7 +7,6 @@ fn main() {
 
     if c <= 2 {
         println!("{}", Mint::raw(c).pow(n));
-        return;
     }
 }
 

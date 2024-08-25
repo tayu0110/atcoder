@@ -21,7 +21,7 @@ fn main() {
             now -= 1;
         }
 
-        for v in vec![f, b] {
+        for v in [f, b] {
             let mut k = now;
             while k > 0 {
                 if t[k] > 0 && *v.last().unwrap() != k {

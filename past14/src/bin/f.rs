@@ -7,6 +7,6 @@ fn main() {
     let s = s.into_iter().collect::<HashSet<_>>();
     for _ in 0..q {
         input! {t: [usize]}
-        println!("{}", t.into_iter().filter(|t| !s.contains(&t)).count() + n)
+        println!("{}", t.into_iter().filter(|t| !s.contains(t)).count() + n)
     }
 }

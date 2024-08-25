@@ -72,10 +72,10 @@ mod geometry {
     impl Sub for Rational { type Output = Rational; fn sub(self, rhs: Self) -> Self::Output { assert!(!self.is_nan()); self + (-rhs) } }
     impl Mul for Rational { type Output = Rational; fn mul(self, rhs: Self) -> Self::Output { assert!(!self.is_nan()); Self::new(self.numerator * rhs.numerator, self.denominator * rhs.denominator) } }
     impl Div for Rational { type Output = Rational; fn div(self, rhs: Self) -> Self::Output { assert!(!self.is_nan()); self * Self { numerator: rhs.denominator, denominator: rhs.numerator} } }
-    impl AddAssign for Rational { fn add_assign(&mut self, rhs: Self) { assert!(!self.is_nan()); *self = self.clone() + rhs; } }
-    impl SubAssign for Rational { fn sub_assign(&mut self, rhs: Self) { assert!(!self.is_nan()); *self = self.clone() - rhs; } }
-    impl MulAssign for Rational { fn mul_assign(&mut self, rhs: Self) { assert!(!self.is_nan()); *self = self.clone() * rhs; } }
-    impl DivAssign for Rational { fn div_assign(&mut self, rhs: Self) { assert!(!self.is_nan()); *self = self.clone() / rhs; } }
+    impl AddAssign for Rational { fn add_assign(&mut self, rhs: Self) { assert!(!self.is_nan()); *self = *self + rhs; } }
+    impl SubAssign for Rational { fn sub_assign(&mut self, rhs: Self) { assert!(!self.is_nan()); *self = *self - rhs; } }
+    impl MulAssign for Rational { fn mul_assign(&mut self, rhs: Self) { assert!(!self.is_nan()); *self = *self * rhs; } }
+    impl DivAssign for Rational { fn div_assign(&mut self, rhs: Self) { assert!(!self.is_nan()); *self = *self / rhs; } }
     impl std::fmt::Display for Rational { fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result { write!(f, "({} / {})", self.numerator, self.denominator) } }
     impl std::fmt::Debug for Rational { fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result { write!(f, "({} / {})", self.numerator, self.denominator) } }
     impl Add<f64> for Rational { type Output = f64; fn add(self, rhs: f64) -> Self::Output { let lhs: f64 = self.try_into().unwrap(); lhs + rhs } }
@@ -143,10 +143,10 @@ mod geometry {
         convex.into_iter().enumerate().flat_map(|(i, mut v)| if i == 0 { v } else { v.reverse(); let len = v.len(); v[1..len-1].into() }).collect()
     }
     // points(周上の順番であることが必要)に含まれる点を結んだ線を周とする多角形の面積求める
-    pub fn points_to_area<T: NumericTrait>(points: &Vec<(T, T)>) -> T {
+    pub fn points_to_area<T: NumericTrait>(points: &[(T, T)]) -> T {
         let len = points.len();
         let mut res = T::zero();
-        for (i, (x, y)) in points.into_iter().enumerate() {
+        for (i, (x, y)) in points.iter().enumerate() {
             let (nx, ny) = points[(i+1) % len];
             res += (*x - nx) * (*y + ny);
         }

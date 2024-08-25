@@ -11,7 +11,7 @@ fn main() {
         for j in 1..N - 1 {
             let mut cnt = 0;
             let mut p = 0.0;
-            for k in vec![j - 1, j, j + 1] {
+            for k in [j - 1, j, j + 1] {
                 if i & (1 << k) == 0 {
                     cnt += 1;
                 } else {

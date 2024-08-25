@@ -13,7 +13,7 @@ fn main() {
         for _ in 0..4 {
             for _ in 0..4 {
                 {
-                    let p = vec![&s, &t, &u];
+                    let p = [&s, &t, &u];
                     for v in (0..3).permutations(3) {
                         let (s, t, u) = (p[v[0]], p[v[1]], p[v[2]]);
                         for i in 0..=4 {
@@ -21,23 +21,23 @@ fn main() {
                                 for k in 0..=4 {
                                     for l in 0..=4 {
                                         let mut buf = BinaryGrid::new(8, 8);
-                                        buf.merge(0, 0, &s).ok();
+                                        buf.merge(0, 0, s).ok();
                                         if buf.is_overflow(i, j, t)
                                             || buf.is_overlap(i, j, t).unwrap()
                                         {
                                             continue;
                                         }
-                                        buf.merge(i, j, &t).ok();
+                                        buf.merge(i, j, t).ok();
                                         if buf.is_overflow(k, l, u)
                                             || buf.is_overlap(k, l, u).unwrap()
                                         {
                                             continue;
                                         }
-                                        buf.merge(k, l, &u).ok();
+                                        buf.merge(k, l, u).ok();
 
                                         buf = buf.truncate();
                                         if buf.shape() == (4, 4)
-                                            && buf.as_ref().into_iter().flatten().all(|&f| f)
+                                            && buf.as_ref().iter().flatten().all(|&f| f)
                                         {
                                             println!("Yes");
                                             return;

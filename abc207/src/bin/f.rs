@@ -1,6 +1,6 @@
 use proconio::*;
 
-const MOD: usize = 1000_000_007;
+const MOD: usize = 1_000_000_007;
 
 fn solve(now: usize, par: usize, t: &Vec<Vec<usize>>) -> Vec<Vec<Vec<usize>>> {
     let mut memo = vec![vec![vec![0; 2]; 2]; 2];

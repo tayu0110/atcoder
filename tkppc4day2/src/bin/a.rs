@@ -27,16 +27,14 @@ fn main() {
         } else {
             println!("-1");
         }
-    } else {
-        if y % 4 == 2 {
-            let res = y / 2;
-            if res < x.abs() {
-                println!("-1");
-            } else {
-                println!("{}", res);
-            }
-        } else {
+    } else if y % 4 == 2 {
+        let res = y / 2;
+        if res < x.abs() {
             println!("-1");
+        } else {
+            println!("{}", res);
         }
+    } else {
+        println!("-1");
     }
 }

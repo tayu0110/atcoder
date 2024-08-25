@@ -11,7 +11,7 @@ fn main() {
         }
 
         let len = stack.len();
-        if c == b'C' && &stack[len - 2..len] == &[b'A', b'B'] {
+        if c == b'C' && stack[len - 2..len] == [b'A', b'B'] {
             stack.pop();
             stack.pop();
         } else {

@@ -5,16 +5,14 @@ fn main() {
 
     for i in 0..n {
         for j in 0..n {
-            for (dx, dy) in vec![
-                (0, 1),
+            for (dx, dy) in [(0, 1),
                 (1, 0),
                 (0, !0),
                 (!0, 0),
                 (1, 1),
                 (!0, 1),
                 (1, !0),
-                (!0, !0),
-            ] {
+                (!0, !0)] {
                 let (mut r, mut c) = (i, j);
                 let mut cnt = 0;
                 let mut bad = false;

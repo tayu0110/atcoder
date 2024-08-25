@@ -119,10 +119,8 @@ fn main() {
                     strength = strength.saturating_add(g);
                     for &to in &t[now] {
                         let (_, ty, s, _) = e[to];
-                        if !reached[to] {
-                            if ty == 1 {
-                                nt.push(Reverse((s, to)));
-                            }
+                        if !reached[to] && ty == 1 {
+                            nt.push(Reverse((s, to)));
                         }
                     }
                 }

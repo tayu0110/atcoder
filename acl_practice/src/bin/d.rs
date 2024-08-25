@@ -159,6 +159,6 @@ fn main() {
         for j in 0..m {
             print!("{}", s[i][j]);
         }
-        println!("");
+        println!();
     }
 }

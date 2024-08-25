@@ -11,8 +11,8 @@ fn rotate(a: Vec<Vec<char>>) -> Vec<Vec<char>> {
     res
 }
 
-fn truncate(a: &Vec<Vec<char>>) -> Vec<Vec<char>> {
-    let mut a = a.clone();
+fn truncate(a: &[Vec<char>]) -> Vec<Vec<char>> {
+    let mut a = a.to_vec();
     while !a.is_empty() {
         if a.last().unwrap().iter().all(|&c| c == '.') {
             a.pop();
@@ -53,9 +53,9 @@ fn truncate(a: &Vec<Vec<char>>) -> Vec<Vec<char>> {
 }
 
 fn solve(
-    s: &Vec<Vec<char>>,
-    t: &Vec<Vec<char>>,
-    u: &Vec<Vec<char>>,
+    s: &[Vec<char>],
+    t: &[Vec<char>],
+    u: &[Vec<char>],
     i: usize,
     j: usize,
     k: usize,
@@ -118,7 +118,7 @@ fn main() {
             for _ in 0..4 {
                 {
                     let (s, t, u) = (truncate(&s), truncate(&t), truncate(&u));
-                    let p = vec![&s, &t, &u];
+                    let p = [&s, &t, &u];
                     for v in (0..3).permutations(3) {
                         let (s, t, u) = (p[v[0]], p[v[1]], p[v[2]]);
                         for k in 0..=8 {

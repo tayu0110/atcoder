@@ -28,13 +28,13 @@ fn main() {
                     if k as i32 + c[i+1][j] < MAX as i32 {
                         memo[i+1][j][k + c[i+1][j] as usize] = true;
                     }
-                    memo[i+1][j][(k as i32 - c[i+1][j]).abs() as usize] = true;
+                    memo[i+1][j][(k as i32 - c[i+1][j]).unsigned_abs() as usize] = true;
                 }
                 if j + 1 < w {
                     if k as i32 + c[i][j+1] < MAX as i32 {
                         memo[i][j+1][k + c[i][j+1] as usize] = true;
                     }
-                    memo[i][j+1][(k as i32 - c[i][j+1]).abs() as usize] = true;
+                    memo[i][j+1][(k as i32 - c[i][j+1]).unsigned_abs() as usize] = true;
                 }
             }
         }

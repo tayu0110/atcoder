@@ -12,8 +12,8 @@ fn main() {
         dp[a][b] = Modint::one();
     }
 
-    let row = vec![Modint::one(), Modint::new(h as u64 - 1)];
-    let col = vec![Modint::one(), Modint::new(w as u64 - 1)];
+    let row = [Modint::one(), Modint::new(h as u64 - 1)];
+    let col = [Modint::one(), Modint::new(w as u64 - 1)];
 
     for _ in 0..k {
         let mut new = vec![vec![Modint::zero(); 2]; 2];
@@ -230,14 +230,22 @@ pub mod modint {
     //      R := montgomery_constant_r()
     fn montgomery_reduction(val: u32, modulo: u32, mod_inv: u32) -> u32 {
         let t = ((val as u64).wrapping_add((val.wrapping_mul(mod_inv) as u64).wrapping_mul(modulo as u64)) >> 32) as u32;
-        let res = if t >= modulo { t - modulo } else { t };
-        res
+
+        if t >= modulo {
+            t - modulo
+        } else {
+            t
+        }
     }
     fn montgomery_multiplication(lhs: u32, rhs: u32, modulo: u32, mod_inv: u32) -> u32 {
         let a = lhs as u64 * rhs as u64;
         let t = (a.wrapping_add(((a as u32).wrapping_mul(mod_inv) as u64).wrapping_mul(modulo as u64)) >> 32) as u32;
-        let res = if t >= modulo { t - modulo } else { t };
-        res
+
+        if t >= modulo {
+            t - modulo
+        } else {
+            t
+        }
     }
     #[derive(Clone, Copy, PartialEq, Eq)]
     pub struct MontgomeryModint<M: Modulo> {
@@ -311,7 +319,7 @@ pub mod modint {
     }
     impl<M: Modulo> Div for MontgomeryModint<M> {
         type Output = Self;
-        fn div(self, rhs: Self) -> Self::Output { self * rhs.inv() }
+        fn div(self, rhs: Self) -> Self::Output { self.mul(rhs.inv()) }
     }
     impl<M: Modulo> AddAssign for MontgomeryModint<M> {
         fn add_assign(&mut self, rhs: Self) { *self = *self + rhs; }

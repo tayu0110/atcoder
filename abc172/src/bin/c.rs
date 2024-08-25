@@ -3,12 +3,12 @@ use proconio::{*, input, marker::{Chars, Bytes}, source::line::LineSource};
 #[allow(unused_imports)]
 use itertools::Itertools;
 
-fn solve(k: usize, a: &Vec<usize>, b: &Vec<usize>) -> i32 {
+fn solve(k: usize, a: &[usize], b: &[usize]) -> i32 {
     let m = b.len();
 
     let mut res = 0;
-    let a = a.into_iter().scan(0, |s, v| { *s += v; Some(*s) }).collect_vec();
-    let b = b.into_iter().scan(0, |s, v| { *s += v; Some(*s) }).collect_vec();
+    let a = a.iter().scan(0, |s, v| { *s += v; Some(*s) }).collect_vec();
+    let b = b.iter().scan(0, |s, v| { *s += v; Some(*s) }).collect_vec();
 
     for (i, t) in a.into_iter().enumerate() {
         if t > k {

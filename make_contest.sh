@@ -18,7 +18,22 @@ cd "$DIR" || exit
 mkdir .vscode -p
 cat <<EOF >.vscode/settings.json
 {
-    "rust-analyzer.check.command": "check"
+    "rust-analyzer.check.command": "check",
+    "rust-analyzer.check.overrideCommand": [
+        "cargo",
+        "check",
+        "--workspace",
+        "--message-format=json",
+        "--all-targets",
+    ],
+    "rust-analyzer.cargo.buildScripts.overrideCommand": [
+        "cargo",
+        "check",
+        "--quiet",
+        "--workspace",
+        "--message-format=json",
+        "--all-targets",
+    ],
 }
 EOF
 
@@ -28,7 +43,7 @@ cat <<EOF >.cargo/config.toml
 target-dir = "../target"
 EOF
 
-echo "1.72.0" >> rust-toolchain
+echo "1.70.0" >> rust-toolchain
 
 cargo add "ac-library-rs@=0.1.1"
 cargo add num@=0.4.1
@@ -43,6 +58,7 @@ cargo add proconio@=0.4.5 --features derive
 cargo add bitset --git https://github.com/tayu0110/tayu-procon.git
 cargo add complex --git https://github.com/tayu0110/tayu-procon.git
 cargo add convolution --git https://github.com/tayu0110/tayu-procon.git
+cargo add cpgraph --git https://github.com/tayu0110/tayu-procon.git
 cargo add fenwick-tree --git https://github.com/tayu0110/tayu-procon.git
 cargo add flow --git https://github.com/tayu0110/tayu-procon.git
 cargo add geometry --git https://github.com/tayu0110/tayu-procon.git
@@ -58,7 +74,6 @@ cargo add static-modint --git https://github.com/tayu0110/tayu-procon.git
 cargo add string --git https://github.com/tayu0110/tayu-procon.git
 cargo add unionfind --git https://github.com/tayu0110/tayu-procon.git
 cargo add utility --git https://github.com/tayu0110/tayu-procon.git
-cargo add wavelet-matrix --git https://github.com/tayu0110/tayu-procon.git
 echo 'ds = { git = "https://github.com/tayu0110/tayu-procon.git", version = "0.1.0", features = ["full",] }' >> Cargo.toml
 
 mkdir -p src/bin

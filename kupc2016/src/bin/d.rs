@@ -27,8 +27,8 @@ fn main() {
     let mut res = vec![vec![]; 2];
 
     'base: for _ in 0..n {
-        for u in vec!['.', '#'] {
-            for d in vec!['.', '#'] {
+        for u in ['.', '#'] {
+            for d in ['.', '#'] {
                 out_back(&res[0], u);
                 out_back(&res[1], d);
 
@@ -50,8 +50,8 @@ fn main() {
     }
 
     'base: for _ in 0..n - res[0].len() {
-        for u in vec!['.', '#'] {
-            for d in vec!['.', '#'] {
+        for u in ['.', '#'] {
+            for d in ['.', '#'] {
                 out_front(&res[0], u);
                 out_front(&res[1], d);
 

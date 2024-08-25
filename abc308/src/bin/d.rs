@@ -14,7 +14,7 @@ fn rec(r: usize, c: usize, s: &Vec<Vec<u8>>, memo: &mut Vec<Vec<u8>>) -> u8 {
     memo[r][c] = 3;
 
     let mut res = 2;
-    for (dr, dc) in vec![(0, 1), (1, 0), (0, !0), (!0, 0)] {
+    for (dr, dc) in [(0, 1), (1, 0), (0, !0), (!0, 0)] {
         let (nr, nc) = (r.wrapping_add(dr), c.wrapping_add(dc));
         if nr >= s.len() || nc >= s[0].len() {
             continue;

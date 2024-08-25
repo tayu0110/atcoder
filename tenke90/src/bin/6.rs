@@ -6,7 +6,7 @@ fn main() {
 
     let mut t = vec![vec![]; 26];
     for (i, c) in s.iter().enumerate() {
-        let code = *c as u8 - 'a' as u8;
+        let code = *c as u8 - b'a';
         t[code as usize].push(i);
     }
     
@@ -33,7 +33,7 @@ fn main() {
                 continue;
             }
             if n - v[r as usize] >= rem {
-                res.push(('a' as u8 + i as u8) as char);
+                res.push((b'a' + i as u8) as char);
                 ok = v[r as usize] + 1;
                 not_found = false;
                 break;
@@ -51,5 +51,5 @@ fn main() {
         }
     }
 
-    println!("{}", res.to_string());
+    println!("{}", res);
 }

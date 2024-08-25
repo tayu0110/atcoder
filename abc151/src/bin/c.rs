@@ -8,10 +8,8 @@ fn main() {
     for (p, s) in p {
         if s == "AC" {
             res[p - 1] = true;
-        } else {
-            if !res[p - 1] {
-                penalty[p - 1] += 1;
-            }
+        } else if !res[p - 1] {
+            penalty[p - 1] += 1;
         }
     }
 

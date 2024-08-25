@@ -32,5 +32,5 @@ fn main() {
         dp = new;
     }
 
-    println!("{}", dp[m..].into_iter().min().unwrap())
+    println!("{}", dp[m..].iter().min().unwrap())
 }

@@ -1,5 +1,5 @@
 fn main() {
-    const MAX: usize = 2000_000;
+    const MAX: usize = 2_000_000;
     let mut p = vec![std::usize::MAX; MAX];
     p[0] = 0;
     p[1] = 0;

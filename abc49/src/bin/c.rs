@@ -11,12 +11,12 @@ fn main() {
             continue;
         }
 
-        for ns in vec!["dream", "dreamer", "erase", "eraser"] {
+        for ns in ["dream", "dreamer", "erase", "eraser"] {
             if i + ns.len() > len {
                 continue;
             }
 
-            if &ns.as_bytes()[..] == &s[i..i + ns.len()] {
+            if ns.as_bytes() == &s[i..i + ns.len()] {
                 memo[i + ns.len()] = true;
             }
         }

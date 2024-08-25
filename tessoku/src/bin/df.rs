@@ -1,13 +1,10 @@
-use std::{
-    io::{stdin, BufReader, Read},
-    mem::transmute,
-};
+use std::io::{stdin, BufReader, Read};
 
 fn main() {
     let mut buf = vec![];
     BufReader::new(stdin().lock()).read_to_end(&mut buf).ok();
     let buf = buf.as_slice();
-    let buf = unsafe { transmute::<_, &str>(buf) };
+    let buf = std::str::from_utf8(buf).unwrap();
     let xor = buf
         .split_ascii_whitespace()
         .skip(3)

@@ -94,7 +94,7 @@ pub mod modint {
 }
 type Mint = modint::Mint<modint::Mod998244353>;
 
-fn solve(a: &Vec<usize>, p: usize) -> Mint {
+fn solve(a: &[usize], p: usize) -> Mint {
     let a = a.iter().map(|v| *v % p).collect::<Vec<_>>();
     let n = a.len();
 

@@ -21,7 +21,7 @@ fn main() {
                     continue;
                 }
 
-                let m = (x - tx).abs() as i64 + (y - ty).abs() as i64;
+                let m = (x - tx).abs() + (y - ty).abs();
                 if p * s >= m {
                     t[i].push(j);
                 }

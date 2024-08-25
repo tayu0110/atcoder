@@ -11,12 +11,10 @@ fn main() {
             c[x - 1] += 1;
         } else if t == 2 {
             c[x - 1] += 2;
+        } else if c[x - 1] >= 2 {
+            println!("Yes")
         } else {
-            if c[x - 1] >= 2 {
-                println!("Yes")
-            } else {
-                println!("No")
-            }
+            println!("No")
         }
     }
 }

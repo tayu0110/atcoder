@@ -59,7 +59,7 @@ fn main() {
             m /= 10;
         }
 
-        if v.len() > 0 {
+        if !v.is_empty() {
             bad = true;
         }
 

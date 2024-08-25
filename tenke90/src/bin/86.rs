@@ -71,15 +71,15 @@ fn main() {
     let p = p.iter().map(|(x, y, z, w)| (*x - 1, *y - 1, *z - 1, *w)).collect::<Vec<(usize, usize, usize, usize)>>();
 
     let mut res = Mint::new(1);
-    for i in 0..60 as usize {
+    for i in 0..60_usize {
         let mut cnt = 0i64;
         for j in 0..(1usize << n) {
             let mut bad = false;
             for (x, y, z, w) in &p {
-                let wb = (*w as usize & (1usize << i) as usize) >> i;
-                let xb = (j & (1usize << x) as usize) >> x;
-                let yb = (j & (1usize << y) as usize) >> y;
-                let zb = (j & (1usize << z) as usize) >> z;
+                let wb = (*w & (1usize << i)) >> i;
+                let xb = (j & (1usize << x)) >> x;
+                let yb = (j & (1usize << y)) >> y;
+                let zb = (j & (1usize << z)) >> z;
 
                 if (xb | yb | zb) != wb {
                     bad = true;

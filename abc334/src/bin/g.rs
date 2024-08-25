@@ -29,7 +29,7 @@ fn main() {
                     continue;
                 }
                 group[r][c] = cnt;
-                for (dy, dx) in vec![(1, 0), (0, 1), (!0, 0), (0, !0)] {
+                for (dy, dx) in [(1, 0), (0, 1), (!0, 0), (0, !0)] {
                     let nr = r.wrapping_add(dy);
                     let nc = c.wrapping_add(dx);
                     if nr >= h || nc >= w || s[nr][nc] != '#' || group[nr][nc] > 0 {
@@ -80,7 +80,7 @@ fn main() {
         let mut graph = vec![vec![]; cnt];
         for m in member {
             let (r, c) = (m / w, m % w);
-            for (dx, dy) in vec![(0, 1), (1, 0), (0, !0), (!0, 0)] {
+            for (dx, dy) in [(0, 1), (1, 0), (0, !0), (!0, 0)] {
                 let nr = r.wrapping_add(dy);
                 let nc = c.wrapping_add(dx);
                 if nr < h && nc < w && group[r][c] == group[nr][nc] {

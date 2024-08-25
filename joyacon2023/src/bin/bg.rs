@@ -156,25 +156,25 @@ mod geometry {
     impl AddAssign for Rational {
         fn add_assign(&mut self, rhs: Self) {
             assert!(!self.is_nan());
-            *self = self.clone() + rhs;
+            *self = *self + rhs;
         }
     }
     impl SubAssign for Rational {
         fn sub_assign(&mut self, rhs: Self) {
             assert!(!self.is_nan());
-            *self = self.clone() - rhs;
+            *self = *self - rhs;
         }
     }
     impl MulAssign for Rational {
         fn mul_assign(&mut self, rhs: Self) {
             assert!(!self.is_nan());
-            *self = self.clone() * rhs;
+            *self = *self * rhs;
         }
     }
     impl DivAssign for Rational {
         fn div_assign(&mut self, rhs: Self) {
             assert!(!self.is_nan());
-            *self = self.clone() / rhs;
+            *self = *self / rhs;
         }
     }
     impl std::fmt::Display for Rational {
@@ -386,10 +386,10 @@ mod geometry {
             .collect()
     }
     // points(周上の順番であることが必要)に含まれる点を結んだ線を周とする多角形の面積求める
-    pub fn points_to_area<T: NumericTrait>(points: &Vec<(T, T)>) -> T {
+    pub fn points_to_area<T: NumericTrait>(points: &[(T, T)]) -> T {
         let len = points.len();
         let mut res = T::zero();
-        for (i, (x, y)) in points.into_iter().enumerate() {
+        for (i, (x, y)) in points.iter().enumerate() {
             let (nx, ny) = points[(i + 1) % len];
             res += (*x - nx) * (*y + ny);
         }

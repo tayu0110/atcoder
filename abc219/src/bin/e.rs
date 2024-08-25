@@ -54,19 +54,13 @@ fn check(map: u32) -> bool {
         if map & (1 << i) != 0 {
             if root_one == std::usize::MAX {
                 root_one = uf.root(i);
-            } else {
-                if root_one != uf.root(i) {
-                    return false;
-                }
+            } else if root_one != uf.root(i) {
+                return false;
             }
-        } else {
-            if root_zero == std::usize::MAX {
-                root_zero = uf.root(i);
-            } else {
-                if root_zero != uf.root(i) {
-                    return false;
-                }
-            }
+        } else if root_zero == std::usize::MAX {
+            root_zero = uf.root(i);
+        } else if root_zero != uf.root(i) {
+            return false;
         }
     }
 

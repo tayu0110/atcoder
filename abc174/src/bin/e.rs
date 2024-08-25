@@ -3,7 +3,7 @@ use proconio::*;
 fn main() {
     input! {n: usize, k: usize, a: [usize; n]}
 
-    let (mut l, mut r) = (0, 1000_000_000_000);
+    let (mut l, mut r) = (0, 1_000_000_000_000);
     while r - l > 1 {
         let m = (r + l) / 2;
         let mut sum = 0;

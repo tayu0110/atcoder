@@ -149,17 +149,15 @@ fn main() {
                         } else {
                             break;
                         }
-                    } else {
-                        if s <= w {
-                            res += y - w;
-                            if x != z {
-                                res += 1;
-                                println!("{res}");
-                                continue 'base;
-                            }
-                        } else {
-                            break;
+                    } else if s <= w {
+                        res += y - w;
+                        if x != z {
+                            res += 1;
+                            println!("{res}");
+                            continue 'base;
                         }
+                    } else {
+                        break;
                     }
                 }
             }
