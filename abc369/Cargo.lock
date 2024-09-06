@@ -3,6 +3,41 @@
 version = 3
 
 [[package]]
+name = "abc369"
+version = "0.1.0"
+dependencies = [
+ "ac-library-rs",
+ "bitset",
+ "complex",
+ "convolution",
+ "cpgraph",
+ "ds",
+ "fenwick-tree",
+ "flow",
+ "geometry",
+ "graph",
+ "itertools",
+ "math",
+ "matrix",
+ "mincost-flow",
+ "montgomery-modint",
+ "num",
+ "permutohedron",
+ "polynomial",
+ "proconio",
+ "rand",
+ "rational",
+ "regex",
+ "rustc-hash",
+ "segtree",
+ "static-modint",
+ "string",
+ "superslice",
+ "unionfind",
+ "utility",
+]
+
+[[package]]
 name = "ac-library-rs"
 version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -272,41 +307,6 @@ version = "0.1.0"
 source = "git+https://github.com/tayu0110/tayu-procon.git#047e8865f061a348046004ff0e4acae202d3aafb"
 dependencies = [
  "zero-one",
-]
-
-[[package]]
-name = "pakencamp2023day1"
-version = "0.1.0"
-dependencies = [
- "ac-library-rs",
- "bitset",
- "complex",
- "convolution",
- "cpgraph",
- "ds",
- "fenwick-tree",
- "flow",
- "geometry",
- "graph",
- "itertools",
- "math",
- "matrix",
- "mincost-flow",
- "montgomery-modint",
- "num",
- "permutohedron",
- "polynomial",
- "proconio",
- "rand",
- "rational",
- "regex",
- "rustc-hash",
- "segtree",
- "static-modint",
- "string",
- "superslice",
- "unionfind",
- "utility",
 ]
 
 [[package]]

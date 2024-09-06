@@ -1,5 +1,5 @@
 [package]
-name = "pakencamp2020day1"
+name = "abc369"
 version = "0.1.0"
 edition = "2021"
 
@@ -9,7 +9,6 @@ bitset = { git = "https://github.com/tayu0110/tayu-procon.git", version = "0.1.0
 complex = { git = "https://github.com/tayu0110/tayu-procon.git", version = "0.1.0" }
 convolution = { git = "https://github.com/tayu0110/tayu-procon.git", version = "0.1.0" }
 cpgraph = { git = "https://github.com/tayu0110/tayu-procon.git", version = "0.1.0" }
-cpio = { git = "https://github.com/tayu0110/tayu-procon.git", version = "0.1.0" }
 fenwick-tree = { git = "https://github.com/tayu0110/tayu-procon.git", version = "0.1.0" }
 flow = { git = "https://github.com/tayu0110/tayu-procon.git", version = "0.1.0" }
 geometry = { git = "https://github.com/tayu0110/tayu-procon.git", version = "0.1.0" }
@@ -33,6 +32,4 @@ string = { git = "https://github.com/tayu0110/tayu-procon.git", version = "0.1.0
 superslice = "=1.0.0"
 unionfind = { git = "https://github.com/tayu0110/tayu-procon.git", version = "0.1.0" }
 utility = { git = "https://github.com/tayu0110/tayu-procon.git", version = "0.1.0" }
-ds = { git = "https://github.com/tayu0110/tayu-procon.git", version = "0.1.0", features = [
-    "full",
-] }
+ds = { git = "https://github.com/tayu0110/tayu-procon.git", version = "0.1.0", features = ["full",] }
