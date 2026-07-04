@@ -1,65 +1,60 @@
 use proconio::*;
 
-fn solve(a: &mut [Vec<i32>], b: &mut [Vec<i32>]) {
-    let h = a.len();
-    let w = a[0].len();
-    let mut col = 0;
-    for i in 0..h {
-        'b: while col < w && a[i][col] < 0 {
-            for j in i + 1..h {
-                if a[j][col] >= 0 {
-                    a.swap(i, j);
-                    b.swap(i, j);
-                    break 'b;
+fn solve(a: &mut [Vec<i32>]) -> bool {
+    let (h, w) = (a.len(), a[0].len());
+    let mut res = [vec![-1; h], vec![-1; w]];
+    for i in 0..2 {
+        for j in 0..res[i].len() {
+            if res[i][j] < 0 {
+                let mut nt = vec![[usize::MAX; 2]];
+                nt[0][i] = j;
+                res[i][j] = 0;
+                while let Some([r, c]) = nt.pop() {
+                    if r < usize::MAX {
+                        for j in 0..w {
+                            if a[r][j] >= 0 {
+                                a[r][j] ^= res[0][r];
+                                if res[1][j] < 0 {
+                                    res[1][j] = a[r][j];
+                                    nt.push([usize::MAX, j]);
+                                }
+                            }
+                        }
+                    } else {
+                        for i in 0..h {
+                            if a[i][c] >= 0 {
+                                a[i][c] ^= res[1][c];
+                                if res[0][i] < 0 {
+                                    res[0][i] = a[i][c];
+                                    nt.push([i, usize::MAX]);
+                                }
+                            }
+                        }
+                    }
                 }
             }
-            col += 1;
         }
-
-        if col == w {
-            break;
-        }
-
-        for j in i..h {
-            if a[j][col] < 0 {
-                continue;
-            }
-
-            let t = a[j][col];
-            for k in col..w {
-                if a[j][k] >= 0 {
-                    a[j][k] ^= t;
-                }
-            }
-        }
-
-        col += 1;
     }
+    a.iter().flatten().all(|&a| a <= 0)
 }
 
 fn main() {
-    input! {h: usize, w: usize, mut a: [[i32; w]; h], mut b: [[i32; w]; h]}
+    input! {h: usize, w: usize, mut a: [[i32; w]; h], b: [[i32; w]; h]}
 
-    solve(&mut b, &mut a);
-    solve(&mut a, &mut b);
-
-    eprintln!("a: {a:?}, b: {b:?}");
-
-    for j in 0..w {
-        let mut buf = vec![];
-        for i in 0..h {
-            if b[i][j] >= 0 {
-                buf.push(a[i][j] ^ b[i][j]);
+    a.iter_mut()
+        .flatten()
+        .zip(b.into_iter().flatten())
+        .for_each(|(a, b)| {
+            if b < 0 {
+                *a = -1;
+            } else {
+                *a ^= b;
             }
-        }
-        buf.sort_unstable();
-        buf.dedup();
+        });
 
-        if buf.len() > 1 {
-            println!("No");
-            return;
-        }
+    if solve(&mut a) {
+        println!("Yes")
+    } else {
+        println!("No");
     }
-
-    println!("Yes");
 }

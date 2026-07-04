@@ -1,0 +1,3 @@
+use proconio::*;
+
+fn main() {}

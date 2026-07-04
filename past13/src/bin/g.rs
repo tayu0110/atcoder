@@ -8,7 +8,7 @@ fn main() {
         min[i + 1] = min[i] + a[i];
     }
 
-    let mut res = std::i64::MIN;
+    let mut res = i64::MIN;
     for i in 1..=n {
         let now = min[i];
         res = res.max(now - min[i - 1]);

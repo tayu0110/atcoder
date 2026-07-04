@@ -10,9 +10,9 @@ checksum = "09e1ead7b72f44698f97266946c0576d00c9e2010858f5aba47aa4660177ef73"
 
 [[package]]
 name = "aho-corasick"
-version = "1.1.2"
+version = "1.1.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b2969dcb958b36655471fc61f7e416fa76033bdd4bfed0678d8fee1e2d07a1f0"
+checksum = "8e60d3430d3a69478ad0993f19238d2df97c507009a52b3c10addcd7f6bcb916"
 dependencies = [
  "memchr",
 ]
@@ -20,23 +20,24 @@ dependencies = [
 [[package]]
 name = "arbitrary-modint"
 version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#8f9c90a28cfad37b51b646369aa00abcebfe3e68"
-
-[[package]]
-name = "arbitrary-montgomery-modint"
-version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#8f9c90a28cfad37b51b646369aa00abcebfe3e68"
+source = "git+https://github.com/tayu0110/tayu-procon.git#047e8865f061a348046004ff0e4acae202d3aafb"
 
 [[package]]
 name = "autocfg"
-version = "1.1.0"
+version = "1.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d468802bab17cbc0cc575e9b053f41e72aa36bfa6b7f55e3529ffa43161b97fa"
+checksum = "0c4b4d0bd25bd0b74681c0ad21497610ce1b7c91b1022cd21c80c6fbdd9476b0"
 
 [[package]]
 name = "bitset"
 version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#8f9c90a28cfad37b51b646369aa00abcebfe3e68"
+source = "git+https://github.com/tayu0110/tayu-procon.git#047e8865f061a348046004ff0e4acae202d3aafb"
+
+[[package]]
+name = "byteorder"
+version = "1.5.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1fd0f2584146f6f2ef48085050886acf353beff7305ebd1ae69500e27c67f64b"
 
 [[package]]
 name = "cfg-if"
@@ -47,7 +48,7 @@ checksum = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
 [[package]]
 name = "complex"
 version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#8f9c90a28cfad37b51b646369aa00abcebfe3e68"
+source = "git+https://github.com/tayu0110/tayu-procon.git#047e8865f061a348046004ff0e4acae202d3aafb"
 dependencies = [
  "numeric",
 ]
@@ -55,36 +56,40 @@ dependencies = [
 [[package]]
 name = "convolution"
 version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#8f9c90a28cfad37b51b646369aa00abcebfe3e68"
+source = "git+https://github.com/tayu0110/tayu-procon.git#047e8865f061a348046004ff0e4acae202d3aafb"
 dependencies = [
  "montgomery-modint",
  "number-theoretic-transform",
 ]
 
 [[package]]
-name = "ds"
+name = "cpgraph"
 version = "0.1.0"
+source = "git+https://github.com/tayu0110/tayu-procon.git#047e8865f061a348046004ff0e4acae202d3aafb"
+dependencies = [
+ "unionfind",
+]
 
 [[package]]
 name = "ds"
 version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#8f9c90a28cfad37b51b646369aa00abcebfe3e68"
+source = "git+https://github.com/tayu0110/tayu-procon.git#047e8865f061a348046004ff0e4acae202d3aafb"
 
 [[package]]
 name = "either"
-version = "1.10.0"
+version = "1.13.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "11157ac094ffbdde99aa67b23417ebdd801842852b500e395a45a9c0aac03e4a"
+checksum = "60b1af1c220855b6ceac025d3f6ecdd2b7c4894bfe9cd9bda4fbb4bc7c0d4cf0"
 
 [[package]]
 name = "fenwick-tree"
 version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#8f9c90a28cfad37b51b646369aa00abcebfe3e68"
+source = "git+https://github.com/tayu0110/tayu-procon.git#047e8865f061a348046004ff0e4acae202d3aafb"
 
 [[package]]
 name = "flow"
 version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#8f9c90a28cfad37b51b646369aa00abcebfe3e68"
+source = "git+https://github.com/tayu0110/tayu-procon.git#047e8865f061a348046004ff0e4acae202d3aafb"
 dependencies = [
  "numeric",
  "zero-one",
@@ -93,16 +98,16 @@ dependencies = [
 [[package]]
 name = "geometry"
 version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#8f9c90a28cfad37b51b646369aa00abcebfe3e68"
+source = "git+https://github.com/tayu0110/tayu-procon.git#047e8865f061a348046004ff0e4acae202d3aafb"
 dependencies = [
  "numeric",
 ]
 
 [[package]]
 name = "getrandom"
-version = "0.2.12"
+version = "0.2.15"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "190092ea657667030ac6a35e305e62fc4dd69fd98ac98631e5d3a2b1575a12b5"
+checksum = "c4567c8db10ae91089c99af84c68c38da3ec2f087c3f82960bcdbf3656b6f4d7"
 dependencies = [
  "cfg-if",
  "libc",
@@ -112,17 +117,10 @@ dependencies = [
 [[package]]
 name = "graph"
 version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#8f9c90a28cfad37b51b646369aa00abcebfe3e68"
+source = "git+https://github.com/tayu0110/tayu-procon.git#047e8865f061a348046004ff0e4acae202d3aafb"
 dependencies = [
- "ds 0.1.0 (git+https://github.com/tayu0110/tayu-procon.git)",
+ "ds",
  "unionfind",
-]
-
-[[package]]
-name = "iolib"
-version = "0.1.0"
-dependencies = [
- "ds 0.1.0",
 ]
 
 [[package]]
@@ -136,24 +134,22 @@ dependencies = [
 
 [[package]]
 name = "libc"
-version = "0.2.153"
+version = "0.2.158"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9c198f91728a82281a64e1f4f9eeb25d82cb32a5de251c6bd1b5154d63a8e7bd"
+checksum = "d8adc4bb1803a324070e64a98ae98f38934d91957a99cfb3a43dcbc01bc56439"
 
 [[package]]
 name = "math"
 version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#8f9c90a28cfad37b51b646369aa00abcebfe3e68"
+source = "git+https://github.com/tayu0110/tayu-procon.git#047e8865f061a348046004ff0e4acae202d3aafb"
 dependencies = [
- "arbitrary-montgomery-modint",
- "numeric",
  "simple-rand",
 ]
 
 [[package]]
 name = "matrix"
 version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#8f9c90a28cfad37b51b646369aa00abcebfe3e68"
+source = "git+https://github.com/tayu0110/tayu-procon.git#047e8865f061a348046004ff0e4acae202d3aafb"
 dependencies = [
  "arbitrary-modint",
  "modint-common",
@@ -165,24 +161,24 @@ dependencies = [
 
 [[package]]
 name = "memchr"
-version = "2.7.1"
+version = "2.7.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "523dc4f511e55ab87b694dc30d0f820d60906ef06413f93d4d7a1385599cc149"
+checksum = "78ca9ab1a0babb1e7d5695e3530886289c18cf2f87ec19a575a0abdce112e3a3"
 
 [[package]]
 name = "mincost-flow"
 version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#8f9c90a28cfad37b51b646369aa00abcebfe3e68"
+source = "git+https://github.com/tayu0110/tayu-procon.git#047e8865f061a348046004ff0e4acae202d3aafb"
 
 [[package]]
 name = "modint-common"
 version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#8f9c90a28cfad37b51b646369aa00abcebfe3e68"
+source = "git+https://github.com/tayu0110/tayu-procon.git#047e8865f061a348046004ff0e4acae202d3aafb"
 
 [[package]]
 name = "montgomery-modint"
 version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#8f9c90a28cfad37b51b646369aa00abcebfe3e68"
+source = "git+https://github.com/tayu0110/tayu-procon.git#047e8865f061a348046004ff0e4acae202d3aafb"
 dependencies = [
  "modint-common",
  "simple-rand",
@@ -205,20 +201,19 @@ dependencies = [
 
 [[package]]
 name = "num-bigint"
-version = "0.4.4"
+version = "0.4.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "608e7659b5c3d7cba262d894801b9ec9d00de989e8a82bd4bef91d08da45cdc0"
+checksum = "a5e44f723f1133c9deac646763579fdb3ac745e418f2a7af9cd0c431da1f20b9"
 dependencies = [
- "autocfg",
  "num-integer",
  "num-traits",
 ]
 
 [[package]]
 name = "num-complex"
-version = "0.4.5"
+version = "0.4.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "23c6602fda94a57c990fe0df199a035d83576b496aa29f4e634a8ac6004e68a6"
+checksum = "73f88a1307638156682bada9d7604135552957b7818057dcef22705b4d509495"
 dependencies = [
  "num-traits",
 ]
@@ -234,9 +229,9 @@ dependencies = [
 
 [[package]]
 name = "num-iter"
-version = "0.1.44"
+version = "0.1.45"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d869c01cc0c455284163fd0092f1f93835385ccab5a98a0dcc497b2f8bf055a9"
+checksum = "1429034a0490724d0075ebb2bc9e875d6503c3cf69e235a8941aa757d83ef5bf"
 dependencies = [
  "autocfg",
  "num-integer",
@@ -245,11 +240,10 @@ dependencies = [
 
 [[package]]
 name = "num-rational"
-version = "0.4.1"
+version = "0.4.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0638a1c9d0a3c0914158145bc76cff373a75a627e6ecbfb71cbe6f453a5a19b0"
+checksum = "f83d14da390562dca69fc84082e73e548e1ad308d24accdedd2720017cb37824"
 dependencies = [
- "autocfg",
  "num-bigint",
  "num-integer",
  "num-traits",
@@ -257,9 +251,9 @@ dependencies = [
 
 [[package]]
 name = "num-traits"
-version = "0.2.18"
+version = "0.2.19"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "da0df0e5185db44f69b44f26786fe401b6c293d1907744beaa7fa62b2e5a517a"
+checksum = "071dfc062690e90b734c0b2273ce72ad0ffa95f0c74596bc250dcfd960262841"
 dependencies = [
  "autocfg",
 ]
@@ -267,7 +261,7 @@ dependencies = [
 [[package]]
 name = "number-theoretic-transform"
 version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#8f9c90a28cfad37b51b646369aa00abcebfe3e68"
+source = "git+https://github.com/tayu0110/tayu-procon.git#047e8865f061a348046004ff0e4acae202d3aafb"
 dependencies = [
  "montgomery-modint",
 ]
@@ -275,18 +269,9 @@ dependencies = [
 [[package]]
 name = "numeric"
 version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#8f9c90a28cfad37b51b646369aa00abcebfe3e68"
+source = "git+https://github.com/tayu0110/tayu-procon.git#047e8865f061a348046004ff0e4acae202d3aafb"
 dependencies = [
  "zero-one",
-]
-
-[[package]]
-name = "ordered-float"
-version = "4.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a76df7075c7d4d01fdcb46c912dd17fba5b60c78ea480b475f2b6ab6f666584e"
-dependencies = [
- "num-traits",
 ]
 
 [[package]]
@@ -297,19 +282,18 @@ dependencies = [
  "bitset",
  "complex",
  "convolution",
- "ds 0.1.0 (git+https://github.com/tayu0110/tayu-procon.git)",
+ "cpgraph",
+ "ds",
  "fenwick-tree",
  "flow",
  "geometry",
  "graph",
- "iolib",
  "itertools",
  "math",
  "matrix",
  "mincost-flow",
  "montgomery-modint",
  "num",
- "ordered-float",
  "permutohedron",
  "polynomial",
  "proconio",
@@ -320,11 +304,9 @@ dependencies = [
  "segtree",
  "static-modint",
  "string",
- "suffix-array",
  "superslice",
  "unionfind",
  "utility",
- "wavelet-matrix",
 ]
 
 [[package]]
@@ -336,7 +318,7 @@ checksum = "b687ff7b5da449d39e418ad391e5e08da53ec334903ddbb921db208908fc372c"
 [[package]]
 name = "polynomial"
 version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#8f9c90a28cfad37b51b646369aa00abcebfe3e68"
+source = "git+https://github.com/tayu0110/tayu-procon.git#047e8865f061a348046004ff0e4acae202d3aafb"
 dependencies = [
  "convolution",
  "montgomery-modint",
@@ -346,15 +328,18 @@ dependencies = [
 
 [[package]]
 name = "ppv-lite86"
-version = "0.2.17"
+version = "0.2.20"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5b40af805b3121feab8a3c29f04d8ad262fa8e0561883e7653e024ae4479e6de"
+checksum = "77957b295656769bb8ad2b6a6b09d897d94f05c41b069aede1fcdaa675eaea04"
+dependencies = [
+ "zerocopy",
+]
 
 [[package]]
 name = "proc-macro2"
-version = "1.0.78"
+version = "1.0.86"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e2422ad645d89c99f8f3e6b88a9fdeca7fabeac836b1002371c4367c8f984aae"
+checksum = "5e719e8df665df0d1c8fbfd238015744736151d4445ec0836b8e628aae103b77"
 dependencies = [
  "unicode-ident",
 ]
@@ -376,14 +361,14 @@ checksum = "bccfa078f1a3db6563793531989799a2201d9bdf609f48dd82620b443fbcd409"
 dependencies = [
  "proc-macro2",
  "quote",
- "syn",
+ "syn 1.0.109",
 ]
 
 [[package]]
 name = "quote"
-version = "1.0.35"
+version = "1.0.37"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "291ec9ab5efd934aaf503a6466c5d5251535d108ee747472c3977cc5acc868ef"
+checksum = "b5b9d34b8991d19d98081b46eacdd8eb58c6f2b201139f7c5f643cc155a633af"
 dependencies = [
  "proc-macro2",
 ]
@@ -421,9 +406,8 @@ dependencies = [
 [[package]]
 name = "rational"
 version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#8f9c90a28cfad37b51b646369aa00abcebfe3e68"
+source = "git+https://github.com/tayu0110/tayu-procon.git#047e8865f061a348046004ff0e4acae202d3aafb"
 dependencies = [
- "math",
  "numeric",
 ]
 
@@ -465,7 +449,7 @@ checksum = "08d43f7aa6b08d49f382cde6a7982047c3426db949b1424bc4b7ec9ae12c6ce2"
 [[package]]
 name = "segtree"
 version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#8f9c90a28cfad37b51b646369aa00abcebfe3e68"
+source = "git+https://github.com/tayu0110/tayu-procon.git#047e8865f061a348046004ff0e4acae202d3aafb"
 dependencies = [
  "static-modint",
  "zero-one",
@@ -474,12 +458,12 @@ dependencies = [
 [[package]]
 name = "simple-rand"
 version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#8f9c90a28cfad37b51b646369aa00abcebfe3e68"
+source = "git+https://github.com/tayu0110/tayu-procon.git#047e8865f061a348046004ff0e4acae202d3aafb"
 
 [[package]]
 name = "static-modint"
 version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#8f9c90a28cfad37b51b646369aa00abcebfe3e68"
+source = "git+https://github.com/tayu0110/tayu-procon.git#047e8865f061a348046004ff0e4acae202d3aafb"
 dependencies = [
  "modint-common",
  "zero-one",
@@ -488,16 +472,11 @@ dependencies = [
 [[package]]
 name = "string"
 version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#8f9c90a28cfad37b51b646369aa00abcebfe3e68"
+source = "git+https://github.com/tayu0110/tayu-procon.git#047e8865f061a348046004ff0e4acae202d3aafb"
 dependencies = [
  "segtree",
  "simple-rand",
 ]
-
-[[package]]
-name = "suffix-array"
-version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#8f9c90a28cfad37b51b646369aa00abcebfe3e68"
 
 [[package]]
 name = "superslice"
@@ -517,20 +496,31 @@ dependencies = [
 ]
 
 [[package]]
-name = "unicode-ident"
-version = "1.0.12"
+name = "syn"
+version = "2.0.77"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3354b9ac3fae1ff6755cb6db53683adb661634f67557942dea4facebec0fee4b"
+checksum = "9f35bcdf61fd8e7be6caf75f429fdca8beb3ed76584befb503b1569faee373ed"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "unicode-ident",
+]
+
+[[package]]
+name = "unicode-ident"
+version = "1.0.13"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e91b56cd4cadaeb79bbf1a5645f6b4f8dc5bde8834ad5894a8db35fda9efa1fe"
 
 [[package]]
 name = "unionfind"
 version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#8f9c90a28cfad37b51b646369aa00abcebfe3e68"
+source = "git+https://github.com/tayu0110/tayu-procon.git#047e8865f061a348046004ff0e4acae202d3aafb"
 
 [[package]]
 name = "utility"
 version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#8f9c90a28cfad37b51b646369aa00abcebfe3e68"
+source = "git+https://github.com/tayu0110/tayu-procon.git#047e8865f061a348046004ff0e4acae202d3aafb"
 dependencies = [
  "zero-one",
 ]
@@ -542,11 +532,27 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9c8d87e72b64a3b4db28d11ce29237c246188f4f51057d65a7eab63b7987e423"
 
 [[package]]
-name = "wavelet-matrix"
-version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#8f9c90a28cfad37b51b646369aa00abcebfe3e68"
-
-[[package]]
 name = "zero-one"
 version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#8f9c90a28cfad37b51b646369aa00abcebfe3e68"
+source = "git+https://github.com/tayu0110/tayu-procon.git#047e8865f061a348046004ff0e4acae202d3aafb"
+
+[[package]]
+name = "zerocopy"
+version = "0.7.35"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1b9b4fd18abc82b8136838da5d50bae7bdea537c574d8dc1a34ed098d6c166f0"
+dependencies = [
+ "byteorder",
+ "zerocopy-derive",
+]
+
+[[package]]
+name = "zerocopy-derive"
+version = "0.7.35"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "fa4f8080344d4671fb4e831a13ad1e68092748387dfc4f55e356242fae12ce3e"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 2.0.77",
+]

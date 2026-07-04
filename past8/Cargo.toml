@@ -31,8 +31,6 @@ rustc-hash = "=1.1.0"
 segtree = { git = "https://github.com/tayu0110/tayu-procon.git", version = "0.1.0" }
 static-modint = { git = "https://github.com/tayu0110/tayu-procon.git", version = "0.1.0" }
 string = { git = "https://github.com/tayu0110/tayu-procon.git", version = "0.1.0" }
-suffix-array = { git = "https://github.com/tayu0110/tayu-procon.git", version = "0.1.0" }
 superslice = "=1.0.0"
 unionfind = { git = "https://github.com/tayu0110/tayu-procon.git", version = "0.1.0" }
 utility = { git = "https://github.com/tayu0110/tayu-procon.git", version = "0.1.0" }
-wavelet-matrix = { git = "https://github.com/tayu0110/tayu-procon.git", version = "0.1.0" }

@@ -8,6 +8,7 @@ ac-library-rs = "=0.1.1"
 bitset = { git = "https://github.com/tayu0110/tayu-procon.git", package = "bitset" }
 complex = { git = "https://github.com/tayu0110/tayu-procon.git", package = "complex" }
 convolution = { git = "https://github.com/tayu0110/tayu-procon.git", version = "0.1.0" }
+cpio = { git = "https://github.com/tayu0110/tayu-procon.git", version = "0.1.0" }
 ds = { git = "https://github.com/tayu0110/tayu-procon.git", package = "ds", features = [
   "full",
 ] }
@@ -15,7 +16,6 @@ fenwick-tree = { git = "https://github.com/tayu0110/tayu-procon.git", package = 
 flow = { git = "https://github.com/tayu0110/tayu-procon.git", package = "flow" }
 geometry = { git = "https://github.com/tayu0110/tayu-procon.git", package = "geometry" }
 graph = { git = "https://github.com/tayu0110/tayu-procon.git", package = "graph" }
-iolib = { version = "0.1.0", path = "../../tayu-procon/iolib" }
 itertools = "=0.11.0"
 math = { git = "https://github.com/tayu0110/tayu-procon.git", package = "math" }
 matrix = { git = "https://github.com/tayu0110/tayu-procon.git", package = "matrix" }
@@ -33,8 +33,6 @@ rustc-hash = "=1.1.0"
 segtree = { git = "https://github.com/tayu0110/tayu-procon.git", package = "segtree" }
 static-modint = { git = "https://github.com/tayu0110/tayu-procon.git", package = "static-modint" }
 string = { git = "https://github.com/tayu0110/tayu-procon.git", package = "string" }
-suffix-array = { git = "https://github.com/tayu0110/tayu-procon.git", package = "suffix-array" }
 superslice = "=1.0.0"
 unionfind = { git = "https://github.com/tayu0110/tayu-procon.git", package = "unionfind" }
 utility = { git = "https://github.com/tayu0110/tayu-procon.git", package = "utility" }
-wavelet-matrix = { git = "https://github.com/tayu0110/tayu-procon.git", package = "wavelet-matrix" }

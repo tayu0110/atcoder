@@ -1,8 +1,8 @@
 use ds::LinkCutTree;
-use iolib::*;
+use proconio::*;
 
 fn main() {
-    scan!(n: usize, q: usize, query: [(usize, usize, usize); q]);
+    input!(n: usize, q: usize, query: [(usize, usize, usize); q]);
 
     let mut lct = <LinkCutTree>::new(n * 2);
     let mut top = (0..n).collect::<Vec<_>>();
@@ -20,6 +20,6 @@ fn main() {
 
     for i in 0..n {
         let r = lct.root(i);
-        putln!(r - n + 1);
+        println!("{}", r - n + 1);
     }
 }

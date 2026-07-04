@@ -3,10 +3,6 @@
 version = 3
 
 [[package]]
-name = "arbitrary-montgomery-modint"
-version = "0.1.0"
-
-[[package]]
 name = "autocfg"
 version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -29,6 +25,9 @@ dependencies = [
 [[package]]
 name = "ds"
 version = "0.1.0"
+dependencies = [
+ "static-modint",
+]
 
 [[package]]
 name = "either"
@@ -44,15 +43,15 @@ version = "0.1.0"
 name = "flow"
 version = "0.1.0"
 dependencies = [
- "numeric",
- "zero-one",
+ "numeric 0.1.0",
+ "zero-one 0.1.0",
 ]
 
 [[package]]
 name = "geometry"
 version = "0.1.0"
 dependencies = [
- "numeric",
+ "numeric 0.1.0",
 ]
 
 [[package]]
@@ -91,8 +90,6 @@ checksum = "edc207893e85c5d6be840e969b496b53d94cec8be2d501b214f50daa97fa8024"
 name = "math"
 version = "0.1.0"
 dependencies = [
- "arbitrary-montgomery-modint",
- "numeric",
  "simple-rand",
 ]
 
@@ -110,7 +107,7 @@ version = "0.1.0"
 dependencies = [
  "modint-common",
  "simple-rand",
- "zero-one",
+ "zero-one 0.1.0",
 ]
 
 [[package]]
@@ -201,7 +198,15 @@ dependencies = [
 name = "numeric"
 version = "0.1.0"
 dependencies = [
- "zero-one",
+ "zero-one 0.1.0",
+]
+
+[[package]]
+name = "numeric"
+version = "0.1.0"
+source = "git+https://github.com/tayu0110/tayu-procon.git#6bff305f9319263cd5e6048d37c3793edcf281ff"
+dependencies = [
+ "zero-one 0.1.0 (git+https://github.com/tayu0110/tayu-procon.git)",
 ]
 
 [[package]]
@@ -217,7 +222,7 @@ dependencies = [
  "convolution",
  "montgomery-modint",
  "number-theoretic-transform",
- "zero-one",
+ "zero-one 0.1.0",
 ]
 
 [[package]]
@@ -310,8 +315,7 @@ dependencies = [
 name = "rational"
 version = "0.1.0"
 dependencies = [
- "math",
- "numeric",
+ "numeric 0.1.0 (git+https://github.com/tayu0110/tayu-procon.git)",
 ]
 
 [[package]]
@@ -325,7 +329,7 @@ name = "segtree"
 version = "0.1.0"
 dependencies = [
  "static-modint",
- "zero-one",
+ "zero-one 0.1.0",
 ]
 
 [[package]]
@@ -337,7 +341,7 @@ name = "static-modint"
 version = "0.1.0"
 dependencies = [
  "modint-common",
- "zero-one",
+ "zero-one 0.1.0",
 ]
 
 [[package]]
@@ -347,10 +351,6 @@ dependencies = [
  "segtree",
  "simple-rand",
 ]
-
-[[package]]
-name = "suffix-array"
-version = "0.1.0"
 
 [[package]]
 name = "syn"
@@ -386,7 +386,6 @@ dependencies = [
  "segtree",
  "static-modint",
  "string",
- "suffix-array",
  "unionfind",
 ]
 
@@ -409,3 +408,8 @@ checksum = "cccddf32554fecc6acb585f82a32a72e28b48f8c4c1883ddfeeeaa96f7d8e519"
 [[package]]
 name = "zero-one"
 version = "0.1.0"
+
+[[package]]
+name = "zero-one"
+version = "0.1.0"
+source = "git+https://github.com/tayu0110/tayu-procon.git#6bff305f9319263cd5e6048d37c3793edcf281ff"

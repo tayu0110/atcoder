@@ -1,6 +1,9 @@
 *.exe
 */target/
 */*/target/
+**/.vscode/
+**/.zed
+**/run.rs
 
 
 # Added by cargo

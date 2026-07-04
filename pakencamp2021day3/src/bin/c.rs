@@ -1,73 +1,52 @@
-use proconio::input;
-use std::collections::BTreeSet;
+use math::MathInt;
+use proconio::*;
+use rustc_hash::FxHashMap;
 
 fn main() {
-    input! {l: usize, r: usize, m: usize};
+    input! {l: usize, r: usize, m: usize}
 
-    let m = {
-        let mut res = 1usize;
-        for _ in 0..m {
-            res *= 10;
+    let mut ten = 1usize;
+    for _ in 0..m {
+        ten *= 10;
+    }
+
+    let mut now = 5usize.pow_mod(l as u64, ten);
+    let mut checked = FxHashMap::default();
+    checked.insert(now, l);
+    let mut cycle = vec![{
+        let mut now = now;
+        let mut res = 0;
+        while now > 0 {
+            res += now % 10;
+            now /= 10;
         }
         res
-    };
-
-    let mut ck = BTreeSet::new();
-    let mut buf = vec![];
-    let mut now = 1usize;
-    loop {
-        buf.push(now);
-        if ck.contains(&now) {
+    }];
+    let mut start = l;
+    for i in l + 1..=r {
+        now *= 5;
+        now %= ten;
+        if let Some(s) = checked.get(&now) {
+            start = *s;
             break;
         }
-        ck.insert(now);
-        now *= 5;
-        now %= m;
-    }
-
-    let g = {
+        checked.insert(now, i);
+        let mut now = now;
         let mut res = 0;
-        let back = *buf.last().unwrap();
-        for (i, v) in buf.iter().enumerate() {
-            if *v == back {
-                res = i;
-                break;
-            }
+        while now > 0 {
+            res += now % 10;
+            now /= 10;
         }
-        res
-    };
-
-    eprintln!("{:?}", buf);
-    eprintln!("g: {}", g);
-
-    let (l, r) = {
-        let l = if l >= g { l - g } else { 1 };
-        let r = if r >= g { r - g } else { 1 };
-        (l, r)
-    };
-    let buf = &buf[g..buf.len()-1];
-    let len = buf.len();
-
-    let mut res = 0;
-    let (mut nl, mut nr) = ((l-1) / len, r / len);
-    for v in buf {
-        let t = nr - nl;
-        let sum = {
-            let mut res = 0;
-            let mut v = *v;
-            while v > 0 {
-                res += v % 10;
-                v /= 10;
-            }
-            res
-        };
-        res += t * sum;
-        nl += 1;
-        nr += 1;
-        if nr > r {
-            nr -= len;
-        }
+        cycle.push(res);
     }
 
-    println!("{}", res);
+    let mut diff = r + 1 - l;
+    let mut res = cycle[..start - l].iter().sum::<usize>();
+    diff -= start - l;
+    cycle.drain(..start - l);
+    res += cycle.iter().sum::<usize>() * (diff / cycle.len());
+    diff %= cycle.len();
+    res += cycle[..diff].iter().sum::<usize>();
+
+    println!("{res}")
 }

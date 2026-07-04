@@ -25,5 +25,4 @@ rustc-hash = "1.1.0"
 segtree = { version = "0.1.0", path = "../../tayu-procon/segtree" }
 static-modint = { version = "0.1.0", path = "../../tayu-procon/modint/static-modint" }
 string = { version = "0.1.0", path = "../../tayu-procon/string" }
-suffix-array = { version = "0.1.0", path = "../../tayu-procon/suffix-array" }
 unionfind = { version = "0.1.0", path = "../../tayu-procon/unionfind" }

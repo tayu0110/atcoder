@@ -12,28 +12,46 @@ if ls "$DIR" >/dev/null 2>&1; then
 	exit
 fi
 
-cargo new "$DIR"
+cargo new "$DIR" --edition 2021
 cd "$DIR" || exit
 
-mkdir .vscode -p
-cat <<EOF >.vscode/settings.json
+# For Visual Studio Code
+# mkdir .vscode/extensions -p
+# cat <<EOF >.vscode/settings.json
+# {
+#     "rust-analyzer.check.command": "check",
+#     "rust-analyzer.check.overrideCommand": [
+#         "cargo",
+#         "check",
+#         "--workspace",
+#         "--message-format=json",
+#         "--all-targets",
+#     ],
+#     "rust-analyzer.cargo.buildScripts.overrideCommand": [
+#         "cargo",
+#         "check",
+#         "--quiet",
+#         "--workspace",
+#         "--message-format=json",
+#         "--all-targets",
+#     ],
+# }
+# EOF
+# wget -O .vscode/extensions/rust-analyzer-2023-09-11.zip https://github.com/rust-lang/rust-analyzer/releases/download/2023-09-11/rust-analyzer-linux-x64.vsix
+# unzip .vscode/extensions/rust-analyzer-2023-09-11.zip -d .vscode/extensions/
+# sed -i -r '/"main"/{ s#out/main#out/main.js# }' .vscode/extensions/extension/package.json
+mkdir .zed
+cat <<EOF > .zed/settings.json
 {
-    "rust-analyzer.check.command": "check",
-    "rust-analyzer.check.overrideCommand": [
-        "cargo",
-        "check",
-        "--workspace",
-        "--message-format=json",
-        "--all-targets",
-    ],
-    "rust-analyzer.cargo.buildScripts.overrideCommand": [
-        "cargo",
-        "check",
-        "--quiet",
-        "--workspace",
-        "--message-format=json",
-        "--all-targets",
-    ],
+  "lsp": {
+    "rust-analyzer": {
+      "initialization_options": {
+        "check": {
+          "command": "check",
+        },
+      },
+    },
+  },
 }
 EOF
 
@@ -43,7 +61,7 @@ cat <<EOF >.cargo/config.toml
 target-dir = "../target"
 EOF
 
-echo "1.70.0" >> rust-toolchain
+echo "1.89.0" >> rust-toolchain
 
 cargo add "ac-library-rs@=0.1.1"
 cargo add num@=0.4.1
@@ -85,10 +103,10 @@ for prefix in {a..g}; do
 		printf "    \n"
 		printf "}\n"
 	} >>"$SRC"
-	cargo equip --exclude-atcoder-crates --exclude-atcoder-202301-crates --minify libs --no-rustfmt --no-check --remove docs --remove comments --bin "$prefix" >/dev/null
+	cargo equip --exclude-atcoder-crates --remove docs --remove comments --exclude-atcoder-202301-crates --exclude proconio --exclude rustc-hash --exclude itertools --exclude rand --exclude ordered-float --exclude permutohedron --exclude regex --minify libs --no-rustfmt --no-check --bin $prefix &> /dev/null
 done
 
 cargo build
 cargo build --release
 
-code .
+zed .

@@ -1,6 +1,7 @@
 use std::collections::BTreeSet;
 
-use iolib::*;
+use itertools::Itertools;
+use proconio::*;
 use rustc_hash::FxHashMap;
 use segtree::{Monoid, SegmentTree};
 
@@ -19,7 +20,7 @@ impl Monoid for U32Min {
 }
 
 fn main() {
-    scan!(n: usize, q: usize, a: [u32; n], query: [(usize, usize, u32); q]);
+    input!(n: usize, q: usize, a: [u32; n], query: [(usize, usize, u32); q]);
 
     let mut st = SegmentTree::<U32Min>::from_vec(a.clone());
     let mut map = FxHashMap::default();
@@ -42,9 +43,8 @@ fn main() {
                 .map(|v| v + 1)
                 .collect::<Vec<_>>();
             res.sort_unstable();
-            put!(res.len());
-            put!(' ');
-            putitln!(res.into_iter(), sep = ' ');
+            print!("{} ", res.len());
+            println!("{}", res.into_iter().join(" "));
         }
     }
 }

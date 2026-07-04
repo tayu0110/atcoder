@@ -1,6 +1,6 @@
 use std::{cmp::Reverse, collections::BinaryHeap};
 
-use iolib::*;
+use cpio::*;
 
 fn main() {
     scan!(n: usize, m: usize, e: [(usize, usize, usize); m]);
@@ -30,7 +30,7 @@ fn main() {
         }
     }
 
-    putitln!(d
+    putln!(d
         .into_iter()
         .zip(rd)
         .map(|(d, rd)| d.saturating_add(rd) as i64));

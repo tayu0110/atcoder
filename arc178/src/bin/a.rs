@@ -2,24 +2,23 @@ use itertools::Itertools;
 use proconio::*;
 
 fn main() {
-    input! {n: usize, m: usize, a: [usize; m]}
+    input! {n: usize, m: usize, mut a: [u32; m]}
 
-    if a.contains(&n) || a.contains(&1) {
+    let mut memo = vec![false; n];
+    for a in a {
+        memo[a as usize - 1] = true;
+    }
+
+    if memo[0] || memo[n - 1] {
         println!("-1");
-    } else {
-        let &min = a.iter().min().unwrap();
-        let &max = a.iter().max().unwrap();
-        print!(
-            "{} {} {}",
-            (1..min).join(" "),
-            (min + 1..=max + 1).join(" "),
-            min,
-        );
-
-        if max + 2 <= n {
-            println!(" {}", (max + 2..=n).join(" "))
-        } else {
-            println!()
+        return;
+    }
+    let mut res = (1..=n).collect::<Vec<_>>();
+    for i in 1..n - 1 {
+        if memo[i] {
+            res.swap(i, i + 1);
         }
     }
+
+    println!("{}", res.iter().join(" "))
 }

@@ -20,12 +20,7 @@ dependencies = [
 [[package]]
 name = "arbitrary-modint"
 version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#e3b8154ae8943c5dbfb19daea2e865fed949e9aa"
-
-[[package]]
-name = "arbitrary-montgomery-modint"
-version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#e3b8154ae8943c5dbfb19daea2e865fed949e9aa"
+source = "git+https://github.com/tayu0110/tayu-procon.git#8a9057ff0a2c19930f909898b433a6d94848c252"
 
 [[package]]
 name = "autocfg"
@@ -36,7 +31,7 @@ checksum = "d468802bab17cbc0cc575e9b053f41e72aa36bfa6b7f55e3529ffa43161b97fa"
 [[package]]
 name = "bitset"
 version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#e3b8154ae8943c5dbfb19daea2e865fed949e9aa"
+source = "git+https://github.com/tayu0110/tayu-procon.git#8a9057ff0a2c19930f909898b433a6d94848c252"
 
 [[package]]
 name = "cfg-if"
@@ -47,7 +42,7 @@ checksum = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
 [[package]]
 name = "complex"
 version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#e3b8154ae8943c5dbfb19daea2e865fed949e9aa"
+source = "git+https://github.com/tayu0110/tayu-procon.git#8a9057ff0a2c19930f909898b433a6d94848c252"
 dependencies = [
  "numeric",
 ]
@@ -55,16 +50,24 @@ dependencies = [
 [[package]]
 name = "convolution"
 version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#e3b8154ae8943c5dbfb19daea2e865fed949e9aa"
+source = "git+https://github.com/tayu0110/tayu-procon.git#8a9057ff0a2c19930f909898b433a6d94848c252"
 dependencies = [
  "montgomery-modint",
  "number-theoretic-transform",
 ]
 
 [[package]]
+name = "cpgraph"
+version = "0.1.0"
+source = "git+https://github.com/tayu0110/tayu-procon.git#8a9057ff0a2c19930f909898b433a6d94848c252"
+dependencies = [
+ "unionfind",
+]
+
+[[package]]
 name = "ds"
 version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#e3b8154ae8943c5dbfb19daea2e865fed949e9aa"
+source = "git+https://github.com/tayu0110/tayu-procon.git#8a9057ff0a2c19930f909898b433a6d94848c252"
 
 [[package]]
 name = "either"
@@ -75,12 +78,12 @@ checksum = "11157ac094ffbdde99aa67b23417ebdd801842852b500e395a45a9c0aac03e4a"
 [[package]]
 name = "fenwick-tree"
 version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#e3b8154ae8943c5dbfb19daea2e865fed949e9aa"
+source = "git+https://github.com/tayu0110/tayu-procon.git#8a9057ff0a2c19930f909898b433a6d94848c252"
 
 [[package]]
 name = "flow"
 version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#e3b8154ae8943c5dbfb19daea2e865fed949e9aa"
+source = "git+https://github.com/tayu0110/tayu-procon.git#8a9057ff0a2c19930f909898b433a6d94848c252"
 dependencies = [
  "numeric",
  "zero-one",
@@ -89,7 +92,7 @@ dependencies = [
 [[package]]
 name = "geometry"
 version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#e3b8154ae8943c5dbfb19daea2e865fed949e9aa"
+source = "git+https://github.com/tayu0110/tayu-procon.git#8a9057ff0a2c19930f909898b433a6d94848c252"
 dependencies = [
  "numeric",
 ]
@@ -108,7 +111,7 @@ dependencies = [
 [[package]]
 name = "graph"
 version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#e3b8154ae8943c5dbfb19daea2e865fed949e9aa"
+source = "git+https://github.com/tayu0110/tayu-procon.git#8a9057ff0a2c19930f909898b433a6d94848c252"
 dependencies = [
  "ds",
  "unionfind",
@@ -132,17 +135,15 @@ checksum = "9c198f91728a82281a64e1f4f9eeb25d82cb32a5de251c6bd1b5154d63a8e7bd"
 [[package]]
 name = "math"
 version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#e3b8154ae8943c5dbfb19daea2e865fed949e9aa"
+source = "git+https://github.com/tayu0110/tayu-procon.git#8a9057ff0a2c19930f909898b433a6d94848c252"
 dependencies = [
- "arbitrary-montgomery-modint",
- "numeric",
  "simple-rand",
 ]
 
 [[package]]
 name = "matrix"
 version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#e3b8154ae8943c5dbfb19daea2e865fed949e9aa"
+source = "git+https://github.com/tayu0110/tayu-procon.git#8a9057ff0a2c19930f909898b433a6d94848c252"
 dependencies = [
  "arbitrary-modint",
  "modint-common",
@@ -161,17 +162,17 @@ checksum = "523dc4f511e55ab87b694dc30d0f820d60906ef06413f93d4d7a1385599cc149"
 [[package]]
 name = "mincost-flow"
 version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#e3b8154ae8943c5dbfb19daea2e865fed949e9aa"
+source = "git+https://github.com/tayu0110/tayu-procon.git#8a9057ff0a2c19930f909898b433a6d94848c252"
 
 [[package]]
 name = "modint-common"
 version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#e3b8154ae8943c5dbfb19daea2e865fed949e9aa"
+source = "git+https://github.com/tayu0110/tayu-procon.git#8a9057ff0a2c19930f909898b433a6d94848c252"
 
 [[package]]
 name = "montgomery-modint"
 version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#e3b8154ae8943c5dbfb19daea2e865fed949e9aa"
+source = "git+https://github.com/tayu0110/tayu-procon.git#8a9057ff0a2c19930f909898b433a6d94848c252"
 dependencies = [
  "modint-common",
  "simple-rand",
@@ -256,7 +257,7 @@ dependencies = [
 [[package]]
 name = "number-theoretic-transform"
 version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#e3b8154ae8943c5dbfb19daea2e865fed949e9aa"
+source = "git+https://github.com/tayu0110/tayu-procon.git#8a9057ff0a2c19930f909898b433a6d94848c252"
 dependencies = [
  "montgomery-modint",
 ]
@@ -264,7 +265,7 @@ dependencies = [
 [[package]]
 name = "numeric"
 version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#e3b8154ae8943c5dbfb19daea2e865fed949e9aa"
+source = "git+https://github.com/tayu0110/tayu-procon.git#8a9057ff0a2c19930f909898b433a6d94848c252"
 dependencies = [
  "zero-one",
 ]
@@ -286,6 +287,7 @@ dependencies = [
  "bitset",
  "complex",
  "convolution",
+ "cpgraph",
  "ds",
  "fenwick-tree",
  "flow",
@@ -308,11 +310,9 @@ dependencies = [
  "segtree",
  "static-modint",
  "string",
- "suffix-array",
  "superslice",
  "unionfind",
  "utility",
- "wavelet-matrix",
 ]
 
 [[package]]
@@ -324,7 +324,7 @@ checksum = "b687ff7b5da449d39e418ad391e5e08da53ec334903ddbb921db208908fc372c"
 [[package]]
 name = "polynomial"
 version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#e3b8154ae8943c5dbfb19daea2e865fed949e9aa"
+source = "git+https://github.com/tayu0110/tayu-procon.git#8a9057ff0a2c19930f909898b433a6d94848c252"
 dependencies = [
  "convolution",
  "montgomery-modint",
@@ -409,9 +409,8 @@ dependencies = [
 [[package]]
 name = "rational"
 version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#e3b8154ae8943c5dbfb19daea2e865fed949e9aa"
+source = "git+https://github.com/tayu0110/tayu-procon.git#8a9057ff0a2c19930f909898b433a6d94848c252"
 dependencies = [
- "math",
  "numeric",
 ]
 
@@ -453,7 +452,7 @@ checksum = "08d43f7aa6b08d49f382cde6a7982047c3426db949b1424bc4b7ec9ae12c6ce2"
 [[package]]
 name = "segtree"
 version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#e3b8154ae8943c5dbfb19daea2e865fed949e9aa"
+source = "git+https://github.com/tayu0110/tayu-procon.git#8a9057ff0a2c19930f909898b433a6d94848c252"
 dependencies = [
  "static-modint",
  "zero-one",
@@ -462,12 +461,12 @@ dependencies = [
 [[package]]
 name = "simple-rand"
 version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#e3b8154ae8943c5dbfb19daea2e865fed949e9aa"
+source = "git+https://github.com/tayu0110/tayu-procon.git#8a9057ff0a2c19930f909898b433a6d94848c252"
 
 [[package]]
 name = "static-modint"
 version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#e3b8154ae8943c5dbfb19daea2e865fed949e9aa"
+source = "git+https://github.com/tayu0110/tayu-procon.git#8a9057ff0a2c19930f909898b433a6d94848c252"
 dependencies = [
  "modint-common",
  "zero-one",
@@ -476,16 +475,11 @@ dependencies = [
 [[package]]
 name = "string"
 version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#e3b8154ae8943c5dbfb19daea2e865fed949e9aa"
+source = "git+https://github.com/tayu0110/tayu-procon.git#8a9057ff0a2c19930f909898b433a6d94848c252"
 dependencies = [
  "segtree",
  "simple-rand",
 ]
-
-[[package]]
-name = "suffix-array"
-version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#e3b8154ae8943c5dbfb19daea2e865fed949e9aa"
 
 [[package]]
 name = "superslice"
@@ -513,12 +507,12 @@ checksum = "3354b9ac3fae1ff6755cb6db53683adb661634f67557942dea4facebec0fee4b"
 [[package]]
 name = "unionfind"
 version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#e3b8154ae8943c5dbfb19daea2e865fed949e9aa"
+source = "git+https://github.com/tayu0110/tayu-procon.git#8a9057ff0a2c19930f909898b433a6d94848c252"
 
 [[package]]
 name = "utility"
 version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#e3b8154ae8943c5dbfb19daea2e865fed949e9aa"
+source = "git+https://github.com/tayu0110/tayu-procon.git#8a9057ff0a2c19930f909898b433a6d94848c252"
 dependencies = [
  "zero-one",
 ]
@@ -530,11 +524,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9c8d87e72b64a3b4db28d11ce29237c246188f4f51057d65a7eab63b7987e423"
 
 [[package]]
-name = "wavelet-matrix"
-version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#e3b8154ae8943c5dbfb19daea2e865fed949e9aa"
-
-[[package]]
 name = "zero-one"
 version = "0.1.0"
-source = "git+https://github.com/tayu0110/tayu-procon.git#e3b8154ae8943c5dbfb19daea2e865fed949e9aa"
+source = "git+https://github.com/tayu0110/tayu-procon.git#8a9057ff0a2c19930f909898b433a6d94848c252"

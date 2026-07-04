@@ -1,5 +1,5 @@
-use proconio::input;
+use proconio::*;
 
 fn main() {
-    input! {p: usize, _a: [usize; p]}
+    input! {p: usize, a: [u32; p]}
 }

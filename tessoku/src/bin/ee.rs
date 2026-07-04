@@ -1,8 +1,8 @@
+use ds::{Monoid, SegmentTree};
 use proconio::*;
-use segtree::SegmentTree;
 
-struct UsizeMin;
-impl segtree::Monoid for UsizeMin {
+struct T;
+impl Monoid for T {
     type M = usize;
     fn id() -> Self::M {
         usize::MAX
@@ -15,10 +15,15 @@ impl segtree::Monoid for UsizeMin {
 fn main() {
     input! {n: usize, l: usize, r: usize, x: [usize; n]}
 
-    let mut st = SegmentTree::<UsizeMin>::new(n);
+    let mut st = SegmentTree::<T>::new(n);
     st.set(0, 0);
-    for (_i, &now) in x.iter().enumerate().skip(1) {
-        let _nl = x.partition_point(|&x| x <= now.saturating_sub(r));
-        let _nr = x.partition_point(|&x| x <= now.saturating_sub(l));
+    for (i, &now) in x.iter().enumerate().skip(1) {
+        let (l, r) = (
+            x.partition_point(|&x| x + r < now),
+            x.partition_point(|&x| x + l <= now),
+        );
+        st.set(i, st.fold(l..r).saturating_add(1));
     }
+
+    println!("{}", st.get(n - 1))
 }
